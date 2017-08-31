@@ -9,56 +9,56 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1818842935954752}
+  m_RootGameObject: {fileID: 1578625877607270}
   m_IsPrefabParent: 1
---- !u!1 &1818842935954752
+--- !u!1 &1578625877607270
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4761476229360622}
-  - component: {fileID: 212396800454852194}
-  - component: {fileID: 114042445876997714}
+  - component: {fileID: 4389384480467080}
+  - component: {fileID: 212644774377861618}
+  - component: {fileID: 114907827200210306}
   m_Layer: 0
-  m_Name: Plant Level 3
+  m_Name: Ice_Plant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4761476229360622
+--- !u!4 &4389384480467080
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1818842935954752}
+  m_GameObject: {fileID: 1578625877607270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.28, y: 0.64, z: -1}
+  m_LocalPosition: {x: 1.28, y: 1.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114042445876997714
+--- !u!114 &114907827200210306
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1818842935954752}
+  m_GameObject: {fileID: 1578625877607270}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ca5770bcacbd4f208f55ba07c65d4cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gridSideLength: 0.64
---- !u!212 &212396800454852194
+--- !u!212 &212644774377861618
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1818842935954752}
+  m_GameObject: {fileID: 1578625877607270}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 93385ea31c705fc4da6d70adc9e6db18, type: 3}
+  m_Sprite: {fileID: 21300000, guid: caa5eb4469903a94ca93aee9600d3f82, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
