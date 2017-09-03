@@ -8,7 +8,8 @@ public class Player_Movement : MonoBehaviour
     Vector3 newPosition = Vector3.zero;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
 		
 	}
 	
