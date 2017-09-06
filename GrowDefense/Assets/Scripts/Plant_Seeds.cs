@@ -15,22 +15,19 @@ public class Plant_Seeds : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        //if (Input.GetKey(KeyCode.Mouse0))
-        //{
-        //    Instantiate(plantLevel1, this.transform.position, this.transform.rotation);
-        //}
+
     }
 
     private void OnCollisionStay2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "Select")
+        if (coll.gameObject.tag == "FarmTile")
         {
             if (Input.GetKey(KeyCode.Mouse0))
             {
-                if (!this.gameObject.GetComponent<Farm_Controller>().isPlanted)
+                if (!coll.gameObject.GetComponent<Farm_Controller>().isPlanted)
                 {
-                    Instantiate(plantLevel1, coll.transform.position, coll.transform.rotation);
-                    this.gameObject.GetComponent<Farm_Controller>().isPlanted = true;
+                    Instantiate(plantLevel1, new Vector3(coll.transform.position.x, coll.transform.position.y, -1), coll.transform.rotation);
+                    coll.gameObject.GetComponent<Farm_Controller>().isPlanted = true;
                 }
             }
         }

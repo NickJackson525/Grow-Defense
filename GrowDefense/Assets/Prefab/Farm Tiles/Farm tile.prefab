@@ -24,7 +24,6 @@ GameObject:
   - component: {fileID: 114178722756832842}
   - component: {fileID: 61958078340374788}
   - component: {fileID: 60267311739640388}
-  - component: {fileID: 114618664615755312}
   m_Layer: 0
   m_Name: Farm tile
   m_TagString: FarmTile
@@ -123,18 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridSideLength: 0.64
---- !u!114 &114618664615755312
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1351178598456074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d1addf1b07c9a94f808d3df0008a8f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  plantLevel1: {fileID: 0}
 --- !u!212 &212358028262061824
 SpriteRenderer:
   m_ObjectHideFlags: 1
