@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4688370025265472}
   - component: {fileID: 212229242437373054}
   - component: {fileID: 114366011688398496}
+  - component: {fileID: 114097484212784230}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -41,6 +42,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!114 &114097484212784230
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1435248392555374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2df89744f61beda49805a8983f04d40e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bug1: {fileID: 1099381375926008, guid: bad5769f2cd0ab940bc5254b721c4060, type: 2}
+  cooldown: 120
+  cooldownConst: 180
+  spawnCount: 0
 --- !u!114 &114366011688398496
 MonoBehaviour:
   m_ObjectHideFlags: 1

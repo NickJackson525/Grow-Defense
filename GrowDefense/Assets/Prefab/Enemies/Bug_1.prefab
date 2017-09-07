@@ -21,9 +21,12 @@ GameObject:
   - component: {fileID: 4158647638764524}
   - component: {fileID: 212064207881865566}
   - component: {fileID: 114393144146509632}
+  - component: {fileID: 114349085625148068}
+  - component: {fileID: 50316263908025238}
+  - component: {fileID: 58131496162229752}
   m_Layer: 0
   m_Name: Bug_1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,12 +38,69 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1099381375926008}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -5.7599998, y: 4.48, z: -3.84}
+  m_LocalPosition: {x: -5.7599998, y: 5.12, z: -3.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!50 &50316263908025238
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1099381375926008}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &58131496162229752
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1099381375926008}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0019800663, y: -0.053465128}
+  serializedVersion: 2
+  m_Radius: 0.18930793
+--- !u!114 &114349085625148068
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1099381375926008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a425cb3daddb7fe4e998ee79da8eb3b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  fullPath:
+  - {fileID: 1314759699418508, guid: 96b0e1ab8e71cbc4cae190e92d080fa5, type: 2}
+  - {fileID: 1114881812035520, guid: 13396a5699a6657489ca2c0bb74953ba, type: 2}
+  - {fileID: 1868081734474956, guid: 0e37ed24b949c234ebfbef91906e77c2, type: 2}
+  - {fileID: 1751007023315362, guid: 8d750da84bcc58a42a69a54e2ac1b590, type: 2}
+  - {fileID: 1674796407388248, guid: cc4a82e39848c8944a9f81520d1077ae, type: 2}
+  - {fileID: 1935634753771488, guid: 2498d256571f50c46a0a3b90b0d04302, type: 2}
+  - {fileID: 1120396211383510, guid: c143d2c18f388dd45883c06a10347495, type: 2}
+  pathCount: 0
+  health: 100
 --- !u!114 &114393144146509632
 MonoBehaviour:
   m_ObjectHideFlags: 1

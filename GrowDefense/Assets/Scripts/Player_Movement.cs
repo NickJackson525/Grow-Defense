@@ -5,7 +5,6 @@ using UnityEngine;
 public class Player_Movement : MonoBehaviour
 {
     public float speed = 1f;
-    Vector3 newPosition = Vector3.zero;
 
 	// Use this for initialization
 	void Start ()

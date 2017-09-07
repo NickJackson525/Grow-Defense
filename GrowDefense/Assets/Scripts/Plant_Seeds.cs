@@ -5,6 +5,7 @@ using UnityEngine;
 public class Plant_Seeds : MonoBehaviour
 {
     public GameObject plantLevel1;
+    GameObject newPlant;
 
 	// Use this for initialization
 	void Start ()
@@ -26,7 +27,9 @@ public class Plant_Seeds : MonoBehaviour
             {
                 if (!coll.gameObject.GetComponent<Farm_Controller>().isPlanted)
                 {
-                    Instantiate(plantLevel1, new Vector3(coll.transform.position.x, coll.transform.position.y, -1), coll.transform.rotation);
+                    newPlant = Instantiate(plantLevel1, new Vector3(coll.transform.position.x, coll.transform.position.y, 0), coll.transform.rotation);
+                    newPlant.GetComponent<Plant_controller>().thisPlant = Plant_controller.PlantType.FIRE;
+                    newPlant.GetComponent<Plant_controller>().thisTile = coll.gameObject;
                     coll.gameObject.GetComponent<Farm_Controller>().isPlanted = true;
                 }
             }
