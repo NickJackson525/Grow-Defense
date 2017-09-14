@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1786864968172032}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.12, y: 2.56, z: 0}
+  m_LocalPosition: {x: -5.12, y: 2.56, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -72,6 +72,7 @@ MonoBehaviour:
   thisPlant: 0
   ammo: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c, type: 2}
   currentTarget: {fileID: 0}
+  thisTile: {fileID: 0}
 --- !u!212 &212577088257536120
 SpriteRenderer:
   m_ObjectHideFlags: 1
