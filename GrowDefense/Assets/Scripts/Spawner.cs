@@ -34,9 +34,9 @@ public class Spawner : MonoBehaviour
             spawnCount++;
         }
 
-        if((spawnCount == spawnReset) && (cooldownConst > 50))
+        if((spawnCount == spawnReset) && (cooldownConst > 10))
         {
-            cooldownConst -= 50;
+            cooldownConst -= 10;
             spawnCount = 0;
         }
 	}

@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114349085625148068}
   - component: {fileID: 50316263908025238}
   - component: {fileID: 58131496162229752}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bug_1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0019800663, y: -0.053465128}

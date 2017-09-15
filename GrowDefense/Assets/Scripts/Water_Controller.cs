@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class Water_Controller : MonoBehaviour
 {
     public Sprite water1;
     public Sprite water2;
@@ -15,18 +15,27 @@ public class Health : MonoBehaviour
     public Sprite water9;
     public Sprite water10;
     public int health = 100;
+    bool isSelected = false;
 
     // Use this for initialization
-    void Start ()
-    {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    void Start()
     {
 
-	}
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if ((isSelected) && (Input.GetMouseButtonUp(0)))
+        {
+            Game_Manager.Instance.waterLevel += health;
+
+            if (Game_Manager.Instance.waterLevel > 100)
+            {
+                Game_Manager.Instance.waterLevel = 100;
+            }
+        }
+    }
 
     public void updateSprite()
     {
@@ -62,6 +71,22 @@ public class Health : MonoBehaviour
             case 10:
                 this.gameObject.GetComponent<SpriteRenderer>().sprite = water10;
                 break;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Select")
+        {
+            isSelected = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Select")
+        {
+            isSelected = false;
         }
     }
 }

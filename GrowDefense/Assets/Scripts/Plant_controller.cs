@@ -18,8 +18,6 @@ public class Plant_controller : MonoBehaviour
     public GameObject thisTile;
     int shootTimer = 0;
     bool canShoot = true;
-    float bulletSpeed = 2f;
-    Vector3 newDirection;
 
 	// Use this for initialization
 	void Start ()
