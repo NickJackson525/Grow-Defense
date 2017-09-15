@@ -1,15 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player_Movement : MonoBehaviour
 {
+    public GameObject water;
     public float speed = 1f;
-    Vector3 newPosition = Vector3.zero;
+    public int waterLevel = 100;
+    public int money = 150;
+    public float startScale;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+    {
+        startScale = water.transform.localScale.y;
 	}
 	
 	// Update is called once per frame
@@ -34,5 +39,9 @@ public class Player_Movement : MonoBehaviour
         {
             transform.position += Vector3.right * speed * Time.deltaTime;
         }
+
+        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -2f);
+
+        water.GetComponent<Image>().fillAmount = (float)waterLevel / 100f;
     }
 }

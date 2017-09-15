@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.SceneManagement;
+//using UnityEditor.SceneManagement;
 
 public class Change_Scene : MonoBehaviour
 {
+    public GameObject okayButton;
+    public GameObject panel;
+    public GameObject instructionsText;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -25,5 +29,12 @@ public class Change_Scene : MonoBehaviour
     public void Exit_Game()
     {
         
+    }
+
+    public void Okay_Button()
+    {
+        Destroy(okayButton);
+        Destroy(panel);
+        Destroy(instructionsText);
     }
 }
