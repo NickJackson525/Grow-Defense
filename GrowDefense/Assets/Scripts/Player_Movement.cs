@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player_Movement : MonoBehaviour
 {
@@ -41,6 +42,6 @@ public class Player_Movement : MonoBehaviour
 
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -2f);
 
-        water.transform.localScale = new Vector3(water.transform.localScale.x, startScale * ((float)waterLevel / 100f), water.transform.localScale.z);
+        water.GetComponent<Image>().fillAmount = (float)waterLevel / 100f;
     }
 }
