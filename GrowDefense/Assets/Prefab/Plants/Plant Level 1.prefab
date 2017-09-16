@@ -69,8 +69,10 @@ MonoBehaviour:
   levelTwoPlant: {fileID: 21300000, guid: f001f1370f62a0047a1219d198841016, type: 3}
   firePlant: {fileID: 21300000, guid: 93385ea31c705fc4da6d70adc9e6db18, type: 3}
   icePlant: {fileID: 21300000, guid: caa5eb4469903a94ca93aee9600d3f82, type: 3}
+  voidPlant: {fileID: 0}
   thisPlant: 0
-  ammo: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c, type: 2}
+  plantAmmoType: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c,
+    type: 2}
   currentTarget: {fileID: 0}
   thisTile: {fileID: 0}
 --- !u!212 &212577088257536120

@@ -4,19 +4,30 @@ using UnityEngine;
 
 public class Enemy_Controller : MonoBehaviour
 {
+    #region Variables
+
     public float speed = 1f;
     public GameObject[] fullPath;
     public int pathCount = 0;
     public int health = 100;
+    public int moneyGivenOnDeath = 5;
+
+    #endregion
+
+    #region Start
 
     // Use this for initialization
     void Start ()
     {
 
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    #endregion
+
+    #region Update
+
+    // Update is called once per frame
+    void Update ()
     {
         if (pathCount <= fullPath.Length)
         {
@@ -55,9 +66,14 @@ public class Enemy_Controller : MonoBehaviour
 
         if(health <= 0)
         {
+            Game_Manager.Instance.money += moneyGivenOnDeath;
             Destroy(this.gameObject);
         }
     }
+
+    #endregion
+
+    #region Collision Methods
 
     private void OnCollisionEnter2D(Collision2D coll)
     {
@@ -70,8 +86,10 @@ public class Enemy_Controller : MonoBehaviour
 
         if (coll.gameObject.tag == "Bullet")
         {
-            health -= 10;
+            health -= coll.gameObject.GetComponent<Bullet>().damage;
             Destroy(coll.gameObject);
         }
     }
+
+    #endregion
 }

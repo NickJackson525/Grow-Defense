@@ -4,21 +4,32 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    #region Variables
+
     public GameObject bug1;
-    public int cooldown = 180;
-    public int cooldownConst = 180;
+    public int cooldown = 250;
+    public int cooldownConst = 250;
     public int spawnCount = 0;
-    int spawnReset = 10;
+    public int spawnRateIncrease = 10;
+    int spawnReset = 5;
     int initialSpawnCountDown = 240;
 
-	// Use this for initialization
-	void Start ()
+    #endregion
+
+    #region Start
+
+    // Use this for initialization
+    void Start ()
     {
 		
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    #endregion
+
+    #region Update
+
+    // Update is called once per frame
+    void Update ()
     {
         cooldown--;
 
@@ -36,8 +47,10 @@ public class Spawner : MonoBehaviour
 
         if((spawnCount == spawnReset) && (cooldownConst > 10))
         {
-            cooldownConst -= 10;
+            cooldownConst -= spawnRateIncrease;
             spawnCount = 0;
         }
 	}
+
+    #endregion
 }

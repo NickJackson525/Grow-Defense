@@ -7,8 +7,11 @@ public class Game_Manager
 {
     #region Variables
 
+    public enum PlantType { FIRE, ICE, VOID }
     public float waterLevel = 100;
     public int money = 150;
+    public const int maxPlantLevel = 3;
+    public PlantType currentPlantSelection = PlantType.FIRE;
 
     #endregion
 
