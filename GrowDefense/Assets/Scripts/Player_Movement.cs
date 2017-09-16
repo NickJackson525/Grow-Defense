@@ -7,8 +7,6 @@ public class Player_Movement : MonoBehaviour
 {
     public GameObject water;
     public float speed = 1f;
-    public int waterLevel = 100;
-    public int money = 150;
     public float startScale;
 
 	// Use this for initialization
@@ -42,6 +40,6 @@ public class Player_Movement : MonoBehaviour
 
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -2f);
 
-        water.GetComponent<Image>().fillAmount = (float)waterLevel / 100f;
+        water.GetComponent<Image>().fillAmount = Game_Manager.Instance.waterLevel / 100f;
     }
 }

@@ -4,29 +4,39 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    #region Variables
+
     public bool move = false;
     public GameObject target;
-    GameObject testEnemyExist;
+    public int damage = 15;
+    public float speed = .2f;
+
+    #endregion
+
+    #region Start
 
     // Use this for initialization
     void Start ()
     {
 		
 	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        testEnemyExist = GameObject.FindGameObjectWithTag("Enemy");
 
-        if ((testEnemyExist == null) || (target == null))
+    #endregion
+
+    #region Update
+
+    // Update is called once per frame
+    void Update ()
+    {
+        if (target == null)
         {
             Destroy(this.gameObject);
         }
-
-        if (move || (target != null))
+        else if (move)
         {
-            this.gameObject.transform.position = Vector3.Lerp(transform.position, target.transform.position, .2f);
+            this.gameObject.transform.position = Vector3.Lerp(transform.position, target.transform.position, speed);
         }
 	}
+
+    #endregion
 }

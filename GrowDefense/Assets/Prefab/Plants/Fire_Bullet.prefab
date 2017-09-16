@@ -91,6 +91,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   move: 0
   target: {fileID: 0}
+  damage: 10
+  speed: 0.2
 --- !u!212 &212027189042637616
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -123,7 +125,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 5a6533a71b49445419eb31a0743fed7c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 974ef049104afed4791292f2d12684d0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

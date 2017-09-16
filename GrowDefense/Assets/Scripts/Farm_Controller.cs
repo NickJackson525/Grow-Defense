@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class Farm_Controller : MonoBehaviour
 {
-    public GameObject player;
+    #region Variables
+
+    public GameObject plantLevel1;
+    public GameObject fireBullet;
+    public GameObject iceBullet;
+    public GameObject voidBullet;
     public Sprite unwateredTile;
     public Sprite wateredTile1;
     public Sprite wateredTile2;
@@ -12,42 +17,80 @@ public class Farm_Controller : MonoBehaviour
     public bool isPlanted = false;
     public int waterLevel = 0;
     bool isSelected = false;
+    GameObject newPlant;
 
-	// Use this for initialization
-	void Start ()
+    #endregion
+
+    #region Start
+
+    // Use this for initialization
+    void Start ()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    #endregion
+
+    #region Update
+
+    // Update is called once per frame
+    void Update ()
     {
         if (waterLevel == 0)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = unwateredTile ;
         }
-        else if (waterLevel == 10)
+        else if (waterLevel <= 10)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = wateredTile1;
         }
-        else if (waterLevel == 20)
+        else if (waterLevel <= 20)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = wateredTile2;
         }
-        else if(waterLevel == 30)
+        else if(waterLevel <= 30)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = wateredTile3;
         }
 
-        if ((isSelected) && (Input.GetMouseButtonUp(0)) && (player.GetComponent<Player_Movement>().waterLevel >= 10))
+        if ((isSelected) && (!isPlanted) && (Input.GetMouseButtonUp(0)) && (Game_Manager.Instance.money >= 50))
         {
-            if (waterLevel < 30)
+            newPlant = Instantiate(plantLevel1, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
+            newPlant.GetComponent<Plant_controller>().thisPlant = Game_Manager.Instance.currentPlantSelection;
+            newPlant.GetComponent<Plant_controller>().thisTile = gameObject;
+            gameObject.GetComponent<Farm_Controller>().isPlanted = true;
+            Game_Manager.Instance.money -= 50;
+
+            switch(newPlant.GetComponent<Plant_controller>().thisPlant)
+            {
+                case Game_Manager.PlantType.FIRE:
+                    newPlant.GetComponent<Plant_controller>().plantAmmoType = fireBullet;
+                    break;
+                case Game_Manager.PlantType.ICE:
+                    newPlant.GetComponent<Plant_controller>().plantAmmoType = iceBullet;
+                    break;
+                case Game_Manager.PlantType.VOID:
+                    newPlant.GetComponent<Plant_controller>().plantAmmoType = voidBullet;
+                    break;
+                default:
+                    newPlant.GetComponent<Plant_controller>().plantAmmoType = fireBullet;
+                    break;
+            }
+        }
+
+        if ((isSelected) && (Input.GetMouseButtonUp(1)) && (Game_Manager.Instance.waterLevel >= 10))
+        {
+            if (waterLevel <= 20)
             {
                 waterLevel += 10;
-                player.GetComponent<Player_Movement>().waterLevel -= 10;
+                Game_Manager.Instance.waterLevel -= 10;
             }
         }
     }
+
+    #endregion
+
+    #region Collision Methods
 
     private void OnCollisionEnter2D(Collision2D coll)
     {
@@ -64,4 +107,6 @@ public class Farm_Controller : MonoBehaviour
             isSelected = false;
         }
     }
+
+    #endregion
 }

@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114349085625148068}
   - component: {fileID: 50316263908025238}
   - component: {fileID: 58131496162229752}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bug_1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -100,7 +100,8 @@ MonoBehaviour:
   - {fileID: 1935634753771488, guid: 2498d256571f50c46a0a3b90b0d04302, type: 2}
   - {fileID: 1120396211383510, guid: c143d2c18f388dd45883c06a10347495, type: 2}
   pathCount: 0
-  health: 100
+  health: 90
+  moneyGivenOnDeath: 5
 --- !u!114 &114393144146509632
 MonoBehaviour:
   m_ObjectHideFlags: 1

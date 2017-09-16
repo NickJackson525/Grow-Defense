@@ -4,40 +4,67 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject bug1;
-    public int cooldown = 180;
-    public int cooldownConst = 180;
-    public int spawnCount = 0;
-    int spawnReset = 10;
-    int initialSpawnCountDown = 240;
+    #region Variables
 
-	// Use this for initialization
-	void Start ()
+    public GameObject bug1;
+    public int cooldown = 250;
+    public int cooldownConst = 250;
+    public int spawnCount = 0;
+    public int spawnRateIncrease = 10;
+    int totalWaveEnemies = 5;
+    int waveEnemyConstant = 10;
+
+    #endregion
+
+    #region Start
+
+    // Use this for initialization
+    void Start ()
     {
 		
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    #endregion
+
+    #region Update
+
+    // Update is called once per frame
+    void Update ()
     {
-        cooldown--;
-
-        if (initialSpawnCountDown > 0)
+        if ((Game_Manager.Instance.currentPhase == Game_Manager.Phase.NIGHT) && (spawnCount < totalWaveEnemies))
         {
-            initialSpawnCountDown--;
+            cooldown--;
+
+            if(spawnCount == 0)
+            {
+                totalWaveEnemies = waveEnemyConstant * (int)Mathf.Pow(2f, Game_Manager.Instance.waveNumber - 1);
+            }
+
+            if (cooldown <= 0)
+            {
+                Instantiate(bug1, transform.position, transform.rotation);
+                cooldown = cooldownConst - (Game_Manager.Instance.waveNumber * 25);
+
+                if(cooldown < 50)
+                {
+                    cooldown = 50;
+                }
+
+                spawnCount++;
+            }
         }
-
-        if(cooldown <= 0 && initialSpawnCountDown == 0)
+        else
         {
-            Instantiate(bug1, transform.position, transform.rotation);
-            cooldown = cooldownConst;
-            spawnCount++;
-        }
-
-        if((spawnCount == spawnReset) && (cooldownConst > 50))
-        {
-            cooldownConst -= 50;
-            spawnCount = 0;
+            if((GameObject.FindGameObjectWithTag("Enemy") == null) && (Game_Manager.Instance.currentPhase == Game_Manager.Phase.NIGHT))
+            {
+                cooldown = cooldownConst;
+                spawnCount = 0;
+                Game_Manager.Instance.currentPhase = Game_Manager.Phase.DAY;
+                Game_Manager.Instance.dayTimer = Game_Manager.Instance.dayTimerConstant;
+                Game_Manager.Instance.waveNumber++;
+            }
         }
 	}
+
+    #endregion
 }
