@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Water_Controller : MonoBehaviour
 {
+    #region Variables
+
     public Sprite water1;
     public Sprite water2;
     public Sprite water3;
@@ -17,11 +19,19 @@ public class Water_Controller : MonoBehaviour
     public int health = 100;
     bool isSelected = false;
 
+    #endregion
+
+    #region Start
+
     // Use this for initialization
     void Start()
     {
 
     }
+
+    #endregion
+
+    #region Update
 
     // Update is called once per frame
     void Update()
@@ -37,6 +47,10 @@ public class Water_Controller : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Custom Methods
+
     public void updateSprite()
     {
         switch (health)
@@ -44,6 +58,7 @@ public class Water_Controller : MonoBehaviour
             case 100:
                 this.gameObject.GetComponent<SpriteRenderer>().sprite = water1;
                 break;
+
             case 90:
                 this.gameObject.GetComponent<SpriteRenderer>().sprite = water2;
                 break;
@@ -74,6 +89,10 @@ public class Water_Controller : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Collision Methods
+
     private void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.tag == "Select")
@@ -89,4 +108,6 @@ public class Water_Controller : MonoBehaviour
             isSelected = false;
         }
     }
+
+    #endregion
 }

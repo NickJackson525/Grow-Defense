@@ -11,8 +11,8 @@ public class Spawner : MonoBehaviour
     public int cooldownConst = 250;
     public int spawnCount = 0;
     public int spawnRateIncrease = 10;
-    int spawnReset = 5;
-    int initialSpawnCountDown = 240;
+    int totalWaveEnemies = 5;
+    int waveEnemyConstant = 10;
 
     #endregion
 
@@ -31,24 +31,38 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        cooldown--;
-
-        if (initialSpawnCountDown > 0)
+        if ((Game_Manager.Instance.currentPhase == Game_Manager.Phase.NIGHT) && (spawnCount < totalWaveEnemies))
         {
-            initialSpawnCountDown--;
+            cooldown--;
+
+            if(spawnCount == 0)
+            {
+                totalWaveEnemies = waveEnemyConstant * (int)Mathf.Pow(2f, Game_Manager.Instance.waveNumber - 1);
+            }
+
+            if (cooldown <= 0)
+            {
+                Instantiate(bug1, transform.position, transform.rotation);
+                cooldown = cooldownConst - (Game_Manager.Instance.waveNumber * 25);
+
+                if(cooldown < 50)
+                {
+                    cooldown = 50;
+                }
+
+                spawnCount++;
+            }
         }
-
-        if(cooldown <= 0 && initialSpawnCountDown == 0)
+        else
         {
-            Instantiate(bug1, transform.position, transform.rotation);
-            cooldown = cooldownConst;
-            spawnCount++;
-        }
-
-        if((spawnCount == spawnReset) && (cooldownConst > 10))
-        {
-            cooldownConst -= spawnRateIncrease;
-            spawnCount = 0;
+            if((GameObject.FindGameObjectWithTag("Enemy") == null) && (Game_Manager.Instance.currentPhase == Game_Manager.Phase.NIGHT))
+            {
+                cooldown = cooldownConst;
+                spawnCount = 0;
+                Game_Manager.Instance.currentPhase = Game_Manager.Phase.DAY;
+                Game_Manager.Instance.dayTimer = Game_Manager.Instance.dayTimerConstant;
+                Game_Manager.Instance.waveNumber++;
+            }
         }
 	}
 

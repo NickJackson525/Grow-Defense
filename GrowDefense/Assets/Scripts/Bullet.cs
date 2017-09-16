@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
 
     public bool move = false;
     public GameObject target;
-    public int damage = 10;
+    public int damage = 15;
     public float speed = .2f;
 
     #endregion

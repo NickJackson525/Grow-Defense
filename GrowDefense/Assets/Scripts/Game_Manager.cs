@@ -8,10 +8,15 @@ public class Game_Manager
     #region Variables
 
     public enum PlantType { FIRE, ICE, VOID }
+    public enum Phase { DAY, NIGHT}
     public float waterLevel = 100;
-    public int money = 150;
+    public int money = 200;
+    public int dayTimer = 900;
+    public int dayTimerConstant = 900;
+    public int waveNumber = 1;
     public const int maxPlantLevel = 3;
     public PlantType currentPlantSelection = PlantType.FIRE;
+    public Phase currentPhase = Phase.DAY;
 
     #endregion
 
@@ -44,4 +49,24 @@ public class Game_Manager
     }
 
     #endregion
+
+    public void Update()
+    {
+        if (currentPhase == Phase.DAY)
+        {
+            dayTimer--;
+
+            if (dayTimer <= 0)
+            {
+                if (currentPhase == Phase.DAY)
+                {
+                    currentPhase = Phase.NIGHT;
+                }
+                else if (currentPhase == Phase.NIGHT)
+                {
+                    currentPhase = Phase.DAY;
+                }
+            }
+        }
+    }
 }

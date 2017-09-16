@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,6 +22,7 @@ public class Plant_controller : MonoBehaviour
     int growthTimer = 1800;
     int currentLevel = 1;
     bool canShoot = true;
+    public float range = 1f;
 
     #endregion
 
@@ -43,7 +45,7 @@ public class Plant_controller : MonoBehaviour
         testEnemyExist = GameObject.FindGameObjectWithTag("Enemy");
         shootTimer--;
 
-        if((currentLevel < Game_Manager.maxPlantLevel) && (thisTile.GetComponent<Farm_Controller>().waterLevel > 0))
+        if((currentLevel < Game_Manager.maxPlantLevel) && (thisTile.GetComponent<Farm_Controller>().waterLevel > 0) && (Game_Manager.Instance.currentPhase == Game_Manager.Phase.DAY))
         {
             growthTimer--;
         }
@@ -53,13 +55,15 @@ public class Plant_controller : MonoBehaviour
             if(currentLevel == 1)
             {
                 currentLevel++;
+                range++;
                 GetComponent<SpriteRenderer>().sprite = levelTwoPlant;
                 growthTimer = 2700;
             }
             else
             {
                 currentLevel++;
-                
+                range++;
+
                 switch(thisPlant)
                 {
                     case Game_Manager.PlantType.FIRE:
@@ -83,17 +87,21 @@ public class Plant_controller : MonoBehaviour
             canShoot = true;
         }
 
-        if (canShoot && testEnemyExist != null)
+        if (canShoot && (testEnemyExist != null) && (currentTarget != null))
         {
             if (thisTile.GetComponent<Farm_Controller>().waterLevel > 0)
             {
-                createdBullet = Instantiate(plantAmmoType, new Vector3(transform.position.x, transform.position.y, 0f), transform.rotation);
-                createdBullet.GetComponent<Bullet>().move = true;
-                createdBullet.GetComponent<Bullet>().target = currentTarget;
-                createdBullet.GetComponent<Bullet>().damage = createdBullet.GetComponent<Bullet>().damage * currentLevel;
-                canShoot = false;
-                shootTimer = 60;
-                thisTile.GetComponent<Farm_Controller>().waterLevel -= 1;
+                float temp = Vector2.Distance(currentTarget.transform.position, this.gameObject.transform.position);
+                if (Vector2.Distance(currentTarget.transform.position, this.gameObject.transform.position) <= range)
+                {
+                    createdBullet = Instantiate(plantAmmoType, new Vector3(transform.position.x, transform.position.y, 0f), transform.rotation);
+                    createdBullet.GetComponent<Bullet>().move = true;
+                    createdBullet.GetComponent<Bullet>().target = currentTarget;
+                    createdBullet.GetComponent<Bullet>().damage = createdBullet.GetComponent<Bullet>().damage * currentLevel;
+                    canShoot = false;
+                    shootTimer = 60;
+                    thisTile.GetComponent<Farm_Controller>().waterLevel -= 1;
+                }
             }
         }
 	}
