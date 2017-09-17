@@ -104,7 +104,7 @@ public class Plant_controller : MonoBehaviour
                     createdBullet.GetComponent<Bullet>().target = currentTarget;
                     createdBullet.GetComponent<Bullet>().damage = createdBullet.GetComponent<Bullet>().damage * currentLevel;
                     canShoot = false;
-                    shootTimer = 60;
+                    shootTimer = 60 - ((currentLevel - 1) * 20);
                     thisTile.GetComponent<Farm_Controller>().waterLevel -= 1;
                 }
             }
