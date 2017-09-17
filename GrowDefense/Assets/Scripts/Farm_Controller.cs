@@ -40,20 +40,20 @@ public class Farm_Controller : MonoBehaviour
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = unwateredTile ;
         }
-        else if (waterLevel <= 10)
+        else if (waterLevel <= 20)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = wateredTile1;
         }
-        else if (waterLevel <= 20)
+        else if (waterLevel <= 40)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = wateredTile2;
         }
-        else if(waterLevel <= 30)
+        else if(waterLevel <= 60)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = wateredTile3;
         }
 
-        if ((isSelected) && (!isPlanted) && (Input.GetMouseButtonUp(0)) && (Game_Manager.Instance.money >= 50))
+        if ((isSelected) && (!isPlanted) && (Input.GetMouseButtonUp(0)) && (Game_Manager.Instance.money >= 50) && (!Game_Manager.Instance.gameOver))
         {
             newPlant = Instantiate(plantLevel1, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
             newPlant.GetComponent<Plant_controller>().thisPlant = Game_Manager.Instance.currentPlantSelection;
@@ -78,11 +78,11 @@ public class Farm_Controller : MonoBehaviour
             }
         }
 
-        if ((isSelected) && (Input.GetMouseButtonUp(1)) && (Game_Manager.Instance.waterLevel >= 10))
+        if ((isSelected) && (Input.GetMouseButtonUp(1)) && (Game_Manager.Instance.waterLevel >= 10) && (!Game_Manager.Instance.gameOver))
         {
-            if (waterLevel <= 20)
+            if (waterLevel <= 50)
             {
-                waterLevel += 10;
+                waterLevel += 20;
                 Game_Manager.Instance.waterLevel -= 10;
             }
         }

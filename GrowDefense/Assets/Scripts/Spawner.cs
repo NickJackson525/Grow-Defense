@@ -7,12 +7,13 @@ public class Spawner : MonoBehaviour
     #region Variables
 
     public GameObject bug1;
+    GameObject bugCreated;
     public int cooldown = 250;
     public int cooldownConst = 250;
     public int spawnCount = 0;
     public int spawnRateIncrease = 10;
     int totalWaveEnemies = 5;
-    int waveEnemyConstant = 10;
+    int waveEnemyConstant = 15;
 
     #endregion
 
@@ -31,18 +32,19 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if ((Game_Manager.Instance.currentPhase == Game_Manager.Phase.NIGHT) && (spawnCount < totalWaveEnemies))
+        if ((Game_Manager.Instance.currentPhase == Game_Manager.Phase.NIGHT) && (spawnCount < totalWaveEnemies) && (!Game_Manager.Instance.gameOver))
         {
             cooldown--;
 
             if(spawnCount == 0)
             {
-                totalWaveEnemies = waveEnemyConstant * (int)Mathf.Pow(2f, Game_Manager.Instance.waveNumber - 1);
+                totalWaveEnemies = waveEnemyConstant * Game_Manager.Instance.waveNumber;
             }
 
             if (cooldown <= 0)
             {
-                Instantiate(bug1, transform.position, transform.rotation);
+                bugCreated = Instantiate(bug1, transform.position, transform.rotation);
+                bugCreated.GetComponent<Enemy_Controller>().health += 5 * (int)Mathf.Pow(2f, Game_Manager.Instance.waveNumber - 1);
                 cooldown = cooldownConst - (Game_Manager.Instance.waveNumber * 25);
 
                 if(cooldown < 50)

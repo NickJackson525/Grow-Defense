@@ -63,20 +63,25 @@ public class Plant_controller : MonoBehaviour
             {
                 currentLevel++;
                 range++;
+                growthTimer = 100;
 
                 switch(thisPlant)
                 {
                     case Game_Manager.PlantType.FIRE:
                         GetComponent<SpriteRenderer>().sprite = firePlant;
+                        Game_Manager.Instance.firePlantsGrown++;
                         break;
                     case Game_Manager.PlantType.ICE:
                         GetComponent<SpriteRenderer>().sprite = icePlant;
+                        Game_Manager.Instance.icePlantsGrown++;
                         break;
                     case Game_Manager.PlantType.VOID:
                         GetComponent<SpriteRenderer>().sprite = voidPlant;
+                        Game_Manager.Instance.voidPlantsGrown++;
                         break;
                     default:
                         GetComponent<SpriteRenderer>().sprite = firePlant;
+                        Game_Manager.Instance.firePlantsGrown++;
                         break;
                 }
             }
