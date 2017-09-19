@@ -45,6 +45,11 @@ public class Water_Controller : MonoBehaviour
                 Game_Manager.Instance.waterLevel = 100;
             }
         }
+
+        if(health <= 0)
+        {
+            Game_Manager.Instance.gameOver = true;
+        }
     }
 
     #endregion
@@ -106,6 +111,16 @@ public class Water_Controller : MonoBehaviour
         if (coll.gameObject.tag == "Select")
         {
             isSelected = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (coll.gameObject.tag == "Enemy")
+        {
+            health -= 10;
+            updateSprite();
+            Destroy(coll.gameObject);
         }
     }
 

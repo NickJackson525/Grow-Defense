@@ -63,20 +63,25 @@ public class Plant_controller : MonoBehaviour
             {
                 currentLevel++;
                 range++;
+                growthTimer = 100;
 
                 switch(thisPlant)
                 {
                     case Game_Manager.PlantType.FIRE:
                         GetComponent<SpriteRenderer>().sprite = firePlant;
+                        Game_Manager.Instance.firePlantsGrown++;
                         break;
                     case Game_Manager.PlantType.ICE:
                         GetComponent<SpriteRenderer>().sprite = icePlant;
+                        Game_Manager.Instance.icePlantsGrown++;
                         break;
                     case Game_Manager.PlantType.VOID:
                         GetComponent<SpriteRenderer>().sprite = voidPlant;
+                        Game_Manager.Instance.voidPlantsGrown++;
                         break;
                     default:
                         GetComponent<SpriteRenderer>().sprite = firePlant;
+                        Game_Manager.Instance.firePlantsGrown++;
                         break;
                 }
             }
@@ -99,7 +104,7 @@ public class Plant_controller : MonoBehaviour
                     createdBullet.GetComponent<Bullet>().target = currentTarget;
                     createdBullet.GetComponent<Bullet>().damage = createdBullet.GetComponent<Bullet>().damage * currentLevel;
                     canShoot = false;
-                    shootTimer = 60;
+                    shootTimer = 60 - ((currentLevel - 1) * 20);
                     thisTile.GetComponent<Farm_Controller>().waterLevel -= 1;
                 }
             }

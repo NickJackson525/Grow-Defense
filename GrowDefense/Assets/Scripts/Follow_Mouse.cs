@@ -16,7 +16,7 @@ public class Follow_Mouse : MonoBehaviour
         transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
 
         transform.localPosition = GetSnappedPosition(transform.localPosition);
-        transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
+        transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
     }
 
     public Vector3 GetGridPosition()

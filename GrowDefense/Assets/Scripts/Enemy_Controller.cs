@@ -9,7 +9,7 @@ public class Enemy_Controller : MonoBehaviour
     public float speed = 1f;
     public GameObject[] fullPath;
     public int pathCount = 0;
-    public int health = 90;
+    public int health = 75;
     public int moneyGivenOnDeath = 5;
     bool hasRotated = false;
 
@@ -34,6 +34,7 @@ public class Enemy_Controller : MonoBehaviour
         {
             if (Vector2.Distance(this.gameObject.transform.position, fullPath[pathCount].gameObject.transform.position) < .07f)
             {
+                this.transform.position = fullPath[pathCount].transform.position;
                 pathCount++;
                 hasRotated = false;
             }
@@ -41,59 +42,59 @@ public class Enemy_Controller : MonoBehaviour
             switch (pathCount)
             {
                 case 0:
-                    this.gameObject.transform.position += Vector3.down * speed * Time.deltaTime;
+                    this.transform.position += Vector3.down * speed * Time.deltaTime;
                     break;
                 case 1:
-                    this.gameObject.transform.position += Vector3.right * speed * Time.deltaTime;
+                    this.transform.position += Vector3.right * speed * Time.deltaTime;
 
                     if (!hasRotated)
                     {
-                        this.gameObject.transform.Rotate(Vector3.forward * 90);
+                        this.transform.Rotate(Vector3.forward * 90);
                         hasRotated = true;
                     }
                     break;
                 case 2:
-                    this.gameObject.transform.position += Vector3.up * speed * Time.deltaTime;
+                    this.transform.position += Vector3.up * speed * Time.deltaTime;
 
                     if (!hasRotated)
                     {
-                        this.gameObject.transform.Rotate(Vector3.forward * 90);
+                        this.transform.Rotate(Vector3.forward * 90);
                         hasRotated = true;
                     }
                     break;
                 case 3:
-                    this.gameObject.transform.position += Vector3.right * speed * Time.deltaTime;
+                    this.transform.position += Vector3.right * speed * Time.deltaTime;
 
                     if (!hasRotated)
                     {
-                        this.gameObject.transform.Rotate(Vector3.forward * 270);
+                        this.transform.Rotate(Vector3.forward * 270);
                         hasRotated = true;
                     }
                     break;
                 case 4:
-                    this.gameObject.transform.position += Vector3.down * speed * Time.deltaTime;
+                    this.transform.position += Vector3.down * speed * Time.deltaTime;
 
                     if (!hasRotated)
                     {
-                        this.gameObject.transform.Rotate(Vector3.forward * -90);
+                        this.transform.Rotate(Vector3.forward * -90);
                         hasRotated = true;
                     }
                     break;
                 case 5:
-                    this.gameObject.transform.position += Vector3.left * speed * Time.deltaTime;
+                    this.transform.position += Vector3.left * speed * Time.deltaTime;
 
                     if (!hasRotated)
                     {
-                        this.gameObject.transform.Rotate(Vector3.forward * -90);
+                        this.transform.Rotate(Vector3.forward * -90);
                         hasRotated = true;
                     }
                     break;
                 case 6:
-                    this.gameObject.transform.position += Vector3.down * speed * Time.deltaTime;
+                    this.transform.position += Vector3.down * speed * Time.deltaTime;
 
                     if (!hasRotated)
                     {
-                        this.gameObject.transform.Rotate(Vector3.forward * 90);
+                        this.transform.Rotate(Vector3.forward * 90);
                         hasRotated = true;
                     }
                     break;
@@ -115,13 +116,6 @@ public class Enemy_Controller : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.gameObject.tag == "Water")
-        {
-            coll.gameObject.GetComponent<Water_Controller>().health -= 10;
-            coll.gameObject.GetComponent<Water_Controller>().updateSprite();
-            Destroy(this.gameObject);
-        }
-
         if (coll.gameObject.tag == "Bullet")
         {
             health -= coll.gameObject.GetComponent<Bullet>().damage;

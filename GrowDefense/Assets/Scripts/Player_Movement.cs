@@ -18,28 +18,31 @@ public class Player_Movement : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-		if(Input.GetKey(KeyCode.W))
+        if (!Game_Manager.Instance.gameOver)
         {
-            transform.position += Vector3.up * speed * Time.deltaTime;
+            if (Input.GetKey(KeyCode.W))
+            {
+                transform.position += Vector3.up * speed * Time.deltaTime;
+            }
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.position += Vector3.left * speed * Time.deltaTime;
+            }
+
+            if (Input.GetKey(KeyCode.S))
+            {
+                transform.position += Vector3.down * speed * Time.deltaTime;
+            }
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.position += Vector3.right * speed * Time.deltaTime;
+            }
+
+            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -2f);
+
+            water.GetComponent<Image>().fillAmount = Game_Manager.Instance.waterLevel / 100f;
         }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.position += Vector3.left * speed * Time.deltaTime;
-        }
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.position += Vector3.down * speed * Time.deltaTime;
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.position += Vector3.right * speed * Time.deltaTime;
-        }
-
-        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -2f);
-
-        water.GetComponent<Image>().fillAmount = Game_Manager.Instance.waterLevel / 100f;
     }
 }

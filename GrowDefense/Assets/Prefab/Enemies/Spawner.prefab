@@ -57,6 +57,7 @@ MonoBehaviour:
   cooldown: 120
   cooldownConst: 180
   spawnCount: 0
+  spawnRateIncrease: 15
 --- !u!114 &114366011688398496
 MonoBehaviour:
   m_ObjectHideFlags: 1

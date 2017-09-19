@@ -14,9 +14,13 @@ public class Game_Manager
     public int dayTimer = 900;
     public int dayTimerConstant = 900;
     public int waveNumber = 1;
+    public int firePlantsGrown = 0;
+    public int icePlantsGrown = 0;
+    public int voidPlantsGrown = 0;
     public const int maxPlantLevel = 3;
     public PlantType currentPlantSelection = PlantType.FIRE;
     public Phase currentPhase = Phase.DAY;
+    public bool gameOver = false;
 
     #endregion
 
@@ -52,6 +56,11 @@ public class Game_Manager
 
     public void Update()
     {
+        if(firePlantsGrown >= 10)
+        {
+            gameOver = true;
+        }
+
         if (currentPhase == Phase.DAY)
         {
             dayTimer--;
