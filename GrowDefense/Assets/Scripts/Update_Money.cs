@@ -10,7 +10,7 @@ public class Update_Money : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        GetComponent<Text>().text = "Money: " + Game_Manager.Instance.money;
+        GetComponent<Text>().text = "$ " + Game_Manager.Instance.money;
 	}
 
     #endregion
