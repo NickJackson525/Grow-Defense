@@ -8,6 +8,7 @@ public class Game_Manager
     #region Variables
 
     public enum PlantType { FIRE, ICE, VOID }
+    public enum BulletType { FIRE, ICE, VOID }
     public enum Phase { DAY, NIGHT}
     public float waterLevel = 100;
     public int money = 200;
@@ -17,6 +18,9 @@ public class Game_Manager
     public int firePlantsGrown = 0;
     public int icePlantsGrown = 0;
     public int voidPlantsGrown = 0;
+    public int firePlantsRequired = 5;
+    public int icePlantsRequired = 5;
+    public int voidPlantsRequired = 5;
     public const int maxPlantLevel = 3;
     public PlantType currentPlantSelection = PlantType.FIRE;
     public Phase currentPhase = Phase.DAY;
@@ -54,9 +58,11 @@ public class Game_Manager
 
     #endregion
 
+    #region Update
+
     public void Update()
     {
-        if(firePlantsGrown >= 10)
+        if((firePlantsGrown >= firePlantsRequired) && (icePlantsGrown >= icePlantsRequired) && (voidPlantsGrown >= voidPlantsRequired))
         {
             gameOver = true;
         }
@@ -78,4 +84,6 @@ public class Game_Manager
             }
         }
     }
+
+    #endregion
 }

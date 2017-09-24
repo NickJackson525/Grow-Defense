@@ -12,8 +12,11 @@ public class Plant_controller : MonoBehaviour
     public Sprite firePlant;
     public Sprite icePlant;
     public Sprite voidPlant;
+    public Sprite fireBullet;
+    public Sprite iceBullet;
+    public Sprite voidBullet;
     public Game_Manager.PlantType thisPlant;
-    public GameObject plantAmmoType;
+    public GameObject bullet;
     public GameObject currentTarget;
     GameObject createdBullet;
     GameObject testEnemyExist;
@@ -99,13 +102,35 @@ public class Plant_controller : MonoBehaviour
                 float temp = Vector2.Distance(currentTarget.transform.position, this.gameObject.transform.position);
                 if (Vector2.Distance(currentTarget.transform.position, this.gameObject.transform.position) <= range)
                 {
-                    createdBullet = Instantiate(plantAmmoType, new Vector3(transform.position.x, transform.position.y, 0f), transform.rotation);
+                    createdBullet = Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, 0f), transform.rotation);
                     createdBullet.GetComponent<Bullet>().move = true;
                     createdBullet.GetComponent<Bullet>().target = currentTarget;
                     createdBullet.GetComponent<Bullet>().damage = createdBullet.GetComponent<Bullet>().damage * currentLevel;
+                    createdBullet.GetComponent<Bullet>().type = thisPlant;
                     canShoot = false;
                     shootTimer = 60 - ((currentLevel - 1) * 20);
                     thisTile.GetComponent<Farm_Controller>().waterLevel -= 1;
+
+                    if(thisPlant == Game_Manager.PlantType.VOID)
+                    {
+                        shootTimer = shootTimer / 2;
+                    }
+
+                    switch(thisPlant)
+                    {
+                        case Game_Manager.PlantType.FIRE:
+                            createdBullet.GetComponent<Bullet>().thisSprite = fireBullet;
+                            break;
+                        case Game_Manager.PlantType.ICE:
+                            createdBullet.GetComponent<Bullet>().thisSprite = iceBullet;
+                            break;
+                        case Game_Manager.PlantType.VOID:
+                            createdBullet.GetComponent<Bullet>().thisSprite = voidBullet;
+                            break;
+                        default:
+                            createdBullet.GetComponent<Bullet>().thisSprite = fireBullet;
+                            break;
+                    }
                 }
             }
         }

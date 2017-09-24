@@ -70,9 +70,11 @@ MonoBehaviour:
   firePlant: {fileID: 21300000, guid: 93385ea31c705fc4da6d70adc9e6db18, type: 3}
   icePlant: {fileID: 21300000, guid: caa5eb4469903a94ca93aee9600d3f82, type: 3}
   voidPlant: {fileID: 21300000, guid: 7b83d9cc3fbbfbf4993eec52e193539d, type: 3}
+  fireBullet: {fileID: 21300000, guid: 974ef049104afed4791292f2d12684d0, type: 3}
+  iceBullet: {fileID: 21300000, guid: 04a8fdb7667a52d4fb4a2eb8ee2149a9, type: 3}
+  voidBullet: {fileID: 21300000, guid: 09a1e4d4c7edcbd4389c3412c3a71d66, type: 3}
   thisPlant: 0
-  plantAmmoType: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c,
-    type: 2}
+  bullet: {fileID: 1832230694166976, guid: bb40743516015c249a8ca913534dc370, type: 2}
   currentTarget: {fileID: 0}
   thisTile: {fileID: 0}
   range: 1

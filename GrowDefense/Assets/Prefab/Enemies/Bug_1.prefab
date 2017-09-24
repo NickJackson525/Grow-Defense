@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114393144146509632}
   - component: {fileID: 114349085625148068}
   - component: {fileID: 50316263908025238}
-  - component: {fileID: 58131496162229752}
+  - component: {fileID: 61030433276950320}
   m_Layer: 10
   m_Name: Bug_1
   m_TagString: Enemy
@@ -37,13 +37,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1099381375926008}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -5.7599998, y: 5.12, z: -3.84}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.5199995, y: 3.84, z: -3.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50316263908025238
 Rigidbody2D:
   serializedVersion: 4
@@ -64,8 +64,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &58131496162229752
-CircleCollider2D:
+--- !u!61 &61030433276950320
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -76,9 +76,19 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0019800663, y: -0.053465128}
+  m_Offset: {x: 0.006508827, y: 0.012088299}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.64, y: 0.64}
+    newSize: {x: 0.64, y: 0.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.18930793
+  m_Size: {x: 0.51911736, y: 0.51911783}
+  m_EdgeRadius: 0
 --- !u!114 &114349085625148068
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -90,6 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a425cb3daddb7fe4e998ee79da8eb3b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faceUp: {fileID: 21300000, guid: 00948eb009b152149b959ee5658edf2a, type: 3}
+  faceDown: {fileID: 21300000, guid: 1a435f31470681948985f7804e7a3307, type: 3}
+  faceLeft: {fileID: 21300000, guid: d9ca94f81fa18344cb132a8e35b6cd45, type: 3}
+  faceRight: {fileID: 21300000, guid: 513e1b3c5f58dd94a97f8710b038c89c, type: 3}
   speed: 1
   fullPath:
   - {fileID: 1314759699418508, guid: 96b0e1ab8e71cbc4cae190e92d080fa5, type: 2}
@@ -146,7 +160,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 13bb995e68440bb45830893d52ff6777, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1a435f31470681948985f7804e7a3307, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

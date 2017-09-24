@@ -61,21 +61,21 @@ public class Farm_Controller : MonoBehaviour
             gameObject.GetComponent<Farm_Controller>().isPlanted = true;
             Game_Manager.Instance.money -= 50;
 
-            switch(newPlant.GetComponent<Plant_controller>().thisPlant)
-            {
-                case Game_Manager.PlantType.FIRE:
-                    newPlant.GetComponent<Plant_controller>().plantAmmoType = fireBullet;
-                    break;
-                case Game_Manager.PlantType.ICE:
-                    newPlant.GetComponent<Plant_controller>().plantAmmoType = iceBullet;
-                    break;
-                case Game_Manager.PlantType.VOID:
-                    newPlant.GetComponent<Plant_controller>().plantAmmoType = voidBullet;
-                    break;
-                default:
-                    newPlant.GetComponent<Plant_controller>().plantAmmoType = fireBullet;
-                    break;
-            }
+            //switch(newPlant.GetComponent<Plant_controller>().thisPlant)
+            //{
+            //    case Game_Manager.PlantType.FIRE:
+            //        newPlant.GetComponent<Plant_controller>().bullet = fireBullet;
+            //        break;
+            //    case Game_Manager.PlantType.ICE:
+            //        newPlant.GetComponent<Plant_controller>().bullet = iceBullet;
+            //        break;
+            //    case Game_Manager.PlantType.VOID:
+            //        newPlant.GetComponent<Plant_controller>().bullet = voidBullet;
+            //        break;
+            //    default:
+            //        newPlant.GetComponent<Plant_controller>().bullet = fireBullet;
+            //        break;
+            //}
         }
 
         if ((isSelected) && (Input.GetMouseButtonUp(1)) && (Game_Manager.Instance.waterLevel >= 10) && (!Game_Manager.Instance.gameOver))
