@@ -15,12 +15,15 @@ public class Enemy_Controller : MonoBehaviour
     float slowDownPercent = 1f;
     public GameObject[] fullPath;
     public int pathCount = 0;
-    public int health = 75;
+    public int health = 70;
     public int moneyGivenOnDeath = 5;
     int DOT_effectTimer = 0;
     int slowEffectTimer = 0;
     int DOT = 0;
     int DOTMultiplier = 0;
+    int DOTMultiplierMax = 4;
+    int SlowMultiplier = 0;
+    int SlowMultiplierMax= 2;
     bool hasRotated = false;
     bool startDOTEffect = false;
 
@@ -70,12 +73,13 @@ public class Enemy_Controller : MonoBehaviour
 
             if (slowDownPercent > 0)
             {
-                speed = constSpeed - (constSpeed * slowDownPercent);
+                speed = constSpeed - (constSpeed * (slowDownPercent * SlowMultiplier));
             }
 
             if (slowEffectTimer <= 0)
             {
                 slowDownPercent = 0;
+                SlowMultiplier = 0;
             }
         }
 
@@ -92,84 +96,21 @@ public class Enemy_Controller : MonoBehaviour
                 hasRotated = false;
             }
 
-            //switch (pathCount)
-            //{
-            //    case 0:
-            //        this.transform.position += Vector3.Normalize(fullPath[pathCount].transform.position - transform.position) * speed * Time.deltaTime; //Vector3.down * speed * Time.deltaTime;
-            //        break;
-            //    case 1:
-            //        this.transform.position += Vector3.Normalize(fullPath[pathCount].transform.position - transform.position) * speed * Time.deltaTime; //Vector3.right * speed * Time.deltaTime;
-
-            //        if (!hasRotated)
-            //        {
-            //            this.transform.Rotate(Vector3.forward * 90);
-            //            hasRotated = true;
-            //        }
-            //        break;
-            //    case 2:
-            //        this.transform.position += Vector3.up * speed * Time.deltaTime;
-
-            //        if (!hasRotated)
-            //        {
-            //            this.transform.Rotate(Vector3.forward * 90);
-            //            hasRotated = true;
-            //        }
-            //        break;
-            //    case 3:
-            //        this.transform.position += Vector3.right * speed * Time.deltaTime;
-
-            //        if (!hasRotated)
-            //        {
-            //            this.transform.Rotate(Vector3.forward * 270);
-            //            hasRotated = true;
-            //        }
-            //        break;
-            //    case 4:
-            //        this.transform.position += Vector3.down * speed * Time.deltaTime;
-
-            //        if (!hasRotated)
-            //        {
-            //            this.transform.Rotate(Vector3.forward * -90);
-            //            hasRotated = true;
-            //        }
-            //        break;
-            //    case 5:
-            //        this.transform.position += Vector3.left * speed * Time.deltaTime;
-
-            //        if (!hasRotated)
-            //        {
-            //            this.transform.Rotate(Vector3.forward * -90);
-            //            hasRotated = true;
-            //        }
-            //        break;
-            //    case 6:
-            //        this.transform.position += Vector3.down * speed * Time.deltaTime;
-
-            //        if (!hasRotated)
-            //        {
-            //            this.transform.Rotate(Vector3.forward * 90);
-            //            hasRotated = true;
-            //        }
-            //        break;
-            //    default:
-            //        break;
-            //}
-
             this.transform.position += Vector3.Normalize(fullPath[pathCount].transform.position - transform.position) * speed * Time.deltaTime;
 
-            if (Vector3.Normalize(fullPath[pathCount].transform.position - transform.position) == Vector3.down)
+            if (Vector3.Normalize(fullPath[pathCount].transform.position - transform.position) == Vector3.up)
             {
                 GetComponent<SpriteRenderer>().sprite = faceUp;
             }
-            else if (Vector3.Normalize(fullPath[pathCount].transform.position - transform.position) == Vector3.up)
+            else if (Vector3.Normalize(fullPath[pathCount].transform.position - transform.position) == Vector3.down)
             {
                 GetComponent<SpriteRenderer>().sprite = faceDown;
             }
-            else if (Vector3.Normalize(fullPath[pathCount].transform.position - transform.position) == Vector3.right)
+            else if (Vector3.Normalize(fullPath[pathCount].transform.position - transform.position) == Vector3.left)
             {
                 GetComponent<SpriteRenderer>().sprite = faceLeft;
             }
-            else if (Vector3.Normalize(fullPath[pathCount].transform.position - transform.position) == Vector3.left)
+            else if (Vector3.Normalize(fullPath[pathCount].transform.position - transform.position) == Vector3.right)
             {
                 GetComponent<SpriteRenderer>().sprite = faceRight;
             }
@@ -206,6 +147,21 @@ public class Enemy_Controller : MonoBehaviour
             {
                 startDOTEffect = true;
                 DOTMultiplier++;
+
+                if(DOTMultiplier > DOTMultiplierMax)
+                {
+                    DOTMultiplier = DOTMultiplierMax;
+                }
+            }
+
+            if(slowEffectTimer > 0)
+            {
+                SlowMultiplier++;
+
+                if(SlowMultiplier > SlowMultiplierMax)
+                {
+                    SlowMultiplier = SlowMultiplierMax;
+                }
             }
 
             Destroy(coll.gameObject);

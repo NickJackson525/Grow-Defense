@@ -38,7 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4360615562803502}
   - component: {fileID: 212398674699813588}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Void Plant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 4582062712685324}
   - component: {fileID: 222301899133430082}
   - component: {fileID: 212416029416876560}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Water Level Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 224512791694813744}
   - component: {fileID: 222956116096036266}
   - component: {fileID: 114262683222956858}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Water Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 212207412446075706}
   - component: {fileID: 114229834891352228}
   - component: {fileID: 61319472943209188}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Ice_Plant_Select
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -342,7 +342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224156620380918420}
   - component: {fileID: 212564248847608354}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Bottom_Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,7 +375,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4844849849717998}
   - component: {fileID: 212643677819483554}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fire Plant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 212548702712997852}
   - component: {fileID: 114357167536165550}
   - component: {fileID: 61061090751130276}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fire_Plant_Select
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -491,7 +491,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4014036278768546}
   - component: {fileID: 212152235035801990}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Ice Plant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -560,7 +560,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4396876253138536}
   - component: {fileID: 212659070290460592}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Build_Select
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -578,7 +578,7 @@ GameObject:
   - component: {fileID: 212690208172509910}
   - component: {fileID: 114552132670636216}
   - component: {fileID: 61517587452840282}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Void_Plant_Select
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1063,7 +1063,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 5
     m_MaxSize: 61
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1409,9 +1409,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: I used the number of plants required each level as a performance metric.
-    Each level will have different requirements in the future. I used the water level
-    as a renewable resource that the player used and refilled at the water source.
+  m_Text: I created a minimap in the bottom right to be an overview of the whole map.
+    To make this more effective I narrowed the main camera view so the player sees
+    less at once. I then added 2 more plants to create the list of selectable items.
 --- !u!114 &114751279853681108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1538,13 +1538,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Left click to plant on a farm tile, right click to water the ground. If
-    the ground isn't watered the plant wont fire at enemies. You can water areas mutliple
-    times and they will last longer. Plants will only grow during the day and while
-    watered. Once they grow they will do more damage and have a larger range. Use
-    WASD to move around, and left click on the water supply to refill. Fully grow
-    10 fire plants to win. You will lose if the bugs contaminate your water supply
-    too much.
+  m_Text: Left click a plant on the bottom panel to select it. Left click to plant
+    on a farm tile, right click to water the ground. If the ground isn't watered the
+    plant wont fire at enemies. You can water areas mutliple times and they will last
+    longer. Plants will only grow during the day and while watered. Once they grow
+    they will do more damage and have a larger range. Use WASD to move around, and
+    left click on the water supply to refill. Fully grow 10 fire plants to win. You
+    will lose if the bugs contaminate your water supply too much.
 --- !u!212 &212152235035801990
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -1786,7 +1786,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 9ee3c1c43f71cfd48b6e27676b78fc16, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2418,7 +2418,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13.6, y: -127.47002}
+  m_AnchoredPosition: {x: 9.800001, y: -127.47002}
   m_SizeDelta: {x: 62.2, y: 34.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224644640936044030
@@ -2573,8 +2573,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -4.1000004, y: 37.440002}
-  m_SizeDelta: {x: 40.5, y: -37.49}
+  m_AnchoredPosition: {x: -4.1000004, y: 37.61}
+  m_SizeDelta: {x: 40.5, y: -37.84}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224979758401891214
 RectTransform:
@@ -2583,7 +2583,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1654477405627562}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -424}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4396876253138536}

@@ -16520,13 +16520,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Left click to plant on a farm tile, right click to water the ground. If
-    the ground isn't watered the plant wont fire at enemies. You can water areas mutliple
-    times and they will last longer. Plants will only grow during the day and while
-    watered. Once they grow they will do more damage and have a larger range. Use
-    WASD to move around, and left click on the water supply to refill. Fully grow
-    10 fire plants to win. You will lose if the bugs contaminate your water supply
-    too much.
+  m_Text: Left click a plant on the bottom panel to select it. Left click to plant
+    on a farm tile, right click to water the ground. If the ground isn't watered the
+    plant wont fire at enemies. You can water areas mutliple times and they will last
+    longer. Plants will only grow during the day and while watered. Once they grow
+    they will do more damage and have a larger range. Use WASD to move around, and
+    left click on the water supply to refill. Fully grow 10 fire plants to win. You
+    will lose if the bugs contaminate your water supply too much.
 --- !u!114 &114279116472189750
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19492,10 +19492,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: I used the number of plants required each level as a performance metric
-    (shown above). Each level will have different requirements in the future. I used
-    the water level as a renewable resource that the player used and refilled at the
-    water source.
+  m_Text: I created a minimap in the bottom right to be an overview of the whole map.
+    To make this more effective I narrowed the main camera view so the player sees
+    less at once. I then added 2 more plants to create the list of selectable items.
 --- !u!114 &114700980548590632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -29397,7 +29396,7 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!212 &212454351979635686
 SpriteRenderer:
@@ -30447,7 +30446,7 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!212 &212504736939569608
 SpriteRenderer:
@@ -33807,7 +33806,7 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!212 &212690746166068212
 SpriteRenderer:
@@ -38049,7 +38048,7 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!212 &212922658958900052
 SpriteRenderer:
@@ -39651,7 +39650,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.03, y: 4.33}
+  m_AnchoredPosition: {x: 2.8, y: 4.33}
   m_SizeDelta: {x: 287.73, y: 123.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224411094999853244
@@ -39877,7 +39876,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.1, y: -77.1}
+  m_AnchoredPosition: {x: 8.1, y: -81.3}
   m_SizeDelta: {x: 135.4, y: 39.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224924030837861582
