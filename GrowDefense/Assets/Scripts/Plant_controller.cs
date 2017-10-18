@@ -99,7 +99,6 @@ public class Plant_controller : MonoBehaviour
         {
             if (thisTile.GetComponent<Farm_Controller>().waterLevel > 0)
             {
-                float temp = Vector2.Distance(currentTarget.transform.position, this.gameObject.transform.position);
                 if (Vector2.Distance(currentTarget.transform.position, this.gameObject.transform.position) <= range)
                 {
                     createdBullet = Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, 0f), transform.rotation);

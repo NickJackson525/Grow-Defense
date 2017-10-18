@@ -10,6 +10,7 @@ public class UI_Canvas_Controller : MonoBehaviour
     public GameObject instructionsWindow;
     public GameObject gameOverWindow;
     public GameObject gameOverTitle;
+    public GameObject settingsWindow;
 
 	// Use this for initialization
 	void Start ()
@@ -23,18 +24,6 @@ public class UI_Canvas_Controller : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-		if(Input.GetKeyUp(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Main Menu")
-        {
-            if (instructionsWindow.activeSelf)
-            {
-                instructionsWindow.SetActive(false);
-            }
-            else
-            {
-                instructionsWindow.SetActive(true);
-            }
-        }
-
         if(Game_Manager.Instance.gameOver)
         {
             gameOverWindow.SetActive(true);
@@ -55,11 +44,6 @@ public class UI_Canvas_Controller : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
 
-    public void Exit_Game()
-    {
-        
-    }
-
     public void InstructionsOpen()
     {
         instructionsWindow.SetActive(true);
@@ -68,6 +52,37 @@ public class UI_Canvas_Controller : MonoBehaviour
     public void InstructionsClose()
     {
         instructionsWindow.SetActive(false);
+    }
+
+    public void SettingsOpenClose()
+    {
+        if (settingsWindow.activeSelf)
+        {
+            settingsWindow.SetActive(false);
+        }
+        else
+        {
+            settingsWindow.SetActive(true);
+        }
+    }
+
+    public void SetControls(Game_Manager.ControlScheme newControls)
+    {
+        switch(newControls)
+        {
+            case Game_Manager.ControlScheme.WASD:
+                Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.WASD;
+                break;
+            case Game_Manager.ControlScheme.ARROWS:
+                Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.ARROWS;
+                break;
+            case Game_Manager.ControlScheme.IJKL:
+                Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.IJKL;
+                break;
+            default:
+                Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.WASD;
+                break;
+        }
     }
 
     public void CreditsOpen()

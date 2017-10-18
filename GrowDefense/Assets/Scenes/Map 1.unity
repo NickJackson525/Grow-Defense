@@ -707,6 +707,16 @@ Prefab:
       propertyPath: water
       value: 
       objectReference: {fileID: 1890469234}
+    - target: {fileID: 20139677771874298, guid: 5c5b73b34652f9e4bb84b0fef640e23f,
+        type: 2}
+      propertyPath: m_NormalizedViewPortRect.y
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 20139677771874298, guid: 5c5b73b34652f9e4bb84b0fef640e23f,
+        type: 2}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c5b73b34652f9e4bb84b0fef640e23f, type: 2}
   m_IsPrefabParent: 0

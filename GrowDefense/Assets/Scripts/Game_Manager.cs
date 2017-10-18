@@ -7,6 +7,43 @@ public class Game_Manager
 {
     #region Variables
 
+    #region Conrols Dictionary
+
+    public Dictionary<ControlScheme, Dictionary<Direction, KeyCode>> Controls = new Dictionary<ControlScheme, Dictionary<Direction, KeyCode>>()
+    {
+        {
+            ControlScheme.WASD, new Dictionary<Direction, KeyCode>
+            {
+                {Direction.UP, KeyCode.W},
+                {Direction.DOWN, KeyCode.S},
+                {Direction.LEFT, KeyCode.A},
+                {Direction.RIGHT, KeyCode.D}
+            }
+        },
+        {
+            ControlScheme.ARROWS, new Dictionary<Direction, KeyCode>
+            {
+                {Direction.UP, KeyCode.UpArrow},
+                {Direction.DOWN, KeyCode.DownArrow},
+                {Direction.LEFT, KeyCode.LeftArrow},
+                {Direction.RIGHT, KeyCode.RightArrow}
+            }
+        },
+        {
+            ControlScheme.IJKL, new Dictionary<Direction, KeyCode>
+            {
+                {Direction.UP, KeyCode.I},
+                {Direction.DOWN, KeyCode.K},
+                {Direction.LEFT, KeyCode.J},
+                {Direction.RIGHT, KeyCode.L}
+            }
+        }
+    };
+
+    #endregion
+
+    public enum ControlScheme { WASD, ARROWS, IJKL}
+    public enum Direction { UP, DOWN, LEFT, RIGHT}
     public enum PlantType { FIRE, ICE, VOID }
     public enum BulletType { FIRE, ICE, VOID }
     public enum Phase { DAY, NIGHT}
@@ -25,6 +62,7 @@ public class Game_Manager
     public PlantType currentPlantSelection = PlantType.FIRE;
     public Phase currentPhase = Phase.DAY;
     public bool gameOver = false;
+    public Game_Manager.ControlScheme currentControls = Game_Manager.ControlScheme.WASD;
 
     #endregion
 

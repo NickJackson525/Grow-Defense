@@ -114,6 +114,7 @@ MonoBehaviour:
   fireBullet: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c, type: 2}
   iceBullet: {fileID: 1292759785792280, guid: eeae613ffc2733f4b8228beea45e18c9, type: 2}
   voidBullet: {fileID: 1899563826907660, guid: 9bd41411bfe7762439a9d368bb85a8da, type: 2}
+  select: {fileID: 1329692983568226, guid: a323d8be0ef755145880ffb4647a8231, type: 2}
   unwateredTile: {fileID: 21300000, guid: 4b9243551a2a9a247bbd985b046f1895, type: 3}
   wateredTile1: {fileID: 21300000, guid: b0551b7d539781d45914635da64129b3, type: 3}
   wateredTile2: {fileID: 21300000, guid: e22764f387b60014dbdb955bea971310, type: 3}

@@ -10,6 +10,7 @@ public class Farm_Controller : MonoBehaviour
     public GameObject fireBullet;
     public GameObject iceBullet;
     public GameObject voidBullet;
+    public GameObject select;
     public Sprite unwateredTile;
     public Sprite wateredTile1;
     public Sprite wateredTile2;
@@ -18,6 +19,7 @@ public class Farm_Controller : MonoBehaviour
     public int waterLevel = 0;
     bool isSelected = false;
     GameObject newPlant;
+    GameObject createdSelect;
 
     #endregion
 
@@ -60,22 +62,16 @@ public class Farm_Controller : MonoBehaviour
             newPlant.GetComponent<Plant_controller>().thisTile = gameObject;
             gameObject.GetComponent<Farm_Controller>().isPlanted = true;
             Game_Manager.Instance.money -= 50;
+        }
 
-            //switch(newPlant.GetComponent<Plant_controller>().thisPlant)
-            //{
-            //    case Game_Manager.PlantType.FIRE:
-            //        newPlant.GetComponent<Plant_controller>().bullet = fireBullet;
-            //        break;
-            //    case Game_Manager.PlantType.ICE:
-            //        newPlant.GetComponent<Plant_controller>().bullet = iceBullet;
-            //        break;
-            //    case Game_Manager.PlantType.VOID:
-            //        newPlant.GetComponent<Plant_controller>().bullet = voidBullet;
-            //        break;
-            //    default:
-            //        newPlant.GetComponent<Plant_controller>().bullet = fireBullet;
-            //        break;
-            //}
+        if((isSelected) && (Input.GetKey(KeyCode.LeftShift) || (Input.GetKey(KeyCode.RightShift))) && (!Game_Manager.Instance.gameOver))
+        {
+            createdSelect = Instantiate(select, transform.position, transform.rotation);
+        }
+
+        if((Input.GetKey(KeyCode.LeftShift) || (Input.GetKey(KeyCode.RightShift))) && (createdSelect))
+        {
+            Destroy(createdSelect);
         }
 
         if ((isSelected) && (Input.GetMouseButtonUp(1)) && (Game_Manager.Instance.waterLevel >= 10) && (!Game_Manager.Instance.gameOver))
@@ -93,6 +89,14 @@ public class Farm_Controller : MonoBehaviour
     #region Collision Methods
 
     private void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Select")
+        {
+            isSelected = true;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D coll)
     {
         if (coll.gameObject.tag == "Select")
         {

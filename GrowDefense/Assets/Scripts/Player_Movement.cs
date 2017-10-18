@@ -20,22 +20,22 @@ public class Player_Movement : MonoBehaviour
     {
         if (!Game_Manager.Instance.gameOver)
         {
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKey(Game_Manager.Instance.Controls[Game_Manager.Instance.currentControls][Game_Manager.Direction.UP]))
             {
                 transform.position += Vector3.up * speed * Time.deltaTime;
             }
 
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(Game_Manager.Instance.Controls[Game_Manager.Instance.currentControls][Game_Manager.Direction.LEFT]))
             {
                 transform.position += Vector3.left * speed * Time.deltaTime;
             }
 
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(Game_Manager.Instance.Controls[Game_Manager.Instance.currentControls][Game_Manager.Direction.DOWN]))
             {
                 transform.position += Vector3.down * speed * Time.deltaTime;
             }
 
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(Game_Manager.Instance.Controls[Game_Manager.Instance.currentControls][Game_Manager.Direction.RIGHT]))
             {
                 transform.position += Vector3.right * speed * Time.deltaTime;
             }

@@ -24,7 +24,6 @@ public class Enemy_Controller : MonoBehaviour
     int DOTMultiplierMax = 4;
     int SlowMultiplier = 0;
     int SlowMultiplierMax= 2;
-    bool hasRotated = false;
     bool startDOTEffect = false;
 
     #endregion
@@ -93,7 +92,6 @@ public class Enemy_Controller : MonoBehaviour
             {
                 this.transform.position = fullPath[pathCount].transform.position;
                 pathCount++;
-                hasRotated = false;
             }
 
             this.transform.position += Vector3.Normalize(fullPath[pathCount].transform.position - transform.position) * speed * Time.deltaTime;
