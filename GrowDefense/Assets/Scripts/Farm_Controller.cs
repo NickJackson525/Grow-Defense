@@ -20,6 +20,7 @@ public class Farm_Controller : MonoBehaviour
     bool isSelected = false;
     GameObject newPlant;
     GameObject createdSelect;
+    public float gridSideLength = .64f;
 
     #endregion
 
@@ -64,14 +65,18 @@ public class Farm_Controller : MonoBehaviour
             Game_Manager.Instance.money -= 50;
         }
 
-        if((isSelected) && (Input.GetKey(KeyCode.LeftShift) || (Input.GetKey(KeyCode.RightShift))) && (!Game_Manager.Instance.gameOver))
+        if((isSelected) && (Input.GetKey(KeyCode.RightShift)) && (!Game_Manager.Instance.gameOver))
         {
-            createdSelect = Instantiate(select, transform.position, transform.rotation);
+            if (!createdSelect)
+            {
+                createdSelect = Instantiate(select, transform.position, transform.rotation);
+            }
         }
 
-        if((Input.GetKey(KeyCode.LeftShift) || (Input.GetKey(KeyCode.RightShift))) && (createdSelect))
+        if (Input.GetKeyUp(KeyCode.RightShift) && (createdSelect))
         {
             Destroy(createdSelect);
+            isSelected = false;
         }
 
         if ((isSelected) && (Input.GetMouseButtonUp(1)) && (Game_Manager.Instance.waterLevel >= 10) && (!Game_Manager.Instance.gameOver))
@@ -82,6 +87,20 @@ public class Farm_Controller : MonoBehaviour
                 Game_Manager.Instance.waterLevel -= 10;
             }
         }
+    }
+
+    public Vector3 GetSnappedPosition(Vector3 position)
+    {
+
+        // not fatal in the Editor, but just better not to divide by 0 if we can avoid it
+        if (gridSideLength == 0) { return position; }
+
+        Vector3 gridPosition = new Vector3(
+            gridSideLength * Mathf.Round(position.x / gridSideLength),
+            gridSideLength * Mathf.Round(position.y / gridSideLength),
+            -3//gridSideLength * Mathf.Round(position.z / gridSideLength)
+        );
+        return gridPosition;
     }
 
     #endregion
@@ -106,7 +125,7 @@ public class Farm_Controller : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D coll)
     {
-        if (coll.gameObject.tag == "Select")
+        if ((coll.gameObject.tag == "Select") && (!createdSelect))
         {
             isSelected = false;
         }

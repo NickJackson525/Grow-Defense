@@ -11,8 +11,6 @@ public class Night_Phase : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        Game_Manager.Instance.Update();
-
 		if(Game_Manager.Instance.currentPhase == Game_Manager.Phase.NIGHT)
         {
             GetComponent<Image>().color = Night;

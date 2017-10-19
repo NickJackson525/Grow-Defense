@@ -47,6 +47,7 @@ public class Game_Manager
     public enum PlantType { FIRE, ICE, VOID }
     public enum BulletType { FIRE, ICE, VOID }
     public enum Phase { DAY, NIGHT}
+    public enum ColorBlindMode { Normal, Protanope, Deuteranope }
     public float waterLevel = 100;
     public int money = 200;
     public int dayTimer = 900;
@@ -63,6 +64,7 @@ public class Game_Manager
     public Phase currentPhase = Phase.DAY;
     public bool gameOver = false;
     public Game_Manager.ControlScheme currentControls = Game_Manager.ControlScheme.WASD;
+    public ColorBlindMode BlindMode = ColorBlindMode.Normal;
 
     #endregion
 
@@ -120,6 +122,21 @@ public class Game_Manager
                     currentPhase = Phase.DAY;
                 }
             }
+        }
+
+        if(Input.GetKeyUp(KeyCode.F1))
+        {
+            BlindMode = ColorBlindMode.Normal;
+        }
+
+        if (Input.GetKeyUp(KeyCode.F2))
+        {
+            BlindMode = ColorBlindMode.Protanope;
+        }
+
+        if (Input.GetKeyUp(KeyCode.F3))
+        {
+            BlindMode = ColorBlindMode.Deuteranope;
         }
     }
 

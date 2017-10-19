@@ -24,7 +24,9 @@ public class UI_Canvas_Controller : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if(Game_Manager.Instance.gameOver)
+        Game_Manager.Instance.Update();
+
+        if (Game_Manager.Instance.gameOver)
         {
             gameOverWindow.SetActive(true);
 
@@ -66,17 +68,17 @@ public class UI_Canvas_Controller : MonoBehaviour
         }
     }
 
-    public void SetControls(Game_Manager.ControlScheme newControls)
+    public void SetControls(string newControls)
     {
         switch(newControls)
         {
-            case Game_Manager.ControlScheme.WASD:
+            case "WASD":
                 Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.WASD;
                 break;
-            case Game_Manager.ControlScheme.ARROWS:
+            case "Arrows":
                 Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.ARROWS;
                 break;
-            case Game_Manager.ControlScheme.IJKL:
+            case "IJKL":
                 Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.IJKL;
                 break;
             default:

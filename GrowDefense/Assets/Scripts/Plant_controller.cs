@@ -50,7 +50,7 @@ public class Plant_controller : MonoBehaviour
 
         if((currentLevel < Game_Manager.maxPlantLevel) && (thisTile.GetComponent<Farm_Controller>().waterLevel > 0) && (Game_Manager.Instance.currentPhase == Game_Manager.Phase.DAY))
         {
-            growthTimer--;
+            growthTimer -= 1 * (currentLevel);
         }
 
         if(growthTimer <= 0)
@@ -108,7 +108,11 @@ public class Plant_controller : MonoBehaviour
                     createdBullet.GetComponent<Bullet>().type = thisPlant;
                     canShoot = false;
                     shootTimer = 60 - ((currentLevel - 1) * 20);
-                    thisTile.GetComponent<Farm_Controller>().waterLevel -= 1;
+
+                    if (currentLevel < 3)
+                    {
+                        thisTile.GetComponent<Farm_Controller>().waterLevel -= 1;
+                    }
 
                     if(thisPlant == Game_Manager.PlantType.VOID)
                     {
