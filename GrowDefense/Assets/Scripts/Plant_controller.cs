@@ -7,11 +7,15 @@ public class Plant_controller : MonoBehaviour
 {
     #region Variables
 
-    public Sprite levelOnePlant;
-    public Sprite levelTwoPlant;
-    public Sprite firePlant;
-    public Sprite icePlant;
-    public Sprite voidPlant;
+    public Sprite firePlantLv1;
+    public Sprite firePlantLv2;
+    public Sprite firePlantLv3;
+    public Sprite icePlantLv1;
+    public Sprite icePlantLv2;
+    public Sprite icePlantLv3;
+    public Sprite voidPlantLv1;
+    public Sprite voidPlantLv2;
+    public Sprite voidPlantLv3;
     public Sprite fireBullet;
     public Sprite iceBullet;
     public Sprite voidBullet;
@@ -34,8 +38,22 @@ public class Plant_controller : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-		
-	}
+        switch (thisPlant)
+        {
+            case Game_Manager.PlantType.FIRE:
+                GetComponent<SpriteRenderer>().sprite = firePlantLv1;
+                break;
+            case Game_Manager.PlantType.ICE:
+                GetComponent<SpriteRenderer>().sprite = icePlantLv1;
+                break;
+            case Game_Manager.PlantType.VOID:
+                GetComponent<SpriteRenderer>().sprite = voidPlantLv1;
+                break;
+            default:
+                GetComponent<SpriteRenderer>().sprite = firePlantLv1;
+                break;
+        }
+    }
 
     #endregion
 
@@ -59,8 +77,23 @@ public class Plant_controller : MonoBehaviour
             {
                 currentLevel++;
                 range++;
-                GetComponent<SpriteRenderer>().sprite = levelTwoPlant;
                 growthTimer = 2700;
+
+                switch (thisPlant)
+                {
+                    case Game_Manager.PlantType.FIRE:
+                        GetComponent<SpriteRenderer>().sprite = firePlantLv2;
+                        break;
+                    case Game_Manager.PlantType.ICE:
+                        GetComponent<SpriteRenderer>().sprite = icePlantLv2;
+                        break;
+                    case Game_Manager.PlantType.VOID:
+                        GetComponent<SpriteRenderer>().sprite = voidPlantLv2;
+                        break;
+                    default:
+                        GetComponent<SpriteRenderer>().sprite = firePlantLv2;
+                        break;
+                }
             }
             else
             {
@@ -71,19 +104,19 @@ public class Plant_controller : MonoBehaviour
                 switch(thisPlant)
                 {
                     case Game_Manager.PlantType.FIRE:
-                        GetComponent<SpriteRenderer>().sprite = firePlant;
+                        GetComponent<SpriteRenderer>().sprite = firePlantLv3;
                         Game_Manager.Instance.firePlantsGrown++;
                         break;
                     case Game_Manager.PlantType.ICE:
-                        GetComponent<SpriteRenderer>().sprite = icePlant;
+                        GetComponent<SpriteRenderer>().sprite = icePlantLv3;
                         Game_Manager.Instance.icePlantsGrown++;
                         break;
                     case Game_Manager.PlantType.VOID:
-                        GetComponent<SpriteRenderer>().sprite = voidPlant;
+                        GetComponent<SpriteRenderer>().sprite = voidPlantLv3;
                         Game_Manager.Instance.voidPlantsGrown++;
                         break;
                     default:
-                        GetComponent<SpriteRenderer>().sprite = firePlant;
+                        GetComponent<SpriteRenderer>().sprite = firePlantLv3;
                         Game_Manager.Instance.firePlantsGrown++;
                         break;
                 }
