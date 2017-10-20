@@ -4,29 +4,30 @@ using UnityEngine;
 
 public class Follow_Mouse : MonoBehaviour
 {
-    public GameObject player;
+    public GameObject followJoystick;
     public int moveSpeed = 5;
     Vector3 updatePosition;
-    Vector3 mousePosition;
     public float gridSideLength = .64f;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+
     }
 
     void Update()
     {
-        if (Input.GetAxis("SelectJoystickHorizontal") > 0 || Input.GetAxis("SelectJoystickVertical") > 0)
+        if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
         {
-            transform.position = player.transform.position;
+            updatePosition = followJoystick.transform.position;
+            updatePosition = Camera.main.ScreenToWorldPoint(updatePosition);
+            updatePosition = new Vector3(updatePosition.x, updatePosition.y, -3);
+            transform.position = Vector2.Lerp(transform.position, updatePosition, moveSpeed);
+
             transform.localPosition = GetSnappedPosition(transform.localPosition);
             transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
         }
         else
         {
-
-
             updatePosition = Input.mousePosition;
             updatePosition = Camera.main.ScreenToWorldPoint(updatePosition);
             updatePosition = new Vector3(updatePosition.x, updatePosition.y, -3);
