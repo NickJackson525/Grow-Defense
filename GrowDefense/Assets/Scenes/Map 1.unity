@@ -338,11 +338,42 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6b28b7040c3105542be68ad036c49123, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &581298361 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1651944034607298, guid: af824cec821a27e45b3bd82c87cf3657,
+    type: 2}
+  m_PrefabInternal: {fileID: 1144858008}
+--- !u!1 &825895368 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1963789872038156, guid: af824cec821a27e45b3bd82c87cf3657,
+    type: 2}
+  m_PrefabInternal: {fileID: 1144858008}
+--- !u!114 &825895371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 825895368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77a6875cbc574004782d1c5ea6c251b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisPlant: 0
+  buildSelect: {fileID: 825895368}
+  fireSelect: {fileID: 581298361}
+  iceSelect: {fileID: 932279463}
+  voidSelect: {fileID: 1044238904}
 --- !u!20 &876196202 stripped
 Camera:
   m_PrefabParentObject: {fileID: 20581261087888198, guid: 5c5b73b34652f9e4bb84b0fef640e23f,
     type: 2}
   m_PrefabInternal: {fileID: 1194722394}
+--- !u!1 &932279463 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1514457884707634, guid: af824cec821a27e45b3bd82c87cf3657,
+    type: 2}
+  m_PrefabInternal: {fileID: 1144858008}
 --- !u!1001 &993456405
 Prefab:
   m_ObjectHideFlags: 0
@@ -386,6 +417,11 @@ Prefab:
         type: 2}
       propertyPath: m_SortingOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114689702000402100, guid: 72c8537a37b07bf439ae218ad1ab1b1f,
+        type: 2}
+      propertyPath: JoystickMoveSelect
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72c8537a37b07bf439ae218ad1ab1b1f, type: 2}
@@ -516,6 +552,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d663aff4ce170dd4184059977c63f95b, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1044238904 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1988729168411754, guid: af824cec821a27e45b3bd82c87cf3657,
+    type: 2}
+  m_PrefabInternal: {fileID: 1144858008}
 --- !u!1001 &1070317103
 Prefab:
   m_ObjectHideFlags: 0
@@ -660,24 +701,11 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 876196202}
-    - target: {fileID: 212643677819483554, guid: af824cec821a27e45b3bd82c87cf3657,
+    - target: {fileID: 212690208172509910, guid: af824cec821a27e45b3bd82c87cf3657,
         type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 07cb713e782a86d409fef59c5cf760b2,
-        type: 3}
-    - target: {fileID: 212152235035801990, guid: af824cec821a27e45b3bd82c87cf3657,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: a45c9bcd13ce1034db96d51fe8ea6eb6,
-        type: 3}
-    - target: {fileID: 212398674699813588, guid: af824cec821a27e45b3bd82c87cf3657,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 966715bc77119cd4ca59057b6a619602,
-        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: af824cec821a27e45b3bd82c87cf3657, type: 2}
   m_IsPrefabParent: 0

@@ -56,7 +56,7 @@ public class Farm_Controller : MonoBehaviour
             this.gameObject.GetComponent<SpriteRenderer>().sprite = wateredTile3;
         }
 
-        if ((isSelected) && (!isPlanted) && (Input.GetMouseButtonUp(0)) && (Game_Manager.Instance.money >= 50) && (!Game_Manager.Instance.gameOver))
+        if ((isSelected) && (!isPlanted) && (Input.GetMouseButtonUp(0) || Input.GetButtonUp("AButton")) && (Game_Manager.Instance.money >= 50) && (!Game_Manager.Instance.gameOver))
         {
             newPlant = Instantiate(plantLevel1, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
             newPlant.GetComponent<Plant_controller>().thisPlant = Game_Manager.Instance.currentPlantSelection;
@@ -65,7 +65,7 @@ public class Farm_Controller : MonoBehaviour
             Game_Manager.Instance.money -= 50;
         }
 
-        if((isSelected) && (Input.GetKey(KeyCode.RightShift)) && (!Game_Manager.Instance.gameOver))
+        if((isSelected) && (Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift) || (Input.GetButton("LeftTrigger"))) && (!Game_Manager.Instance.gameOver))
         {
             if (!createdSelect)
             {
@@ -73,13 +73,13 @@ public class Farm_Controller : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.RightShift) && (createdSelect))
+        if ((!Input.GetKey(KeyCode.RightShift) && !Input.GetKey(KeyCode.LeftShift ) && !Input.GetButton("LeftTrigger")) && (createdSelect))
         {
             Destroy(createdSelect);
             isSelected = false;
         }
 
-        if ((isSelected) && (Input.GetMouseButtonUp(1)) && (Game_Manager.Instance.waterLevel >= 10) && (!Game_Manager.Instance.gameOver))
+        if ((isSelected) && (Input.GetMouseButtonUp(1) || Input.GetButtonUp("RightTrigger")) && (Game_Manager.Instance.waterLevel >= 10) && (!Game_Manager.Instance.gameOver))
         {
             if (waterLevel <= 50)
             {

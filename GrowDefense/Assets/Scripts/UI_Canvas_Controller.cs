@@ -11,7 +11,6 @@ public class UI_Canvas_Controller : MonoBehaviour
     public GameObject gameOverWindow;
     public GameObject gameOverTitle;
     public GameObject settingsWindow;
-    public Sound buttonSuond;
 
 	// Use this for initialization
 	void Start ()
@@ -40,6 +39,8 @@ public class UI_Canvas_Controller : MonoBehaviour
                 gameOverTitle.GetComponent<Text>().text = "You Lose!";
             }
         }
+
+
 	}
 
     public void Load_Scene(string sceneName)

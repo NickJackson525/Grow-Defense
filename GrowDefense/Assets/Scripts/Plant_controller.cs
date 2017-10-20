@@ -28,8 +28,11 @@ public class Plant_controller : MonoBehaviour
     int shootTimer = 0;
     int growthTimer = 1800;
     int currentLevel = 1;
+    float currentAlpha = 255;
     bool canShoot = true;
     public float range = 1f;
+    Vector3 startScale;
+    SpriteRenderer spriteRender;
 
     #endregion
 
@@ -41,18 +44,21 @@ public class Plant_controller : MonoBehaviour
         switch (thisPlant)
         {
             case Game_Manager.PlantType.FIRE:
-                GetComponent<SpriteRenderer>().sprite = firePlantLv1;
+                GetComponent<SpriteRenderer>().sprite = firePlantLv3;
                 break;
             case Game_Manager.PlantType.ICE:
-                GetComponent<SpriteRenderer>().sprite = icePlantLv1;
+                GetComponent<SpriteRenderer>().sprite = icePlantLv3;
                 break;
             case Game_Manager.PlantType.VOID:
-                GetComponent<SpriteRenderer>().sprite = voidPlantLv1;
+                GetComponent<SpriteRenderer>().sprite = voidPlantLv3;
                 break;
             default:
-                GetComponent<SpriteRenderer>().sprite = firePlantLv1;
+                GetComponent<SpriteRenderer>().sprite = firePlantLv3;
                 break;
         }
+
+        spriteRender = GetComponent<SpriteRenderer>();
+        startScale = transform.localScale;
     }
 
     #endregion
@@ -71,62 +77,73 @@ public class Plant_controller : MonoBehaviour
             growthTimer -= 1 * (currentLevel);
         }
 
+        #region Flash Transparency
+
+        if(currentLevel == 3)
+        {
+            currentAlpha = 255f;
+            spriteRender.color = new Color(spriteRender.color.r, spriteRender.color.g, spriteRender.color.b, currentAlpha / 255f);
+        }
+        else if (((currentAlpha >= 255) || (thisTile.GetComponent<Farm_Controller>().waterLevel <= 0)) && (Game_Manager.Instance.currentPhase == Game_Manager.Phase.NIGHT))
+        {
+            currentAlpha = 125f;
+            spriteRender.color = new Color(spriteRender.color.r, spriteRender.color.g, spriteRender.color.b, currentAlpha / 255f);
+        }
+        else
+        {
+            if (currentAlpha < 255)
+            {
+                currentAlpha++;
+            }
+
+            spriteRender.color = new Color(spriteRender.color.r, spriteRender.color.g, spriteRender.color.b, currentAlpha / 255f);
+        }
+
+        #endregion
+
+        #region Scale Sprite
+
+        switch(currentLevel)
+        {
+            case 1:
+                transform.localScale = startScale * ((2650f - (float)growthTimer) / 1800f);
+                break;
+            case 2:
+                transform.localScale = startScale * ((4200f - (float)growthTimer) / 3600f);
+                break;
+            case 3:
+                transform.localScale = startScale;
+                break;
+        }
+
+        #endregion
+
+        #region LevelUp Plant
+
         if(growthTimer <= 0)
         {
             if(currentLevel == 1)
             {
                 currentLevel++;
                 range++;
-                growthTimer = 2700;
-
-                switch (thisPlant)
-                {
-                    case Game_Manager.PlantType.FIRE:
-                        GetComponent<SpriteRenderer>().sprite = firePlantLv2;
-                        break;
-                    case Game_Manager.PlantType.ICE:
-                        GetComponent<SpriteRenderer>().sprite = icePlantLv2;
-                        break;
-                    case Game_Manager.PlantType.VOID:
-                        GetComponent<SpriteRenderer>().sprite = voidPlantLv2;
-                        break;
-                    default:
-                        GetComponent<SpriteRenderer>().sprite = firePlantLv2;
-                        break;
-                }
+                growthTimer = 1800;
             }
             else
             {
                 currentLevel++;
                 range++;
-                growthTimer = 100;
-
-                switch(thisPlant)
-                {
-                    case Game_Manager.PlantType.FIRE:
-                        GetComponent<SpriteRenderer>().sprite = firePlantLv3;
-                        Game_Manager.Instance.firePlantsGrown++;
-                        break;
-                    case Game_Manager.PlantType.ICE:
-                        GetComponent<SpriteRenderer>().sprite = icePlantLv3;
-                        Game_Manager.Instance.icePlantsGrown++;
-                        break;
-                    case Game_Manager.PlantType.VOID:
-                        GetComponent<SpriteRenderer>().sprite = voidPlantLv3;
-                        Game_Manager.Instance.voidPlantsGrown++;
-                        break;
-                    default:
-                        GetComponent<SpriteRenderer>().sprite = firePlantLv3;
-                        Game_Manager.Instance.firePlantsGrown++;
-                        break;
-                }
+                growthTimer = 3600;
             }
         }
+
+        #endregion
 
         if(shootTimer == 0)
         {
             canShoot = true;
         }
+
+        #region Shoot
 
         if (canShoot && (testEnemyExist != null) && (currentTarget != null))
         {
@@ -137,7 +154,7 @@ public class Plant_controller : MonoBehaviour
                     createdBullet = Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, 0f), transform.rotation);
                     createdBullet.GetComponent<Bullet>().move = true;
                     createdBullet.GetComponent<Bullet>().target = currentTarget;
-                    createdBullet.GetComponent<Bullet>().damage = createdBullet.GetComponent<Bullet>().damage * currentLevel;
+                    createdBullet.GetComponent<Bullet>().damage = createdBullet.GetComponent<Bullet>().damage * (currentLevel + 1);
                     createdBullet.GetComponent<Bullet>().type = thisPlant;
                     canShoot = false;
                     shootTimer = 60 - ((currentLevel - 1) * 20);
@@ -170,7 +187,9 @@ public class Plant_controller : MonoBehaviour
                 }
             }
         }
-	}
+
+        #endregion
+    }
 
     #endregion
 

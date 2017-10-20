@@ -36,7 +36,7 @@ public class Water_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((isSelected) && (Input.GetMouseButtonUp(0)))
+        if ((isSelected) && (Input.GetMouseButtonUp(0) || Input.GetButtonUp("AButton")))
         {
             Game_Manager.Instance.waterLevel += health;
 

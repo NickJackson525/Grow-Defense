@@ -4,19 +4,37 @@ using UnityEngine;
 
 public class Follow_Mouse : MonoBehaviour
 {
+    public GameObject player;
     public int moveSpeed = 5;
+    Vector3 updatePosition;
     Vector3 mousePosition;
     public float gridSideLength = .64f;
 
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
     void Update()
     {
-        mousePosition = Input.mousePosition;
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        mousePosition = new Vector3(mousePosition.x, mousePosition.y, -3);
-        transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
+        if (Input.GetAxis("SelectJoystickHorizontal") > 0 || Input.GetAxis("SelectJoystickVertical") > 0)
+        {
+            transform.position = player.transform.position;
+            transform.localPosition = GetSnappedPosition(transform.localPosition);
+            transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
+        }
+        else
+        {
 
-        transform.localPosition = GetSnappedPosition(transform.localPosition);
-        transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
+
+            updatePosition = Input.mousePosition;
+            updatePosition = Camera.main.ScreenToWorldPoint(updatePosition);
+            updatePosition = new Vector3(updatePosition.x, updatePosition.y, -3);
+            transform.position = Vector2.Lerp(transform.position, updatePosition, moveSpeed);
+
+            transform.localPosition = GetSnappedPosition(transform.localPosition);
+            transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
+        }
     }
 
     public Vector3 GetGridPosition()
