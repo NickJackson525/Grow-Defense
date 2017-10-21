@@ -18,10 +18,7 @@ public class Follow_Mouse : MonoBehaviour
     {
         if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
         {
-            updatePosition = followJoystick.transform.position;
-            updatePosition = Camera.main.ScreenToWorldPoint(updatePosition);
-            updatePosition = new Vector3(updatePosition.x, updatePosition.y, -3);
-            transform.position = Vector2.Lerp(transform.position, updatePosition, moveSpeed);
+            transform.position = followJoystick.transform.position;
 
             transform.localPosition = GetSnappedPosition(transform.localPosition);
             transform.position = new Vector3(transform.position.x, transform.position.y, -1f);

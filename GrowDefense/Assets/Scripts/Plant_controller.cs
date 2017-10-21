@@ -133,6 +133,19 @@ public class Plant_controller : MonoBehaviour
                 currentLevel++;
                 range++;
                 growthTimer = 3600;
+
+                switch(thisPlant)
+                {
+                    case Game_Manager.PlantType.FIRE:
+                        Game_Manager.Instance.firePlantsGrown++;
+                        break;
+                    case Game_Manager.PlantType.ICE:
+                        Game_Manager.Instance.icePlantsGrown++;
+                        break;
+                    case Game_Manager.PlantType.VOID:
+                        Game_Manager.Instance.voidPlantsGrown++;
+                        break;
+                }
             }
         }
 

@@ -11,6 +11,12 @@ public class UI_Canvas_Controller : MonoBehaviour
     public GameObject gameOverWindow;
     public GameObject gameOverTitle;
     public GameObject settingsWindow;
+    public Button playButton;
+    public Button instructionsButton;
+    public Button creditsButton;
+    public Button instructionsBack;
+    public Button creditsBack;
+    public Button mainMenu;
 
 	// Use this for initialization
 	void Start ()
@@ -19,6 +25,11 @@ public class UI_Canvas_Controller : MonoBehaviour
         Game_Manager.Instance.gameOver = false;
         Game_Manager.Instance.money = 200;
         Game_Manager.Instance.waterLevel = 100;
+
+        if (playButton)
+        {
+            playButton.Select();
+        }
     }
 	
 	// Update is called once per frame
@@ -29,6 +40,7 @@ public class UI_Canvas_Controller : MonoBehaviour
         if (Game_Manager.Instance.gameOver)
         {
             gameOverWindow.SetActive(true);
+            mainMenu.Select();
 
             if (Game_Manager.Instance.firePlantsGrown >= 10)
             {
@@ -39,8 +51,6 @@ public class UI_Canvas_Controller : MonoBehaviour
                 gameOverTitle.GetComponent<Text>().text = "You Lose!";
             }
         }
-
-
 	}
 
     public void Load_Scene(string sceneName)
@@ -51,11 +61,13 @@ public class UI_Canvas_Controller : MonoBehaviour
     public void InstructionsOpen()
     {
         instructionsWindow.SetActive(true);
+        instructionsBack.Select();
     }
 
     public void InstructionsClose()
     {
         instructionsWindow.SetActive(false);
+        instructionsButton.Select();
     }
 
     public void SettingsOpenClose()
@@ -92,11 +104,13 @@ public class UI_Canvas_Controller : MonoBehaviour
     public void CreditsOpen()
     {
         gameOverWindow.SetActive(true);
+        creditsBack.Select();
     }
 
     public void CreditsClose()
     {
         gameOverWindow.SetActive(false);
+        creditsButton.Select();
     }
 
     public void MainMenu()

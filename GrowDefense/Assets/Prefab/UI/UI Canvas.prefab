@@ -560,6 +560,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4396876253138536}
   - component: {fileID: 212659070290460592}
+  - component: {fileID: 114014407140720538}
   m_Layer: 5
   m_Name: Build_Select
   m_TagString: Untagged
@@ -815,6 +816,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+--- !u!114 &114014407140720538
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1963789872038156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77a6875cbc574004782d1c5ea6c251b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisPlant: 0
+  buildSelect: {fileID: 1963789872038156}
+  fireSelect: {fileID: 1651944034607298}
+  iceSelect: {fileID: 1514457884707634}
+  voidSelect: {fileID: 1988729168411754}
 --- !u!114 &114050664853309870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1163,7 +1180,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.52156866, g: 0.52156866, b: 0.52156866, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1436,6 +1453,12 @@ MonoBehaviour:
   gameOverWindow: {fileID: 1373475407084458}
   gameOverTitle: {fileID: 1445501874761112}
   settingsWindow: {fileID: 0}
+  playButton: {fileID: 0}
+  instructionsButton: {fileID: 0}
+  creditsButton: {fileID: 0}
+  instructionsBack: {fileID: 0}
+  creditsBack: {fileID: 0}
+  mainMenu: {fileID: 114510950899258288}
 --- !u!114 &114776364879333874
 MonoBehaviour:
   m_ObjectHideFlags: 1
