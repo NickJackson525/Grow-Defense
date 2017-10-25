@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Player_Movement : MonoBehaviour
 {
     public GameObject water;
-    public float speed = 1.5f;
+    public float speed = 5f;
     public float startScale;
     public Vector3 updatePosition;
 

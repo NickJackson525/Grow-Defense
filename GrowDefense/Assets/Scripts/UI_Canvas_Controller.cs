@@ -42,7 +42,7 @@ public class UI_Canvas_Controller : MonoBehaviour
             gameOverWindow.SetActive(true);
             mainMenu.Select();
 
-            if (Game_Manager.Instance.firePlantsGrown >= 10)
+            if ((Game_Manager.Instance.firePlantsGrown >= Game_Manager.Instance.firePlantsRequired) && (Game_Manager.Instance.icePlantsGrown >= Game_Manager.Instance.icePlantsRequired) && (Game_Manager.Instance.voidPlantsGrown >= Game_Manager.Instance.voidPlantsRequired))
             {
                 gameOverTitle.GetComponent<Text>().text = "You Win!";
             }
