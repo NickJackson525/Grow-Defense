@@ -150,10 +150,10 @@ Camera:
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.78
-    y: 0.02
-    width: 0.2
-    height: 0.16
+    x: 0.75
+    y: 0.035
+    width: 0.14
+    height: 0.14
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -258,6 +258,7 @@ MonoBehaviour:
   water: {fileID: 0}
   speed: 1
   startScale: 0
+  updatePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &114860947415109508
 MonoBehaviour:
   m_ObjectHideFlags: 1

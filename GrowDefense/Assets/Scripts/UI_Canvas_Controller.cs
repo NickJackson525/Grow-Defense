@@ -28,7 +28,11 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         if (playButton)
         {
-            playButton.Select();
+            if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
+            {
+                playButton.Select();
+            }
+
         }
     }
 	
@@ -40,7 +44,11 @@ public class UI_Canvas_Controller : MonoBehaviour
         if (Game_Manager.Instance.gameOver)
         {
             gameOverWindow.SetActive(true);
-            mainMenu.Select();
+
+            if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
+            {
+                mainMenu.Select();
+            }
 
             if ((Game_Manager.Instance.firePlantsGrown >= Game_Manager.Instance.firePlantsRequired) && (Game_Manager.Instance.icePlantsGrown >= Game_Manager.Instance.icePlantsRequired) && (Game_Manager.Instance.voidPlantsGrown >= Game_Manager.Instance.voidPlantsRequired))
             {
@@ -61,13 +69,21 @@ public class UI_Canvas_Controller : MonoBehaviour
     public void InstructionsOpen()
     {
         instructionsWindow.SetActive(true);
-        instructionsBack.Select();
+
+        if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
+        {
+            instructionsBack.Select();
+        }
     }
 
     public void InstructionsClose()
     {
         instructionsWindow.SetActive(false);
-        instructionsButton.Select();
+
+        if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
+        {
+            instructionsButton.Select();
+        }
     }
 
     public void SettingsOpenClose()
@@ -104,13 +120,21 @@ public class UI_Canvas_Controller : MonoBehaviour
     public void CreditsOpen()
     {
         gameOverWindow.SetActive(true);
-        creditsBack.Select();
+
+        if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
+        {
+            creditsBack.Select();
+        }
     }
 
     public void CreditsClose()
     {
         gameOverWindow.SetActive(false);
-        creditsButton.Select();
+
+        if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
+        {
+            creditsButton.Select();
+        }
     }
 
     public void MainMenu()
