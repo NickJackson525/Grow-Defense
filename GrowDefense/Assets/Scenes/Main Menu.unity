@@ -108,6 +108,60 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &703352407
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4518195251027362, guid: ab99283df271833408e38a2bc26a4101, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -6.0603
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518195251027362, guid: ab99283df271833408e38a2bc26a4101, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.7062
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518195251027362, guid: ab99283df271833408e38a2bc26a4101, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518195251027362, guid: ab99283df271833408e38a2bc26a4101, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518195251027362, guid: ab99283df271833408e38a2bc26a4101, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518195251027362, guid: ab99283df271833408e38a2bc26a4101, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518195251027362, guid: ab99283df271833408e38a2bc26a4101, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518195251027362, guid: ab99283df271833408e38a2bc26a4101, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518195251027362, guid: ab99283df271833408e38a2bc26a4101, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.84075665
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518195251027362, guid: ab99283df271833408e38a2bc26a4101, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.84075665
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518195251027362, guid: ab99283df271833408e38a2bc26a4101, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.84075665
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: ab99283df271833408e38a2bc26a4101, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1824830377
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +309,36 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1824830381}
+    - target: {fileID: 224020488369706298, guid: 22f7ccd513e0be448adb1819606c5775,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224020488369706298, guid: 22f7ccd513e0be448adb1819606c5775,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224461436922206564, guid: 22f7ccd513e0be448adb1819606c5775,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224461436922206564, guid: 22f7ccd513e0be448adb1819606c5775,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224015711080596246, guid: 22f7ccd513e0be448adb1819606c5775,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224015711080596246, guid: 22f7ccd513e0be448adb1819606c5775,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22f7ccd513e0be448adb1819606c5775, type: 2}
   m_IsPrefabParent: 0
@@ -318,5 +402,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
