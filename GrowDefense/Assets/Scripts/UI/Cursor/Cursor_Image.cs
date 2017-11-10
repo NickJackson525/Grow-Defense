@@ -46,6 +46,11 @@ public class Cursor_Image : MonoBehaviour
         {
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 20f);
         }
+
+        if(Game_Manager.Instance.gameOver)
+        {
+            GetComponent<SpriteRenderer>().sprite = defaultCursor;
+        }
     }
 
     private void OnCollisionStay2D(Collision2D coll)
