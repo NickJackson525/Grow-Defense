@@ -106,10 +106,20 @@ public class Plant_controller : MonoBehaviour
         switch(currentLevel)
         {
             case 1:
-                transform.localScale = startScale * ((2650f - (float)growthTimer) / 1800f);
+                transform.localScale = startScale * ((2250f - (float)growthTimer) / 1800f);
+
+                if(transform.localScale.x > .5f)
+                {
+                    transform.localScale = new Vector3(.5f, .5f, .5f);
+                }
                 break;
             case 2:
-                transform.localScale = startScale * ((4200f - (float)growthTimer) / 3600f);
+                transform.localScale = startScale * ((5400f - (float)growthTimer) / 3600f);
+
+                if (transform.localScale.x > .75f)
+                {
+                    transform.localScale = new Vector3(.75f, .75f, .75f);
+                }
                 break;
             case 3:
                 transform.localScale = startScale;

@@ -818,7 +818,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4845665786022820, guid: 5c5b73b34652f9e4bb84b0fef640e23f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2.99
+      value: -3.2
       objectReference: {fileID: 0}
     - target: {fileID: 4845665786022820, guid: 5c5b73b34652f9e4bb84b0fef640e23f, type: 2}
       propertyPath: m_LocalPosition.y
@@ -853,19 +853,6 @@ Prefab:
       propertyPath: water
       value: 
       objectReference: {fileID: 1890469234}
-    - target: {fileID: 4030990434310218, guid: 5c5b73b34652f9e4bb84b0fef640e23f, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -1.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030990434310218, guid: 5c5b73b34652f9e4bb84b0fef640e23f, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.91
-      objectReference: {fileID: 0}
-    - target: {fileID: 20139677771874298, guid: 5c5b73b34652f9e4bb84b0fef640e23f,
-        type: 2}
-      propertyPath: orthographic size
-      value: 1.9196677
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c5b73b34652f9e4bb84b0fef640e23f, type: 2}
   m_IsPrefabParent: 0
