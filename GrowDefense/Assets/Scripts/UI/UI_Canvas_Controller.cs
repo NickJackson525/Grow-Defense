@@ -9,6 +9,7 @@ public class UI_Canvas_Controller : MonoBehaviour
 {
     public GameObject instructionsWindow;
     public GameObject gameOverWindow;
+    public GameObject gameOverMenuButton;
     public GameObject gameOverTitle;
     public GameObject settingsWindow;
     public Button playButton;
@@ -44,6 +45,7 @@ public class UI_Canvas_Controller : MonoBehaviour
         if (Game_Manager.Instance.gameOver)
         {
             gameOverWindow.SetActive(true);
+            gameOverMenuButton.SetActive(true);
 
             if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
             {
