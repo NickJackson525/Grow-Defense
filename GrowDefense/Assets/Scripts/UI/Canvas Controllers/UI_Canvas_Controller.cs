@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class UI_Canvas_Controller : MonoBehaviour
 {
+    #region Variables
+
     public GameObject instructionsWindow;
     public GameObject gameOverWindow;
     public GameObject gameOverMenuButton;
@@ -19,8 +21,12 @@ public class UI_Canvas_Controller : MonoBehaviour
     public Button creditsBack;
     public Button mainMenu;
 
-	// Use this for initialization
-	void Start ()
+    #endregion
+
+    #region Start
+
+    // Use this for initialization
+    void Start ()
     {
         Game_Manager.Instance.firePlantsGrown = 0;
         Game_Manager.Instance.gameOver = false;
@@ -36,9 +42,13 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         }
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    #endregion
+
+    #region Update
+
+    // Update is called once per frame
+    void Update ()
     {
         Game_Manager.Instance.Update();
 
@@ -63,10 +73,20 @@ public class UI_Canvas_Controller : MonoBehaviour
         }
 	}
 
+    #endregion
+
+    #region Public Methods
+
+    #region Load Scene
+
     public void Load_Scene(string sceneName)
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
+
+    #endregion
+
+    #region Instructions
 
     public void InstructionsOpen()
     {
@@ -88,6 +108,10 @@ public class UI_Canvas_Controller : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Settings
+
     public void SettingsOpenClose()
     {
         if (settingsWindow.activeSelf)
@@ -99,6 +123,10 @@ public class UI_Canvas_Controller : MonoBehaviour
             settingsWindow.SetActive(true);
         }
     }
+
+    #endregion
+
+    #region Set Controls
 
     public void SetControls(string newControls)
     {
@@ -118,6 +146,10 @@ public class UI_Canvas_Controller : MonoBehaviour
                 break;
         }
     }
+
+    #endregion
+
+    #region Credits
 
     public void CreditsOpen()
     {
@@ -139,10 +171,18 @@ public class UI_Canvas_Controller : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Main Menu
+
     public void MainMenu()
     {
         Game_Manager.Instance.firePlantsGrown = 0;
         Game_Manager.Instance.gameOver = false;
         Load_Scene("Main Menu");
     }
+
+    #endregion
+
+    #endregion
 }
