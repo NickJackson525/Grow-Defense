@@ -48,6 +48,7 @@ public class Game_Manager
     public enum BulletType { FIRE, ICE, VOID }
     public enum Phase { DAY, NIGHT}
     public enum ColorBlindMode { Normal, Protanope, Deuteranope }
+    public enum PlaceableUpgrade { Sprinkler, Fertilizer }
     public float waterLevel = 100;
     public int money = 200;
     public int dayTimer = 900;
@@ -62,8 +63,10 @@ public class Game_Manager
     public const int maxPlantLevel = 3;
     public PlantType currentPlantSelection = PlantType.FIRE;
     public Phase currentPhase = Phase.DAY;
+    public PlaceableUpgrade currentUpgrade = PlaceableUpgrade.Sprinkler;
     public bool gameOver = false;
     public bool pauseGame = false;
+    public bool placingUpgrade = false;
     public Game_Manager.ControlScheme currentControls = Game_Manager.ControlScheme.WASD;
     public ColorBlindMode BlindMode = ColorBlindMode.Normal;
 

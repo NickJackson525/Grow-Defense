@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Sprinkler : MonoBehaviour
 {
+    #region Variables
+
     public GameObject thisFarmTile;
     public bool playAnimation;
     public Sprite startFrame;
@@ -11,14 +13,22 @@ public class Sprinkler : MonoBehaviour
     public int timer = 300;
     public Animator thisAnimation;
 
-	// Use this for initialization
-	void Start ()
+    #endregion
+
+    #region Start
+
+    // Use this for initialization
+    void Start ()
     {
         thisAnimation = GetComponent<Animator>();
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    #endregion
+
+    #region Update
+
+    // Update is called once per frame
+    void Update ()
     {
         if (timer > 0)
         {
@@ -46,4 +56,6 @@ public class Sprinkler : MonoBehaviour
             thisAnimation.speed = 0;
         }
 	}
+
+    #endregion
 }

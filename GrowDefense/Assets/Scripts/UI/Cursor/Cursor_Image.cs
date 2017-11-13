@@ -57,7 +57,7 @@ public class Cursor_Image : MonoBehaviour
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 20f);
         }
 
-        if(Game_Manager.Instance.gameOver || Game_Manager.Instance.pauseGame)
+        if(Game_Manager.Instance.gameOver || Game_Manager.Instance.pauseGame || Game_Manager.Instance.placingUpgrade)
         {
             GetComponent<SpriteRenderer>().sprite = defaultCursor;
         }

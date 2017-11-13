@@ -29,6 +29,7 @@ public class Plant_controller : MonoBehaviour
     int growthTimer = 1800;
     int currentLevel = 1;
     float currentAlpha = 255;
+    public bool isFertilized = false;
     bool canShoot = true;
     public float range = 1f;
     Vector3 startScale;
@@ -76,7 +77,14 @@ public class Plant_controller : MonoBehaviour
 
             if ((currentLevel < Game_Manager.maxPlantLevel) && (thisTile.GetComponent<Farm_Controller>().waterLevel > 0) && (Game_Manager.Instance.currentPhase == Game_Manager.Phase.DAY))
             {
-                growthTimer -= 1 * (currentLevel);
+                if (isFertilized)
+                {
+                    growthTimer -= (1 * (currentLevel)) * 2;
+                }
+                else
+                {
+                    growthTimer -= 1 * (currentLevel);
+                }
             }
 
             #region Flash Transparency
