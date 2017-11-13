@@ -63,6 +63,7 @@ public class Game_Manager
     public PlantType currentPlantSelection = PlantType.FIRE;
     public Phase currentPhase = Phase.DAY;
     public bool gameOver = false;
+    public bool pauseGame = false;
     public Game_Manager.ControlScheme currentControls = Game_Manager.ControlScheme.WASD;
     public ColorBlindMode BlindMode = ColorBlindMode.Normal;
 
@@ -102,24 +103,27 @@ public class Game_Manager
 
     public void Update()
     {
-        if((firePlantsGrown >= firePlantsRequired) && (icePlantsGrown >= icePlantsRequired) && (voidPlantsGrown >= voidPlantsRequired))
+        if (!pauseGame)
         {
-            gameOver = true;
-        }
-
-        if (currentPhase == Phase.DAY)
-        {
-            dayTimer--;
-
-            if (dayTimer <= 0)
+            if ((firePlantsGrown >= firePlantsRequired) && (icePlantsGrown >= icePlantsRequired) && (voidPlantsGrown >= voidPlantsRequired))
             {
-                if (currentPhase == Phase.DAY)
+                gameOver = true;
+            }
+
+            if (currentPhase == Phase.DAY)
+            {
+                dayTimer--;
+
+                if (dayTimer <= 0)
                 {
-                    currentPhase = Phase.NIGHT;
-                }
-                else if (currentPhase == Phase.NIGHT)
-                {
-                    currentPhase = Phase.DAY;
+                    if (currentPhase == Phase.DAY)
+                    {
+                        currentPhase = Phase.NIGHT;
+                    }
+                    else if (currentPhase == Phase.NIGHT)
+                    {
+                        currentPhase = Phase.DAY;
+                    }
                 }
             }
         }

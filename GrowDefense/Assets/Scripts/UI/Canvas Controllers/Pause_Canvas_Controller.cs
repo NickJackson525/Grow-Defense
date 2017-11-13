@@ -6,6 +6,19 @@ public class Pause_Canvas_Controller : MonoBehaviour
 {
     #region Variables
 
+    public GameObject pauseWindow;
+    public GameObject objectivesButton;
+    public GameObject controlsButton;
+    public GameObject instructionsButton;
+    public GameObject creditsButton;
+    public GameObject backstoryButton;
+    public GameObject mainMenuButton;
+    public GameObject objectivesPanel;
+    public GameObject controlsPanel;
+    public GameObject instructionsPanel;
+    public GameObject creditsPanel;
+    public GameObject backstoryPanel;
+
     #endregion
 
     #region Start
@@ -23,21 +36,147 @@ public class Pause_Canvas_Controller : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-		
+		if(Input.GetKeyUp(KeyCode.Escape))
+        {
+            if(pauseWindow.activeSelf)
+            {
+                pauseWindow.SetActive(false);
+                Game_Manager.Instance.pauseGame = false;
+            }
+            else
+            {
+                pauseWindow.SetActive(true);
+                Game_Manager.Instance.pauseGame = true;
+            }
+        }
 	}
 
     #endregion
 
     #region Public Methods
 
-    #region Load Scene
+        #region Load Scene
 
-    public void Load_Scene(string sceneName)
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
-    }
+        public void Load_Scene(string sceneName)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+        }
 
-    #endregion
+        #endregion
+
+        #region Objectives Window
+
+        public void ObjectivesOpen()
+        {
+            objectivesButton.SetActive(false);
+            controlsButton.SetActive(false);
+            instructionsButton.SetActive(false);
+            creditsButton.SetActive(false);
+            backstoryButton.SetActive(false);
+            mainMenuButton.SetActive(false);
+            objectivesPanel.SetActive(true);
+            controlsPanel.SetActive(false);
+            instructionsPanel.SetActive(false);
+            creditsPanel.SetActive(false);
+            backstoryPanel.SetActive(false);
+        }
+
+        #endregion
+
+        #region Controls Window
+
+        public void ControlsOpen()
+        {
+            objectivesButton.SetActive(false);
+            controlsButton.SetActive(false);
+            instructionsButton.SetActive(false);
+            creditsButton.SetActive(false);
+            backstoryButton.SetActive(false);
+            mainMenuButton.SetActive(false);
+            objectivesPanel.SetActive(false);
+            controlsPanel.SetActive(true);
+            instructionsPanel.SetActive(false);
+            creditsPanel.SetActive(false);
+            backstoryPanel.SetActive(false);
+        }
+
+        #endregion
+
+        #region Instructions Window
+
+        public void InstructionsOpen()
+        {
+            objectivesButton.SetActive(false);
+            controlsButton.SetActive(false);
+            instructionsButton.SetActive(false);
+            creditsButton.SetActive(false);
+            backstoryButton.SetActive(false);
+            mainMenuButton.SetActive(false);
+            objectivesPanel.SetActive(false);
+            controlsPanel.SetActive(false);
+            instructionsPanel.SetActive(true);
+            creditsPanel.SetActive(false);
+            backstoryPanel.SetActive(false);
+        }
+
+        #endregion
+
+        #region Credits Window
+
+        public void CreditsOpen()
+        {
+            objectivesButton.SetActive(false);
+            controlsButton.SetActive(false);
+            instructionsButton.SetActive(false);
+            creditsButton.SetActive(false);
+            backstoryButton.SetActive(false);
+            mainMenuButton.SetActive(false);
+            objectivesPanel.SetActive(false);
+            controlsPanel.SetActive(false);
+            instructionsPanel.SetActive(false);
+            creditsPanel.SetActive(true);
+            backstoryPanel.SetActive(false);
+        }
+
+        #endregion
+
+        #region Backstory Window
+
+        public void BackstoryOpen()
+        {
+            objectivesButton.SetActive(false);
+            controlsButton.SetActive(false);
+            instructionsButton.SetActive(false);
+            creditsButton.SetActive(false);
+            backstoryButton.SetActive(false);
+            mainMenuButton.SetActive(false);
+            objectivesPanel.SetActive(false);
+            controlsPanel.SetActive(false);
+            instructionsPanel.SetActive(false);
+            creditsPanel.SetActive(false);
+            backstoryPanel.SetActive(true);
+        }
+
+        #endregion
+
+        #region Back To Pause Menu
+
+        public void BackToPauseMenu()
+        {
+            objectivesButton.SetActive(true);
+            controlsButton.SetActive(true);
+            instructionsButton.SetActive(true);
+            creditsButton.SetActive(true);
+            backstoryButton.SetActive(true);
+            mainMenuButton.SetActive(true);
+            objectivesPanel.SetActive(false);
+            controlsPanel.SetActive(false);
+            instructionsPanel.SetActive(false);
+            creditsPanel.SetActive(false);
+            backstoryPanel.SetActive(false);
+        }
+
+        #endregion
 
     #endregion
 }

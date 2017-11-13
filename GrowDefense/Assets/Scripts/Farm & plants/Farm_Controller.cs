@@ -20,6 +20,7 @@ public class Farm_Controller : MonoBehaviour
     public bool isSelected = false;
     GameObject newPlant;
     GameObject createdSelect;
+    GameObject[] totalMultiSelect;
     public float gridSideLength = .64f;
 
     #endregion
@@ -39,55 +40,80 @@ public class Farm_Controller : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if (waterLevel == 0)
+        if (!Game_Manager.Instance.pauseGame)
         {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = unwateredTile ;
-        }
-        else if (waterLevel <= 20)
-        {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = wateredTile1;
-        }
-        else if (waterLevel <= 40)
-        {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = wateredTile2;
-        }
-        else if(waterLevel <= 60)
-        {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = wateredTile3;
-        }
+            #region Update Sprite
 
-        if ((isSelected) && (!isPlanted) && (Input.GetMouseButtonUp(0) || Input.GetButtonUp("AButton")) && (Game_Manager.Instance.money >= 50) && (!Game_Manager.Instance.gameOver))
-        {
-            newPlant = Instantiate(plantLevel1, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
-            newPlant.GetComponent<Plant_controller>().thisPlant = Game_Manager.Instance.currentPlantSelection;
-            newPlant.GetComponent<Plant_controller>().thisTile = gameObject;
-            gameObject.GetComponent<Farm_Controller>().isPlanted = true;
-            Game_Manager.Instance.money -= 50;
-        }
-
-        if((isSelected) && (Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift) || (Input.GetButton("LeftTrigger"))) && (!Game_Manager.Instance.gameOver))
-        {
-            if (!createdSelect)
+            if (waterLevel == 0)
             {
-                createdSelect = Instantiate(select, transform.position, transform.rotation);
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = unwateredTile;
             }
-        }
-
-        if ((!Input.GetKey(KeyCode.RightShift) && !Input.GetKey(KeyCode.LeftShift ) && !Input.GetButton("LeftTrigger")) && (createdSelect))
-        {
-            Destroy(createdSelect);
-            isSelected = false;
-        }
-
-        if ((isSelected) && (Input.GetMouseButtonUp(1) || Input.GetButtonUp("RightTrigger")) && (Game_Manager.Instance.waterLevel >= 10) && (!Game_Manager.Instance.gameOver))
-        {
-            if (waterLevel <= 50)
+            else if (waterLevel <= 20)
             {
-                waterLevel += 20;
-                Game_Manager.Instance.waterLevel -= 10;
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = wateredTile1;
             }
+            else if (waterLevel <= 40)
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = wateredTile2;
+            }
+            else if (waterLevel <= 60)
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = wateredTile3;
+            }
+
+            #endregion
+
+            #region Create Plant
+
+            if ((isSelected) && (!isPlanted) && (Input.GetMouseButtonUp(0) || Input.GetButtonUp("AButton")) && (Game_Manager.Instance.money >= 50) && (!Game_Manager.Instance.gameOver))
+            {
+                newPlant = Instantiate(plantLevel1, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
+                newPlant.GetComponent<Plant_controller>().thisPlant = Game_Manager.Instance.currentPlantSelection;
+                newPlant.GetComponent<Plant_controller>().thisTile = gameObject;
+                gameObject.GetComponent<Farm_Controller>().isPlanted = true;
+                Game_Manager.Instance.money -= 50;
+            }
+
+            #endregion
+
+            #region Multi Select
+
+            if ((isSelected) && (Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift) || (Input.GetButton("LeftTrigger"))) && (!Game_Manager.Instance.gameOver))
+            {
+                totalMultiSelect = GameObject.FindGameObjectsWithTag("Select");
+
+                if (!createdSelect && (totalMultiSelect.Length <= 3))
+                {
+                    createdSelect = Instantiate(select, transform.position, transform.rotation);
+                }
+            }
+
+            if ((!Input.GetKey(KeyCode.RightShift) && !Input.GetKey(KeyCode.LeftShift) && !Input.GetButton("LeftTrigger")) && (createdSelect))
+            {
+                Destroy(createdSelect);
+                isSelected = false;
+            }
+
+            #endregion
+
+            #region Water Tile
+
+            if ((isSelected) && (Input.GetMouseButtonUp(1) || Input.GetButtonUp("RightTrigger")) && (Game_Manager.Instance.waterLevel >= 10) && (!Game_Manager.Instance.gameOver))
+            {
+                if (waterLevel <= 50)
+                {
+                    waterLevel += 20;
+                    Game_Manager.Instance.waterLevel -= 10;
+                }
+            }
+
+            #endregion
         }
     }
+
+    #endregion
+
+    #region Public Methods
 
     public Vector3 GetSnappedPosition(Vector3 position)
     {

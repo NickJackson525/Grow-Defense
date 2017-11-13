@@ -68,150 +68,153 @@ public class Plant_controller : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        currentTarget = FindClosestEnemy();
-        testEnemyExist = GameObject.FindGameObjectWithTag("Enemy");
-        shootTimer--;
+        if (!Game_Manager.Instance.pauseGame)
+        {
+            currentTarget = FindClosestEnemy();
+            testEnemyExist = GameObject.FindGameObjectWithTag("Enemy");
+            shootTimer--;
 
-        if((currentLevel < Game_Manager.maxPlantLevel) && (thisTile.GetComponent<Farm_Controller>().waterLevel > 0) && (Game_Manager.Instance.currentPhase == Game_Manager.Phase.DAY))
-        {
-            growthTimer -= 1 * (currentLevel);
-        }
-
-        #region Flash Transparency
-
-        if(currentLevel == 3)
-        {
-            currentAlpha = 255f;
-            spriteRender.color = new Color(spriteRender.color.r, spriteRender.color.g, spriteRender.color.b, currentAlpha / 255f);
-        }
-        else if (((currentAlpha >= 255) || (thisTile.GetComponent<Farm_Controller>().waterLevel <= 0)) && (Game_Manager.Instance.currentPhase == Game_Manager.Phase.NIGHT))
-        {
-            currentAlpha = 125f;
-            spriteRender.color = new Color(spriteRender.color.r, spriteRender.color.g, spriteRender.color.b, currentAlpha / 255f);
-        }
-        else
-        {
-            if (currentAlpha < 255)
+            if ((currentLevel < Game_Manager.maxPlantLevel) && (thisTile.GetComponent<Farm_Controller>().waterLevel > 0) && (Game_Manager.Instance.currentPhase == Game_Manager.Phase.DAY))
             {
-                currentAlpha++;
+                growthTimer -= 1 * (currentLevel);
             }
 
-            spriteRender.color = new Color(spriteRender.color.r, spriteRender.color.g, spriteRender.color.b, currentAlpha / 255f);
-        }
+            #region Flash Transparency
 
-        #endregion
-
-        #region Scale Sprite
-
-        switch(currentLevel)
-        {
-            case 1:
-                transform.localScale = startScale * ((2250f - (float)growthTimer) / 1800f);
-
-                if(transform.localScale.x > .5f)
-                {
-                    transform.localScale = new Vector3(.5f, .5f, .5f);
-                }
-                break;
-            case 2:
-                transform.localScale = startScale * ((5400f - (float)growthTimer) / 3600f);
-
-                if (transform.localScale.x > .75f)
-                {
-                    transform.localScale = new Vector3(.75f, .75f, .75f);
-                }
-                break;
-            case 3:
-                transform.localScale = startScale;
-                break;
-        }
-
-        #endregion
-
-        #region LevelUp Plant
-
-        if(growthTimer <= 0)
-        {
-            if(currentLevel == 1)
+            if (currentLevel == 3)
             {
-                currentLevel++;
-                range++;
-                growthTimer = 1800;
+                currentAlpha = 255f;
+                spriteRender.color = new Color(spriteRender.color.r, spriteRender.color.g, spriteRender.color.b, currentAlpha / 255f);
+            }
+            else if (((currentAlpha >= 255) || (thisTile.GetComponent<Farm_Controller>().waterLevel <= 0)) && (Game_Manager.Instance.currentPhase == Game_Manager.Phase.NIGHT))
+            {
+                currentAlpha = 125f;
+                spriteRender.color = new Color(spriteRender.color.r, spriteRender.color.g, spriteRender.color.b, currentAlpha / 255f);
             }
             else
             {
-                currentLevel++;
-                range++;
-                growthTimer = 3600;
-
-                switch(thisPlant)
+                if (currentAlpha < 255)
                 {
-                    case Game_Manager.PlantType.FIRE:
-                        Game_Manager.Instance.firePlantsGrown++;
-                        break;
-                    case Game_Manager.PlantType.ICE:
-                        Game_Manager.Instance.icePlantsGrown++;
-                        break;
-                    case Game_Manager.PlantType.VOID:
-                        Game_Manager.Instance.voidPlantsGrown++;
-                        break;
+                    currentAlpha++;
                 }
+
+                spriteRender.color = new Color(spriteRender.color.r, spriteRender.color.g, spriteRender.color.b, currentAlpha / 255f);
             }
-        }
 
-        #endregion
+            #endregion
 
-        if(shootTimer == 0)
-        {
-            canShoot = true;
-        }
+            #region Scale Sprite
 
-        #region Shoot
-
-        if (canShoot && (testEnemyExist != null) && (currentTarget != null))
-        {
-            if (thisTile.GetComponent<Farm_Controller>().waterLevel > 0)
+            switch (currentLevel)
             {
-                if (Vector2.Distance(currentTarget.transform.position, this.gameObject.transform.position) <= range)
+                case 1:
+                    transform.localScale = startScale * ((2250f - (float)growthTimer) / 1800f);
+
+                    if (transform.localScale.x > .5f)
+                    {
+                        transform.localScale = new Vector3(.5f, .5f, .5f);
+                    }
+                    break;
+                case 2:
+                    transform.localScale = startScale * ((5400f - (float)growthTimer) / 3600f);
+
+                    if (transform.localScale.x > .75f)
+                    {
+                        transform.localScale = new Vector3(.75f, .75f, .75f);
+                    }
+                    break;
+                case 3:
+                    transform.localScale = startScale;
+                    break;
+            }
+
+            #endregion
+
+            #region LevelUp Plant
+
+            if (growthTimer <= 0)
+            {
+                if (currentLevel == 1)
                 {
-                    createdBullet = Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, 0f), transform.rotation);
-                    createdBullet.GetComponent<Bullet>().move = true;
-                    createdBullet.GetComponent<Bullet>().target = currentTarget;
-                    createdBullet.GetComponent<Bullet>().damage = createdBullet.GetComponent<Bullet>().damage * (currentLevel + 1);
-                    createdBullet.GetComponent<Bullet>().type = thisPlant;
-                    canShoot = false;
-                    shootTimer = 60 - ((currentLevel - 1) * 20);
+                    currentLevel++;
+                    range++;
+                    growthTimer = 1800;
+                }
+                else
+                {
+                    currentLevel++;
+                    range++;
+                    growthTimer = 3600;
 
-                    if (currentLevel < 3)
-                    {
-                        thisTile.GetComponent<Farm_Controller>().waterLevel -= 1;
-                    }
-
-                    if(thisPlant == Game_Manager.PlantType.VOID)
-                    {
-                        shootTimer = shootTimer / 2;
-                    }
-
-                    switch(thisPlant)
+                    switch (thisPlant)
                     {
                         case Game_Manager.PlantType.FIRE:
-                            createdBullet.GetComponent<Bullet>().thisSprite = fireBullet;
+                            Game_Manager.Instance.firePlantsGrown++;
                             break;
                         case Game_Manager.PlantType.ICE:
-                            createdBullet.GetComponent<Bullet>().thisSprite = iceBullet;
+                            Game_Manager.Instance.icePlantsGrown++;
                             break;
                         case Game_Manager.PlantType.VOID:
-                            createdBullet.GetComponent<Bullet>().thisSprite = voidBullet;
-                            break;
-                        default:
-                            createdBullet.GetComponent<Bullet>().thisSprite = fireBullet;
+                            Game_Manager.Instance.voidPlantsGrown++;
                             break;
                     }
                 }
             }
-        }
 
-        #endregion
+            #endregion
+
+            if (shootTimer == 0)
+            {
+                canShoot = true;
+            }
+
+            #region Shoot
+
+            if (canShoot && (testEnemyExist != null) && (currentTarget != null))
+            {
+                if (thisTile.GetComponent<Farm_Controller>().waterLevel > 0)
+                {
+                    if (Vector2.Distance(currentTarget.transform.position, this.gameObject.transform.position) <= range)
+                    {
+                        createdBullet = Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, 0f), transform.rotation);
+                        createdBullet.GetComponent<Bullet>().move = true;
+                        createdBullet.GetComponent<Bullet>().target = currentTarget;
+                        createdBullet.GetComponent<Bullet>().damage = createdBullet.GetComponent<Bullet>().damage * (currentLevel + 1);
+                        createdBullet.GetComponent<Bullet>().type = thisPlant;
+                        canShoot = false;
+                        shootTimer = 60 - ((currentLevel - 1) * 20);
+
+                        if (currentLevel < 3)
+                        {
+                            thisTile.GetComponent<Farm_Controller>().waterLevel -= 1;
+                        }
+
+                        if (thisPlant == Game_Manager.PlantType.VOID)
+                        {
+                            shootTimer = shootTimer / 2;
+                        }
+
+                        switch (thisPlant)
+                        {
+                            case Game_Manager.PlantType.FIRE:
+                                createdBullet.GetComponent<Bullet>().thisSprite = fireBullet;
+                                break;
+                            case Game_Manager.PlantType.ICE:
+                                createdBullet.GetComponent<Bullet>().thisSprite = iceBullet;
+                                break;
+                            case Game_Manager.PlantType.VOID:
+                                createdBullet.GetComponent<Bullet>().thisSprite = voidBullet;
+                                break;
+                            default:
+                                createdBullet.GetComponent<Bullet>().thisSprite = fireBullet;
+                                break;
+                        }
+                    }
+                }
+            }
+
+            #endregion
+        }
     }
 
     #endregion
@@ -236,15 +239,6 @@ public class Plant_controller : MonoBehaviour
             }
         }
         return closest;
-    }
-
-    #endregion
-
-    #region Collision Methods
-
-    private void OnCollisionEnter2D(Collision2D coll)
-    {
-
     }
 
     #endregion

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Cursor_Image : MonoBehaviour
 {
+    #region Variables
+
     public Sprite wateringCanCursor;
     public Sprite fireSeedPacketCursor;
     public Sprite iceSeedPacketCursor;
@@ -13,14 +15,22 @@ public class Cursor_Image : MonoBehaviour
     public Vector3 updatePosition;
     float moveSpeed = 10;
 
-	// Use this for initialization
-	void Start ()
+    #endregion
+
+    #region Start
+
+    // Use this for initialization
+    void Start ()
     {
         Cursor.visible = false;
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    #endregion
+
+    #region Update
+
+    // Update is called once per frame
+    void Update ()
     {
         Cursor.visible = false;
         updatePosition = Input.mousePosition;
@@ -47,11 +57,15 @@ public class Cursor_Image : MonoBehaviour
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 20f);
         }
 
-        if(Game_Manager.Instance.gameOver)
+        if(Game_Manager.Instance.gameOver || Game_Manager.Instance.pauseGame)
         {
             GetComponent<SpriteRenderer>().sprite = defaultCursor;
         }
     }
+
+    #endregion
+
+    #region Collision Methods
 
     private void OnCollisionStay2D(Collision2D coll)
     {
@@ -109,4 +123,6 @@ public class Cursor_Image : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().sprite = defaultCursor;
     }
+
+    #endregion
 }

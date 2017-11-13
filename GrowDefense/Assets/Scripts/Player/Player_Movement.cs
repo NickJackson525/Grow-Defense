@@ -20,34 +20,34 @@ public class Player_Movement : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate ()
     {
-        if (!Game_Manager.Instance.gameOver)
-        {
-            updatePosition.x = Input.GetAxis("CharacterJoystickHorizontal");
-            updatePosition.y = Input.GetAxis("CharacterJoystickVertical");
+        //if (!Game_Manager.Instance.gameOver)
+        //{
+        //    updatePosition.x = Input.GetAxis("CharacterJoystickHorizontal");
+        //    updatePosition.y = Input.GetAxis("CharacterJoystickVertical");
 
-            if (Input.GetKey(Game_Manager.Instance.Controls[Game_Manager.Instance.currentControls][Game_Manager.Direction.UP]))
-            {
-                updatePosition = Vector3.up * speed * Time.deltaTime;
-            }
+        //    if (Input.GetKey(Game_Manager.Instance.Controls[Game_Manager.Instance.currentControls][Game_Manager.Direction.UP]))
+        //    {
+        //        updatePosition = Vector3.up * speed * Time.deltaTime;
+        //    }
 
-            if (Input.GetKey(Game_Manager.Instance.Controls[Game_Manager.Instance.currentControls][Game_Manager.Direction.LEFT]))
-            {
-                updatePosition = Vector3.left * speed * Time.deltaTime;
-            }
+        //    if (Input.GetKey(Game_Manager.Instance.Controls[Game_Manager.Instance.currentControls][Game_Manager.Direction.LEFT]))
+        //    {
+        //        updatePosition = Vector3.left * speed * Time.deltaTime;
+        //    }
 
-            if (Input.GetKey(Game_Manager.Instance.Controls[Game_Manager.Instance.currentControls][Game_Manager.Direction.DOWN]))
-            {
-                updatePosition = Vector3.down * speed * Time.deltaTime;
-            }
+        //    if (Input.GetKey(Game_Manager.Instance.Controls[Game_Manager.Instance.currentControls][Game_Manager.Direction.DOWN]))
+        //    {
+        //        updatePosition = Vector3.down * speed * Time.deltaTime;
+        //    }
 
-            if (Input.GetKey(Game_Manager.Instance.Controls[Game_Manager.Instance.currentControls][Game_Manager.Direction.RIGHT]))
-            {
-                updatePosition = Vector3.right * speed * Time.deltaTime;
-            }
+        //    if (Input.GetKey(Game_Manager.Instance.Controls[Game_Manager.Instance.currentControls][Game_Manager.Direction.RIGHT]))
+        //    {
+        //        updatePosition = Vector3.right * speed * Time.deltaTime;
+        //    }
 
-            transform.position += new Vector3(updatePosition.x, updatePosition.y, 0);
+        //    transform.position += new Vector3(updatePosition.x, updatePosition.y, 0);
 
-            water.GetComponent<Image>().fillAmount = Game_Manager.Instance.waterLevel / 100f;
-        }
+        water.GetComponent<Image>().fillAmount = Game_Manager.Instance.waterLevel / 100f;
+        //}
     }
 }
