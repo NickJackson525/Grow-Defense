@@ -5573,7 +5573,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1701936416148530
 GameObject:
   m_ObjectHideFlags: 1
@@ -15183,6 +15183,8 @@ MonoBehaviour:
   iceBullet: {fileID: 1292759785792280, guid: eeae613ffc2733f4b8228beea45e18c9, type: 2}
   voidBullet: {fileID: 1899563826907660, guid: 9bd41411bfe7762439a9d368bb85a8da, type: 2}
   select: {fileID: 0}
+  sprinkler: {fileID: 0}
+  fertilizer: {fileID: 0}
   unwateredTile: {fileID: 21300000, guid: 4b9243551a2a9a247bbd985b046f1895, type: 3}
   wateredTile1: {fileID: 21300000, guid: b0551b7d539781d45914635da64129b3, type: 3}
   wateredTile2: {fileID: 21300000, guid: e22764f387b60014dbdb955bea971310, type: 3}
@@ -15190,6 +15192,8 @@ MonoBehaviour:
   isPlanted: 0
   waterLevel: 0
   isSelected: 0
+  hasSprinkler: 0
+  hasFertilizer: 0
   gridSideLength: 0.64
 --- !u!114 &114056959244050984
 MonoBehaviour:
@@ -15292,6 +15296,8 @@ MonoBehaviour:
   iceBullet: {fileID: 1292759785792280, guid: eeae613ffc2733f4b8228beea45e18c9, type: 2}
   voidBullet: {fileID: 1899563826907660, guid: 9bd41411bfe7762439a9d368bb85a8da, type: 2}
   select: {fileID: 0}
+  sprinkler: {fileID: 0}
+  fertilizer: {fileID: 0}
   unwateredTile: {fileID: 21300000, guid: 4b9243551a2a9a247bbd985b046f1895, type: 3}
   wateredTile1: {fileID: 21300000, guid: b0551b7d539781d45914635da64129b3, type: 3}
   wateredTile2: {fileID: 21300000, guid: e22764f387b60014dbdb955bea971310, type: 3}
@@ -15299,6 +15305,8 @@ MonoBehaviour:
   isPlanted: 0
   waterLevel: 0
   isSelected: 0
+  hasSprinkler: 0
+  hasFertilizer: 0
   gridSideLength: 0.64
 --- !u!114 &114063540936938698
 MonoBehaviour:
@@ -15393,6 +15401,8 @@ MonoBehaviour:
   iceBullet: {fileID: 1292759785792280, guid: eeae613ffc2733f4b8228beea45e18c9, type: 2}
   voidBullet: {fileID: 1899563826907660, guid: 9bd41411bfe7762439a9d368bb85a8da, type: 2}
   select: {fileID: 0}
+  sprinkler: {fileID: 0}
+  fertilizer: {fileID: 0}
   unwateredTile: {fileID: 21300000, guid: 4b9243551a2a9a247bbd985b046f1895, type: 3}
   wateredTile1: {fileID: 21300000, guid: b0551b7d539781d45914635da64129b3, type: 3}
   wateredTile2: {fileID: 21300000, guid: e22764f387b60014dbdb955bea971310, type: 3}
@@ -15400,6 +15410,8 @@ MonoBehaviour:
   isPlanted: 0
   waterLevel: 0
   isSelected: 0
+  hasSprinkler: 0
+  hasFertilizer: 0
   gridSideLength: 0.64
 --- !u!114 &114077971973844150
 MonoBehaviour:
@@ -16000,6 +16012,8 @@ MonoBehaviour:
   iceBullet: {fileID: 1292759785792280, guid: eeae613ffc2733f4b8228beea45e18c9, type: 2}
   voidBullet: {fileID: 1899563826907660, guid: 9bd41411bfe7762439a9d368bb85a8da, type: 2}
   select: {fileID: 0}
+  sprinkler: {fileID: 0}
+  fertilizer: {fileID: 0}
   unwateredTile: {fileID: 21300000, guid: 4b9243551a2a9a247bbd985b046f1895, type: 3}
   wateredTile1: {fileID: 21300000, guid: b0551b7d539781d45914635da64129b3, type: 3}
   wateredTile2: {fileID: 21300000, guid: e22764f387b60014dbdb955bea971310, type: 3}
@@ -16007,6 +16021,8 @@ MonoBehaviour:
   isPlanted: 0
   waterLevel: 0
   isSelected: 0
+  hasSprinkler: 0
+  hasFertilizer: 0
   gridSideLength: 0.64
 --- !u!114 &114162861480820806
 MonoBehaviour:
@@ -16682,6 +16698,8 @@ MonoBehaviour:
   iceBullet: {fileID: 1292759785792280, guid: eeae613ffc2733f4b8228beea45e18c9, type: 2}
   voidBullet: {fileID: 1899563826907660, guid: 9bd41411bfe7762439a9d368bb85a8da, type: 2}
   select: {fileID: 0}
+  sprinkler: {fileID: 0}
+  fertilizer: {fileID: 0}
   unwateredTile: {fileID: 21300000, guid: 4b9243551a2a9a247bbd985b046f1895, type: 3}
   wateredTile1: {fileID: 21300000, guid: b0551b7d539781d45914635da64129b3, type: 3}
   wateredTile2: {fileID: 21300000, guid: e22764f387b60014dbdb955bea971310, type: 3}
@@ -16689,6 +16707,8 @@ MonoBehaviour:
   isPlanted: 0
   waterLevel: 0
   isSelected: 0
+  hasSprinkler: 0
+  hasFertilizer: 0
   gridSideLength: 0.64
 --- !u!114 &114275430718640928
 MonoBehaviour:
@@ -16938,6 +16958,8 @@ MonoBehaviour:
   iceBullet: {fileID: 1292759785792280, guid: eeae613ffc2733f4b8228beea45e18c9, type: 2}
   voidBullet: {fileID: 1899563826907660, guid: 9bd41411bfe7762439a9d368bb85a8da, type: 2}
   select: {fileID: 0}
+  sprinkler: {fileID: 0}
+  fertilizer: {fileID: 0}
   unwateredTile: {fileID: 21300000, guid: 4b9243551a2a9a247bbd985b046f1895, type: 3}
   wateredTile1: {fileID: 21300000, guid: b0551b7d539781d45914635da64129b3, type: 3}
   wateredTile2: {fileID: 21300000, guid: e22764f387b60014dbdb955bea971310, type: 3}
@@ -16945,6 +16967,8 @@ MonoBehaviour:
   isPlanted: 0
   waterLevel: 0
   isSelected: 0
+  hasSprinkler: 0
+  hasFertilizer: 0
   gridSideLength: 0.64
 --- !u!114 &114303163375148640
 MonoBehaviour:
@@ -17101,6 +17125,8 @@ MonoBehaviour:
   iceBullet: {fileID: 1292759785792280, guid: eeae613ffc2733f4b8228beea45e18c9, type: 2}
   voidBullet: {fileID: 1899563826907660, guid: 9bd41411bfe7762439a9d368bb85a8da, type: 2}
   select: {fileID: 0}
+  sprinkler: {fileID: 0}
+  fertilizer: {fileID: 0}
   unwateredTile: {fileID: 21300000, guid: 4b9243551a2a9a247bbd985b046f1895, type: 3}
   wateredTile1: {fileID: 21300000, guid: b0551b7d539781d45914635da64129b3, type: 3}
   wateredTile2: {fileID: 21300000, guid: e22764f387b60014dbdb955bea971310, type: 3}
@@ -17108,6 +17134,8 @@ MonoBehaviour:
   isPlanted: 0
   waterLevel: 0
   isSelected: 0
+  hasSprinkler: 0
+  hasFertilizer: 0
   gridSideLength: 0.64
 --- !u!114 &114320212548658588
 MonoBehaviour:
@@ -17418,6 +17446,8 @@ MonoBehaviour:
   iceBullet: {fileID: 1292759785792280, guid: eeae613ffc2733f4b8228beea45e18c9, type: 2}
   voidBullet: {fileID: 1899563826907660, guid: 9bd41411bfe7762439a9d368bb85a8da, type: 2}
   select: {fileID: 0}
+  sprinkler: {fileID: 0}
+  fertilizer: {fileID: 0}
   unwateredTile: {fileID: 21300000, guid: 4b9243551a2a9a247bbd985b046f1895, type: 3}
   wateredTile1: {fileID: 21300000, guid: b0551b7d539781d45914635da64129b3, type: 3}
   wateredTile2: {fileID: 21300000, guid: e22764f387b60014dbdb955bea971310, type: 3}
@@ -17425,6 +17455,8 @@ MonoBehaviour:
   isPlanted: 0
   waterLevel: 0
   isSelected: 0
+  hasSprinkler: 0
+  hasFertilizer: 0
   gridSideLength: 0.64
 --- !u!114 &114374506069209180
 MonoBehaviour:
@@ -18354,6 +18386,8 @@ MonoBehaviour:
   iceBullet: {fileID: 1292759785792280, guid: eeae613ffc2733f4b8228beea45e18c9, type: 2}
   voidBullet: {fileID: 1899563826907660, guid: 9bd41411bfe7762439a9d368bb85a8da, type: 2}
   select: {fileID: 0}
+  sprinkler: {fileID: 0}
+  fertilizer: {fileID: 0}
   unwateredTile: {fileID: 21300000, guid: 4b9243551a2a9a247bbd985b046f1895, type: 3}
   wateredTile1: {fileID: 21300000, guid: b0551b7d539781d45914635da64129b3, type: 3}
   wateredTile2: {fileID: 21300000, guid: e22764f387b60014dbdb955bea971310, type: 3}
@@ -18361,6 +18395,8 @@ MonoBehaviour:
   isPlanted: 0
   waterLevel: 0
   isSelected: 0
+  hasSprinkler: 0
+  hasFertilizer: 0
   gridSideLength: 0.64
 --- !u!114 &114496670876967744
 MonoBehaviour:
@@ -18403,6 +18439,8 @@ MonoBehaviour:
   iceBullet: {fileID: 1292759785792280, guid: eeae613ffc2733f4b8228beea45e18c9, type: 2}
   voidBullet: {fileID: 1899563826907660, guid: 9bd41411bfe7762439a9d368bb85a8da, type: 2}
   select: {fileID: 0}
+  sprinkler: {fileID: 0}
+  fertilizer: {fileID: 0}
   unwateredTile: {fileID: 21300000, guid: 4b9243551a2a9a247bbd985b046f1895, type: 3}
   wateredTile1: {fileID: 21300000, guid: b0551b7d539781d45914635da64129b3, type: 3}
   wateredTile2: {fileID: 21300000, guid: e22764f387b60014dbdb955bea971310, type: 3}
@@ -18410,6 +18448,8 @@ MonoBehaviour:
   isPlanted: 0
   waterLevel: 0
   isSelected: 0
+  hasSprinkler: 0
+  hasFertilizer: 0
   gridSideLength: 0.64
 --- !u!114 &114503689766567066
 MonoBehaviour:
@@ -18974,6 +19014,8 @@ MonoBehaviour:
   iceBullet: {fileID: 1292759785792280, guid: eeae613ffc2733f4b8228beea45e18c9, type: 2}
   voidBullet: {fileID: 1899563826907660, guid: 9bd41411bfe7762439a9d368bb85a8da, type: 2}
   select: {fileID: 0}
+  sprinkler: {fileID: 0}
+  fertilizer: {fileID: 0}
   unwateredTile: {fileID: 21300000, guid: 4b9243551a2a9a247bbd985b046f1895, type: 3}
   wateredTile1: {fileID: 21300000, guid: b0551b7d539781d45914635da64129b3, type: 3}
   wateredTile2: {fileID: 21300000, guid: e22764f387b60014dbdb955bea971310, type: 3}
@@ -18981,6 +19023,8 @@ MonoBehaviour:
   isPlanted: 0
   waterLevel: 0
   isSelected: 0
+  hasSprinkler: 0
+  hasFertilizer: 0
   gridSideLength: 0.64
 --- !u!114 &114590094063722954
 MonoBehaviour:
@@ -19278,6 +19322,8 @@ MonoBehaviour:
   iceBullet: {fileID: 1292759785792280, guid: eeae613ffc2733f4b8228beea45e18c9, type: 2}
   voidBullet: {fileID: 1899563826907660, guid: 9bd41411bfe7762439a9d368bb85a8da, type: 2}
   select: {fileID: 0}
+  sprinkler: {fileID: 0}
+  fertilizer: {fileID: 0}
   unwateredTile: {fileID: 21300000, guid: 4b9243551a2a9a247bbd985b046f1895, type: 3}
   wateredTile1: {fileID: 21300000, guid: b0551b7d539781d45914635da64129b3, type: 3}
   wateredTile2: {fileID: 21300000, guid: e22764f387b60014dbdb955bea971310, type: 3}
@@ -19285,6 +19331,8 @@ MonoBehaviour:
   isPlanted: 0
   waterLevel: 0
   isSelected: 0
+  hasSprinkler: 0
+  hasFertilizer: 0
   gridSideLength: 0.64
 --- !u!114 &114638279297502844
 MonoBehaviour:
@@ -20232,6 +20280,8 @@ MonoBehaviour:
   iceBullet: {fileID: 1292759785792280, guid: eeae613ffc2733f4b8228beea45e18c9, type: 2}
   voidBullet: {fileID: 1899563826907660, guid: 9bd41411bfe7762439a9d368bb85a8da, type: 2}
   select: {fileID: 0}
+  sprinkler: {fileID: 0}
+  fertilizer: {fileID: 0}
   unwateredTile: {fileID: 21300000, guid: 4b9243551a2a9a247bbd985b046f1895, type: 3}
   wateredTile1: {fileID: 21300000, guid: b0551b7d539781d45914635da64129b3, type: 3}
   wateredTile2: {fileID: 21300000, guid: e22764f387b60014dbdb955bea971310, type: 3}
@@ -20239,6 +20289,8 @@ MonoBehaviour:
   isPlanted: 0
   waterLevel: 0
   isSelected: 0
+  hasSprinkler: 0
+  hasFertilizer: 0
   gridSideLength: 0.64
 --- !u!114 &114772779046566516
 MonoBehaviour:
@@ -20269,6 +20321,8 @@ MonoBehaviour:
   iceBullet: {fileID: 1292759785792280, guid: eeae613ffc2733f4b8228beea45e18c9, type: 2}
   voidBullet: {fileID: 1899563826907660, guid: 9bd41411bfe7762439a9d368bb85a8da, type: 2}
   select: {fileID: 0}
+  sprinkler: {fileID: 0}
+  fertilizer: {fileID: 0}
   unwateredTile: {fileID: 21300000, guid: 4b9243551a2a9a247bbd985b046f1895, type: 3}
   wateredTile1: {fileID: 21300000, guid: b0551b7d539781d45914635da64129b3, type: 3}
   wateredTile2: {fileID: 21300000, guid: e22764f387b60014dbdb955bea971310, type: 3}
@@ -20276,6 +20330,8 @@ MonoBehaviour:
   isPlanted: 0
   waterLevel: 0
   isSelected: 0
+  hasSprinkler: 0
+  hasFertilizer: 0
   gridSideLength: 0.64
 --- !u!114 &114774428825103836
 MonoBehaviour:
@@ -20418,6 +20474,8 @@ MonoBehaviour:
   iceBullet: {fileID: 1292759785792280, guid: eeae613ffc2733f4b8228beea45e18c9, type: 2}
   voidBullet: {fileID: 1899563826907660, guid: 9bd41411bfe7762439a9d368bb85a8da, type: 2}
   select: {fileID: 0}
+  sprinkler: {fileID: 0}
+  fertilizer: {fileID: 0}
   unwateredTile: {fileID: 21300000, guid: 4b9243551a2a9a247bbd985b046f1895, type: 3}
   wateredTile1: {fileID: 21300000, guid: b0551b7d539781d45914635da64129b3, type: 3}
   wateredTile2: {fileID: 21300000, guid: e22764f387b60014dbdb955bea971310, type: 3}
@@ -20425,6 +20483,8 @@ MonoBehaviour:
   isPlanted: 0
   waterLevel: 0
   isSelected: 0
+  hasSprinkler: 0
+  hasFertilizer: 0
   gridSideLength: 0.64
 --- !u!114 &114791711425182096
 MonoBehaviour:
@@ -20627,6 +20687,8 @@ MonoBehaviour:
   iceBullet: {fileID: 1292759785792280, guid: eeae613ffc2733f4b8228beea45e18c9, type: 2}
   voidBullet: {fileID: 1899563826907660, guid: 9bd41411bfe7762439a9d368bb85a8da, type: 2}
   select: {fileID: 0}
+  sprinkler: {fileID: 0}
+  fertilizer: {fileID: 0}
   unwateredTile: {fileID: 21300000, guid: 4b9243551a2a9a247bbd985b046f1895, type: 3}
   wateredTile1: {fileID: 21300000, guid: b0551b7d539781d45914635da64129b3, type: 3}
   wateredTile2: {fileID: 21300000, guid: e22764f387b60014dbdb955bea971310, type: 3}
@@ -20634,6 +20696,8 @@ MonoBehaviour:
   isPlanted: 0
   waterLevel: 0
   isSelected: 0
+  hasSprinkler: 0
+  hasFertilizer: 0
   gridSideLength: 0.64
 --- !u!114 &114821757838046942
 MonoBehaviour:
@@ -20983,6 +21047,8 @@ MonoBehaviour:
   iceBullet: {fileID: 1292759785792280, guid: eeae613ffc2733f4b8228beea45e18c9, type: 2}
   voidBullet: {fileID: 1899563826907660, guid: 9bd41411bfe7762439a9d368bb85a8da, type: 2}
   select: {fileID: 0}
+  sprinkler: {fileID: 0}
+  fertilizer: {fileID: 0}
   unwateredTile: {fileID: 21300000, guid: 4b9243551a2a9a247bbd985b046f1895, type: 3}
   wateredTile1: {fileID: 21300000, guid: b0551b7d539781d45914635da64129b3, type: 3}
   wateredTile2: {fileID: 21300000, guid: e22764f387b60014dbdb955bea971310, type: 3}
@@ -20990,6 +21056,8 @@ MonoBehaviour:
   isPlanted: 0
   waterLevel: 0
   isSelected: 0
+  hasSprinkler: 0
+  hasFertilizer: 0
   gridSideLength: 0.64
 --- !u!114 &114872773478767468
 MonoBehaviour:
@@ -21107,6 +21175,8 @@ MonoBehaviour:
   iceBullet: {fileID: 1292759785792280, guid: eeae613ffc2733f4b8228beea45e18c9, type: 2}
   voidBullet: {fileID: 1899563826907660, guid: 9bd41411bfe7762439a9d368bb85a8da, type: 2}
   select: {fileID: 0}
+  sprinkler: {fileID: 0}
+  fertilizer: {fileID: 0}
   unwateredTile: {fileID: 21300000, guid: 4b9243551a2a9a247bbd985b046f1895, type: 3}
   wateredTile1: {fileID: 21300000, guid: b0551b7d539781d45914635da64129b3, type: 3}
   wateredTile2: {fileID: 21300000, guid: e22764f387b60014dbdb955bea971310, type: 3}
@@ -21114,6 +21184,8 @@ MonoBehaviour:
   isPlanted: 0
   waterLevel: 0
   isSelected: 0
+  hasSprinkler: 0
+  hasFertilizer: 0
   gridSideLength: 0.64
 --- !u!114 &114895266430307440
 MonoBehaviour:
@@ -21730,6 +21802,8 @@ MonoBehaviour:
   iceBullet: {fileID: 1292759785792280, guid: eeae613ffc2733f4b8228beea45e18c9, type: 2}
   voidBullet: {fileID: 1899563826907660, guid: 9bd41411bfe7762439a9d368bb85a8da, type: 2}
   select: {fileID: 0}
+  sprinkler: {fileID: 0}
+  fertilizer: {fileID: 0}
   unwateredTile: {fileID: 21300000, guid: 4b9243551a2a9a247bbd985b046f1895, type: 3}
   wateredTile1: {fileID: 21300000, guid: b0551b7d539781d45914635da64129b3, type: 3}
   wateredTile2: {fileID: 21300000, guid: e22764f387b60014dbdb955bea971310, type: 3}
@@ -21737,6 +21811,8 @@ MonoBehaviour:
   isPlanted: 0
   waterLevel: 0
   isSelected: 0
+  hasSprinkler: 0
+  hasFertilizer: 0
   gridSideLength: 0.64
 --- !u!114 &114991711485942168
 MonoBehaviour:

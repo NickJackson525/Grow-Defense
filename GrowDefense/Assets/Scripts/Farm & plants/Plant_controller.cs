@@ -194,7 +194,14 @@ public class Plant_controller : MonoBehaviour
 
                         if (currentLevel < 3)
                         {
-                            thisTile.GetComponent<Farm_Controller>().waterLevel -= 1;
+                            if (Game_Manager.Instance.purchasedWaterEfficiency)
+                            {
+                                thisTile.GetComponent<Farm_Controller>().waterLevel -= .5f;
+                            }
+                            else
+                            {
+                                thisTile.GetComponent<Farm_Controller>().waterLevel -= 1;
+                            }
                         }
 
                         if (thisPlant == Game_Manager.PlantType.VOID)

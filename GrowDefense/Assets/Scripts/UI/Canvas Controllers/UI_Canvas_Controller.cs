@@ -77,112 +77,112 @@ public class UI_Canvas_Controller : MonoBehaviour
 
     #region Public Methods
 
-    #region Load Scene
+        #region Load Scene
 
-    public void Load_Scene(string sceneName)
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
-    }
-
-    #endregion
-
-    #region Instructions
-
-    public void InstructionsOpen()
-    {
-        instructionsWindow.SetActive(true);
-
-        if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
+        public void Load_Scene(string sceneName)
         {
-            instructionsBack.Select();
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
         }
-    }
 
-    public void InstructionsClose()
-    {
-        instructionsWindow.SetActive(false);
+        #endregion
 
-        if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
+        #region Instructions
+
+        public void InstructionsOpen()
         {
-            instructionsButton.Select();
+            instructionsWindow.SetActive(true);
+
+            if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
+            {
+                instructionsBack.Select();
+            }
         }
-    }
 
-    #endregion
-
-    #region Settings
-
-    public void SettingsOpenClose()
-    {
-        if (settingsWindow.activeSelf)
+        public void InstructionsClose()
         {
-            settingsWindow.SetActive(false);
+            instructionsWindow.SetActive(false);
+
+            if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
+            {
+                instructionsButton.Select();
+            }
         }
-        else
+
+        #endregion
+
+        #region Settings
+
+        public void SettingsOpenClose()
         {
-            settingsWindow.SetActive(true);
+            if (settingsWindow.activeSelf)
+            {
+                settingsWindow.SetActive(false);
+            }
+            else
+            {
+                settingsWindow.SetActive(true);
+            }
         }
-    }
 
-    #endregion
+        #endregion
 
-    #region Set Controls
+        #region Set Controls
 
-    public void SetControls(string newControls)
-    {
-        switch(newControls)
+        public void SetControls(string newControls)
         {
-            case "WASD":
-                Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.WASD;
-                break;
-            case "Arrows":
-                Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.ARROWS;
-                break;
-            case "IJKL":
-                Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.IJKL;
-                break;
-            default:
-                Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.WASD;
-                break;
+            switch(newControls)
+            {
+                case "WASD":
+                    Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.WASD;
+                    break;
+                case "Arrows":
+                    Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.ARROWS;
+                    break;
+                case "IJKL":
+                    Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.IJKL;
+                    break;
+                default:
+                    Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.WASD;
+                    break;
+            }
         }
-    }
 
-    #endregion
+        #endregion
 
-    #region Credits
+        #region Credits
 
-    public void CreditsOpen()
-    {
-        gameOverWindow.SetActive(true);
-
-        if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
+        public void CreditsOpen()
         {
-            creditsBack.Select();
+            gameOverWindow.SetActive(true);
+
+            if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
+            {
+                creditsBack.Select();
+            }
         }
-    }
 
-    public void CreditsClose()
-    {
-        gameOverWindow.SetActive(false);
-
-        if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
+        public void CreditsClose()
         {
-            creditsButton.Select();
+            gameOverWindow.SetActive(false);
+
+            if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
+            {
+                creditsButton.Select();
+            }
         }
-    }
 
-    #endregion
+        #endregion
 
-    #region Main Menu
+        #region Main Menu
 
-    public void MainMenu()
-    {
-        Game_Manager.Instance.firePlantsGrown = 0;
-        Game_Manager.Instance.gameOver = false;
-        Load_Scene("Main Menu");
-    }
+        public void MainMenu()
+        {
+            Game_Manager.Instance.firePlantsGrown = 0;
+            Game_Manager.Instance.gameOver = false;
+            Load_Scene("Main Menu");
+        }
 
-    #endregion
+        #endregion
 
     #endregion
 }

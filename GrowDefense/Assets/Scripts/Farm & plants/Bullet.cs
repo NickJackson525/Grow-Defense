@@ -34,6 +34,11 @@ public class Bullet : MonoBehaviour
                 damageOverTime = 1 * level;
                 DOT_effectTimer = 600;
                 slowEffectTimer = 0;
+
+                if(Game_Manager.Instance.purchasedFireUpgrade)
+                {
+                    damageOverTime = damageOverTime * 2;
+                }
                 break;
             case Game_Manager.PlantType.ICE:
                 GetComponent<SpriteRenderer>().sprite = thisSprite;
@@ -42,6 +47,11 @@ public class Bullet : MonoBehaviour
                 damageOverTime = 0;
                 DOT_effectTimer = 0;
                 slowEffectTimer = 30;
+
+                if (Game_Manager.Instance.purchasedIceUpgrade)
+                {
+                    slowDownPercent = slowDownPercent * 2;
+                }
                 break;
             case Game_Manager.PlantType.VOID:
                 GetComponent<SpriteRenderer>().sprite = thisSprite;
@@ -50,6 +60,11 @@ public class Bullet : MonoBehaviour
                 damageOverTime = 0;
                 DOT_effectTimer = 0;
                 slowEffectTimer = 0;
+
+                if (Game_Manager.Instance.purchasedVoidUpgrade)
+                {
+                    damage = damage * 2;
+                }
                 break;
             default:
                 GetComponent<SpriteRenderer>().sprite = thisSprite;
@@ -58,6 +73,11 @@ public class Bullet : MonoBehaviour
                 damageOverTime = 1 * level;
                 DOT_effectTimer = 600;
                 slowEffectTimer = 0;
+
+                if (Game_Manager.Instance.purchasedFireUpgrade)
+                {
+                    damageOverTime = damageOverTime * 2;
+                }
                 break;
         }
 	}

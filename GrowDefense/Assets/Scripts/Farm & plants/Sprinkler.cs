@@ -30,30 +30,33 @@ public class Sprinkler : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if (timer > 0)
+        if (!Game_Manager.Instance.pauseGame)
         {
-            timer--;
-        }
+            if (timer > 0)
+            {
+                timer--;
+            }
 
-        if((GetComponent<SpriteRenderer>().sprite.name == endFrame.name) && playAnimation)
-        {
-            playAnimation = false;
-            thisFarmTile.GetComponent<Farm_Controller>().waterLevel += 20;
-        }
+            if ((GetComponent<SpriteRenderer>().sprite.name == endFrame.name) && playAnimation)
+            {
+                playAnimation = false;
+                thisFarmTile.GetComponent<Farm_Controller>().waterLevel += 20;
+            }
 
-        if((timer == 0) && (thisFarmTile.GetComponent<Farm_Controller>().waterLevel <= 50))
-        {
-            playAnimation = true;
-            timer = 300;
-        }
+            if ((timer == 0) && (thisFarmTile.GetComponent<Farm_Controller>().waterLevel <= 50))
+            {
+                playAnimation = true;
+                timer = 300;
+            }
 
-        if(playAnimation)
-        {
-            thisAnimation.speed = 2;
-        }
-        else
-        {
-            thisAnimation.speed = 0;
+            if (playAnimation)
+            {
+                thisAnimation.speed = 2;
+            }
+            else
+            {
+                thisAnimation.speed = 0;
+            }
         }
 	}
 

@@ -18,7 +18,7 @@ public class Farm_Controller : MonoBehaviour
     public Sprite wateredTile2;
     public Sprite wateredTile3;
     public bool isPlanted = false;
-    public int waterLevel = 0;
+    public float waterLevel = 0;
     public bool isSelected = false;
     public bool hasSprinkler = false;
     public bool hasFertilizer = false;
@@ -45,6 +45,11 @@ public class Farm_Controller : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Game_Manager.Instance.money += 200;
+        }
+
         if (!Game_Manager.Instance.pauseGame && !Game_Manager.Instance.placingUpgrade)
         {
             #region Update Sprite

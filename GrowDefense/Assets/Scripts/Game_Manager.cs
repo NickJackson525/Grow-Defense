@@ -67,6 +67,10 @@ public class Game_Manager
     public bool gameOver = false;
     public bool pauseGame = false;
     public bool placingUpgrade = false;
+    public bool purchasedWaterEfficiency = false;
+    public bool purchasedFireUpgrade = false;
+    public bool purchasedIceUpgrade = false;
+    public bool purchasedVoidUpgrade = false;
     public Game_Manager.ControlScheme currentControls = Game_Manager.ControlScheme.WASD;
     public ColorBlindMode BlindMode = ColorBlindMode.Normal;
 

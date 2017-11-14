@@ -14,6 +14,7 @@ public class Cursor_Image : MonoBehaviour
     public GameObject select;
     public Vector3 updatePosition;
     float moveSpeed = 10;
+    Quaternion startRotation;
 
     #endregion
 
@@ -23,6 +24,7 @@ public class Cursor_Image : MonoBehaviour
     void Start ()
     {
         Cursor.visible = false;
+        startRotation = transform.rotation;
 	}
 
     #endregion
@@ -60,6 +62,11 @@ public class Cursor_Image : MonoBehaviour
         if(Game_Manager.Instance.gameOver || Game_Manager.Instance.pauseGame || Game_Manager.Instance.placingUpgrade)
         {
             GetComponent<SpriteRenderer>().sprite = defaultCursor;
+        }
+
+        if(!Input.GetMouseButton(0) && !Input.GetMouseButton(1))
+        {
+            transform.rotation = startRotation;
         }
     }
 
