@@ -8,6 +8,7 @@ public class Shop_Canvas_Controller : MonoBehaviour
     #region Variables
 
     public GameObject shopWindow;
+    public GameObject shopWindowTitle;
     public GameObject farmUpgradesButton;
     public GameObject plantUpgradesButton;
     public GameObject farmUpgradesWindow;
@@ -104,6 +105,7 @@ public class Shop_Canvas_Controller : MonoBehaviour
 
         public void FarmUpgradesWindow()
         {
+            shopWindowTitle.SetActive(false);
             farmUpgradesButton.SetActive(false);
             plantUpgradesButton.SetActive(false);
             farmUpgradesWindow.SetActive(true);
@@ -116,6 +118,7 @@ public class Shop_Canvas_Controller : MonoBehaviour
 
         public void PlantUpgradesWindow()
         {
+            shopWindowTitle.SetActive(false);
             farmUpgradesButton.SetActive(false);
             plantUpgradesButton.SetActive(false);
             farmUpgradesWindow.SetActive(false);
@@ -147,6 +150,7 @@ public class Shop_Canvas_Controller : MonoBehaviour
                 Game_Manager.Instance.placingUpgrade = true;
                 Game_Manager.Instance.currentUpgrade = Game_Manager.PlaceableUpgrade.Sprinkler;
                 Game_Manager.Instance.money -= 25;
+                shopWindowTitle.SetActive(true);
                 farmUpgradesButton.SetActive(true);
                 plantUpgradesButton.SetActive(true);
                 farmUpgradesWindow.SetActive(false);
@@ -167,6 +171,7 @@ public class Shop_Canvas_Controller : MonoBehaviour
                 Game_Manager.Instance.placingUpgrade = true;
                 Game_Manager.Instance.currentUpgrade = Game_Manager.PlaceableUpgrade.Fertilizer;
                 Game_Manager.Instance.money -= 50;
+                shopWindowTitle.SetActive(true);
                 farmUpgradesButton.SetActive(true);
                 plantUpgradesButton.SetActive(true);
                 farmUpgradesWindow.SetActive(false);
@@ -223,14 +228,15 @@ public class Shop_Canvas_Controller : MonoBehaviour
         #region Back To Pause Menu
 
         public void BackToPauseMenu()
-            {
-                farmUpgradesButton.SetActive(true);
-                plantUpgradesButton.SetActive(true);
-                farmUpgradesWindow.SetActive(false);
-                plantUpgradesWindow.SetActive(false);
-            }
+        {
+            shopWindowTitle.SetActive(true);
+            farmUpgradesButton.SetActive(true);
+            plantUpgradesButton.SetActive(true);
+            farmUpgradesWindow.SetActive(false);
+            plantUpgradesWindow.SetActive(false);
+        }
 
-            #endregion
+        #endregion
 
     #endregion
 }

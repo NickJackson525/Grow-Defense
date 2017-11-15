@@ -32,7 +32,7 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if (!Game_Manager.Instance.pauseGame)
+        if (!Game_Manager.Instance.pauseGame && Game_Manager.Instance.gameStarted)
         {
             if ((Game_Manager.Instance.currentPhase == Game_Manager.Phase.NIGHT) && (spawnCount < totalWaveEnemies) && (!Game_Manager.Instance.gameOver))
             {
@@ -41,6 +41,7 @@ public class Spawner : MonoBehaviour
                 if (spawnCount == 0)
                 {
                     totalWaveEnemies = waveEnemyConstant * Game_Manager.Instance.waveNumber;
+                    Game_Manager.Instance.totalWaveEnemies = totalWaveEnemies;
                 }
 
                 if (cooldown <= 0)
@@ -55,6 +56,7 @@ public class Spawner : MonoBehaviour
                     }
 
                     spawnCount++;
+                    Game_Manager.Instance.spawnCount = spawnCount;
                 }
             }
             else

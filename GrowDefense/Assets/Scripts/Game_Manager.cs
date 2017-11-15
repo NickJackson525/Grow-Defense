@@ -42,6 +42,46 @@ public class Game_Manager
 
     #endregion
 
+    #region LevelDictionary
+
+    public Dictionary<Level, Dictionary<LevelFeatures, int>> Levels = new Dictionary<Level, Dictionary<LevelFeatures, int>>()
+    {
+        {
+            Level.ONE, new Dictionary<LevelFeatures, int>
+            {
+                {LevelFeatures.Ladybug, 1},
+                {LevelFeatures.NEXTENEMY, 0},
+                {LevelFeatures.firePlantsRequired, 5},
+                {LevelFeatures.icePlantsRequired, 0},
+                {LevelFeatures.voidPlantsRequired, 0}
+            }
+        },
+        {
+            Level.TWO, new Dictionary<LevelFeatures, int>
+            {
+                {LevelFeatures.Ladybug, 1},
+                {LevelFeatures.NEXTENEMY, 0},
+                {LevelFeatures.firePlantsRequired, 5},
+                {LevelFeatures.icePlantsRequired, 5},
+                {LevelFeatures.voidPlantsRequired, 0}
+            }
+        },
+        {
+            Level.THREE, new Dictionary<LevelFeatures, int>
+            {
+                {LevelFeatures.Ladybug, 1},
+                {LevelFeatures.NEXTENEMY, 0},
+                {LevelFeatures.firePlantsRequired, 5},
+                {LevelFeatures.icePlantsRequired, 5},
+                {LevelFeatures.voidPlantsRequired, 5}
+            }
+        }
+    };
+
+    #endregion
+
+    #region Enums
+
     public enum ControlScheme { WASD, ARROWS, IJKL}
     public enum Direction { UP, DOWN, LEFT, RIGHT}
     public enum PlantType { FIRE, ICE, VOID }
@@ -49,6 +89,11 @@ public class Game_Manager
     public enum Phase { DAY, NIGHT}
     public enum ColorBlindMode { Normal, Protanope, Deuteranope }
     public enum PlaceableUpgrade { Sprinkler, Fertilizer }
+    public enum Level { ONE, TWO, THREE, FOUR}
+    public enum LevelFeatures { Ladybug, NEXTENEMY, firePlantsRequired, icePlantsRequired, voidPlantsRequired}
+
+    #endregion
+
     public float waterLevel = 100;
     public int money = 200;
     public int dayTimer = 900;
@@ -60,10 +105,14 @@ public class Game_Manager
     public int firePlantsRequired = 5;
     public int icePlantsRequired = 5;
     public int voidPlantsRequired = 5;
+    public int totalWaveEnemies = 0;
+    public int spawnCount = 0;
     public const int maxPlantLevel = 3;
     public PlantType currentPlantSelection = PlantType.FIRE;
     public Phase currentPhase = Phase.DAY;
     public PlaceableUpgrade currentUpgrade = PlaceableUpgrade.Sprinkler;
+    public Level currentLevel;
+    public bool gameStarted = false;
     public bool gameOver = false;
     public bool pauseGame = false;
     public bool placingUpgrade = false;
@@ -71,7 +120,7 @@ public class Game_Manager
     public bool purchasedFireUpgrade = false;
     public bool purchasedIceUpgrade = false;
     public bool purchasedVoidUpgrade = false;
-    public Game_Manager.ControlScheme currentControls = Game_Manager.ControlScheme.WASD;
+    public ControlScheme currentControls = ControlScheme.WASD;
     public ColorBlindMode BlindMode = ColorBlindMode.Normal;
 
     #endregion
@@ -110,7 +159,7 @@ public class Game_Manager
 
     public void Update()
     {
-        if (!pauseGame)
+        if (!pauseGame && gameStarted)
         {
             if ((firePlantsGrown >= firePlantsRequired) && (icePlantsGrown >= icePlantsRequired) && (voidPlantsGrown >= voidPlantsRequired))
             {
@@ -149,6 +198,18 @@ public class Game_Manager
         {
             BlindMode = ColorBlindMode.Deuteranope;
         }
+    }
+
+    #endregion
+
+    #region Public Methods
+
+    public void StartLevel(Level nextLevel)
+    {
+        firePlantsRequired = Levels[nextLevel][LevelFeatures.firePlantsRequired];
+        icePlantsRequired = Levels[nextLevel][LevelFeatures.icePlantsRequired];
+        voidPlantsRequired = Levels[nextLevel][LevelFeatures.voidPlantsRequired];
+        gameStarted = true;
     }
 
     #endregion

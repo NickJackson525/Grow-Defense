@@ -69,7 +69,34 @@ public class Plant_controller : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if (!Game_Manager.Instance.pauseGame)
+        #region Scale Sprite
+
+        switch (currentLevel)
+        {
+            case 1:
+                transform.localScale = startScale * ((2250f - (float)growthTimer) / 1800f);
+
+                if (transform.localScale.x > .5f)
+                {
+                    transform.localScale = new Vector3(.5f, .5f, .5f);
+                }
+                break;
+            case 2:
+                transform.localScale = startScale * ((5400f - (float)growthTimer) / 3600f);
+
+                if (transform.localScale.x > .75f)
+                {
+                    transform.localScale = new Vector3(.75f, .75f, .75f);
+                }
+                break;
+            case 3:
+                transform.localScale = startScale;
+                break;
+        }
+
+        #endregion
+
+        if (!Game_Manager.Instance.pauseGame && Game_Manager.Instance.gameStarted)
         {
             currentTarget = FindClosestEnemy();
             testEnemyExist = GameObject.FindGameObjectWithTag("Enemy");
@@ -107,33 +134,6 @@ public class Plant_controller : MonoBehaviour
                 }
 
                 spriteRender.color = new Color(spriteRender.color.r, spriteRender.color.g, spriteRender.color.b, currentAlpha / 255f);
-            }
-
-            #endregion
-
-            #region Scale Sprite
-
-            switch (currentLevel)
-            {
-                case 1:
-                    transform.localScale = startScale * ((2250f - (float)growthTimer) / 1800f);
-
-                    if (transform.localScale.x > .5f)
-                    {
-                        transform.localScale = new Vector3(.5f, .5f, .5f);
-                    }
-                    break;
-                case 2:
-                    transform.localScale = startScale * ((5400f - (float)growthTimer) / 3600f);
-
-                    if (transform.localScale.x > .75f)
-                    {
-                        transform.localScale = new Vector3(.75f, .75f, .75f);
-                    }
-                    break;
-                case 3:
-                    transform.localScale = startScale;
-                    break;
             }
 
             #endregion

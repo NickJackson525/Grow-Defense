@@ -40,6 +40,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
         {
             if(pauseWindow.activeSelf)
             {
+                BackToPauseMenu();
                 pauseWindow.SetActive(false);
                 Game_Manager.Instance.pauseGame = false;
             }
@@ -174,6 +175,31 @@ public class Pause_Canvas_Controller : MonoBehaviour
             instructionsPanel.SetActive(false);
             creditsPanel.SetActive(false);
             backstoryPanel.SetActive(false);
+        }
+
+    #endregion
+
+        #region Main Menu
+
+        public void MainMenu()
+        {
+            Game_Manager.Instance.firePlantsGrown = 0;
+            Game_Manager.Instance.gameOver = false;
+            Game_Manager.Instance.pauseGame = false;
+            Game_Manager.Instance.placingUpgrade = false;
+            Game_Manager.Instance.purchasedFireUpgrade = false;
+            Game_Manager.Instance.purchasedIceUpgrade = false;
+            Game_Manager.Instance.purchasedVoidUpgrade = false;
+            Game_Manager.Instance.purchasedWaterEfficiency = false;
+            Game_Manager.Instance.money = 200;
+            Game_Manager.Instance.dayTimer = 900;
+            Game_Manager.Instance.waveNumber = 1;
+            Game_Manager.Instance.firePlantsGrown = 0;
+            Game_Manager.Instance.icePlantsGrown = 0;
+            Game_Manager.Instance.voidPlantsGrown = 0;
+            Game_Manager.Instance.currentPlantSelection = Game_Manager.PlantType.FIRE;
+            Game_Manager.Instance.gameStarted = false;
+            Load_Scene("Main Menu");
         }
 
         #endregion

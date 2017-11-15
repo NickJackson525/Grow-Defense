@@ -12,8 +12,10 @@ public class UI_Canvas_Controller : MonoBehaviour
     public GameObject instructionsWindow;
     public GameObject gameOverWindow;
     public GameObject gameOverMenuButton;
+    //public GameObject gameOverNextLevelButton;
     public GameObject gameOverTitle;
     public GameObject settingsWindow;
+    public GameObject shopButton;
     public Button playButton;
     public Button instructionsButton;
     public Button creditsButton;
@@ -56,6 +58,7 @@ public class UI_Canvas_Controller : MonoBehaviour
         {
             gameOverWindow.SetActive(true);
             gameOverMenuButton.SetActive(true);
+            //gameOverNextLevelButton.SetActive(true);
 
             if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
             {
@@ -77,14 +80,42 @@ public class UI_Canvas_Controller : MonoBehaviour
 
     #region Public Methods
 
-        #region Load Scene
+        #region Start Game
 
-        public void Load_Scene(string sceneName)
+        public void StartGame()
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+            shopButton.SetActive(true);
+            gameOverMenuButton.SetActive(false);
+            //gameOverNextLevelButton.SetActive(false);
+            gameOverWindow.SetActive(false);
+
+            Game_Manager.Instance.StartLevel(Game_Manager.Instance.currentLevel);
+            Game_Manager.Instance.gameStarted = true;
+
+            switch(Game_Manager.Instance.currentLevel)
+            {
+                case Game_Manager.Level.ONE:
+                    Game_Manager.Instance.currentLevel = Game_Manager.Level.TWO;
+                    break;
+                case Game_Manager.Level.TWO:
+                    Game_Manager.Instance.currentLevel = Game_Manager.Level.THREE;
+                    break;
+                case Game_Manager.Level.THREE:
+                    Game_Manager.Instance.currentLevel = Game_Manager.Level.FOUR;
+                    break;
+            }
         }
 
         #endregion
+
+        #region Load Scene
+
+        public void Load_Scene(string sceneName)
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+            }
+
+            #endregion
 
         #region Instructions
 
@@ -179,6 +210,20 @@ public class UI_Canvas_Controller : MonoBehaviour
         {
             Game_Manager.Instance.firePlantsGrown = 0;
             Game_Manager.Instance.gameOver = false;
+            Game_Manager.Instance.pauseGame = false;
+            Game_Manager.Instance.placingUpgrade = false;
+            Game_Manager.Instance.purchasedFireUpgrade = false;
+            Game_Manager.Instance.purchasedIceUpgrade = false;
+            Game_Manager.Instance.purchasedVoidUpgrade = false;
+            Game_Manager.Instance.purchasedWaterEfficiency = false;
+            Game_Manager.Instance.money = 200;
+            Game_Manager.Instance.dayTimer = 900;
+            Game_Manager.Instance.waveNumber = 1;
+            Game_Manager.Instance.firePlantsGrown = 0;
+            Game_Manager.Instance.icePlantsGrown = 0;
+            Game_Manager.Instance.voidPlantsGrown = 0;
+            Game_Manager.Instance.currentPlantSelection = Game_Manager.PlantType.FIRE;
+            Game_Manager.Instance.gameStarted = false;
             Load_Scene("Main Menu");
         }
 
