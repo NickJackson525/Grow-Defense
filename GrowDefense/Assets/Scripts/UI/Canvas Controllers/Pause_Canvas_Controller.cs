@@ -50,7 +50,12 @@ public class Pause_Canvas_Controller : MonoBehaviour
                 Game_Manager.Instance.pauseGame = true;
             }
         }
-	}
+
+        if (pauseWindow.activeSelf)
+        {
+            Game_Manager.Instance.pauseGame = true;
+        }
+    }
 
     #endregion
 

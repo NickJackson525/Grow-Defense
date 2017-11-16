@@ -36,7 +36,7 @@ public class Shop_Canvas_Controller : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-		if(timer > 0)
+        if(timer > 0)
         {
             timer--;
         }
@@ -67,6 +67,21 @@ public class Shop_Canvas_Controller : MonoBehaviour
         {
             voidUpgradeButton.GetComponentInChildren<Text>().text = "Purchased";
         }
+
+        if(shopWindow.activeSelf)
+        {
+            Game_Manager.Instance.pauseGame = true;
+        }
+
+        if(Input.GetKeyUp(KeyCode.Escape))
+        {
+            if (shopWindow.activeSelf)
+            {
+                BackToPauseMenu();
+                shopWindow.SetActive(false);
+                Game_Manager.Instance.pauseGame = false;
+            }
+        }
     }
 
     #endregion
@@ -86,16 +101,19 @@ public class Shop_Canvas_Controller : MonoBehaviour
 
         public void ShopWindowOpenClose()
         {
-            if (shopWindow.activeSelf)
+            if (!Game_Manager.Instance.pauseGame)
             {
-                BackToPauseMenu();
-                shopWindow.SetActive(false);
-                Game_Manager.Instance.pauseGame = false;
-            }
-            else
-            {
-                shopWindow.SetActive(true);
-                Game_Manager.Instance.pauseGame = true;
+                if (shopWindow.activeSelf)
+                {
+                    BackToPauseMenu();
+                    shopWindow.SetActive(false);
+                    Game_Manager.Instance.pauseGame = false;
+                }
+                else
+                {
+                    shopWindow.SetActive(true);
+                    Game_Manager.Instance.pauseGame = true;
+                }
             }
         }
 
