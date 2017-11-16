@@ -52,8 +52,8 @@ public class Game_Manager
                 {LevelFeatures.Ladybug, 1},
                 {LevelFeatures.NEXTENEMY, 0},
                 {LevelFeatures.firePlantsRequired, 5},
-                {LevelFeatures.icePlantsRequired, 0},
-                {LevelFeatures.voidPlantsRequired, 0}
+                {LevelFeatures.icePlantsRequired, 5},
+                {LevelFeatures.voidPlantsRequired, 5}
             }
         },
         {
