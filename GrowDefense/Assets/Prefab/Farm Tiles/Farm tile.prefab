@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4447519391713960}
   - component: {fileID: 212358028262061824}
   - component: {fileID: 114181539095682366}
-  - component: {fileID: 114178722756832842}
+  - component: {fileID: 114782497806416770}
   - component: {fileID: 61958078340374788}
   - component: {fileID: 60267311739640388}
   m_Layer: 9
@@ -98,7 +98,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
---- !u!114 &114178722756832842
+--- !u!114 &114181539095682366
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1351178598456074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ca5770bcacbd4f208f55ba07c65d4cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridSideLength: 0.64
+--- !u!114 &114782497806416770
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -114,23 +126,18 @@ MonoBehaviour:
   fireBullet: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c, type: 2}
   iceBullet: {fileID: 1292759785792280, guid: eeae613ffc2733f4b8228beea45e18c9, type: 2}
   voidBullet: {fileID: 1899563826907660, guid: 9bd41411bfe7762439a9d368bb85a8da, type: 2}
+  select: {fileID: 1329692983568226, guid: a323d8be0ef755145880ffb4647a8231, type: 2}
+  sprinkler: {fileID: 1263581373272648, guid: 86c6dee12c1a7d346b47874b8a09d7f3, type: 2}
+  fertilizer: {fileID: 1124573551103184, guid: 5bbfadcda9bf8864fbe76dc0f9f1c314, type: 2}
   unwateredTile: {fileID: 21300000, guid: 4b9243551a2a9a247bbd985b046f1895, type: 3}
   wateredTile1: {fileID: 21300000, guid: b0551b7d539781d45914635da64129b3, type: 3}
   wateredTile2: {fileID: 21300000, guid: e22764f387b60014dbdb955bea971310, type: 3}
   wateredTile3: {fileID: 21300000, guid: 8d808538fb794f84b8a64c944b5394f0, type: 3}
   isPlanted: 0
   waterLevel: 0
---- !u!114 &114181539095682366
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1351178598456074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ca5770bcacbd4f208f55ba07c65d4cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  isSelected: 0
+  hasSprinkler: 0
+  hasFertilizer: 0
   gridSideLength: 0.64
 --- !u!212 &212358028262061824
 SpriteRenderer:
