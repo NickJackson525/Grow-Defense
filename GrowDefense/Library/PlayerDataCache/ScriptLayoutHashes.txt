@@ -106,8 +106,8 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 3f32f08a64daf40b09ed864d96fe3840 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
 73843688b51256aed059f049c540bca8 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Update_Money
-2333b351c94955f53d11b2252bedfdd3 Assembly-CSharp.dll:.Pause_Canvas_Controller
+23105a165b2f170deb4a2d8aa7bfafd4 Assembly-CSharp.dll:.Update_Money
+22e6c9004d8203dd38d37443798a37ad Assembly-CSharp.dll:.Pause_Canvas_Controller
 7a75edc83a9f267c790ac1425865847a Assembly-CSharp.dll:.Update_Grown_Plants
 175aa852e146ae1b9054faa05adb6cae Assembly-CSharp.dll:.Sprinkler
 909b5ce948bc886116ad7f4685e5120a Assembly-CSharp.dll:.Spawner
@@ -151,3 +151,4 @@ e78126e7295f45e3f7d37f78e4ace355 Assembly-CSharp.dll:.Enemy_Controller
 14a09498ba5f1a033bf4ebf43dd5cc98 Assembly-CSharp.dll:.Player_Movement
 92aa7ff041ef3d779e6673c04c0899ab Assembly-CSharp.dll:.Follow_Joystick
 4e5da351bcfc950aa4405d59d1bd0913 Assembly-CSharp.dll:jp.gulti.ColorBlind.ColorBlindnessSimulator
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Money_Change

@@ -7,6 +7,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
     #region Variables
 
     public GameObject pauseWindow;
+    public GameObject pauseTitle;
     public GameObject objectivesButton;
     public GameObject controlsButton;
     public GameObject instructionsButton;
@@ -74,6 +75,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void ObjectivesOpen()
         {
+            pauseTitle.SetActive(false);
             objectivesButton.SetActive(false);
             controlsButton.SetActive(false);
             instructionsButton.SetActive(false);
@@ -93,6 +95,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void ControlsOpen()
         {
+            pauseTitle.SetActive(false);
             objectivesButton.SetActive(false);
             controlsButton.SetActive(false);
             instructionsButton.SetActive(false);
@@ -112,6 +115,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void InstructionsOpen()
         {
+            pauseTitle.SetActive(false);
             objectivesButton.SetActive(false);
             controlsButton.SetActive(false);
             instructionsButton.SetActive(false);
@@ -131,6 +135,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void CreditsOpen()
         {
+            pauseTitle.SetActive(false);
             objectivesButton.SetActive(false);
             controlsButton.SetActive(false);
             instructionsButton.SetActive(false);
@@ -150,6 +155,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void BackstoryOpen()
         {
+            pauseTitle.SetActive(false);
             objectivesButton.SetActive(false);
             controlsButton.SetActive(false);
             instructionsButton.SetActive(false);
@@ -169,6 +175,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void BackToPauseMenu()
         {
+            pauseTitle.SetActive(true);
             objectivesButton.SetActive(true);
             controlsButton.SetActive(true);
             instructionsButton.SetActive(true);
