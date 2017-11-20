@@ -84,6 +84,7 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         public void StartGame()
         {
+            Sound_Manager.Instance.PlayButtonSound();
             shopButton.SetActive(true);
             gameOverMenuButton.SetActive(false);
             //gameOverNextLevelButton.SetActive(false);
@@ -111,16 +112,18 @@ public class UI_Canvas_Controller : MonoBehaviour
         #region Load Scene
 
         public void Load_Scene(string sceneName)
-            {
-                UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
-            }
+        {
+            Sound_Manager.Instance.PlayButtonSound();
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+        }
 
-            #endregion
+        #endregion
 
         #region Instructions
 
         public void InstructionsOpen()
         {
+            Sound_Manager.Instance.PlayButtonSound();
             instructionsWindow.SetActive(true);
 
             if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
@@ -131,6 +134,7 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         public void InstructionsClose()
         {
+            Sound_Manager.Instance.PlayButtonSound();
             instructionsWindow.SetActive(false);
 
             if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
@@ -145,6 +149,7 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         public void SettingsOpenClose()
         {
+            Sound_Manager.Instance.PlayButtonSound();
             if (settingsWindow.activeSelf)
             {
                 settingsWindow.SetActive(false);
@@ -161,7 +166,8 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         public void SetControls(string newControls)
         {
-            switch(newControls)
+            Sound_Manager.Instance.PlayButtonSound();
+            switch (newControls)
             {
                 case "WASD":
                     Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.WASD;
@@ -184,6 +190,7 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         public void CreditsOpen()
         {
+            Sound_Manager.Instance.PlayButtonSound();
             gameOverWindow.SetActive(true);
 
             if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
@@ -194,8 +201,9 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         public void CreditsClose()
         {
+            Sound_Manager.Instance.PlayButtonSound();
             gameOverWindow.SetActive(false);
-
+            
             if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
             {
                 creditsButton.Select();
@@ -208,6 +216,7 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         public void MainMenu()
         {
+            Sound_Manager.Instance.PlayButtonSound();
             Game_Manager.Instance.firePlantsGrown = 0;
             Game_Manager.Instance.gameOver = false;
             Game_Manager.Instance.pauseGame = false;

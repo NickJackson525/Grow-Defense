@@ -66,6 +66,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void Load_Scene(string sceneName)
         {
+            Sound_Manager.Instance.PlayButtonSound();
             UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
         }
 
@@ -75,6 +76,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void ObjectivesOpen()
         {
+            Sound_Manager.Instance.PlayButtonSound();
             pauseTitle.SetActive(false);
             objectivesButton.SetActive(false);
             controlsButton.SetActive(false);
@@ -95,6 +97,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void ControlsOpen()
         {
+            Sound_Manager.Instance.PlayButtonSound();
             pauseTitle.SetActive(false);
             objectivesButton.SetActive(false);
             controlsButton.SetActive(false);
@@ -115,6 +118,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void InstructionsOpen()
         {
+            Sound_Manager.Instance.PlayButtonSound();
             pauseTitle.SetActive(false);
             objectivesButton.SetActive(false);
             controlsButton.SetActive(false);
@@ -135,6 +139,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void CreditsOpen()
         {
+            Sound_Manager.Instance.PlayButtonSound();
             pauseTitle.SetActive(false);
             objectivesButton.SetActive(false);
             controlsButton.SetActive(false);
@@ -155,6 +160,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void BackstoryOpen()
         {
+            Sound_Manager.Instance.PlayButtonSound();
             pauseTitle.SetActive(false);
             objectivesButton.SetActive(false);
             controlsButton.SetActive(false);
@@ -175,6 +181,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void BackToPauseMenu()
         {
+            Sound_Manager.Instance.PlayButtonSound();
             pauseTitle.SetActive(true);
             objectivesButton.SetActive(true);
             controlsButton.SetActive(true);
@@ -195,6 +202,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void MainMenu()
         {
+            Sound_Manager.Instance.PlayButtonSound();
             Game_Manager.Instance.firePlantsGrown = 0;
             Game_Manager.Instance.gameOver = false;
             Game_Manager.Instance.pauseGame = false;
