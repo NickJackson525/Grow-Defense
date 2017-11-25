@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     public int slowEffectTimer = 0;
     public int level = 1;
     public float speed = .2f;
-    public Game_Manager.PlantType type = Game_Manager.PlantType.FIRE;
+    public Game_Manager.ShopItems type = Game_Manager.ShopItems.FIRE;
 
     #endregion
 
@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
     {
 		switch(type)
         {
-            case Game_Manager.PlantType.FIRE:
+            case Game_Manager.ShopItems.FIRE:
                 GetComponent<SpriteRenderer>().sprite = thisSprite;
                 damage = 2 * level;
                 slowDownPercent = 0;
@@ -40,7 +40,7 @@ public class Bullet : MonoBehaviour
                     damageOverTime = damageOverTime * 2;
                 }
                 break;
-            case Game_Manager.PlantType.ICE:
+            case Game_Manager.ShopItems.ICE:
                 GetComponent<SpriteRenderer>().sprite = thisSprite;
                 damage = 6 * level;
                 slowDownPercent = .1f * (float)level;
@@ -53,7 +53,7 @@ public class Bullet : MonoBehaviour
                     slowDownPercent = slowDownPercent * 2;
                 }
                 break;
-            case Game_Manager.PlantType.VOID:
+            case Game_Manager.ShopItems.VOID:
                 GetComponent<SpriteRenderer>().sprite = thisSprite;
                 damage = 5;
                 slowDownPercent = 0;

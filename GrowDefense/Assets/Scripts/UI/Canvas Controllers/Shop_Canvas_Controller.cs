@@ -7,7 +7,9 @@ public class Shop_Canvas_Controller : MonoBehaviour
 {
     #region Variables
 
+    public Audio_Manager audioManager;
     public GameObject shopWindow;
+    public GameObject pauseWindow;
     public GameObject shopWindowTitle;
     public GameObject farmUpgradesButton;
     public GameObject plantUpgradesButton;
@@ -26,7 +28,7 @@ public class Shop_Canvas_Controller : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-		
+        audioManager = GameObject.Find("Audio Manager").GetComponent<Audio_Manager>();
 	}
 
     #endregion
@@ -92,7 +94,7 @@ public class Shop_Canvas_Controller : MonoBehaviour
 
         public void Load_Scene(string sceneName)
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
             UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
         }
 
@@ -102,9 +104,9 @@ public class Shop_Canvas_Controller : MonoBehaviour
 
         public void ShopWindowOpenClose()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
 
-            if (!Game_Manager.Instance.pauseGame)
+            if (!pauseWindow.activeSelf)
             {
                 if (shopWindow.activeSelf)
                 {
@@ -126,7 +128,7 @@ public class Shop_Canvas_Controller : MonoBehaviour
 
         public void FarmUpgradesWindow()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
             shopWindowTitle.SetActive(false);
             farmUpgradesButton.SetActive(false);
             plantUpgradesButton.SetActive(false);
@@ -140,7 +142,7 @@ public class Shop_Canvas_Controller : MonoBehaviour
 
         public void PlantUpgradesWindow()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
             shopWindowTitle.SetActive(false);
             farmUpgradesButton.SetActive(false);
             plantUpgradesButton.SetActive(false);
@@ -154,7 +156,7 @@ public class Shop_Canvas_Controller : MonoBehaviour
 
         public void WaterEfficiencyUpgrade()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
 
             if ((Game_Manager.Instance.money >= 200) && !Game_Manager.Instance.purchasedWaterEfficiency)
             {
@@ -170,12 +172,12 @@ public class Shop_Canvas_Controller : MonoBehaviour
 
         public void SprinklerUpgrade()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
 
             if (Game_Manager.Instance.money >= 25)
             {
                 Game_Manager.Instance.placingUpgrade = true;
-                Game_Manager.Instance.currentUpgrade = Game_Manager.PlaceableUpgrade.Sprinkler;
+                Game_Manager.Instance.currentShopSelection = Game_Manager.ShopItems.SPRINKLER;
                 Game_Manager.Instance.money -= 25;
                 shopWindowTitle.SetActive(true);
                 farmUpgradesButton.SetActive(true);
@@ -193,12 +195,12 @@ public class Shop_Canvas_Controller : MonoBehaviour
 
         public void FertilizerUpgrade()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
 
             if (Game_Manager.Instance.money >= 50)
             {
                 Game_Manager.Instance.placingUpgrade = true;
-                Game_Manager.Instance.currentUpgrade = Game_Manager.PlaceableUpgrade.Fertilizer;
+                Game_Manager.Instance.currentShopSelection = Game_Manager.ShopItems.FERTILIZER;
                 Game_Manager.Instance.money -= 50;
                 shopWindowTitle.SetActive(true);
                 farmUpgradesButton.SetActive(true);
@@ -216,7 +218,7 @@ public class Shop_Canvas_Controller : MonoBehaviour
 
         public void FirePlantUpgrade()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
 
             if ((Game_Manager.Instance.money >= 200) && !Game_Manager.Instance.purchasedFireUpgrade)
             {
@@ -232,7 +234,7 @@ public class Shop_Canvas_Controller : MonoBehaviour
 
         public void IcePlantUpgrade()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
 
             if ((Game_Manager.Instance.money >= 200) && !Game_Manager.Instance.purchasedIceUpgrade)
             {
@@ -248,7 +250,7 @@ public class Shop_Canvas_Controller : MonoBehaviour
 
         public void VoidPlantUpgrade()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
 
             if ((Game_Manager.Instance.money >= 200) && !Game_Manager.Instance.purchasedVoidUpgrade)
             {
@@ -264,7 +266,7 @@ public class Shop_Canvas_Controller : MonoBehaviour
 
         public void BackToPauseMenu()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
             shopWindowTitle.SetActive(true);
             farmUpgradesButton.SetActive(true);
             plantUpgradesButton.SetActive(true);

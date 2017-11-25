@@ -84,11 +84,10 @@ public class Game_Manager
 
     public enum ControlScheme { WASD, ARROWS, IJKL}
     public enum Direction { UP, DOWN, LEFT, RIGHT}
-    public enum PlantType { FIRE, ICE, VOID }
+    public enum ShopItems { FIRE, ICE, VOID, SPRINKLER, FERTILIZER, WATER}
     public enum BulletType { FIRE, ICE, VOID }
     public enum Phase { DAY, NIGHT}
     public enum ColorBlindMode { Normal, Protanope, Deuteranope }
-    public enum PlaceableUpgrade { Sprinkler, Fertilizer }
     public enum Level { ONE, TWO, THREE, FOUR}
     public enum LevelFeatures { Ladybug, NEXTENEMY, firePlantsRequired, icePlantsRequired, voidPlantsRequired}
 
@@ -108,14 +107,14 @@ public class Game_Manager
     public int totalWaveEnemies = 0;
     public int spawnCount = 0;
     public const int maxPlantLevel = 3;
-    public PlantType currentPlantSelection = PlantType.FIRE;
+    public ShopItems currentShopSelection = ShopItems.FIRE;
     public Phase currentPhase = Phase.DAY;
-    public PlaceableUpgrade currentUpgrade = PlaceableUpgrade.Sprinkler;
     public Level currentLevel;
     public bool gameStarted = false;
     public bool gameOver = false;
     public bool pauseGame = false;
     public bool placingUpgrade = false;
+    public bool wateringCanSelected = false;
     public bool purchasedWaterEfficiency = false;
     public bool purchasedFireUpgrade = false;
     public bool purchasedIceUpgrade = false;

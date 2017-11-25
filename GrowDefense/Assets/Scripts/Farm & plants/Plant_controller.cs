@@ -19,7 +19,7 @@ public class Plant_controller : MonoBehaviour
     public Sprite fireBullet;
     public Sprite iceBullet;
     public Sprite voidBullet;
-    public Game_Manager.PlantType thisPlant;
+    public Game_Manager.ShopItems thisPlant;
     public GameObject bullet;
     public GameObject currentTarget;
     GameObject createdBullet;
@@ -44,13 +44,13 @@ public class Plant_controller : MonoBehaviour
     {
         switch (thisPlant)
         {
-            case Game_Manager.PlantType.FIRE:
+            case Game_Manager.ShopItems.FIRE:
                 GetComponent<SpriteRenderer>().sprite = firePlantLv3;
                 break;
-            case Game_Manager.PlantType.ICE:
+            case Game_Manager.ShopItems.ICE:
                 GetComponent<SpriteRenderer>().sprite = icePlantLv3;
                 break;
-            case Game_Manager.PlantType.VOID:
+            case Game_Manager.ShopItems.VOID:
                 GetComponent<SpriteRenderer>().sprite = voidPlantLv3;
                 break;
             default:
@@ -156,13 +156,13 @@ public class Plant_controller : MonoBehaviour
 
                     switch (thisPlant)
                     {
-                        case Game_Manager.PlantType.FIRE:
+                        case Game_Manager.ShopItems.FIRE:
                             Game_Manager.Instance.firePlantsGrown++;
                             break;
-                        case Game_Manager.PlantType.ICE:
+                        case Game_Manager.ShopItems.ICE:
                             Game_Manager.Instance.icePlantsGrown++;
                             break;
-                        case Game_Manager.PlantType.VOID:
+                        case Game_Manager.ShopItems.VOID:
                             Game_Manager.Instance.voidPlantsGrown++;
                             break;
                     }
@@ -204,20 +204,20 @@ public class Plant_controller : MonoBehaviour
                             }
                         }
 
-                        if (thisPlant == Game_Manager.PlantType.VOID)
+                        if (thisPlant == Game_Manager.ShopItems.VOID)
                         {
                             shootTimer = shootTimer / 2;
                         }
 
                         switch (thisPlant)
                         {
-                            case Game_Manager.PlantType.FIRE:
+                            case Game_Manager.ShopItems.FIRE:
                                 createdBullet.GetComponent<Bullet>().thisSprite = fireBullet;
                                 break;
-                            case Game_Manager.PlantType.ICE:
+                            case Game_Manager.ShopItems.ICE:
                                 createdBullet.GetComponent<Bullet>().thisSprite = iceBullet;
                                 break;
-                            case Game_Manager.PlantType.VOID:
+                            case Game_Manager.ShopItems.VOID:
                                 createdBullet.GetComponent<Bullet>().thisSprite = voidBullet;
                                 break;
                             default:

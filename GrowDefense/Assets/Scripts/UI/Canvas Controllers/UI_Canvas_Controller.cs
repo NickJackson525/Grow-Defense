@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-//using UnityEditor.SceneManagement;
 
 public class UI_Canvas_Controller : MonoBehaviour
 {
     #region Variables
 
+    public Audio_Manager audioManager;
     public GameObject instructionsWindow;
     public GameObject gameOverWindow;
     public GameObject gameOverMenuButton;
@@ -30,6 +30,7 @@ public class UI_Canvas_Controller : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        audioManager = GameObject.Find("Audio Manager").GetComponent<Audio_Manager>();
         Game_Manager.Instance.firePlantsGrown = 0;
         Game_Manager.Instance.gameOver = false;
         Game_Manager.Instance.money = 200;
@@ -84,7 +85,7 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         public void StartGame()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
             shopButton.SetActive(true);
             gameOverMenuButton.SetActive(false);
             //gameOverNextLevelButton.SetActive(false);
@@ -113,7 +114,7 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         public void Load_Scene(string sceneName)
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
             UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
         }
 
@@ -123,7 +124,7 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         public void InstructionsOpen()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
             instructionsWindow.SetActive(true);
 
             if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
@@ -134,7 +135,7 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         public void InstructionsClose()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
             instructionsWindow.SetActive(false);
 
             if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
@@ -149,7 +150,8 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         public void SettingsOpenClose()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
+
             if (settingsWindow.activeSelf)
             {
                 settingsWindow.SetActive(false);
@@ -166,7 +168,8 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         public void SetControls(string newControls)
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
+
             switch (newControls)
             {
                 case "WASD":
@@ -190,7 +193,7 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         public void CreditsOpen()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
             gameOverWindow.SetActive(true);
 
             if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
@@ -201,7 +204,7 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         public void CreditsClose()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
             gameOverWindow.SetActive(false);
             
             if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
@@ -216,7 +219,7 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         public void MainMenu()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
             Game_Manager.Instance.firePlantsGrown = 0;
             Game_Manager.Instance.gameOver = false;
             Game_Manager.Instance.pauseGame = false;
@@ -231,7 +234,7 @@ public class UI_Canvas_Controller : MonoBehaviour
             Game_Manager.Instance.firePlantsGrown = 0;
             Game_Manager.Instance.icePlantsGrown = 0;
             Game_Manager.Instance.voidPlantsGrown = 0;
-            Game_Manager.Instance.currentPlantSelection = Game_Manager.PlantType.FIRE;
+            Game_Manager.Instance.currentShopSelection = Game_Manager.ShopItems.FIRE;
             Game_Manager.Instance.gameStarted = false;
             Load_Scene("Main Menu");
         }

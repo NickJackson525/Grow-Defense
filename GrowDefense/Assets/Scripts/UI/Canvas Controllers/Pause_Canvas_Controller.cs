@@ -6,6 +6,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 {
     #region Variables
 
+    public Audio_Manager audioManager;
     public GameObject pauseWindow;
     public GameObject pauseTitle;
     public GameObject objectivesButton;
@@ -27,8 +28,8 @@ public class Pause_Canvas_Controller : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-		
-	}
+        audioManager = GameObject.Find("Audio Manager").GetComponent<Audio_Manager>();
+    }
 
     #endregion
 
@@ -66,7 +67,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void Load_Scene(string sceneName)
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
             UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
         }
 
@@ -76,7 +77,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void ObjectivesOpen()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
             pauseTitle.SetActive(false);
             objectivesButton.SetActive(false);
             controlsButton.SetActive(false);
@@ -97,7 +98,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void ControlsOpen()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
             pauseTitle.SetActive(false);
             objectivesButton.SetActive(false);
             controlsButton.SetActive(false);
@@ -118,7 +119,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void InstructionsOpen()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
             pauseTitle.SetActive(false);
             objectivesButton.SetActive(false);
             controlsButton.SetActive(false);
@@ -139,7 +140,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void CreditsOpen()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
             pauseTitle.SetActive(false);
             objectivesButton.SetActive(false);
             controlsButton.SetActive(false);
@@ -160,7 +161,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void BackstoryOpen()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
             pauseTitle.SetActive(false);
             objectivesButton.SetActive(false);
             controlsButton.SetActive(false);
@@ -181,7 +182,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void BackToPauseMenu()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
             pauseTitle.SetActive(true);
             objectivesButton.SetActive(true);
             controlsButton.SetActive(true);
@@ -202,7 +203,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void MainMenu()
         {
-            Sound_Manager.Instance.PlayButtonSound();
+            audioManager.PlayButtonSound();
             Game_Manager.Instance.firePlantsGrown = 0;
             Game_Manager.Instance.gameOver = false;
             Game_Manager.Instance.pauseGame = false;
@@ -217,7 +218,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
             Game_Manager.Instance.firePlantsGrown = 0;
             Game_Manager.Instance.icePlantsGrown = 0;
             Game_Manager.Instance.voidPlantsGrown = 0;
-            Game_Manager.Instance.currentPlantSelection = Game_Manager.PlantType.FIRE;
+            Game_Manager.Instance.currentShopSelection = Game_Manager.ShopItems.FIRE;
             Game_Manager.Instance.gameStarted = false;
             Load_Scene("Main Menu");
         }

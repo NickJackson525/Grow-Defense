@@ -7,7 +7,7 @@ public class Update_Grown_Plants : MonoBehaviour
 {
     #region Variables
 
-    public Game_Manager.PlantType type;
+    public Game_Manager.ShopItems type;
 
     #endregion
 
@@ -18,13 +18,13 @@ public class Update_Grown_Plants : MonoBehaviour
     {
         switch(type)
         {
-            case Game_Manager.PlantType.FIRE:
+            case Game_Manager.ShopItems.FIRE:
                 GetComponent<Text>().text = Game_Manager.Instance.firePlantsGrown + " / " + Game_Manager.Instance.firePlantsRequired;
                 break;
-            case Game_Manager.PlantType.ICE:
+            case Game_Manager.ShopItems.ICE:
                 GetComponent<Text>().text = Game_Manager.Instance.icePlantsGrown + " / " + Game_Manager.Instance.icePlantsRequired;
                 break;
-            case Game_Manager.PlantType.VOID:
+            case Game_Manager.ShopItems.VOID:
                 GetComponent<Text>().text = Game_Manager.Instance.voidPlantsGrown + " / " + Game_Manager.Instance.voidPlantsRequired;
                 break;
             default:

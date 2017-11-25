@@ -10,6 +10,7 @@ public class Cursor_Image : MonoBehaviour
     public Sprite fireSeedPacketCursor;
     public Sprite iceSeedPacketCursor;
     public Sprite voidSeedPacketCursor;
+    public Sprite fertilizerCursor;
     public Sprite defaultCursor;
     public GameObject select;
     public Vector3 updatePosition;
@@ -78,24 +79,26 @@ public class Cursor_Image : MonoBehaviour
     {
         if (coll.gameObject.tag == "FarmTile")
         {
-            if (coll.gameObject.GetComponent<Farm_Controller>().isPlanted)
+            switch (Game_Manager.Instance.currentShopSelection)
             {
-                GetComponent<SpriteRenderer>().sprite = wateringCanCursor;
-            }
-            else
-            {
-                switch (Game_Manager.Instance.currentPlantSelection)
-                {
-                    case Game_Manager.PlantType.FIRE:
-                        GetComponent<SpriteRenderer>().sprite = fireSeedPacketCursor;
-                        break;
-                    case Game_Manager.PlantType.ICE:
-                        GetComponent<SpriteRenderer>().sprite = iceSeedPacketCursor;
-                        break;
-                    case Game_Manager.PlantType.VOID:
-                        GetComponent<SpriteRenderer>().sprite = voidSeedPacketCursor;
-                        break;
-                }
+                case Game_Manager.ShopItems.FIRE:
+                    GetComponent<SpriteRenderer>().sprite = fireSeedPacketCursor;
+                    break;
+                case Game_Manager.ShopItems.ICE:
+                    GetComponent<SpriteRenderer>().sprite = iceSeedPacketCursor;
+                    break;
+                case Game_Manager.ShopItems.VOID:
+                    GetComponent<SpriteRenderer>().sprite = voidSeedPacketCursor;
+                    break;
+                case Game_Manager.ShopItems.FERTILIZER:
+                    GetComponent<SpriteRenderer>().sprite = defaultCursor;
+                    break;
+                case Game_Manager.ShopItems.SPRINKLER:
+                    GetComponent<SpriteRenderer>().sprite = defaultCursor;
+                    break;
+                case Game_Manager.ShopItems.WATER:
+                    GetComponent<SpriteRenderer>().sprite = wateringCanCursor;
+                    break;
             }
         }
     }
@@ -104,24 +107,26 @@ public class Cursor_Image : MonoBehaviour
     {
         if (coll.gameObject.tag == "FarmTile")
         {
-            if(coll.gameObject.GetComponent<Farm_Controller>().isPlanted)
+            switch(Game_Manager.Instance.currentShopSelection)
             {
-                GetComponent<SpriteRenderer>().sprite = wateringCanCursor;
-            }
-            else
-            {
-                switch(Game_Manager.Instance.currentPlantSelection)
-                {
-                    case Game_Manager.PlantType.FIRE:
-                        GetComponent<SpriteRenderer>().sprite = fireSeedPacketCursor;
-                        break;
-                    case Game_Manager.PlantType.ICE:
-                        GetComponent<SpriteRenderer>().sprite = iceSeedPacketCursor;
-                        break;
-                    case Game_Manager.PlantType.VOID:
-                        GetComponent<SpriteRenderer>().sprite = voidSeedPacketCursor;
-                        break;
-                }
+                case Game_Manager.ShopItems.FIRE:
+                    GetComponent<SpriteRenderer>().sprite = fireSeedPacketCursor;
+                    break;
+                case Game_Manager.ShopItems.ICE:
+                    GetComponent<SpriteRenderer>().sprite = iceSeedPacketCursor;
+                    break;
+                case Game_Manager.ShopItems.VOID:
+                    GetComponent<SpriteRenderer>().sprite = voidSeedPacketCursor;
+                    break;
+                case Game_Manager.ShopItems.FERTILIZER:
+                    GetComponent<SpriteRenderer>().sprite = defaultCursor;
+                    break;
+                case Game_Manager.ShopItems.SPRINKLER:
+                    GetComponent<SpriteRenderer>().sprite = defaultCursor;
+                    break;
+                case Game_Manager.ShopItems.WATER:
+                    GetComponent<SpriteRenderer>().sprite = wateringCanCursor;
+                    break;
             }
         }
     }

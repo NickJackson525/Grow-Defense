@@ -641,16 +641,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084414d22a67b284b8f24ad195f9be25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 114578971770111228, guid: 2908e4df8e3b0314b9c18fe0ef63f198,
+    type: 2}
   shopWindow: {fileID: 1044786115287470}
+  pauseWindow: {fileID: 0}
   shopWindowTitle: {fileID: 1365186345022246}
   farmUpgradesButton: {fileID: 1677070572334940}
   plantUpgradesButton: {fileID: 1932519356053310}
   farmUpgradesWindow: {fileID: 1723224044750512}
   plantUpgradesWindow: {fileID: 1284970889987488}
-  waterEfficiencyUpgradeButton: {fileID: 0}
-  fireUpgradeButton: {fileID: 0}
-  iceUpgradeButton: {fileID: 0}
-  voidUpgradeButton: {fileID: 0}
+  waterEfficiencyUpgradeButton: {fileID: 1431546766601544}
+  fireUpgradeButton: {fileID: 1462333334815158}
+  iceUpgradeButton: {fileID: 1314449777662106}
+  voidUpgradeButton: {fileID: 1164213077074784}
 --- !u!114 &114009633944596624
 MonoBehaviour:
   m_ObjectHideFlags: 1

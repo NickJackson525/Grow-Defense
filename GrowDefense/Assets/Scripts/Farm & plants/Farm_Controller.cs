@@ -47,10 +47,10 @@ public class Farm_Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Game_Manager.Instance.money += 200;
+            Game_Manager.Instance.money += 100;
         }
 
-        if (!Game_Manager.Instance.pauseGame && !Game_Manager.Instance.placingUpgrade)
+        if(!Game_Manager.Instance.pauseGame)
         {
             #region Update Sprite
 
@@ -69,24 +69,6 @@ public class Farm_Controller : MonoBehaviour
             else if (waterLevel <= 60)
             {
                 this.gameObject.GetComponent<SpriteRenderer>().sprite = wateredTile3;
-            }
-
-            #endregion
-
-            #region Create Plant
-
-            if ((isSelected) && (!isPlanted) && (Input.GetMouseButtonUp(0) || Input.GetButtonUp("AButton")) && (Game_Manager.Instance.money >= 50) && (!Game_Manager.Instance.gameOver))
-            {
-                newPlant = Instantiate(plantLevel1, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
-                newPlant.GetComponent<Plant_controller>().thisPlant = Game_Manager.Instance.currentPlantSelection;
-                newPlant.GetComponent<Plant_controller>().thisTile = gameObject;
-                gameObject.GetComponent<Farm_Controller>().isPlanted = true;
-                Game_Manager.Instance.money -= 50;
-
-                if(hasFertilizer)
-                {
-                    newPlant.GetComponent<Plant_controller>().isFertilized = true;
-                }
             }
 
             #endregion
@@ -110,7 +92,78 @@ public class Farm_Controller : MonoBehaviour
             }
 
             #endregion
+        }
 
+        if (!Game_Manager.Instance.pauseGame && !Game_Manager.Instance.placingUpgrade && !Game_Manager.Instance.wateringCanSelected)
+        {
+            #region Create Plant
+
+            if ((isSelected) && (!isPlanted) && (Input.GetMouseButtonUp(0) || Input.GetButtonUp("AButton")) && (Game_Manager.Instance.money >= 50) && (!Game_Manager.Instance.gameOver))
+            {
+                newPlant = Instantiate(plantLevel1, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
+                newPlant.GetComponent<Plant_controller>().thisPlant = Game_Manager.Instance.currentShopSelection;
+                newPlant.GetComponent<Plant_controller>().thisTile = gameObject;
+                gameObject.GetComponent<Farm_Controller>().isPlanted = true;
+                Game_Manager.Instance.money -= 50;
+
+                if(hasFertilizer)
+                {
+                    newPlant.GetComponent<Plant_controller>().isFertilized = true;
+                }
+            }
+
+            #endregion
+        }
+        else if (!Game_Manager.Instance.pauseGame && Game_Manager.Instance.placingUpgrade && !Game_Manager.Instance.wateringCanSelected)
+        {
+            #region Place Upgrade
+
+            if(Input.GetMouseButtonUp(0) && (isSelected) && (!Game_Manager.Instance.gameOver))
+            {
+                switch(Game_Manager.Instance.currentShopSelection)
+                {
+                    case Game_Manager.ShopItems.SPRINKLER:
+                        if (!hasSprinkler)
+                        {
+                            if (Game_Manager.Instance.money >= 25)
+                            {
+                                Game_Manager.Instance.money -= 25;
+                                createdUpgrade = Instantiate(sprinkler, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
+                                createdUpgrade.GetComponent<Sprinkler>().thisFarmTile = gameObject;
+                                hasSprinkler = true;
+                            }
+                        }
+                        break;
+                    case Game_Manager.ShopItems.FERTILIZER:
+                        if (!hasFertilizer)
+                        {
+                            if (Game_Manager.Instance.money >= 50)
+                            {
+                                Game_Manager.Instance.money -= 50;
+                                createdUpgrade = Instantiate(fertilizer, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
+                                hasFertilizer = true;
+                            }
+                        }
+                        break;
+                    default:
+                        if (!hasSprinkler)
+                        {
+                            if (Game_Manager.Instance.money >= 25)
+                            {
+                                Game_Manager.Instance.money -= 25;
+                                createdUpgrade = Instantiate(sprinkler, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
+                                createdUpgrade.GetComponent<Sprinkler>().thisFarmTile = gameObject;
+                                hasSprinkler = true;
+                            }
+                        }
+                        break;
+                }
+            }
+
+            #endregion
+        }
+        else if (!Game_Manager.Instance.pauseGame && !Game_Manager.Instance.placingUpgrade && Game_Manager.Instance.wateringCanSelected)
+        {
             #region Water Tile
 
             if ((isSelected) && (Input.GetMouseButtonUp(1) || Input.GetButtonUp("RightTrigger")) && (Game_Manager.Instance.waterLevel >= 10) && (!Game_Manager.Instance.gameOver))
@@ -119,45 +172,6 @@ public class Farm_Controller : MonoBehaviour
                 {
                     waterLevel += 20;
                     Game_Manager.Instance.waterLevel -= 10;
-                }
-            }
-
-            #endregion
-        }
-        else if (!Game_Manager.Instance.pauseGame && Game_Manager.Instance.placingUpgrade)
-        {
-            #region Place Upgrade
-
-            if(Input.GetMouseButtonUp(0) && (isSelected) && (!Game_Manager.Instance.gameOver))
-            {
-                switch(Game_Manager.Instance.currentUpgrade)
-                {
-                    case Game_Manager.PlaceableUpgrade.Sprinkler:
-                        if (!hasSprinkler)
-                        {
-                            createdUpgrade = Instantiate(sprinkler, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
-                            createdUpgrade.GetComponent<Sprinkler>().thisFarmTile = gameObject;
-                            hasSprinkler = true;
-                            Game_Manager.Instance.placingUpgrade = false;
-                        }
-                        break;
-                    case Game_Manager.PlaceableUpgrade.Fertilizer:
-                        if (!hasFertilizer)
-                        {
-                            createdUpgrade = Instantiate(fertilizer, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
-                            hasFertilizer = true;
-                            Game_Manager.Instance.placingUpgrade = false;
-                        }
-                        break;
-                    default:
-                        if (!hasSprinkler)
-                        {
-                            createdUpgrade = Instantiate(sprinkler, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
-                            createdUpgrade.GetComponent<Sprinkler>().thisFarmTile = gameObject;
-                            hasSprinkler = true;
-                            Game_Manager.Instance.placingUpgrade = false;
-                        }
-                        break;
                 }
             }
 
