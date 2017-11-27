@@ -364,9 +364,44 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: -0.006
       objectReference: {fileID: 0}
+    - target: {fileID: 1383203963301780, guid: af824cec821a27e45b3bd82c87cf3657, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396683147923114, guid: af824cec821a27e45b3bd82c87cf3657, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620942952466982, guid: af824cec821a27e45b3bd82c87cf3657, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1902497406108586, guid: af824cec821a27e45b3bd82c87cf3657, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: af824cec821a27e45b3bd82c87cf3657, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &138947666 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1320974010131450, guid: af824cec821a27e45b3bd82c87cf3657,
+    type: 2}
+  m_PrefabInternal: {fileID: 138947665}
+--- !u!114 &138947667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 138947666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 834e279c3c1cabe488a31a145d96681e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questPopup: {fileID: 0}
+  mailIcon: {fileID: 0}
+  newMailIcon: {fileID: 0}
 --- !u!1001 &161821219
 Prefab:
   m_ObjectHideFlags: 0
@@ -1341,7 +1376,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -40.38, y: -121.21}
+  m_AnchoredPosition: {x: -40.380005, y: -121.20999}
   m_SizeDelta: {x: -61.625973, y: -61.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1176919324

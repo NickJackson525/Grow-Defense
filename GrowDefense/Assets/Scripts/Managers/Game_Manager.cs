@@ -148,6 +148,7 @@ public class Game_Manager
     public int voidPlantsRequired = 5;
     public int totalWaveEnemies = 0;
     public int spawnCount = 0;
+    public int currentNumQuests = 0;
     public const int maxPlantLevel = 3;
     public ShopItems currentShopSelection = ShopItems.BASIC;
     public Phase currentPhase = Phase.DAY;
