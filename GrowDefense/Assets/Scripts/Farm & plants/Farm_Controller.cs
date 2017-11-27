@@ -94,27 +94,43 @@ public class Farm_Controller : MonoBehaviour
             #endregion
         }
 
-        if (!Game_Manager.Instance.pauseGame && !Game_Manager.Instance.placingUpgrade && !Game_Manager.Instance.wateringCanSelected)
+        if (!Game_Manager.Instance.pauseGame && !Game_Manager.Instance.placingUpgrade && !Game_Manager.Instance.wateringCanSelected && !Game_Manager.Instance.SicleSelected)
         {
             #region Create Plant
 
-            if ((isSelected) && (!isPlanted) && (Input.GetMouseButtonUp(0) || Input.GetButtonUp("AButton")) && (Game_Manager.Instance.money >= 50) && (!Game_Manager.Instance.gameOver))
+            if ((isSelected) && (!isPlanted) && (Input.GetMouseButtonUp(0) || Input.GetButtonUp("AButton")) && (Game_Manager.Instance.money >= 25) && (!Game_Manager.Instance.gameOver))
             {
-                newPlant = Instantiate(plantLevel1, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
-                newPlant.GetComponent<Plant_controller>().thisPlant = Game_Manager.Instance.currentShopSelection;
-                newPlant.GetComponent<Plant_controller>().thisTile = gameObject;
-                gameObject.GetComponent<Farm_Controller>().isPlanted = true;
-                Game_Manager.Instance.money -= 50;
-
-                if(hasFertilizer)
+                if ((Game_Manager.Instance.currentShopSelection != Game_Manager.ShopItems.BASIC) && (Game_Manager.Instance.money >= 50))
                 {
-                    newPlant.GetComponent<Plant_controller>().isFertilized = true;
+                    newPlant = Instantiate(plantLevel1, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
+                    newPlant.GetComponent<Plant_controller>().thisPlant = Game_Manager.Instance.currentShopSelection;
+                    newPlant.GetComponent<Plant_controller>().thisTile = gameObject;
+                    gameObject.GetComponent<Farm_Controller>().isPlanted = true;
+                    Game_Manager.Instance.money -= 50;
+
+                    if (hasFertilizer)
+                    {
+                        newPlant.GetComponent<Plant_controller>().isFertilized = true;
+                    }
+                }
+                else
+                {
+                    newPlant = Instantiate(plantLevel1, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
+                    newPlant.GetComponent<Plant_controller>().thisPlant = Game_Manager.Instance.currentShopSelection;
+                    newPlant.GetComponent<Plant_controller>().thisTile = gameObject;
+                    gameObject.GetComponent<Farm_Controller>().isPlanted = true;
+                    Game_Manager.Instance.money -= 25;
+
+                    if (hasFertilizer)
+                    {
+                        newPlant.GetComponent<Plant_controller>().isFertilized = true;
+                    }
                 }
             }
 
             #endregion
         }
-        else if (!Game_Manager.Instance.pauseGame && Game_Manager.Instance.placingUpgrade && !Game_Manager.Instance.wateringCanSelected)
+        else if (!Game_Manager.Instance.pauseGame && Game_Manager.Instance.placingUpgrade && !Game_Manager.Instance.wateringCanSelected && !Game_Manager.Instance.SicleSelected)
         {
             #region Place Upgrade
 
@@ -162,7 +178,7 @@ public class Farm_Controller : MonoBehaviour
 
             #endregion
         }
-        else if (!Game_Manager.Instance.pauseGame && !Game_Manager.Instance.placingUpgrade && Game_Manager.Instance.wateringCanSelected)
+        else if (!Game_Manager.Instance.pauseGame && !Game_Manager.Instance.placingUpgrade && Game_Manager.Instance.wateringCanSelected && !Game_Manager.Instance.SicleSelected)
         {
             #region Water Tile
 
@@ -173,6 +189,65 @@ public class Farm_Controller : MonoBehaviour
                     waterLevel += 20;
                     Game_Manager.Instance.waterLevel -= 10;
                 }
+            }
+
+            #endregion
+        }
+        else if (!Game_Manager.Instance.pauseGame && !Game_Manager.Instance.placingUpgrade && !Game_Manager.Instance.wateringCanSelected && Game_Manager.Instance.SicleSelected)
+        {
+            #region Sicle Plant
+
+            if ((isPlanted) && (isSelected) && (Input.GetMouseButtonUp(1) || Input.GetButtonUp("RightTrigger")) && (!Game_Manager.Instance.gameOver))
+            {
+                switch(newPlant.GetComponent<Plant_controller>().currentLevel)
+                {
+                    case 1:
+                        if (newPlant.GetComponent<Plant_controller>().thisPlant == Game_Manager.ShopItems.BASIC)
+                        {
+                            Game_Manager.Instance.money += 15;
+                        }
+                        else
+                        {
+                            Game_Manager.Instance.money += 30;
+                        }
+                        break;
+                    case 2:
+                        if (newPlant.GetComponent<Plant_controller>().thisPlant == Game_Manager.ShopItems.BASIC)
+                        {
+                            Game_Manager.Instance.money += 25;
+                        }
+                        else
+                        {
+                            Game_Manager.Instance.money += 50;
+                        }
+                        break;
+                    case 3:
+                        if (newPlant.GetComponent<Plant_controller>().thisPlant == Game_Manager.ShopItems.BASIC)
+                        {
+                            Game_Manager.Instance.money += 100;
+                        }
+                        else
+                        {
+                            Game_Manager.Instance.money += 200;
+                        }
+
+                        //TODO: add completion check for quests
+                        break;
+                    default:
+                        if (newPlant.GetComponent<Plant_controller>().thisPlant == Game_Manager.ShopItems.BASIC)
+                        {
+                            Game_Manager.Instance.money += 25;
+                        }
+                        else
+                        {
+                            Game_Manager.Instance.money += 50;
+                        }
+                        break;
+                }
+
+                isPlanted = false;
+                Destroy(newPlant);
+                newPlant = null;
             }
 
             #endregion

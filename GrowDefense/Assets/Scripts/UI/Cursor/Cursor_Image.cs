@@ -6,7 +6,9 @@ public class Cursor_Image : MonoBehaviour
 {
     #region Variables
 
+    public Sprite sicleCursor;
     public Sprite wateringCanCursor;
+    public Sprite basicSeedPacketCursor;
     public Sprite fireSeedPacketCursor;
     public Sprite iceSeedPacketCursor;
     public Sprite voidSeedPacketCursor;
@@ -42,20 +44,20 @@ public class Cursor_Image : MonoBehaviour
         transform.position = Vector2.Lerp(transform.position, updatePosition, moveSpeed);
         transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
 
-        if(Input.GetMouseButtonDown(0) && GetComponent<SpriteRenderer>().sprite.name != wateringCanCursor.name)
+        if(Input.GetMouseButtonDown(0) && ((GetComponent<SpriteRenderer>().sprite.name != wateringCanCursor.name) && (GetComponent<SpriteRenderer>().sprite.name != sicleCursor.name)))
         {
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 20f);
         }
-        else if (Input.GetMouseButtonDown(1) && GetComponent<SpriteRenderer>().sprite.name == wateringCanCursor.name)
+        else if (Input.GetMouseButtonDown(1) && ((GetComponent<SpriteRenderer>().sprite.name == wateringCanCursor.name) || (GetComponent<SpriteRenderer>().sprite.name == sicleCursor.name)))
         {
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z - 20f);
         }
 
-        if (Input.GetMouseButtonUp(0) && GetComponent<SpriteRenderer>().sprite.name != wateringCanCursor.name)
+        if (Input.GetMouseButtonUp(0) && ((GetComponent<SpriteRenderer>().sprite.name != wateringCanCursor.name) && (GetComponent<SpriteRenderer>().sprite.name != sicleCursor.name)))
         {
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z - 20f);
         }
-        else if (Input.GetMouseButtonUp(1) && GetComponent<SpriteRenderer>().sprite.name == wateringCanCursor.name)
+        else if (Input.GetMouseButtonUp(1) && ((GetComponent<SpriteRenderer>().sprite.name == wateringCanCursor.name) || (GetComponent<SpriteRenderer>().sprite.name == sicleCursor.name)))
         {
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 20f);
         }
@@ -81,6 +83,9 @@ public class Cursor_Image : MonoBehaviour
         {
             switch (Game_Manager.Instance.currentShopSelection)
             {
+                case Game_Manager.ShopItems.BASIC:
+                    GetComponent<SpriteRenderer>().sprite = basicSeedPacketCursor;
+                    break;
                 case Game_Manager.ShopItems.FIRE:
                     GetComponent<SpriteRenderer>().sprite = fireSeedPacketCursor;
                     break;
@@ -98,6 +103,9 @@ public class Cursor_Image : MonoBehaviour
                     break;
                 case Game_Manager.ShopItems.WATER:
                     GetComponent<SpriteRenderer>().sprite = wateringCanCursor;
+                    break;
+                case Game_Manager.ShopItems.SICLE:
+                    GetComponent<SpriteRenderer>().sprite = sicleCursor;
                     break;
             }
         }
@@ -109,6 +117,9 @@ public class Cursor_Image : MonoBehaviour
         {
             switch(Game_Manager.Instance.currentShopSelection)
             {
+                case Game_Manager.ShopItems.BASIC:
+                    GetComponent<SpriteRenderer>().sprite = basicSeedPacketCursor;
+                    break;
                 case Game_Manager.ShopItems.FIRE:
                     GetComponent<SpriteRenderer>().sprite = fireSeedPacketCursor;
                     break;
@@ -126,6 +137,9 @@ public class Cursor_Image : MonoBehaviour
                     break;
                 case Game_Manager.ShopItems.WATER:
                     GetComponent<SpriteRenderer>().sprite = wateringCanCursor;
+                    break;
+                case Game_Manager.ShopItems.SICLE:
+                    GetComponent<SpriteRenderer>().sprite = sicleCursor;
                     break;
             }
         }

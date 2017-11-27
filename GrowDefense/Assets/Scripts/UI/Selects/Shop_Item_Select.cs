@@ -12,6 +12,7 @@ public class Shop_Item_Select : MonoBehaviour
     public GameObject fertilizerSelect;
     public GameObject sprinklerSelect;
     public GameObject waterSelect;
+    public GameObject sicleSelect;
     bool mouseHover = false;
 
 	// Use this for initialization
@@ -45,13 +46,32 @@ public class Shop_Item_Select : MonoBehaviour
             {
                 Game_Manager.Instance.wateringCanSelected = false;
             }
+
+            if (thisItem == Game_Manager.ShopItems.SICLE)
+            {
+                Game_Manager.Instance.SicleSelected = true;
+            }
+            else
+            {
+                Game_Manager.Instance.SicleSelected = false;
+            }
         }
 
-        if((gameObject.name == "Build_Select") && Input.GetButtonUp("XButton"))
+        if((gameObject.name == "Build_Select") && Input.GetKeyUp(KeyCode.Alpha1))
         {
-            ChangeSelect();
+            //ChangeSelect();
+            buildSelect.transform.position = waterSelect.transform.position;
+            Game_Manager.Instance.currentShopSelection = Game_Manager.ShopItems.WATER;
+            Game_Manager.Instance.placingUpgrade = false;
         }
-	}
+        else if ((gameObject.name == "Build_Select") && Input.GetKeyUp(KeyCode.Alpha2))
+        {
+            //ChangeSelect();
+            buildSelect.transform.position = sicleSelect.transform.position;
+            Game_Manager.Instance.currentShopSelection = Game_Manager.ShopItems.SICLE;
+            Game_Manager.Instance.placingUpgrade = false;
+        }
+    }
 
     public void ChangeSelect()
     {

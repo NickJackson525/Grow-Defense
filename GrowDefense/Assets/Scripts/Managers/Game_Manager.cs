@@ -51,6 +51,7 @@ public class Game_Manager
             {
                 {LevelFeatures.Ladybug, 1},
                 {LevelFeatures.NEXTENEMY, 0},
+                {LevelFeatures.basicPlantsRequired, 5},
                 {LevelFeatures.firePlantsRequired, 5},
                 {LevelFeatures.icePlantsRequired, 5},
                 {LevelFeatures.voidPlantsRequired, 5}
@@ -61,6 +62,7 @@ public class Game_Manager
             {
                 {LevelFeatures.Ladybug, 1},
                 {LevelFeatures.NEXTENEMY, 0},
+                {LevelFeatures.basicPlantsRequired, 5},
                 {LevelFeatures.firePlantsRequired, 5},
                 {LevelFeatures.icePlantsRequired, 5},
                 {LevelFeatures.voidPlantsRequired, 0}
@@ -71,6 +73,7 @@ public class Game_Manager
             {
                 {LevelFeatures.Ladybug, 1},
                 {LevelFeatures.NEXTENEMY, 0},
+                {LevelFeatures.basicPlantsRequired, 5},
                 {LevelFeatures.firePlantsRequired, 5},
                 {LevelFeatures.icePlantsRequired, 5},
                 {LevelFeatures.voidPlantsRequired, 5}
@@ -84,12 +87,12 @@ public class Game_Manager
 
     public enum ControlScheme { WASD, ARROWS, IJKL}
     public enum Direction { UP, DOWN, LEFT, RIGHT}
-    public enum ShopItems { FIRE, ICE, VOID, SPRINKLER, FERTILIZER, WATER}
-    public enum BulletType { FIRE, ICE, VOID }
+    public enum ShopItems { BASIC, FIRE, ICE, VOID, SPRINKLER, FERTILIZER, WATER, SICLE}
+    public enum BulletType { BASIC, FIRE, ICE, VOID }
     public enum Phase { DAY, NIGHT}
     public enum ColorBlindMode { Normal, Protanope, Deuteranope }
     public enum Level { ONE, TWO, THREE, FOUR}
-    public enum LevelFeatures { Ladybug, NEXTENEMY, firePlantsRequired, icePlantsRequired, voidPlantsRequired}
+    public enum LevelFeatures { Ladybug, NEXTENEMY, basicPlantsRequired, firePlantsRequired, icePlantsRequired, voidPlantsRequired}
 
     #endregion
 
@@ -98,16 +101,18 @@ public class Game_Manager
     public int dayTimer = 900;
     public int dayTimerConstant = 900;
     public int waveNumber = 1;
+    public int basicPlantsGrown = 0;
     public int firePlantsGrown = 0;
     public int icePlantsGrown = 0;
     public int voidPlantsGrown = 0;
+    public int basicPlantsRequired = 5;
     public int firePlantsRequired = 5;
     public int icePlantsRequired = 5;
     public int voidPlantsRequired = 5;
     public int totalWaveEnemies = 0;
     public int spawnCount = 0;
     public const int maxPlantLevel = 3;
-    public ShopItems currentShopSelection = ShopItems.FIRE;
+    public ShopItems currentShopSelection = ShopItems.BASIC;
     public Phase currentPhase = Phase.DAY;
     public Level currentLevel;
     public bool gameStarted = false;
@@ -115,7 +120,9 @@ public class Game_Manager
     public bool pauseGame = false;
     public bool placingUpgrade = false;
     public bool wateringCanSelected = false;
+    public bool SicleSelected = false;
     public bool purchasedWaterEfficiency = false;
+    public bool purchasedBasicUpgrade = false;
     public bool purchasedFireUpgrade = false;
     public bool purchasedIceUpgrade = false;
     public bool purchasedVoidUpgrade = false;
@@ -160,7 +167,7 @@ public class Game_Manager
     {
         if (!pauseGame && gameStarted)
         {
-            if ((firePlantsGrown >= firePlantsRequired) && (icePlantsGrown >= icePlantsRequired) && (voidPlantsGrown >= voidPlantsRequired))
+            if ((basicPlantsGrown >= basicPlantsRequired) && (firePlantsGrown >= firePlantsRequired) && (icePlantsGrown >= icePlantsRequired) && (voidPlantsGrown >= voidPlantsRequired))
             {
                 gameOver = true;
             }
@@ -205,6 +212,7 @@ public class Game_Manager
 
     public void StartLevel(Level nextLevel)
     {
+        basicPlantsRequired = Levels[nextLevel][LevelFeatures.basicPlantsRequired];
         firePlantsRequired = Levels[nextLevel][LevelFeatures.firePlantsRequired];
         icePlantsRequired = Levels[nextLevel][LevelFeatures.icePlantsRequired];
         voidPlantsRequired = Levels[nextLevel][LevelFeatures.voidPlantsRequired];

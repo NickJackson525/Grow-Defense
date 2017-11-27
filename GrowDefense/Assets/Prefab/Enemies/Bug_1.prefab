@@ -114,7 +114,7 @@ MonoBehaviour:
   - {fileID: 1935634753771488, guid: 2498d256571f50c46a0a3b90b0d04302, type: 2}
   - {fileID: 1120396211383510, guid: c143d2c18f388dd45883c06a10347495, type: 2}
   pathCount: 0
-  health: 75
+  health: 30
   moneyGivenOnDeath: 5
 --- !u!114 &114393144146509632
 MonoBehaviour:

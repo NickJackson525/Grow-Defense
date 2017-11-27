@@ -15,7 +15,7 @@ public class Enemy_Controller : MonoBehaviour
     float slowDownPercent = 1f;
     public GameObject[] fullPath;
     public int pathCount = 0;
-    public int health = 70;
+    public int health = 30;
     public int moneyGivenOnDeath = 5;
     int DOT_effectTimer = 0;
     int slowEffectTimer = 0;

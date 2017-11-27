@@ -47,7 +47,7 @@ public class Spawner : MonoBehaviour
                 if (cooldown <= 0)
                 {
                     bugCreated = Instantiate(bug1, transform.position, transform.rotation);
-                    bugCreated.GetComponent<Enemy_Controller>().health += 5 * (int)Mathf.Pow(2f, Game_Manager.Instance.waveNumber - 1);
+                    bugCreated.GetComponent<Enemy_Controller>().health += 1 * (int)Mathf.Pow(2f, Game_Manager.Instance.waveNumber - 1);
                     cooldown = cooldownConst - (Game_Manager.Instance.waveNumber * 25);
 
                     if (cooldown < 50)

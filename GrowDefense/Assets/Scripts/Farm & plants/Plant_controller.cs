@@ -7,15 +7,17 @@ public class Plant_controller : MonoBehaviour
 {
     #region Variables
 
-    public Sprite firePlantLv1;
-    public Sprite firePlantLv2;
+    public Sprite basicPlant;
+    //public Sprite firePlantLv1;
+    //public Sprite firePlantLv2;
     public Sprite firePlantLv3;
-    public Sprite icePlantLv1;
-    public Sprite icePlantLv2;
+    //public Sprite icePlantLv1;
+    //public Sprite icePlantLv2;
     public Sprite icePlantLv3;
-    public Sprite voidPlantLv1;
-    public Sprite voidPlantLv2;
+    //public Sprite voidPlantLv1;
+    //public Sprite voidPlantLv2;
     public Sprite voidPlantLv3;
+    public Sprite basicBullet;
     public Sprite fireBullet;
     public Sprite iceBullet;
     public Sprite voidBullet;
@@ -27,7 +29,7 @@ public class Plant_controller : MonoBehaviour
     public GameObject thisTile;
     int shootTimer = 0;
     int growthTimer = 1800;
-    int currentLevel = 1;
+    public int currentLevel = 1;
     float currentAlpha = 255;
     public bool isFertilized = false;
     bool canShoot = true;
@@ -44,6 +46,9 @@ public class Plant_controller : MonoBehaviour
     {
         switch (thisPlant)
         {
+            case Game_Manager.ShopItems.BASIC:
+                GetComponent<SpriteRenderer>().sprite = basicPlant;
+                break;
             case Game_Manager.ShopItems.FIRE:
                 GetComponent<SpriteRenderer>().sprite = firePlantLv3;
                 break;
@@ -54,7 +59,7 @@ public class Plant_controller : MonoBehaviour
                 GetComponent<SpriteRenderer>().sprite = voidPlantLv3;
                 break;
             default:
-                GetComponent<SpriteRenderer>().sprite = firePlantLv3;
+                GetComponent<SpriteRenderer>().sprite = basicPlant;
                 break;
         }
 
@@ -211,6 +216,9 @@ public class Plant_controller : MonoBehaviour
 
                         switch (thisPlant)
                         {
+                            case Game_Manager.ShopItems.BASIC:
+                                createdBullet.GetComponent<Bullet>().thisSprite = basicBullet;
+                                break;
                             case Game_Manager.ShopItems.FIRE:
                                 createdBullet.GetComponent<Bullet>().thisSprite = fireBullet;
                                 break;
@@ -221,7 +229,7 @@ public class Plant_controller : MonoBehaviour
                                 createdBullet.GetComponent<Bullet>().thisSprite = voidBullet;
                                 break;
                             default:
-                                createdBullet.GetComponent<Bullet>().thisSprite = fireBullet;
+                                createdBullet.GetComponent<Bullet>().thisSprite = basicBullet;
                                 break;
                         }
                     }

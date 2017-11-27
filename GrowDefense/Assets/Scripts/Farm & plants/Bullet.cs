@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     public int slowEffectTimer = 0;
     public int level = 1;
     public float speed = .2f;
-    public Game_Manager.ShopItems type = Game_Manager.ShopItems.FIRE;
+    public Game_Manager.ShopItems type = Game_Manager.ShopItems.BASIC;
 
     #endregion
 
@@ -27,6 +27,19 @@ public class Bullet : MonoBehaviour
     {
 		switch(type)
         {
+            case Game_Manager.ShopItems.BASIC:
+                GetComponent<SpriteRenderer>().sprite = thisSprite;
+                damage = 2 * level;
+                slowDownPercent = 0;
+                damageOverTime = 0;
+                DOT_effectTimer = 0;
+                slowEffectTimer = 0;
+
+                if (Game_Manager.Instance.purchasedFireUpgrade)
+                {
+                    damageOverTime = damageOverTime * 2;
+                }
+                break;
             case Game_Manager.ShopItems.FIRE:
                 GetComponent<SpriteRenderer>().sprite = thisSprite;
                 damage = 2 * level;
@@ -46,7 +59,7 @@ public class Bullet : MonoBehaviour
                 slowDownPercent = .1f * (float)level;
                 damageOverTime = 0;
                 DOT_effectTimer = 0;
-                slowEffectTimer = 30;
+                slowEffectTimer = 300;
 
                 if (Game_Manager.Instance.purchasedIceUpgrade)
                 {
@@ -70,8 +83,8 @@ public class Bullet : MonoBehaviour
                 GetComponent<SpriteRenderer>().sprite = thisSprite;
                 damage = 2 * level;
                 slowDownPercent = 0;
-                damageOverTime = 1 * level;
-                DOT_effectTimer = 600;
+                damageOverTime = 0;
+                DOT_effectTimer = 0;
                 slowEffectTimer = 0;
 
                 if (Game_Manager.Instance.purchasedFireUpgrade)
