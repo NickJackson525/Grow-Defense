@@ -42,7 +42,7 @@ public class Game_Manager
 
     #endregion
 
-    #region LevelDictionary
+    #region Level Dictionary
 
     public Dictionary<Level, Dictionary<LevelFeatures, int>> Levels = new Dictionary<Level, Dictionary<LevelFeatures, int>>()
     {
@@ -83,6 +83,41 @@ public class Game_Manager
 
     #endregion
 
+    #region Quest Dictionary
+
+    public Dictionary<QuestType, Dictionary<QuestFeatures, int>> quests = new Dictionary<QuestType, Dictionary<QuestFeatures, int>>()
+    {
+        {
+            QuestType.onePlant, new Dictionary<QuestFeatures, int>
+            {
+                {QuestFeatures.basicsRequired, 1},
+                {QuestFeatures.fireRequired, 0},
+                {QuestFeatures.iceRequired, 5},
+                {QuestFeatures.voidRequired, 5}
+            }
+        },
+        {
+            QuestType.twoPlants, new Dictionary<QuestFeatures, int>
+            {
+                {QuestFeatures.basicsRequired, 1},
+                {QuestFeatures.fireRequired, 0},
+                {QuestFeatures.iceRequired, 5},
+                {QuestFeatures.voidRequired, 5}
+            }
+        },
+        {
+            QuestType.threePlants, new Dictionary<QuestFeatures, int>
+            {
+                {QuestFeatures.basicsRequired, 1},
+                {QuestFeatures.fireRequired, 0},
+                {QuestFeatures.iceRequired, 5},
+                {QuestFeatures.voidRequired, 5}
+            }
+        }
+    };
+
+    #endregion
+
     #region Enums
 
     public enum ControlScheme { WASD, ARROWS, IJKL}
@@ -90,9 +125,11 @@ public class Game_Manager
     public enum ShopItems { BASIC, FIRE, ICE, VOID, SPRINKLER, FERTILIZER, WATER, SICLE}
     public enum BulletType { BASIC, FIRE, ICE, VOID }
     public enum Phase { DAY, NIGHT}
-    public enum ColorBlindMode { Normal, Protanope, Deuteranope }
+    public enum ColorBlindMode { Normal, Protanope, Deuteranope}
     public enum Level { ONE, TWO, THREE, FOUR}
     public enum LevelFeatures { Ladybug, NEXTENEMY, basicPlantsRequired, firePlantsRequired, icePlantsRequired, voidPlantsRequired}
+    public enum QuestType { onePlant, twoPlants, threePlants}
+    public enum QuestFeatures { basicsRequired, fireRequired, iceRequired, voidRequired}
 
     #endregion
 
