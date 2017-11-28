@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class Quest_Letter_Content : MonoBehaviour
 {
-    public int type = 2;
     public Text Line2;
     public Text Line4;
     public Text Line5;
