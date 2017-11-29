@@ -199,49 +199,19 @@ public class Farm_Controller : MonoBehaviour
 
             if ((isPlanted) && (isSelected) && (Input.GetMouseButtonUp(1) || Input.GetButtonUp("RightTrigger")) && (!Game_Manager.Instance.gameOver))
             {
-                switch(newPlant.GetComponent<Plant_controller>().currentLevel)
+                switch(newPlant.GetComponent<Plant_controller>().thisPlant)
                 {
-                    case 1:
-                        if (newPlant.GetComponent<Plant_controller>().thisPlant == Game_Manager.ShopItems.BASIC)
-                        {
-                            Game_Manager.Instance.money += 15;
-                        }
-                        else
-                        {
-                            Game_Manager.Instance.money += 30;
-                        }
+                    case Game_Manager.ShopItems.BASIC:
+                        Game_Manager.Instance.basicPlantsHarvested++;
                         break;
-                    case 2:
-                        if (newPlant.GetComponent<Plant_controller>().thisPlant == Game_Manager.ShopItems.BASIC)
-                        {
-                            Game_Manager.Instance.money += 25;
-                        }
-                        else
-                        {
-                            Game_Manager.Instance.money += 50;
-                        }
+                    case Game_Manager.ShopItems.FIRE:
+                        Game_Manager.Instance.firePlantsHarvested++;
                         break;
-                    case 3:
-                        if (newPlant.GetComponent<Plant_controller>().thisPlant == Game_Manager.ShopItems.BASIC)
-                        {
-                            Game_Manager.Instance.money += 100;
-                        }
-                        else
-                        {
-                            Game_Manager.Instance.money += 200;
-                        }
-
-                        //TODO: add completion check for quests
+                    case Game_Manager.ShopItems.ICE:
+                        Game_Manager.Instance.icePlantsHarvested++;
                         break;
-                    default:
-                        if (newPlant.GetComponent<Plant_controller>().thisPlant == Game_Manager.ShopItems.BASIC)
-                        {
-                            Game_Manager.Instance.money += 25;
-                        }
-                        else
-                        {
-                            Game_Manager.Instance.money += 50;
-                        }
+                    case Game_Manager.ShopItems.VOID:
+                        Game_Manager.Instance.voidPlantsHarvested++;
                         break;
                 }
 

@@ -146,6 +146,10 @@ public class Game_Manager
     public int firePlantsRequired = 5;
     public int icePlantsRequired = 5;
     public int voidPlantsRequired = 5;
+    public int basicPlantsHarvested = 0;
+    public int firePlantsHarvested = 0;
+    public int icePlantsHarvested = 0;
+    public int voidPlantsHarvested = 0;
     public int totalWaveEnemies = 0;
     public int spawnCount = 0;
     public int currentNumQuests = 0;
@@ -166,6 +170,10 @@ public class Game_Manager
     public bool purchasedVoidUpgrade = false;
     public ControlScheme currentControls = ControlScheme.WASD;
     public ColorBlindMode BlindMode = ColorBlindMode.Normal;
+    public GameObject pauseWindow;
+    public GameObject Objective1;
+    public GameObject Objective2;
+    public GameObject Objective3;
 
     #endregion
 
@@ -203,6 +211,20 @@ public class Game_Manager
 
     public void Update()
     {
+        if(!Objective1)
+        {
+            if(GameObject.FindGameObjectWithTag("Objective1"))
+            {
+                pauseWindow = GameObject.FindGameObjectWithTag("PauseWindow");
+                Objective1 = GameObject.FindGameObjectWithTag("Objective1");
+                Objective2 = GameObject.FindGameObjectWithTag("Objective2");
+                Objective3 = GameObject.FindGameObjectWithTag("Objective3");
+
+                pauseWindow.GetComponent<Pause_Canvas_Controller>().BackToPauseMenu();
+                pauseWindow.GetComponent<Pause_Canvas_Controller>().pauseWindow.SetActive(false);
+            }
+        }
+
         if (!pauseGame && gameStarted)
         {
             if ((basicPlantsGrown >= basicPlantsRequired) && (firePlantsGrown >= firePlantsRequired) && (icePlantsGrown >= icePlantsRequired) && (voidPlantsGrown >= voidPlantsRequired))

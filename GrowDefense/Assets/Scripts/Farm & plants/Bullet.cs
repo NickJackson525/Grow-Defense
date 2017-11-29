@@ -102,13 +102,16 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if (target == null)
+        if (!Game_Manager.Instance.pauseGame)
         {
-            Destroy(this.gameObject);
-        }
-        else if (move)
-        {
-            this.gameObject.transform.position = Vector3.Lerp(transform.position, target.transform.position, speed);
+            if (target == null)
+            {
+                Destroy(this.gameObject);
+            }
+            else if (move)
+            {
+                this.gameObject.transform.position = Vector3.Lerp(transform.position, target.transform.position, speed);
+            }
         }
 	}
 

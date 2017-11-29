@@ -11,6 +11,10 @@ TagManager:
   - Water
   - Bullet
   - AudioManager
+  - Objective1
+  - Objective2
+  - Objective3
+  - PauseWindow
   layers:
   - Default
   - TransparentFX

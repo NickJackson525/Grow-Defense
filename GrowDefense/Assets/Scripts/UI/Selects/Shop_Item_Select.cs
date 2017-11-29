@@ -59,17 +59,17 @@ public class Shop_Item_Select : MonoBehaviour
 
         if((gameObject.name == "Build_Select") && Input.GetKeyUp(KeyCode.Alpha1))
         {
-            //ChangeSelect();
             buildSelect.transform.position = waterSelect.transform.position;
             Game_Manager.Instance.currentShopSelection = Game_Manager.ShopItems.WATER;
             Game_Manager.Instance.placingUpgrade = false;
+            Game_Manager.Instance.wateringCanSelected = true;
         }
         else if ((gameObject.name == "Build_Select") && Input.GetKeyUp(KeyCode.Alpha2))
         {
-            //ChangeSelect();
             buildSelect.transform.position = sicleSelect.transform.position;
             Game_Manager.Instance.currentShopSelection = Game_Manager.ShopItems.SICLE;
             Game_Manager.Instance.placingUpgrade = false;
+            Game_Manager.Instance.SicleSelected = true;
         }
     }
 

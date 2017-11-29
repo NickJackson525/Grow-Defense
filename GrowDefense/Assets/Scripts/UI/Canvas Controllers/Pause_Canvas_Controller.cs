@@ -7,6 +7,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
     #region Variables
 
     public Audio_Manager audioManager;
+    public GameObject shopWindow;
     public GameObject pauseWindow;
     public GameObject pauseTitle;
     public GameObject objectivesButton;
@@ -38,7 +39,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-		if(Input.GetKeyUp(KeyCode.Escape))
+		if(Input.GetKeyUp(KeyCode.Escape) && !shopWindow.activeSelf)
         {
             if(pauseWindow.activeSelf)
             {

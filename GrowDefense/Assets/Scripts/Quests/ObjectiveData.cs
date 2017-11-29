@@ -3,20 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Quest_Popup : MonoBehaviour
+public class ObjectiveData : MonoBehaviour
 {
     public Button completeQuestButton;
-    public GameObject letterContent1;
-    public GameObject letterContent2;
-    public GameObject letterContent3;
+    public Sprite basicPlant;
+    public Sprite firePlant;
+    public Sprite icePlant;
+    public Sprite voidPlant;
+    public GameObject plant1;
+    public GameObject plant2;
+    public GameObject plant3;
+    public GameObject plant4;
+    public GameObject plant1Grown;
+    public GameObject plant2Grown;
+    public GameObject plant3Grown;
+    public GameObject plant4Grown;
     public GameObject Objective1;
     public GameObject Objective2;
     public GameObject Objective3;
     public int type = 2;
+    public int ObjectiveNum = 0;
     public int basicRequired = 0;
     public int fireRequired = 0;
     public int iceRequired = 0;
     public int voidRequired = 0;
+    int questReward = 0;
 
     // Use this for initialization
     void Start ()
@@ -24,175 +35,118 @@ public class Quest_Popup : MonoBehaviour
         Objective1 = Game_Manager.Instance.Objective1;
         Objective2 = Game_Manager.Instance.Objective2;
         Objective3 = Game_Manager.Instance.Objective3;
-
-        switch (type)
-        {
-            case 1:
-                TypeOne();
-                break;
-            case 2:
-                TypeTwo();
-                break;
-            case 3:
-                TypeThree();
-                break;
-            default:
-                TypeTwo();
-                break;
-        }
-
-
     }
-
-    #region Popup Type 1
-
-    public void TypeOne()
+	
+	// Update is called once per frame
+	void Update ()
     {
-        letterContent1.SetActive(true);
-        letterContent2.SetActive(false);
-        letterContent3.SetActive(false);
-
-        letterContent1.GetComponent<Quest_Letter_Content>().type = type;
-        letterContent1.GetComponent<Quest_Letter_Content>().basicRequired = basicRequired;
-        letterContent1.GetComponent<Quest_Letter_Content>().fireRequired = fireRequired;
-        letterContent1.GetComponent<Quest_Letter_Content>().iceRequired = iceRequired;
-        letterContent1.GetComponent<Quest_Letter_Content>().voidRequired = voidRequired;
-
-        if (basicRequired > 0)
-        {
-            letterContent1.GetComponent<Quest_Letter_Content>().Line2.text = "some <Color=green>Basic</Color> Plants for defense.";
-            letterContent1.GetComponent<Quest_Letter_Content>().Line4.text = "pay you well! I need <Color=green>" + basicRequired + "</Color> to";
-        }
-        else if(fireRequired > 0)
-        {
-            letterContent1.GetComponent<Quest_Letter_Content>().Line2.text = "some <Color=red>Fire</Color> Plants for defense.";
-            letterContent1.GetComponent<Quest_Letter_Content>().Line4.text = "pay you well! I need <Color=red>" + fireRequired + "</Color> to";
-        }
-        else if (iceRequired > 0)
-        {
-            letterContent1.GetComponent<Quest_Letter_Content>().Line2.text = "some <Color=blue>Ice</Color> Plants for defense.";
-            letterContent1.GetComponent<Quest_Letter_Content>().Line4.text = "pay you well! I need <Color=blue>" + iceRequired + "</Color> to";
-        }
-        else if (voidRequired > 0)
-        {
-            letterContent1.GetComponent<Quest_Letter_Content>().Line2.text = "some <Color=purple>Void</Color> Plants for defense.";
-            letterContent1.GetComponent<Quest_Letter_Content>().Line4.text = "pay you well! I need <Color=purple>" + voidRequired + "</Color> to";
-        }
-    }
-
-    #endregion
-
-    #region Popup Type 2
-
-    public void TypeTwo()
-    {
-        letterContent1.SetActive(false);
-        letterContent2.SetActive(true);
-        letterContent3.SetActive(false);
-
-        letterContent2.GetComponent<Quest_Letter_Content>().type = type;
-        letterContent2.GetComponent<Quest_Letter_Content>().basicRequired = basicRequired;
-        letterContent2.GetComponent<Quest_Letter_Content>().fireRequired = fireRequired;
-        letterContent2.GetComponent<Quest_Letter_Content>().iceRequired = iceRequired;
-        letterContent2.GetComponent<Quest_Letter_Content>().voidRequired = voidRequired;
-
-        if ((basicRequired > 0) && (fireRequired > 0))
-        {
-            letterContent2.GetComponent<Quest_Letter_Content>().Line2.text = "some <Color=green>Basic</Color> and <Color=red>Fire</Color> Plants for";
-            letterContent2.GetComponent<Quest_Letter_Content>().Line5.text = "<Color=green>" + basicRequired + " Basic</Color> and <Color=red>" + fireRequired + " Fire</Color> to defend my";
-        }
-        else if ((basicRequired > 0) && (iceRequired > 0))
-        {
-            letterContent2.GetComponent<Quest_Letter_Content>().Line2.text = "some <Color=green>Basic</Color> and <Color=blue>Ice</Color> Plants for";
-            letterContent2.GetComponent<Quest_Letter_Content>().Line5.text = "<Color=green>" + basicRequired + " Basic</Color> and <Color=blue>" + iceRequired + " Ice</Color> to defend my";
-        }
-        else if ((basicRequired > 0) && (voidRequired > 0))
-        {
-            letterContent2.GetComponent<Quest_Letter_Content>().Line2.text = "some <Color=green>Basic</Color> and <Color=purple>Void</Color> Plants for";
-            letterContent2.GetComponent<Quest_Letter_Content>().Line5.text = "<Color=green>" + basicRequired + " Basic</Color> and <Color=purple>" + voidRequired + " Void</Color> to defend my";
-        }
-        else if ((fireRequired > 0) && (iceRequired > 0))
-        {
-            letterContent2.GetComponent<Quest_Letter_Content>().Line2.text = "some <Color=red>Fire</Color> and <Color=blue>Ice</Color> Plants for";
-            letterContent2.GetComponent<Quest_Letter_Content>().Line5.text = "<Color=red>" + fireRequired + " Fire</Color> and <Color=blue>" + iceRequired + " Ice</Color> to defend my";
-
-        }
-        else if ((fireRequired > 0) && (voidRequired > 0))
-        {
-            letterContent2.GetComponent<Quest_Letter_Content>().Line2.text = "some <Color=red>Fire</Color> and <Color=purple>Void</Color> Plants for";
-            letterContent2.GetComponent<Quest_Letter_Content>().Line5.text = "<Color=red>" + fireRequired + " Fire</Color> and <Color=purple>" + voidRequired + " Void</Color> to defend my";
-        }
-        else if ((iceRequired > 0) && (voidRequired > 0))
-        {
-            letterContent2.GetComponent<Quest_Letter_Content>().Line2.text = "some <Color=blue>Ice</Color> and <Color=purple>Void</Color> Plants for";
-            letterContent2.GetComponent<Quest_Letter_Content>().Line5.text = "<Color=blue>" + iceRequired + " Ice</Color> and <Color=purple>" + voidRequired + " Void</Color> to defend my";
-        }
-    }
-
-    #endregion
-
-    #region Popup Type 3
-
-    public void TypeThree()
-    {
-        letterContent1.SetActive(false);
-        letterContent2.SetActive(false);
-        letterContent3.SetActive(true);
-
-        letterContent3.GetComponent<Quest_Letter_Content>().type = type;
-        letterContent3.GetComponent<Quest_Letter_Content>().basicRequired = basicRequired;
-        letterContent3.GetComponent<Quest_Letter_Content>().fireRequired = fireRequired;
-        letterContent3.GetComponent<Quest_Letter_Content>().iceRequired = iceRequired;
-        letterContent3.GetComponent<Quest_Letter_Content>().voidRequired = voidRequired;
-
-        if ((basicRequired > 0) && (fireRequired > 0) && (iceRequired > 0))
-        {
-            letterContent3.GetComponent<Quest_Letter_Content>().Line2.text = "some <Color=green>Basic</Color>, <Color=red>Fire</Color>, and <Color=blue>Ice</Color> Plants";
-            letterContent3.GetComponent<Quest_Letter_Content>().Line5.text = "need <Color=green>" + basicRequired + " Basic</Color>, <Color=red>" + fireRequired + " Fire</Color>, and <Color=blue>" + iceRequired + " Ice</Color>";
-        }
-        else if ((basicRequired > 0) && (fireRequired > 0) && (voidRequired > 0))
-        {
-            letterContent3.GetComponent<Quest_Letter_Content>().Line2.text = "some <Color=green>Basic</Color>, <Color=red>Fire</Color>, and <Color=purple>Void</Color> Plants";
-            letterContent3.GetComponent<Quest_Letter_Content>().Line5.text = "need <Color=green>" + basicRequired + " Basic</Color>, <Color=red>" + fireRequired + " Fire</Color>, and <Color=purple>" + voidRequired + " Void</Color>";
-        }
-        else if ((basicRequired > 0) && (iceRequired > 0) && (voidRequired > 0))
-        {
-            letterContent3.GetComponent<Quest_Letter_Content>().Line2.text = "some <Color=green>Basic</Color>, <Color=blue>Ice</Color>, and <Color=purple>Void</Color> Plants";
-            letterContent3.GetComponent<Quest_Letter_Content>().Line5.text = "need <Color=green>" + basicRequired + " Basic</Color>, <Color=blue>" + iceRequired + " Ice</Color>, and <Color=purple>" + voidRequired + " Void</Color>";
-        }
-        else if ((fireRequired > 0) && (iceRequired > 0) && (voidRequired > 0))
-        {
-            letterContent3.GetComponent<Quest_Letter_Content>().Line2.text = "some <Color=red>Fire</Color>, <Color=blue>Ice</Color>, and <Color=purple>Void</Color> Plants";
-            letterContent3.GetComponent<Quest_Letter_Content>().Line5.text = "need <Color=red>" + fireRequired + " Fire</Color>, <Color=blue>" + iceRequired + " Ice</Color>, and <Color=purple>" + voidRequired + " Void</Color>";
-        }
-    }
-
-    #endregion
-
-    public void AcceptQuest()
-    {
-        switch(Game_Manager.Instance.currentNumQuests)
+        switch (ObjectiveNum)
         {
             case 1:
                 UpdateObjectives(Objective1);
-                Objective1.GetComponent<ObjectiveData>().ObjectiveNum = 1;
                 break;
             case 2:
                 UpdateObjectives(Objective2);
-                Objective1.GetComponent<ObjectiveData>().ObjectiveNum = 2;
                 break;
             case 3:
                 UpdateObjectives(Objective3);
-                Objective1.GetComponent<ObjectiveData>().ObjectiveNum = 3;
                 break;
         }
 
-        Destroy(gameObject);
+        if ((Game_Manager.Instance.basicPlantsHarvested >= basicRequired) && (Game_Manager.Instance.firePlantsHarvested >= fireRequired) && (Game_Manager.Instance.icePlantsHarvested >= iceRequired) && (Game_Manager.Instance.voidPlantsHarvested >= voidRequired))
+        {
+            completeQuestButton.interactable = true;
+        }
+
+        if((basicRequired <= 0) && (fireRequired <= 0) && (iceRequired <= 0) && (voidRequired <= 0))
+        {
+            completeQuestButton.interactable = false;
+        }
     }
 
-    public void RejectQuest()
+    public void CompleteQuest()
     {
-        Destroy(gameObject);
+        if(ObjectiveNum == 1)
+        {
+            ObjectiveNum = 3;
+            Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().ObjectiveNum = 1;
+            Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().ObjectiveNum = 2;
+        }
+        else if(ObjectiveNum == 2)
+        {
+            ObjectiveNum = 3;
+            Game_Manager.Instance.Objective1.GetComponent<ObjectiveData>().ObjectiveNum = 1;
+            Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().ObjectiveNum = 2;
+        }
+        else
+        {
+            ObjectiveNum = 3;
+            Game_Manager.Instance.Objective1.GetComponent<ObjectiveData>().ObjectiveNum = 1;
+            Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().ObjectiveNum = 2;
+        }
+
+        plant1.SetActive(false);
+        plant2.SetActive(false);
+        plant3.SetActive(false);
+        plant4.SetActive(false);
+        plant1Grown.SetActive(false);
+        plant2Grown.SetActive(false);
+        plant3Grown.SetActive(false);
+        plant4Grown.SetActive(false);
+        Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant1.SetActive(false);
+        Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant2.SetActive(false);
+        Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant3.SetActive(false);
+        Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant4.SetActive(false);
+        Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant1Grown.SetActive(false);
+        Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant2Grown.SetActive(false);
+        Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant3Grown.SetActive(false);
+        Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant4Grown.SetActive(false);
+        Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().completeQuestButton.interactable = false;
+
+        completeQuestButton.interactable = false;
+
+        if (basicRequired > 0)
+        {
+            questReward += 25 * basicRequired;
+            Game_Manager.Instance.basicPlantsHarvested--;
+        }
+
+        if (fireRequired > 0)
+        {
+            questReward += 50 * fireRequired;
+            Game_Manager.Instance.firePlantsHarvested--;
+        }
+
+        if (iceRequired > 0)
+        {
+            questReward += 50 * iceRequired;
+            Game_Manager.Instance.icePlantsHarvested--;
+        }
+
+        if (voidRequired > 0)
+        {
+            questReward += 50 * voidRequired;
+            Game_Manager.Instance.voidPlantsHarvested--;
+        }
+
+        switch(type)
+        {
+            case 1:
+                questReward += 100;
+                break;
+            case 2:
+                questReward += 200;
+                break;
+            case 3:
+                questReward += 300;
+                break;
+            default:
+                questReward += 200;
+                break;
+        }
+
+        Game_Manager.Instance.money += questReward;
+        questReward = 0;
         Game_Manager.Instance.currentNumQuests--;
     }
 
@@ -222,7 +176,7 @@ public class Quest_Popup : MonoBehaviour
 
         if (fireRequired > 0)
         {
-            if(basicRequired > 0)
+            if (basicRequired > 0)
             {
                 objective.GetComponent<ObjectiveData>().plant2.SetActive(true);
                 objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(true);
@@ -244,7 +198,7 @@ public class Quest_Popup : MonoBehaviour
 
         if (iceRequired > 0)
         {
-            if(fireRequired > 0)
+            if (fireRequired > 0)
             {
                 if (basicRequired > 0)
                 {
@@ -283,11 +237,11 @@ public class Quest_Popup : MonoBehaviour
 
         if (voidRequired > 0)
         {
-            if(iceRequired > 0)
+            if (iceRequired > 0)
             {
-                if(fireRequired > 0)
+                if (fireRequired > 0)
                 {
-                    if(basicRequired > 0)
+                    if (basicRequired > 0)
                     {
                         objective.GetComponent<ObjectiveData>().plant4.SetActive(true);
                         objective.GetComponent<ObjectiveData>().plant4Grown.SetActive(true);
@@ -317,9 +271,9 @@ public class Quest_Popup : MonoBehaviour
                     objective.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text = "0 / " + voidRequired;
                 }
             }
-            else if(fireRequired > 0)
+            else if (fireRequired > 0)
             {
-                if(basicRequired > 0)
+                if (basicRequired > 0)
                 {
                     objective.GetComponent<ObjectiveData>().plant3.SetActive(true);
                     objective.GetComponent<ObjectiveData>().plant3Grown.SetActive(true);

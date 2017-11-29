@@ -740,7 +740,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114347655402235014}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114512342733180842}
+        m_MethodName: AcceptQuest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114206358905826554
@@ -1132,6 +1143,9 @@ MonoBehaviour:
   letterContent1: {fileID: 1759920531360918}
   letterContent2: {fileID: 1830198829261960}
   letterContent3: {fileID: 1664776667960688}
+  Objective1: {fileID: 0}
+  Objective2: {fileID: 0}
+  Objective3: {fileID: 0}
   type: 2
   basicRequired: 0
   fireRequired: 0
@@ -1175,7 +1189,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114964444855605772}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114512342733180842}
+        m_MethodName: RejectQuest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114603652894211526
