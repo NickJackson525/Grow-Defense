@@ -30,11 +30,9 @@ public class ObjectiveData : MonoBehaviour
     int questReward = 0;
 
     // Use this for initialization
-    void Start ()
+    void Awake ()
     {
-        Objective1 = Game_Manager.Instance.Objective1;
-        Objective2 = Game_Manager.Instance.Objective2;
-        Objective3 = Game_Manager.Instance.Objective3;
+
     }
 	
 	// Update is called once per frame
@@ -152,13 +150,13 @@ public class ObjectiveData : MonoBehaviour
 
     public void UpdateObjectives(GameObject objective)
     {
-        objective.SetActive(true);
-
-        objective.GetComponent<ObjectiveData>().type = type;
-        objective.GetComponent<ObjectiveData>().basicRequired = basicRequired;
-        objective.GetComponent<ObjectiveData>().fireRequired = fireRequired;
-        objective.GetComponent<ObjectiveData>().iceRequired = iceRequired;
-        objective.GetComponent<ObjectiveData>().voidRequired = voidRequired;
+        gameObject.SetActive(true);
+        objective.GetComponent<ObjectiveData>().plant1.SetActive(false);
+        objective.GetComponent<ObjectiveData>().plant1Grown.SetActive(false);
+        objective.GetComponent<ObjectiveData>().plant2.SetActive(false);
+        objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(false);
+        objective.GetComponent<ObjectiveData>().plant3.SetActive(false);
+        objective.GetComponent<ObjectiveData>().plant3Grown.SetActive(false);
 
         #region Update Basic
 
@@ -166,7 +164,7 @@ public class ObjectiveData : MonoBehaviour
         {
             objective.GetComponent<ObjectiveData>().plant1.SetActive(true);
             objective.GetComponent<ObjectiveData>().plant1Grown.SetActive(true);
-            objective.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().basicPlant;
+            objective.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite = basicPlant;
             objective.GetComponent<ObjectiveData>().plant1Grown.GetComponent<Text>().text = "0 / " + basicRequired;
         }
 
@@ -180,14 +178,14 @@ public class ObjectiveData : MonoBehaviour
             {
                 objective.GetComponent<ObjectiveData>().plant2.SetActive(true);
                 objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(true);
-                objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().firePlant;
+                objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = firePlant;
                 objective.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text = "0 / " + fireRequired;
             }
             else
             {
                 objective.GetComponent<ObjectiveData>().plant1.SetActive(true);
                 objective.GetComponent<ObjectiveData>().plant1Grown.SetActive(true);
-                objective.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().firePlant;
+                objective.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite = gameObject.GetComponent<ObjectiveData>().firePlant;
                 objective.GetComponent<ObjectiveData>().plant1Grown.GetComponent<Text>().text = "0 / " + fireRequired;
             }
         }
@@ -204,14 +202,14 @@ public class ObjectiveData : MonoBehaviour
                 {
                     objective.GetComponent<ObjectiveData>().plant3.SetActive(true);
                     objective.GetComponent<ObjectiveData>().plant3Grown.SetActive(true);
-                    objective.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().icePlant;
+                    objective.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite = icePlant;
                     objective.GetComponent<ObjectiveData>().plant3Grown.GetComponent<Text>().text = "0 / " + iceRequired;
                 }
                 else
                 {
                     objective.GetComponent<ObjectiveData>().plant2.SetActive(true);
                     objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(true);
-                    objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().icePlant;
+                    objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = icePlant;
                     objective.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text = "0 / " + iceRequired;
                 }
             }
@@ -219,14 +217,14 @@ public class ObjectiveData : MonoBehaviour
             {
                 objective.GetComponent<ObjectiveData>().plant2.SetActive(true);
                 objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(true);
-                objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().icePlant;
+                objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = icePlant;
                 objective.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text = "0 / " + iceRequired;
             }
             else
             {
                 objective.GetComponent<ObjectiveData>().plant1.SetActive(true);
                 objective.GetComponent<ObjectiveData>().plant1Grown.SetActive(true);
-                objective.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().icePlant;
+                objective.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite = icePlant;
                 objective.GetComponent<ObjectiveData>().plant1Grown.GetComponent<Text>().text = "0 / " + iceRequired;
             }
         }
@@ -245,14 +243,14 @@ public class ObjectiveData : MonoBehaviour
                     {
                         objective.GetComponent<ObjectiveData>().plant4.SetActive(true);
                         objective.GetComponent<ObjectiveData>().plant4Grown.SetActive(true);
-                        objective.GetComponent<ObjectiveData>().plant4.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                        objective.GetComponent<ObjectiveData>().plant4.GetComponent<SpriteRenderer>().sprite = voidPlant;
                         objective.GetComponent<ObjectiveData>().plant4Grown.GetComponent<Text>().text = "0 / " + voidRequired;
                     }
                     else
                     {
                         objective.GetComponent<ObjectiveData>().plant3.SetActive(true);
                         objective.GetComponent<ObjectiveData>().plant3Grown.SetActive(true);
-                        objective.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                        objective.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite = voidPlant;
                         objective.GetComponent<ObjectiveData>().plant3Grown.GetComponent<Text>().text = "0 / " + voidRequired;
                     }
                 }
@@ -260,14 +258,14 @@ public class ObjectiveData : MonoBehaviour
                 {
                     objective.GetComponent<ObjectiveData>().plant3.SetActive(true);
                     objective.GetComponent<ObjectiveData>().plant3Grown.SetActive(true);
-                    objective.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                    objective.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite = voidPlant;
                     objective.GetComponent<ObjectiveData>().plant3Grown.GetComponent<Text>().text = "0 / " + voidRequired;
                 }
                 else
                 {
                     objective.GetComponent<ObjectiveData>().plant2.SetActive(true);
                     objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(true);
-                    objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                    objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = voidPlant;
                     objective.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text = "0 / " + voidRequired;
                 }
             }
@@ -277,14 +275,14 @@ public class ObjectiveData : MonoBehaviour
                 {
                     objective.GetComponent<ObjectiveData>().plant3.SetActive(true);
                     objective.GetComponent<ObjectiveData>().plant3Grown.SetActive(true);
-                    objective.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                    objective.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite = voidPlant;
                     objective.GetComponent<ObjectiveData>().plant3Grown.GetComponent<Text>().text = "0 / " + voidRequired;
                 }
                 else
                 {
                     objective.GetComponent<ObjectiveData>().plant2.SetActive(true);
                     objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(true);
-                    objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                    objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = voidPlant;
                     objective.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text = "0 / " + voidRequired;
                 }
             }
@@ -292,14 +290,14 @@ public class ObjectiveData : MonoBehaviour
             {
                 objective.GetComponent<ObjectiveData>().plant2.SetActive(true);
                 objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(true);
-                objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = voidPlant;
                 objective.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text = "0 / " + voidRequired;
             }
             else
             {
                 objective.GetComponent<ObjectiveData>().plant1.SetActive(true);
                 objective.GetComponent<ObjectiveData>().plant1Grown.SetActive(true);
-                objective.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                objective.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite = voidPlant;
                 objective.GetComponent<ObjectiveData>().plant1Grown.GetComponent<Text>().text = "0 / " + voidRequired;
             }
         }

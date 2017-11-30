@@ -205,6 +205,12 @@ public class Quest_Popup : MonoBehaviour
         objective.GetComponent<ObjectiveData>().fireRequired = fireRequired;
         objective.GetComponent<ObjectiveData>().iceRequired = iceRequired;
         objective.GetComponent<ObjectiveData>().voidRequired = voidRequired;
+        objective.GetComponent<ObjectiveData>().plant1.SetActive(false);
+        objective.GetComponent<ObjectiveData>().plant1Grown.SetActive(false);
+        objective.GetComponent<ObjectiveData>().plant2.SetActive(false);
+        objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(false);
+        objective.GetComponent<ObjectiveData>().plant3.SetActive(false);
+        objective.GetComponent<ObjectiveData>().plant3Grown.SetActive(false);
 
         #region Update Basic
 

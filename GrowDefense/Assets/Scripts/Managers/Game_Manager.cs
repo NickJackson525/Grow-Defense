@@ -211,7 +211,24 @@ public class Game_Manager
 
     public void Update()
     {
-        if(!Objective1)
+        if(Input.GetKeyUp(KeyCode.Q))
+        {
+            basicPlantsHarvested++;
+        }
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            firePlantsHarvested++;
+        }
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            icePlantsHarvested++;
+        }
+        if (Input.GetKeyUp(KeyCode.R))
+        {
+            voidPlantsHarvested++;
+        }
+
+        if (!Objective1)
         {
             if(GameObject.FindGameObjectWithTag("Objective1"))
             {
