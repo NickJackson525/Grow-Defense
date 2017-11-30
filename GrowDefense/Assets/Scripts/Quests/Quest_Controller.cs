@@ -43,7 +43,7 @@ public class Quest_Controller : MonoBehaviour
         }
         else
         {
-            if((Game_Manager.Instance.currentNumQuests < 3) && !unviewedQuest)
+            if((Game_Manager.Instance.currentNumQuests < 3) && !unviewedQuest && Game_Manager.Instance.gameStarted)
             {
                 CreateQuest();
                 unviewedQuest = true;
@@ -203,6 +203,7 @@ public class Quest_Controller : MonoBehaviour
             timer = Random.Range(480, 916);
             createdQuest.SetActive(true);
             GetComponent<Image>().sprite = mailIcon;
+            Game_Manager.Instance.pauseGame = true;
         }
     }
 }

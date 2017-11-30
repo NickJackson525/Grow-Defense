@@ -7,15 +7,10 @@ public class Plant_controller : MonoBehaviour
 {
     #region Variables
 
+    public Audio_Manager audioManager;
     public Sprite basicPlant;
-    //public Sprite firePlantLv1;
-    //public Sprite firePlantLv2;
     public Sprite firePlantLv3;
-    //public Sprite icePlantLv1;
-    //public Sprite icePlantLv2;
     public Sprite icePlantLv3;
-    //public Sprite voidPlantLv1;
-    //public Sprite voidPlantLv2;
     public Sprite voidPlantLv3;
     public Sprite basicBullet;
     public Sprite fireBullet;
@@ -44,6 +39,8 @@ public class Plant_controller : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        audioManager = GameObject.Find("Audio Manager").GetComponent<Audio_Manager>();
+
         switch (thisPlant)
         {
             case Game_Manager.ShopItems.BASIC:
@@ -189,6 +186,7 @@ public class Plant_controller : MonoBehaviour
                 {
                     if (Vector2.Distance(currentTarget.transform.position, this.gameObject.transform.position) <= range)
                     {
+                        audioManager.PlayPlantShoot();
                         createdBullet = Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, 0f), transform.rotation);
                         createdBullet.GetComponent<Bullet>().move = true;
                         createdBullet.GetComponent<Bullet>().target = currentTarget;

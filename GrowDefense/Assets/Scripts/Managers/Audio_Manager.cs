@@ -17,6 +17,7 @@ public class Audio_Manager : MonoBehaviour
     public AudioClip plantInGound3;
     public AudioClip plantInGound4;
     public AudioClip button;
+    public AudioClip plantShoot;
 
     #endregion
 
@@ -74,6 +75,7 @@ public class Audio_Manager : MonoBehaviour
         plantInGound3 = Resources.Load<AudioClip>("Sounds/plantInGround3");
         plantInGound4 = Resources.Load<AudioClip>("Sounds/plantInGround4");
         button = Resources.Load<AudioClip>("Sounds/ButtonClick");
+        plantShoot = Resources.Load<AudioClip>("Sounds/plantShoot");
 
         PlayBackgroundMusic();
     }
@@ -99,6 +101,35 @@ public class Audio_Manager : MonoBehaviour
         effectSoundSource.PlayOneShot(button, .6f);
     }
 
+    public void PlayPlantShoot()
+    {
+        effectSoundSource.PlayOneShot(plantShoot, .4f);
+    }
+
+    public void PlayPlantingSound()
+    {
+        int rand = UnityEngine.Random.Range(0, 4);
+
+        switch (rand)
+        {
+            case 1:
+                effectSoundSource.PlayOneShot(plantInGound1, .5f);
+                break;
+            case 2:
+                effectSoundSource.PlayOneShot(plantInGound2, .5f);
+                break;
+            case 3:
+                effectSoundSource.PlayOneShot(plantInGound3, .5f);
+                break;
+            case 4:
+                effectSoundSource.PlayOneShot(plantInGound4, .5f);
+                break;
+            default:
+                effectSoundSource.PlayOneShot(plantInGound1, .5f);
+                break;
+        }
+    }
+
     public void PlayBackgroundMusic()
     {
         backgroundMusicSource.Stop();
@@ -107,20 +138,20 @@ public class Audio_Manager : MonoBehaviour
         switch (rand)
         {
             case 0:
-                backgroundMusicSource.PlayOneShot(backroundMusic1, .2f);
-                backgroundMusicSource.volume = .2f;
+                backgroundMusicSource.PlayOneShot(backroundMusic1, .3f);
+                backgroundMusicSource.volume = .3f;
                 break;
             case 1:
-                backgroundMusicSource.PlayOneShot(backroundMusic2, .4f);
-                backgroundMusicSource.volume = .4f;
+                backgroundMusicSource.PlayOneShot(backroundMusic2, .5f);
+                backgroundMusicSource.volume = .5f;
                 break;
             case 2:
-                backgroundMusicSource.PlayOneShot(backroundMusic3, .4f);
-                backgroundMusicSource.volume = .4f;
+                backgroundMusicSource.PlayOneShot(backroundMusic3, .5f);
+                backgroundMusicSource.volume = .5f;
                 break;
             default:
-                backgroundMusicSource.PlayOneShot(backroundMusic1, .2f);
-                backgroundMusicSource.volume = .2f;
+                backgroundMusicSource.PlayOneShot(backroundMusic1, .3f);
+                backgroundMusicSource.volume = .3f;
                 break;
         }
     }

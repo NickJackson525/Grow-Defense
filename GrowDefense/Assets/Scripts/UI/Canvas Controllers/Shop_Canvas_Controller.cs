@@ -9,12 +9,9 @@ public class Shop_Canvas_Controller : MonoBehaviour
 
     public Audio_Manager audioManager;
     public GameObject shopWindow;
+    public GameObject shopButton;
     public GameObject pauseWindow;
     public GameObject shopWindowTitle;
-    public GameObject farmUpgradesButton;
-    public GameObject plantUpgradesButton;
-    public GameObject farmUpgradesWindow;
-    public GameObject plantUpgradesWindow;
     public GameObject waterEfficiencyUpgradeButton;
     public GameObject fireUpgradeButton;
     public GameObject iceUpgradeButton;
@@ -79,7 +76,6 @@ public class Shop_Canvas_Controller : MonoBehaviour
         {
             if (shopWindow.activeSelf)
             {
-                BackToPauseMenu();
                 shopWindow.SetActive(false);
                 Game_Manager.Instance.pauseGame = false;
             }
@@ -110,44 +106,17 @@ public class Shop_Canvas_Controller : MonoBehaviour
             {
                 if (shopWindow.activeSelf)
                 {
-                    BackToPauseMenu();
                     shopWindow.SetActive(false);
+                    shopButton.GetComponentInChildren<Text>().text = "Shop";
                     Game_Manager.Instance.pauseGame = false;
                 }
                 else
                 {
                     shopWindow.SetActive(true);
+                    shopButton.GetComponentInChildren<Text>().text = "Exit";
                     Game_Manager.Instance.pauseGame = true;
                 }
             }
-        }
-
-        #endregion
-
-        #region Farm Upgrades Window
-
-        public void FarmUpgradesWindow()
-        {
-            audioManager.PlayButtonSound();
-            shopWindowTitle.SetActive(false);
-            farmUpgradesButton.SetActive(false);
-            plantUpgradesButton.SetActive(false);
-            farmUpgradesWindow.SetActive(true);
-            plantUpgradesWindow.SetActive(false);
-        }
-
-        #endregion
-
-        #region Plant Upgrades Window
-
-        public void PlantUpgradesWindow()
-        {
-            audioManager.PlayButtonSound();
-            shopWindowTitle.SetActive(false);
-            farmUpgradesButton.SetActive(false);
-            plantUpgradesButton.SetActive(false);
-            farmUpgradesWindow.SetActive(false);
-            plantUpgradesWindow.SetActive(true);
         }
 
         #endregion
@@ -167,52 +136,6 @@ public class Shop_Canvas_Controller : MonoBehaviour
         }
 
         #endregion
-
-        #region Sprinkler Upgrade
-
-        public void SprinklerUpgrade()
-        {
-            audioManager.PlayButtonSound();
-
-            if (Game_Manager.Instance.money >= 25)
-            {
-                Game_Manager.Instance.placingUpgrade = true;
-                Game_Manager.Instance.currentShopSelection = Game_Manager.ShopItems.SPRINKLER;
-                Game_Manager.Instance.money -= 25;
-                shopWindowTitle.SetActive(true);
-                farmUpgradesButton.SetActive(true);
-                plantUpgradesButton.SetActive(true);
-                farmUpgradesWindow.SetActive(false);
-                plantUpgradesWindow.SetActive(false);
-                shopWindow.SetActive(false);
-                timer = 30;
-            }
-        }
-
-        #endregion
-
-        #region Fertilizer Upgrade
-
-        public void FertilizerUpgrade()
-        {
-            audioManager.PlayButtonSound();
-
-            if (Game_Manager.Instance.money >= 50)
-            {
-                Game_Manager.Instance.placingUpgrade = true;
-                Game_Manager.Instance.currentShopSelection = Game_Manager.ShopItems.FERTILIZER;
-                Game_Manager.Instance.money -= 50;
-                shopWindowTitle.SetActive(true);
-                farmUpgradesButton.SetActive(true);
-                plantUpgradesButton.SetActive(true);
-                farmUpgradesWindow.SetActive(false);
-                plantUpgradesWindow.SetActive(false);
-                shopWindow.SetActive(false);
-                timer = 30;
-            }
-        }
-
-    #endregion
 
         #region Fire Plant Upgrade
 
@@ -258,20 +181,6 @@ public class Shop_Canvas_Controller : MonoBehaviour
                 Game_Manager.Instance.purchasedVoidUpgrade = true;
                 voidUpgradeButton.GetComponentInChildren<Text>().text = "Purchased";
             }
-        }
-
-        #endregion
-
-        #region Back To Pause Menu
-
-        public void BackToPauseMenu()
-        {
-            audioManager.PlayButtonSound();
-            shopWindowTitle.SetActive(true);
-            farmUpgradesButton.SetActive(true);
-            plantUpgradesButton.SetActive(true);
-            farmUpgradesWindow.SetActive(false);
-            plantUpgradesWindow.SetActive(false);
         }
 
         #endregion

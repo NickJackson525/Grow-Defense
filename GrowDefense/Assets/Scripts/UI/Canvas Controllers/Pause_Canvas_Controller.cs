@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Pause_Canvas_Controller : MonoBehaviour
 {
@@ -39,7 +40,11 @@ public class Pause_Canvas_Controller : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-		if(Input.GetKeyUp(KeyCode.Escape) && !shopWindow.activeSelf)
+        UpdateObjectives(Game_Manager.Instance.Objective1);
+        UpdateObjectives(Game_Manager.Instance.Objective2);
+        UpdateObjectives(Game_Manager.Instance.Objective3);
+
+        if (Input.GetKeyUp(KeyCode.Escape) && !shopWindow.activeSelf)
         {
             if(pauseWindow.activeSelf)
             {
@@ -222,6 +227,167 @@ public class Pause_Canvas_Controller : MonoBehaviour
             Game_Manager.Instance.currentShopSelection = Game_Manager.ShopItems.FIRE;
             Game_Manager.Instance.gameStarted = false;
             Load_Scene("Main Menu");
+        }
+
+    #endregion
+
+        #region Update Objectives
+
+        public void UpdateObjectives(GameObject objective)
+        {
+            gameObject.SetActive(true);
+            objective.GetComponent<ObjectiveData>().plant1.SetActive(false);
+            objective.GetComponent<ObjectiveData>().plant1Grown.SetActive(false);
+            objective.GetComponent<ObjectiveData>().plant2.SetActive(false);
+            objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(false);
+            objective.GetComponent<ObjectiveData>().plant3.SetActive(false);
+            objective.GetComponent<ObjectiveData>().plant3Grown.SetActive(false);
+
+            #region Update Basic
+
+            if (objective.GetComponent<ObjectiveData>().basicRequired > 0)
+            {
+                objective.GetComponent<ObjectiveData>().plant1.SetActive(true);
+                objective.GetComponent<ObjectiveData>().plant1Grown.SetActive(true);
+                objective.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().basicPlant;
+                objective.GetComponent<ObjectiveData>().plant1Grown.GetComponent<Text>().text = Game_Manager.Instance.basicPlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().basicRequired;
+            }
+
+            #endregion
+
+            #region Update Fire
+
+            if (objective.GetComponent<ObjectiveData>().fireRequired > 0)
+            {
+                if (objective.GetComponent<ObjectiveData>().basicRequired > 0)
+                {
+                    objective.GetComponent<ObjectiveData>().plant2.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().firePlant;
+                    objective.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text = Game_Manager.Instance.firePlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().fireRequired;
+                }
+                else
+                {
+                    objective.GetComponent<ObjectiveData>().plant1.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant1Grown.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().firePlant;
+                    objective.GetComponent<ObjectiveData>().plant1Grown.GetComponent<Text>().text = Game_Manager.Instance.firePlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().fireRequired;
+                }
+            }
+
+            #endregion
+
+            #region Update Ice
+
+            if (objective.GetComponent<ObjectiveData>().iceRequired > 0)
+            {
+                if (objective.GetComponent<ObjectiveData>().fireRequired > 0)
+                {
+                    if (objective.GetComponent<ObjectiveData>().basicRequired > 0)
+                    {
+                        objective.GetComponent<ObjectiveData>().plant3.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant3Grown.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().icePlant;
+                        objective.GetComponent<ObjectiveData>().plant3Grown.GetComponent<Text>().text = Game_Manager.Instance.icePlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().iceRequired;
+                    }
+                    else
+                    {
+                        objective.GetComponent<ObjectiveData>().plant2.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().icePlant;
+                        objective.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text = Game_Manager.Instance.icePlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().iceRequired;
+                    }
+                }
+                else if (objective.GetComponent<ObjectiveData>().basicRequired > 0)
+                {
+                    objective.GetComponent<ObjectiveData>().plant2.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().icePlant;
+                    objective.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text = Game_Manager.Instance.icePlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().iceRequired;
+                }
+                else
+                {
+                    objective.GetComponent<ObjectiveData>().plant1.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant1Grown.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().icePlant;
+                    objective.GetComponent<ObjectiveData>().plant1Grown.GetComponent<Text>().text = Game_Manager.Instance.icePlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().iceRequired;
+                }
+            }
+
+            #endregion
+
+            #region Update Void
+
+            if (objective.GetComponent<ObjectiveData>().voidRequired > 0)
+            {
+                if (objective.GetComponent<ObjectiveData>().iceRequired > 0)
+                {
+                    if (objective.GetComponent<ObjectiveData>().fireRequired > 0)
+                    {
+                        if (objective.GetComponent<ObjectiveData>().basicRequired > 0)
+                        {
+                            objective.GetComponent<ObjectiveData>().plant4.SetActive(true);
+                            objective.GetComponent<ObjectiveData>().plant4Grown.SetActive(true);
+                            objective.GetComponent<ObjectiveData>().plant4.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                            objective.GetComponent<ObjectiveData>().plant4Grown.GetComponent<Text>().text = Game_Manager.Instance.voidPlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().voidRequired;
+                        }
+                        else
+                        {
+                            objective.GetComponent<ObjectiveData>().plant3.SetActive(true);
+                            objective.GetComponent<ObjectiveData>().plant3Grown.SetActive(true);
+                            objective.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                            objective.GetComponent<ObjectiveData>().plant3Grown.GetComponent<Text>().text = Game_Manager.Instance.voidPlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().voidRequired;
+                        }
+                    }
+                    else if (objective.GetComponent<ObjectiveData>().basicRequired > 0)
+                    {
+                        objective.GetComponent<ObjectiveData>().plant3.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant3Grown.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                        objective.GetComponent<ObjectiveData>().plant3Grown.GetComponent<Text>().text = Game_Manager.Instance.voidPlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().voidRequired;
+                    }
+                    else
+                    {
+                        objective.GetComponent<ObjectiveData>().plant2.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                        objective.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text = Game_Manager.Instance.voidPlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().voidRequired;
+                    }
+                }
+                else if (objective.GetComponent<ObjectiveData>().fireRequired > 0)
+                {
+                    if (objective.GetComponent<ObjectiveData>().basicRequired > 0)
+                    {
+                        objective.GetComponent<ObjectiveData>().plant3.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant3Grown.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                        objective.GetComponent<ObjectiveData>().plant3Grown.GetComponent<Text>().text = Game_Manager.Instance.voidPlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().voidRequired;
+                    }
+                    else
+                    {
+                        objective.GetComponent<ObjectiveData>().plant2.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                        objective.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text = Game_Manager.Instance.voidPlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().voidRequired;
+                    }
+                }
+                else if (objective.GetComponent<ObjectiveData>().basicRequired > 0)
+                {
+                    objective.GetComponent<ObjectiveData>().plant2.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                    objective.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text = Game_Manager.Instance.voidPlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().voidRequired;
+                }
+                else
+                {
+                    objective.GetComponent<ObjectiveData>().plant1.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant1Grown.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                    objective.GetComponent<ObjectiveData>().plant1Grown.GetComponent<Text>().text = Game_Manager.Instance.voidPlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().voidRequired;
+                }
+            }
+
+            #endregion
         }
 
         #endregion

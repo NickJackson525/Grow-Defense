@@ -175,25 +175,24 @@ public class Quest_Popup : MonoBehaviour
         {
             case 1:
                 UpdateObjectives(Objective1);
-                Objective1.GetComponent<ObjectiveData>().ObjectiveNum = 1;
                 break;
             case 2:
                 UpdateObjectives(Objective2);
-                Objective1.GetComponent<ObjectiveData>().ObjectiveNum = 2;
                 break;
             case 3:
                 UpdateObjectives(Objective3);
-                Objective1.GetComponent<ObjectiveData>().ObjectiveNum = 3;
                 break;
         }
 
+        Game_Manager.Instance.pauseGame = false;
         Destroy(gameObject);
     }
 
     public void RejectQuest()
     {
-        Destroy(gameObject);
+        Game_Manager.Instance.pauseGame = false;
         Game_Manager.Instance.currentNumQuests--;
+        Destroy(gameObject);
     }
 
     public void UpdateObjectives(GameObject objective)

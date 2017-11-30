@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Cursor_Image : MonoBehaviour
 {
@@ -62,7 +63,7 @@ public class Cursor_Image : MonoBehaviour
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 20f);
         }
 
-        if(Game_Manager.Instance.gameOver || Game_Manager.Instance.pauseGame || Game_Manager.Instance.placingUpgrade)
+        if(Game_Manager.Instance.gameOver || Game_Manager.Instance.pauseGame || Game_Manager.Instance.placingUpgrade || (SceneManager.GetActiveScene().name == "Main Menu"))
         {
             GetComponent<SpriteRenderer>().sprite = defaultCursor;
         }

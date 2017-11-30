@@ -18,11 +18,8 @@ public class ObjectiveData : MonoBehaviour
     public GameObject plant2Grown;
     public GameObject plant3Grown;
     public GameObject plant4Grown;
-    public GameObject Objective1;
-    public GameObject Objective2;
-    public GameObject Objective3;
-    public int type = 2;
     public int ObjectiveNum = 0;
+    public int type = 2;
     public int basicRequired = 0;
     public int fireRequired = 0;
     public int iceRequired = 0;
@@ -38,93 +35,44 @@ public class ObjectiveData : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        switch (ObjectiveNum)
-        {
-            case 1:
-                UpdateObjectives(Objective1);
-                break;
-            case 2:
-                UpdateObjectives(Objective2);
-                break;
-            case 3:
-                UpdateObjectives(Objective3);
-                break;
-        }
-
-        if ((Game_Manager.Instance.basicPlantsHarvested >= basicRequired) && (Game_Manager.Instance.firePlantsHarvested >= fireRequired) && (Game_Manager.Instance.icePlantsHarvested >= iceRequired) && (Game_Manager.Instance.voidPlantsHarvested >= voidRequired))
-        {
-            completeQuestButton.interactable = true;
-        }
-
-        if((basicRequired <= 0) && (fireRequired <= 0) && (iceRequired <= 0) && (voidRequired <= 0))
+        if ((basicRequired <= 0) && (fireRequired <= 0) && (iceRequired <= 0) && (voidRequired <= 0))
         {
             completeQuestButton.interactable = false;
         }
+        else if ((Game_Manager.Instance.basicPlantsHarvested >= basicRequired) && (Game_Manager.Instance.firePlantsHarvested >= fireRequired) && (Game_Manager.Instance.icePlantsHarvested >= iceRequired) && (Game_Manager.Instance.voidPlantsHarvested >= voidRequired))
+        {
+            completeQuestButton.interactable = true;
+        }
     }
+
+    #region Complete Quest
 
     public void CompleteQuest()
     {
-        if(ObjectiveNum == 1)
-        {
-            ObjectiveNum = 3;
-            Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().ObjectiveNum = 1;
-            Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().ObjectiveNum = 2;
-        }
-        else if(ObjectiveNum == 2)
-        {
-            ObjectiveNum = 3;
-            Game_Manager.Instance.Objective1.GetComponent<ObjectiveData>().ObjectiveNum = 1;
-            Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().ObjectiveNum = 2;
-        }
-        else
-        {
-            ObjectiveNum = 3;
-            Game_Manager.Instance.Objective1.GetComponent<ObjectiveData>().ObjectiveNum = 1;
-            Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().ObjectiveNum = 2;
-        }
-
-        plant1.SetActive(false);
-        plant2.SetActive(false);
-        plant3.SetActive(false);
-        plant4.SetActive(false);
-        plant1Grown.SetActive(false);
-        plant2Grown.SetActive(false);
-        plant3Grown.SetActive(false);
-        plant4Grown.SetActive(false);
-        Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant1.SetActive(false);
-        Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant2.SetActive(false);
-        Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant3.SetActive(false);
-        Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant4.SetActive(false);
-        Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant1Grown.SetActive(false);
-        Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant2Grown.SetActive(false);
-        Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant3Grown.SetActive(false);
-        Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant4Grown.SetActive(false);
-        Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().completeQuestButton.interactable = false;
-
-        completeQuestButton.interactable = false;
+        #region Calculate Quest Reward
 
         if (basicRequired > 0)
         {
             questReward += 25 * basicRequired;
-            Game_Manager.Instance.basicPlantsHarvested--;
+            Game_Manager.Instance.basicPlantsHarvested -= basicRequired;
         }
 
         if (fireRequired > 0)
         {
             questReward += 50 * fireRequired;
-            Game_Manager.Instance.firePlantsHarvested--;
+            Game_Manager.Instance.firePlantsHarvested -= fireRequired;
         }
 
         if (iceRequired > 0)
         {
             questReward += 50 * iceRequired;
-            Game_Manager.Instance.icePlantsHarvested--;
+            Game_Manager.Instance.icePlantsHarvested -= iceRequired;
         }
 
         if (voidRequired > 0)
         {
             questReward += 50 * voidRequired;
-            Game_Manager.Instance.voidPlantsHarvested--;
+            Game_Manager.Instance.voidPlantsHarvested -= voidRequired;
         }
 
         switch(type)
@@ -143,10 +91,194 @@ public class ObjectiveData : MonoBehaviour
                 break;
         }
 
+        #endregion
+
         Game_Manager.Instance.money += questReward;
         questReward = 0;
         Game_Manager.Instance.currentNumQuests--;
+
+        #region Delete Objective
+
+        //only had 1 quest
+        if (Game_Manager.Instance.currentNumQuests == 0)
+        {
+            #region Make Objective 1 blank
+
+            plant1.SetActive(false);
+            plant2.SetActive(false);
+            plant3.SetActive(false);
+            plant1Grown.SetActive(false);
+            plant2Grown.SetActive(false);
+            plant3Grown.SetActive(false);
+            basicRequired = 0;
+            fireRequired = 0;
+            iceRequired = 0;
+            voidRequired = 0;
+
+            #endregion
+        }
+        //only had 2 quests
+        else if (Game_Manager.Instance.currentNumQuests == 1)
+        {
+            if (ObjectiveNum == 2)
+            {
+                #region Make Objective 2 blank
+
+                plant1.SetActive(false);
+                plant2.SetActive(false);
+                plant3.SetActive(false);
+                plant1Grown.SetActive(false);
+                plant2Grown.SetActive(false);
+                plant3Grown.SetActive(false);
+                basicRequired = 0;
+                fireRequired = 0;
+                iceRequired = 0;
+                voidRequired = 0;
+
+                #endregion
+            }
+            else
+            {
+                #region Move Objective 2 Up
+
+                plant1.GetComponent<SpriteRenderer>().sprite = Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite;
+                plant2.GetComponent<SpriteRenderer>().sprite = Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite;
+                plant3.GetComponent<SpriteRenderer>().sprite = Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite;
+                plant1Grown.GetComponent<Text>().text = Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant1Grown.GetComponent<Text>().text;
+                plant2Grown.GetComponent<Text>().text = Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text;
+                plant3Grown.GetComponent<Text>().text = Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant3Grown.GetComponent<Text>().text;
+                basicRequired = Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().basicRequired;
+                fireRequired = Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().fireRequired;
+                iceRequired = Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().iceRequired;
+                voidRequired = Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().voidRequired;
+
+                #endregion
+
+                #region Make Objective 2 blank
+
+                Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant1.SetActive(false);
+                Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant2.SetActive(false);
+                Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant3.SetActive(false);
+                Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant1Grown.SetActive(false);
+                Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant2Grown.SetActive(false);
+                Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant3Grown.SetActive(false);
+                Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().basicRequired = 0;
+                Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().fireRequired = 0;
+                Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().iceRequired = 0;
+                Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().voidRequired = 0;
+                completeQuestButton.interactable = false;
+
+                #endregion
+            }
+        }
+        //had 3 quests
+        else
+        {
+            switch (ObjectiveNum)
+            {
+                case 1:
+                    #region Move Objective 2 Up
+
+                    plant1.GetComponent<SpriteRenderer>().sprite = Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite;
+                    plant2.GetComponent<SpriteRenderer>().sprite = Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite;
+                    plant3.GetComponent<SpriteRenderer>().sprite = Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite;
+                    plant1Grown.GetComponent<Text>().text = Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant1Grown.GetComponent<Text>().text;
+                    plant2Grown.GetComponent<Text>().text = Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text;
+                    plant3Grown.GetComponent<Text>().text = Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant3Grown.GetComponent<Text>().text;
+                    basicRequired = Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().basicRequired;
+                    fireRequired = Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().fireRequired;
+                    iceRequired = Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().iceRequired;
+                    voidRequired = Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().voidRequired;
+
+                    #endregion
+
+                    #region Move Objective 3 Up
+
+                    Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite = Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite;
+                    Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite;
+                    Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite = Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite;
+                    Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant1Grown.GetComponent<Text>().text = Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant1Grown.GetComponent<Text>().text;
+                    Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text = Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text;
+                    Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().plant3Grown.GetComponent<Text>().text = Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant3Grown.GetComponent<Text>().text;
+                    Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().basicRequired = Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().basicRequired;
+                    Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().fireRequired = Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().fireRequired;
+                    Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().iceRequired = Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().iceRequired;
+                    Game_Manager.Instance.Objective2.GetComponent<ObjectiveData>().voidRequired = Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().voidRequired;
+
+                    #endregion
+
+                    #region Make Objective 3 blank
+
+                    Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant1.SetActive(false);
+                    Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant2.SetActive(false);
+                    Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant3.SetActive(false);
+                    Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant1Grown.SetActive(false);
+                    Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant2Grown.SetActive(false);
+                    Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant3Grown.SetActive(false);
+                    Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().basicRequired = 0;
+                    Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().fireRequired = 0;
+                    Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().iceRequired = 0;
+                    Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().voidRequired = 0;
+                    completeQuestButton.interactable = false;
+
+                    #endregion
+                    break;
+                case 2:
+                    #region Move Objective 3 Up
+
+                    plant1.GetComponent<SpriteRenderer>().sprite = Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite;
+                    plant2.GetComponent<SpriteRenderer>().sprite = Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite;
+                    plant3.GetComponent<SpriteRenderer>().sprite = Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite;
+                    plant1Grown.GetComponent<Text>().text = Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant1Grown.GetComponent<Text>().text;
+                    plant2Grown.GetComponent<Text>().text = Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text;
+                    plant3Grown.GetComponent<Text>().text = Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant3Grown.GetComponent<Text>().text;
+                    basicRequired = Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().basicRequired;
+                    fireRequired = Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().fireRequired;
+                    iceRequired = Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().iceRequired;
+                    voidRequired = Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().voidRequired;
+
+                    #endregion
+
+                    #region Make Objective 3 blank
+
+                    Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant1.SetActive(false);
+                    Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant2.SetActive(false);
+                    Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant3.SetActive(false);
+                    Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant1Grown.SetActive(false);
+                    Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant2Grown.SetActive(false);
+                    Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().plant3Grown.SetActive(false);
+                    Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().basicRequired = 0;
+                    Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().fireRequired = 0;
+                    Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().iceRequired = 0;
+                    Game_Manager.Instance.Objective3.GetComponent<ObjectiveData>().voidRequired = 0;
+                    completeQuestButton.interactable = false;
+
+                    #endregion
+                    break;
+                case 3:
+                    #region Make Objective 3 blank
+
+                    plant1.SetActive(false);
+                    plant2.SetActive(false);
+                    plant3.SetActive(false);
+                    plant1Grown.SetActive(false);
+                    plant2Grown.SetActive(false);
+                    plant3Grown.SetActive(false);
+                    basicRequired = 0;
+                    fireRequired = 0;
+                    iceRequired = 0;
+                    voidRequired = 0;
+                    completeQuestButton.interactable = false;
+
+                    #endregion
+                    break;
+            }
+        }
+
+        #endregion
     }
+
+    #endregion
 
     public void UpdateObjectives(GameObject objective)
     {

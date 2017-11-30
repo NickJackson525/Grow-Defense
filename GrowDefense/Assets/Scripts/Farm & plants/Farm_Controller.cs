@@ -6,6 +6,7 @@ public class Farm_Controller : MonoBehaviour
 {
     #region Variables
 
+    public Audio_Manager audioManager;
     public GameObject plantLevel1;
     public GameObject fireBullet;
     public GameObject iceBullet;
@@ -35,7 +36,7 @@ public class Farm_Controller : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        
+        audioManager = GameObject.Find("Audio Manager").GetComponent<Audio_Manager>();
     }
 
     #endregion
@@ -102,6 +103,7 @@ public class Farm_Controller : MonoBehaviour
             {
                 if ((Game_Manager.Instance.currentShopSelection != Game_Manager.ShopItems.BASIC) && (Game_Manager.Instance.money >= 50))
                 {
+                    audioManager.PlayPlantingSound();
                     newPlant = Instantiate(plantLevel1, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
                     newPlant.GetComponent<Plant_controller>().thisPlant = Game_Manager.Instance.currentShopSelection;
                     newPlant.GetComponent<Plant_controller>().thisTile = gameObject;
@@ -115,6 +117,7 @@ public class Farm_Controller : MonoBehaviour
                 }
                 else
                 {
+                    audioManager.PlayPlantingSound();
                     newPlant = Instantiate(plantLevel1, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
                     newPlant.GetComponent<Plant_controller>().thisPlant = Game_Manager.Instance.currentShopSelection;
                     newPlant.GetComponent<Plant_controller>().thisTile = gameObject;
