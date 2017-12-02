@@ -38,17 +38,17 @@ public class Water_Controller : MonoBehaviour
     {
         if ((isSelected) && (Input.GetMouseButtonUp(0) || Input.GetButtonUp("AButton")))
         {
-            Game_Manager.Instance.waterLevel += health;
+            GameManager.Instance.waterLevel += health;
 
-            if (Game_Manager.Instance.waterLevel > 100)
+            if (GameManager.Instance.waterLevel > 100)
             {
-                Game_Manager.Instance.waterLevel = 100;
+                GameManager.Instance.waterLevel = 100;
             }
         }
 
         if(health <= 0)
         {
-            Game_Manager.Instance.gameOver = true;
+            GameManager.Instance.gameOver = true;
         }
     }
 

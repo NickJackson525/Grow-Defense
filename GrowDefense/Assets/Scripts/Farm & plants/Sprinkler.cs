@@ -30,7 +30,7 @@ public class Sprinkler : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if (!Game_Manager.Instance.pauseGame)
+        if (!GameManager.Instance.pauseGame)
         {
             if (timer > 0)
             {

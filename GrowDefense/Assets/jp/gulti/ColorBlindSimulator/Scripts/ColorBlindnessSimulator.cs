@@ -54,19 +54,19 @@ namespace jp.gulti.ColorBlind
                 }
             }
 
-            switch (Game_Manager.Instance.BlindMode)
+            switch (GameManager.Instance.BlindMode)
             {
-                case Game_Manager.ColorBlindMode.Normal:
+                case GameManager.ColorBlindMode.Normal:
                     break;
-                case Game_Manager.ColorBlindMode.Protanope:
+                case GameManager.ColorBlindMode.Protanope:
                     ColorBlindMat.shaderKeywords = new string[] { "CB_TYPE_ONE" };
                     break;
-                case Game_Manager.ColorBlindMode.Deuteranope:
+                case GameManager.ColorBlindMode.Deuteranope:
                     ColorBlindMat.shaderKeywords = new string[] { "CB_TYPE_TWO" };
                     break;
             }
 
-            if(Game_Manager.Instance.BlindMode == Game_Manager.ColorBlindMode.Normal)
+            if(GameManager.Instance.BlindMode == GameManager.ColorBlindMode.Normal)
             {
                 BlindIntensity = 0f;
             }

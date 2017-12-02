@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class Multiselect : MonoBehaviour
 {
+    #region Variables
+
     public int moveSpeed = 5;
     Vector3 mousePosition;
     public float gridSideLength = .64f;
+
+    #endregion
+
+    #region Start
 
     void Start()
     {
@@ -18,6 +24,10 @@ public class Multiselect : MonoBehaviour
         transform.localPosition = GetSnappedPosition(transform.localPosition);
         transform.position = new Vector3(transform.position.x, transform.position.y, -1f);
     }
+
+    #endregion
+
+    #region Lock To Grid
 
     public Vector3 GetGridPosition()
     {
@@ -37,4 +47,6 @@ public class Multiselect : MonoBehaviour
         );
         return gridPosition;
     }
+
+    #endregion
 }

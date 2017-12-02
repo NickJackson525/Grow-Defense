@@ -7,7 +7,7 @@ public class Update_Grown_Plants : MonoBehaviour
 {
     #region Variables
 
-    public Game_Manager.ShopItems type;
+    public GameManager.ShopItems type;
 
     #endregion
 
@@ -18,17 +18,17 @@ public class Update_Grown_Plants : MonoBehaviour
     {
         switch(type)
         {
-            case Game_Manager.ShopItems.FIRE:
-                GetComponent<Text>().text = Game_Manager.Instance.firePlantsGrown + " / " + Game_Manager.Instance.firePlantsRequired;
+            case GameManager.ShopItems.FIRE:
+                GetComponent<Text>().text = GameManager.Instance.firePlantsGrown + " / " + GameManager.Instance.firePlantsRequired;
                 break;
-            case Game_Manager.ShopItems.ICE:
-                GetComponent<Text>().text = Game_Manager.Instance.icePlantsGrown + " / " + Game_Manager.Instance.icePlantsRequired;
+            case GameManager.ShopItems.ICE:
+                GetComponent<Text>().text = GameManager.Instance.icePlantsGrown + " / " + GameManager.Instance.icePlantsRequired;
                 break;
-            case Game_Manager.ShopItems.VOID:
-                GetComponent<Text>().text = Game_Manager.Instance.voidPlantsGrown + " / " + Game_Manager.Instance.voidPlantsRequired;
+            case GameManager.ShopItems.VOID:
+                GetComponent<Text>().text = GameManager.Instance.voidPlantsGrown + " / " + GameManager.Instance.voidPlantsRequired;
                 break;
             default:
-                GetComponent<Text>().text = Game_Manager.Instance.firePlantsGrown + " / " + Game_Manager.Instance.firePlantsRequired;
+                GetComponent<Text>().text = GameManager.Instance.firePlantsGrown + " / " + GameManager.Instance.firePlantsRequired;
                 break;
         }
     }

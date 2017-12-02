@@ -43,7 +43,7 @@ public class Enemy_Controller : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if (!Game_Manager.Instance.pauseGame)
+        if (!GameManager.Instance.pauseGame)
         {
             #region DOT Effect
 
@@ -122,7 +122,7 @@ public class Enemy_Controller : MonoBehaviour
 
             if (health <= 0)
             {
-                Game_Manager.Instance.money += moneyGivenOnDeath;
+                GameManager.Instance.money += moneyGivenOnDeath;
                 Destroy(this.gameObject);
             }
 

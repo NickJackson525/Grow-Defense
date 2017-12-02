@@ -152,97 +152,81 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1824830381}
-    - target: {fileID: 1922825185351110, guid: 22f7ccd513e0be448adb1819606c5775, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224089931006147090, guid: 22f7ccd513e0be448adb1819606c5775,
-        type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 0.44086373
-      objectReference: {fileID: 0}
-    - target: {fileID: 224089931006147090, guid: 22f7ccd513e0be448adb1819606c5775,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224089931006147090, guid: 22f7ccd513e0be448adb1819606c5775,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224925869114649400, guid: 22f7ccd513e0be448adb1819606c5775,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224925869114649400, guid: 22f7ccd513e0be448adb1819606c5775,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224925869114649400, guid: 22f7ccd513e0be448adb1819606c5775,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: -17
-      objectReference: {fileID: 0}
-    - target: {fileID: 1846706595870912, guid: 22f7ccd513e0be448adb1819606c5775, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224550387336901306, guid: 22f7ccd513e0be448adb1819606c5775,
-        type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 0.76013994
-      objectReference: {fileID: 0}
-    - target: {fileID: 224550387336901306, guid: 22f7ccd513e0be448adb1819606c5775,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224550387336901306, guid: 22f7ccd513e0be448adb1819606c5775,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224869711330734710, guid: 22f7ccd513e0be448adb1819606c5775,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224869711330734710, guid: 22f7ccd513e0be448adb1819606c5775,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224869711330734710, guid: 22f7ccd513e0be448adb1819606c5775,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: -17
-      objectReference: {fileID: 0}
-    - target: {fileID: 4037813308662910, guid: 22f7ccd513e0be448adb1819606c5775, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -3.1999998
-      objectReference: {fileID: 0}
-    - target: {fileID: 4037813308662910, guid: 22f7ccd513e0be448adb1819606c5775, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.97337645
-      objectReference: {fileID: 0}
-    - target: {fileID: 224320426648704326, guid: 22f7ccd513e0be448adb1819606c5775,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -26.199951
-      objectReference: {fileID: 0}
-    - target: {fileID: 224320426648704326, guid: 22f7ccd513e0be448adb1819606c5775,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 26.19934
-      objectReference: {fileID: 0}
     - target: {fileID: 114386113591679392, guid: 22f7ccd513e0be448adb1819606c5775,
         type: 2}
       propertyPath: audioManager
       value: 
       objectReference: {fileID: 2035935997}
+    - target: {fileID: 1846706595870912, guid: 22f7ccd513e0be448adb1819606c5775, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224315263791775402, guid: 22f7ccd513e0be448adb1819606c5775,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 1328.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224550387336901306, guid: 22f7ccd513e0be448adb1819606c5775,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0.7806566
+      objectReference: {fileID: 0}
+    - target: {fileID: 224012850004557030, guid: 22f7ccd513e0be448adb1819606c5775,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 17.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224012850004557030, guid: 22f7ccd513e0be448adb1819606c5775,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 510.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114278815750569670, guid: 22f7ccd513e0be448adb1819606c5775,
+        type: 2}
+      propertyPath: m_Text
+      value: Your goal is to grow the required plants to defeat the bugs invading
+        your farm. Click on one of the plant types in the bottom panel to select that
+        plant. Then, if you have enough money left click on a farm tile to plant,
+        and right click to water it. You can water it more than once to keep the plant
+        watered longer. Also once you press the start button in the bottom right it
+        will turn into the shop button that will open up the menu's with all available
+        upgrades to your plants. Your goal is to complete enough quests to pass a
+        certain level. Quests popup throughout the game while it's playing in the
+        upper left corner. Click on the mail icon after it has a re "!" to view the
+        quest, and either accept or reject it. To complete a quest, fully grow the
+        required plants and harvest them using the sicle tool, then open up the quest
+        log to complete the quest. Click on one of the plant types in the right panel
+        to select that plant. Then, if you have enough money left click on a farm
+        tile to plant, and right click to water it. You can water it more than once
+        to keep the plant watered longer. Press escape while in game to open up the
+        pause menu to see the quest log, controls, instructions, credits, backstory,
+        and a button to get back to the main menu.
+      objectReference: {fileID: 0}
+    - target: {fileID: 224550387336901306, guid: 22f7ccd513e0be448adb1819606c5775,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224550387336901306, guid: 22f7ccd513e0be448adb1819606c5775,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224869711330734710, guid: 22f7ccd513e0be448adb1819606c5775,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224869711330734710, guid: 22f7ccd513e0be448adb1819606c5775,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224869711330734710, guid: 22f7ccd513e0be448adb1819606c5775,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: -17
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22f7ccd513e0be448adb1819606c5775, type: 2}
   m_IsPrefabParent: 0

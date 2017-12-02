@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Quest_Letter_Content : MonoBehaviour
 {
+    #region Variables
+
     public int type;
     public Text Line2;
     public Text Line4;
@@ -15,15 +17,5 @@ public class Quest_Letter_Content : MonoBehaviour
     public int iceRequired = 0;
     public int voidRequired = 0;
 
-    // Use this for initialization
-    void Start ()
-    {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-
-    }
+    #endregion
 }

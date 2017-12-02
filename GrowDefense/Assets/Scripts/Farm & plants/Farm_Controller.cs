@@ -48,10 +48,10 @@ public class Farm_Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Game_Manager.Instance.money += 100;
+            GameManager.Instance.money += 100;
         }
 
-        if(!Game_Manager.Instance.pauseGame)
+        if(!GameManager.Instance.pauseGame)
         {
             #region Update Sprite
 
@@ -76,7 +76,7 @@ public class Farm_Controller : MonoBehaviour
 
             #region Multi Select
 
-            if ((isSelected) && (Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift) || (Input.GetButton("LeftTrigger"))) && (!Game_Manager.Instance.gameOver))
+            if ((isSelected) && (Input.GetKey(KeyCode.RightShift) || Input.GetKey(KeyCode.LeftShift) || (Input.GetButton("LeftTrigger"))) && (!GameManager.Instance.gameOver))
             {
                 totalMultiSelect = GameObject.FindGameObjectsWithTag("Select");
 
@@ -95,20 +95,20 @@ public class Farm_Controller : MonoBehaviour
             #endregion
         }
 
-        if (!Game_Manager.Instance.pauseGame && !Game_Manager.Instance.placingUpgrade && !Game_Manager.Instance.wateringCanSelected && !Game_Manager.Instance.SicleSelected)
+        if (!GameManager.Instance.pauseGame && !GameManager.Instance.placingUpgrade && !GameManager.Instance.wateringCanSelected && !GameManager.Instance.SicleSelected)
         {
             #region Create Plant
 
-            if ((isSelected) && (!isPlanted) && (Input.GetMouseButtonUp(0) || Input.GetButtonUp("AButton")) && (Game_Manager.Instance.money >= 25) && (!Game_Manager.Instance.gameOver))
+            if ((isSelected) && (!isPlanted) && (Input.GetMouseButtonUp(0) || Input.GetButtonUp("AButton")) && (GameManager.Instance.money >= 25) && (!GameManager.Instance.gameOver))
             {
-                if ((Game_Manager.Instance.currentShopSelection != Game_Manager.ShopItems.BASIC) && (Game_Manager.Instance.money >= 50))
+                if ((GameManager.Instance.currentShopSelection != GameManager.ShopItems.BASIC) && (GameManager.Instance.money >= 50))
                 {
                     audioManager.PlayPlantingSound();
                     newPlant = Instantiate(plantLevel1, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
-                    newPlant.GetComponent<Plant_controller>().thisPlant = Game_Manager.Instance.currentShopSelection;
+                    newPlant.GetComponent<Plant_controller>().thisPlant = GameManager.Instance.currentShopSelection;
                     newPlant.GetComponent<Plant_controller>().thisTile = gameObject;
                     gameObject.GetComponent<Farm_Controller>().isPlanted = true;
-                    Game_Manager.Instance.money -= 50;
+                    GameManager.Instance.money -= 50;
 
                     if (hasFertilizer)
                     {
@@ -119,10 +119,10 @@ public class Farm_Controller : MonoBehaviour
                 {
                     audioManager.PlayPlantingSound();
                     newPlant = Instantiate(plantLevel1, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
-                    newPlant.GetComponent<Plant_controller>().thisPlant = Game_Manager.Instance.currentShopSelection;
+                    newPlant.GetComponent<Plant_controller>().thisPlant = GameManager.Instance.currentShopSelection;
                     newPlant.GetComponent<Plant_controller>().thisTile = gameObject;
                     gameObject.GetComponent<Farm_Controller>().isPlanted = true;
-                    Game_Manager.Instance.money -= 25;
+                    GameManager.Instance.money -= 25;
 
                     if (hasFertilizer)
                     {
@@ -133,32 +133,32 @@ public class Farm_Controller : MonoBehaviour
 
             #endregion
         }
-        else if (!Game_Manager.Instance.pauseGame && Game_Manager.Instance.placingUpgrade && !Game_Manager.Instance.wateringCanSelected && !Game_Manager.Instance.SicleSelected)
+        else if (!GameManager.Instance.pauseGame && GameManager.Instance.placingUpgrade && !GameManager.Instance.wateringCanSelected && !GameManager.Instance.SicleSelected)
         {
             #region Place Upgrade
 
-            if(Input.GetMouseButtonUp(0) && (isSelected) && (!Game_Manager.Instance.gameOver))
+            if(Input.GetMouseButtonUp(0) && (isSelected) && (!GameManager.Instance.gameOver))
             {
-                switch(Game_Manager.Instance.currentShopSelection)
+                switch(GameManager.Instance.currentShopSelection)
                 {
-                    case Game_Manager.ShopItems.SPRINKLER:
+                    case GameManager.ShopItems.SPRINKLER:
                         if (!hasSprinkler)
                         {
-                            if (Game_Manager.Instance.money >= 25)
+                            if (GameManager.Instance.money >= 25)
                             {
-                                Game_Manager.Instance.money -= 25;
+                                GameManager.Instance.money -= 25;
                                 createdUpgrade = Instantiate(sprinkler, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
                                 createdUpgrade.GetComponent<Sprinkler>().thisFarmTile = gameObject;
                                 hasSprinkler = true;
                             }
                         }
                         break;
-                    case Game_Manager.ShopItems.FERTILIZER:
+                    case GameManager.ShopItems.FERTILIZER:
                         if (!hasFertilizer)
                         {
-                            if (Game_Manager.Instance.money >= 50)
+                            if (GameManager.Instance.money >= 50)
                             {
-                                Game_Manager.Instance.money -= 50;
+                                GameManager.Instance.money -= 50;
                                 createdUpgrade = Instantiate(fertilizer, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
                                 hasFertilizer = true;
                             }
@@ -167,9 +167,9 @@ public class Farm_Controller : MonoBehaviour
                     default:
                         if (!hasSprinkler)
                         {
-                            if (Game_Manager.Instance.money >= 25)
+                            if (GameManager.Instance.money >= 25)
                             {
-                                Game_Manager.Instance.money -= 25;
+                                GameManager.Instance.money -= 25;
                                 createdUpgrade = Instantiate(sprinkler, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
                                 createdUpgrade.GetComponent<Sprinkler>().thisFarmTile = gameObject;
                                 hasSprinkler = true;
@@ -181,40 +181,40 @@ public class Farm_Controller : MonoBehaviour
 
             #endregion
         }
-        else if (!Game_Manager.Instance.pauseGame && !Game_Manager.Instance.placingUpgrade && Game_Manager.Instance.wateringCanSelected && !Game_Manager.Instance.SicleSelected)
+        else if (!GameManager.Instance.pauseGame && !GameManager.Instance.placingUpgrade && GameManager.Instance.wateringCanSelected && !GameManager.Instance.SicleSelected)
         {
             #region Water Tile
 
-            if ((isSelected) && (Input.GetMouseButtonUp(1) || Input.GetButtonUp("RightTrigger")) && (Game_Manager.Instance.waterLevel >= 10) && (!Game_Manager.Instance.gameOver))
+            if ((isSelected) && (Input.GetMouseButtonUp(1) || Input.GetButtonUp("RightTrigger")) && (GameManager.Instance.waterLevel >= 10) && (!GameManager.Instance.gameOver))
             {
                 if (waterLevel <= 50)
                 {
                     waterLevel += 20;
-                    Game_Manager.Instance.waterLevel -= 10;
+                    GameManager.Instance.waterLevel -= 10;
                 }
             }
 
             #endregion
         }
-        else if (!Game_Manager.Instance.pauseGame && !Game_Manager.Instance.placingUpgrade && !Game_Manager.Instance.wateringCanSelected && Game_Manager.Instance.SicleSelected)
+        else if (!GameManager.Instance.pauseGame && !GameManager.Instance.placingUpgrade && !GameManager.Instance.wateringCanSelected && GameManager.Instance.SicleSelected)
         {
             #region Sicle Plant
 
-            if ((isPlanted) && (isSelected) && (Input.GetMouseButtonUp(1) || Input.GetButtonUp("RightTrigger")) && (!Game_Manager.Instance.gameOver))
+            if ((isPlanted) && (isSelected) && (Input.GetMouseButtonUp(1) || Input.GetButtonUp("RightTrigger")) && (!GameManager.Instance.gameOver))
             {
                 switch(newPlant.GetComponent<Plant_controller>().thisPlant)
                 {
-                    case Game_Manager.ShopItems.BASIC:
-                        Game_Manager.Instance.basicPlantsHarvested++;
+                    case GameManager.ShopItems.BASIC:
+                        GameManager.Instance.basicPlantsHarvested++;
                         break;
-                    case Game_Manager.ShopItems.FIRE:
-                        Game_Manager.Instance.firePlantsHarvested++;
+                    case GameManager.ShopItems.FIRE:
+                        GameManager.Instance.firePlantsHarvested++;
                         break;
-                    case Game_Manager.ShopItems.ICE:
-                        Game_Manager.Instance.icePlantsHarvested++;
+                    case GameManager.ShopItems.ICE:
+                        GameManager.Instance.icePlantsHarvested++;
                         break;
-                    case Game_Manager.ShopItems.VOID:
-                        Game_Manager.Instance.voidPlantsHarvested++;
+                    case GameManager.ShopItems.VOID:
+                        GameManager.Instance.voidPlantsHarvested++;
                         break;
                 }
 
@@ -254,6 +254,80 @@ public class Farm_Controller : MonoBehaviour
         if (coll.gameObject.tag == "Select")
         {
             isSelected = true;
+
+            switch(GameManager.Instance.currentShopSelection)
+            {
+                case GameManager.ShopItems.FERTILIZER:
+                    if(!hasFertilizer && (GameManager.Instance.money < 50))
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                    }
+                    else if(!hasFertilizer && (GameManager.Instance.money >= 50))
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+                    }
+                    else
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                    }
+                    break;
+                case GameManager.ShopItems.SPRINKLER:
+                    if (!hasSprinkler && (GameManager.Instance.money < 25))
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                    }
+                    else if (!hasSprinkler && (GameManager.Instance.money >= 25))
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+                    }
+                    else
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                    }
+                    break;
+                case GameManager.ShopItems.SICLE:
+                    if (!isPlanted || (isPlanted && (newPlant.GetComponent<Plant_controller>().currentLevel < 3)))
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                    }
+                    else if ((isPlanted && (newPlant.GetComponent<Plant_controller>().currentLevel == 3)))
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+                    }
+                    else
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                    }
+                    break;
+                case GameManager.ShopItems.WATER:
+                    if (GameManager.Instance.waterLevel <= 0)
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                    }
+                    else
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+                    }
+                    break;
+                default:
+                    if (!isPlanted && (((GameManager.Instance.currentShopSelection == GameManager.ShopItems.BASIC) && (GameManager.Instance.money >= 25)) || ((GameManager.Instance.currentShopSelection != GameManager.ShopItems.BASIC) && (GameManager.Instance.money >= 50))))
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+                    }
+                    else if (!isPlanted && (((GameManager.Instance.currentShopSelection == GameManager.ShopItems.BASIC) && (GameManager.Instance.money < 25)) || ((GameManager.Instance.currentShopSelection != GameManager.ShopItems.BASIC) && (GameManager.Instance.money < 50))))
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                    }
+                    else if (isPlanted)
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                    }
+                    else
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                    }
+                    break;
+            }
         }
     }
 
@@ -262,6 +336,80 @@ public class Farm_Controller : MonoBehaviour
         if (coll.gameObject.tag == "Select")
         {
             isSelected = true;
+
+            switch (GameManager.Instance.currentShopSelection)
+            {
+                case GameManager.ShopItems.FERTILIZER:
+                    if (!hasFertilizer && (GameManager.Instance.money < 50))
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                    }
+                    else if (!hasFertilizer && (GameManager.Instance.money >= 50))
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+                    }
+                    else
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                    }
+                    break;
+                case GameManager.ShopItems.SPRINKLER:
+                    if (!hasSprinkler && (GameManager.Instance.money < 25))
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                    }
+                    else if (!hasSprinkler && (GameManager.Instance.money >= 25))
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+                    }
+                    else
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                    }
+                    break;
+                case GameManager.ShopItems.SICLE:
+                    if (!isPlanted || (isPlanted && (newPlant.GetComponent<Plant_controller>().currentLevel < 3)))
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                    }
+                    else if ((isPlanted && (newPlant.GetComponent<Plant_controller>().currentLevel == 3)))
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+                    }
+                    else
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                    }
+                    break;
+                case GameManager.ShopItems.WATER:
+                    if (GameManager.Instance.waterLevel <= 0)
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                    }
+                    else
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+                    }
+                    break;
+                default:
+                    if(!isPlanted && (((GameManager.Instance.currentShopSelection == GameManager.ShopItems.BASIC) && (GameManager.Instance.money >= 25)) || ((GameManager.Instance.currentShopSelection != GameManager.ShopItems.BASIC) && (GameManager.Instance.money >= 50))))
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+                    }
+                    else if(!isPlanted && (((GameManager.Instance.currentShopSelection == GameManager.ShopItems.BASIC) && (GameManager.Instance.money < 25)) || ((GameManager.Instance.currentShopSelection != GameManager.ShopItems.BASIC) && (GameManager.Instance.money < 50))))
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                    }
+                    else if (isPlanted)
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                    }
+                    else
+                    {
+                        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                    }
+                    break;
+            }
         }
     }
 
@@ -270,6 +418,7 @@ public class Farm_Controller : MonoBehaviour
         if ((coll.gameObject.tag == "Select") && (!createdSelect))
         {
             isSelected = false;
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         }
     }
 

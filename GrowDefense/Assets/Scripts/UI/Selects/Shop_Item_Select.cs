@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Shop_Item_Select : MonoBehaviour
 {
-    public Game_Manager.ShopItems thisItem;
+    #region Variables
+
+    public GameManager.ShopItems thisItem;
     public GameObject buildSelect;
     public GameObject fireSelect;
     public GameObject iceSelect;
@@ -15,103 +17,134 @@ public class Shop_Item_Select : MonoBehaviour
     public GameObject sicleSelect;
     bool mouseHover = false;
 
-	// Use this for initialization
-	void Start ()
-    {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    #endregion
+
+    #region Update
+
+    // Update is called once per frame
+    void Update ()
     {
 		if((gameObject.name != "Build_Select") && Input.GetMouseButtonUp(0) && mouseHover)
         {
+
             buildSelect.transform.position = transform.position;
-            Game_Manager.Instance.currentShopSelection = thisItem;
+            GameManager.Instance.currentShopSelection = thisItem;
 
-            if((thisItem == Game_Manager.ShopItems.FERTILIZER) || (thisItem == Game_Manager.ShopItems.SPRINKLER))
+            #region Placing Upgrade
+
+            if((thisItem == GameManager.ShopItems.FERTILIZER) || (thisItem == GameManager.ShopItems.SPRINKLER))
             {
-                Game_Manager.Instance.placingUpgrade = true;
+                GameManager.Instance.placingUpgrade = true;
+                GameManager.Instance.wateringCanSelected = false;
+                GameManager.Instance.SicleSelected = false;
             }
             else
             {
-                Game_Manager.Instance.placingUpgrade = false;
+                GameManager.Instance.placingUpgrade = false;
             }
 
-            if(thisItem == Game_Manager.ShopItems.WATER)
+            #endregion
+
+            #region Water
+
+            if(thisItem == GameManager.ShopItems.WATER)
             {
-                Game_Manager.Instance.wateringCanSelected = true;
+                GameManager.Instance.wateringCanSelected = true;
+                GameManager.Instance.placingUpgrade = false;
+                GameManager.Instance.SicleSelected = false;
             }
             else
             {
-                Game_Manager.Instance.wateringCanSelected = false;
+                GameManager.Instance.wateringCanSelected = false;
             }
 
-            if (thisItem == Game_Manager.ShopItems.SICLE)
+            #endregion
+
+            #region Sicle
+
+            if (thisItem == GameManager.ShopItems.SICLE)
             {
-                Game_Manager.Instance.SicleSelected = true;
+                GameManager.Instance.SicleSelected = true;
+                GameManager.Instance.wateringCanSelected = false;
+                GameManager.Instance.placingUpgrade = false;
             }
             else
             {
-                Game_Manager.Instance.SicleSelected = false;
+                GameManager.Instance.SicleSelected = false;
             }
+
+            #endregion
         }
+
+        #region 1 Through 4 Hotkeys
 
         if((gameObject.name == "Build_Select") && Input.GetKeyUp(KeyCode.Alpha1))
         {
             buildSelect.transform.position = waterSelect.transform.position;
-            Game_Manager.Instance.currentShopSelection = Game_Manager.ShopItems.WATER;
-            Game_Manager.Instance.placingUpgrade = false;
-            Game_Manager.Instance.wateringCanSelected = true;
+            GameManager.Instance.currentShopSelection = GameManager.ShopItems.WATER;
+            GameManager.Instance.placingUpgrade = false;
+            GameManager.Instance.SicleSelected = false;
+            GameManager.Instance.wateringCanSelected = true;
         }
         else if ((gameObject.name == "Build_Select") && Input.GetKeyUp(KeyCode.Alpha2))
         {
             buildSelect.transform.position = sicleSelect.transform.position;
-            Game_Manager.Instance.currentShopSelection = Game_Manager.ShopItems.SICLE;
-            Game_Manager.Instance.placingUpgrade = false;
-            Game_Manager.Instance.SicleSelected = true;
+            GameManager.Instance.currentShopSelection = GameManager.ShopItems.SICLE;
+            GameManager.Instance.placingUpgrade = false;
+            GameManager.Instance.SicleSelected = true;
+            GameManager.Instance.wateringCanSelected = false;
         }
+
+        #endregion
     }
+
+    #endregion
+
+    #region Change Select
 
     public void ChangeSelect()
     {
         if (buildSelect.transform.position == fireSelect.transform.position)
         {
             buildSelect.transform.position = iceSelect.transform.position;
-            Game_Manager.Instance.currentShopSelection = Game_Manager.ShopItems.ICE;
-            Game_Manager.Instance.placingUpgrade = false;
+            GameManager.Instance.currentShopSelection = GameManager.ShopItems.ICE;
+            GameManager.Instance.placingUpgrade = false;
         }
         else if (buildSelect.transform.position == iceSelect.transform.position)
         {
             buildSelect.transform.position = voidSelect.transform.position;
-            Game_Manager.Instance.currentShopSelection = Game_Manager.ShopItems.VOID;
-            Game_Manager.Instance.placingUpgrade = false;
+            GameManager.Instance.currentShopSelection = GameManager.ShopItems.VOID;
+            GameManager.Instance.placingUpgrade = false;
         }
         else if (buildSelect.transform.position == voidSelect.transform.position)
         {
             buildSelect.transform.position = waterSelect.transform.position;
-            Game_Manager.Instance.currentShopSelection = Game_Manager.ShopItems.WATER;
-            Game_Manager.Instance.placingUpgrade = false;
+            GameManager.Instance.currentShopSelection = GameManager.ShopItems.WATER;
+            GameManager.Instance.placingUpgrade = false;
         }
         else if(buildSelect.transform.position == waterSelect.transform.position)
         {
             buildSelect.transform.position = fertilizerSelect.transform.position;
-            Game_Manager.Instance.currentShopSelection = Game_Manager.ShopItems.FERTILIZER;
-            Game_Manager.Instance.placingUpgrade = true;
+            GameManager.Instance.currentShopSelection = GameManager.ShopItems.FERTILIZER;
+            GameManager.Instance.placingUpgrade = true;
         }
         else if (buildSelect.transform.position == fertilizerSelect.transform.position)
         {
             buildSelect.transform.position = sprinklerSelect.transform.position;
-            Game_Manager.Instance.currentShopSelection = Game_Manager.ShopItems.SPRINKLER;
-            Game_Manager.Instance.placingUpgrade = true;
+            GameManager.Instance.currentShopSelection = GameManager.ShopItems.SPRINKLER;
+            GameManager.Instance.placingUpgrade = true;
         }
         else
         {
             buildSelect.transform.position = fireSelect.transform.position;
-            Game_Manager.Instance.currentShopSelection = Game_Manager.ShopItems.FIRE;
-            Game_Manager.Instance.placingUpgrade = false;
+            GameManager.Instance.currentShopSelection = GameManager.ShopItems.FIRE;
+            GameManager.Instance.placingUpgrade = false;
         }
     }
+
+    #endregion
+
+    #region Mouse Enter and Exit
 
     private void OnMouseEnter()
     {
@@ -122,4 +155,6 @@ public class Shop_Item_Select : MonoBehaviour
     {
         mouseHover = false;
     }
+
+    #endregion
 }

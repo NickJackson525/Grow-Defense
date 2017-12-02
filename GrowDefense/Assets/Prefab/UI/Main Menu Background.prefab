@@ -8282,7 +8282,7 @@ Transform:
   m_GameObject: {fileID: 1874453704436444}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.48, y: -3.1999998, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.97337645, z: 1}
   m_Children: []
   m_Father: {fileID: 4900037561158734}
   m_RootOrder: 77
@@ -15439,6 +15439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d01651cbe79cf34298b71e84ff89116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   plantLevel1: {fileID: 1786864968172032, guid: f39c4232b50480a4db1e99a39bd7153e,
     type: 2}
   fireBullet: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c, type: 2}
@@ -15526,7 +15527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7372549, g: 0.56078434, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -15552,6 +15553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d01651cbe79cf34298b71e84ff89116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   plantLevel1: {fileID: 1786864968172032, guid: f39c4232b50480a4db1e99a39bd7153e,
     type: 2}
   fireBullet: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c, type: 2}
@@ -15657,6 +15659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d01651cbe79cf34298b71e84ff89116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   plantLevel1: {fileID: 1786864968172032, guid: f39c4232b50480a4db1e99a39bd7153e,
     type: 2}
   fireBullet: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c, type: 2}
@@ -15854,7 +15857,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.52205884, g: 0.52205884, b: 0.52205884, a: 1}
+    m_HighlightedColor: {r: 0.7794118, g: 0.7794118, b: 0.7794118, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -16243,6 +16246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d01651cbe79cf34298b71e84ff89116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   plantLevel1: {fileID: 1786864968172032, guid: f39c4232b50480a4db1e99a39bd7153e,
     type: 2}
   fireBullet: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c, type: 2}
@@ -16752,15 +16756,24 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: This week I changed the layout of the game so there is no longer a farmer,
-    and you can see the whole farm at once. I also removed the mini-map because it
-    wasn't adding anything to the game and didn't make sense. I also implemented a
-    manual/pause menu when you press escape while in game. It contains info on objectives,
-    controls, instructions, credits, backstory, and a main menu button. I also added
-    a shop with farm upgrades (water efficiency, sprinkler, and fertilizer) and plant
-    upgrades (fire, ice, void). I also added a money cheat to help with testing that
-    can be accessed by pressing "P". Lastly, I added a circle UI next to the water
-    meter to display the current day/night cycle.
+  m_Text: 'Developer: Nick Jackson
+
+    This week I made a lot of additions to my game. I added "world" quests that popup
+    randomly after the game starts. They show up as an "!" on the mail icon in the
+    upper left of the game. Once it pops up you can click the mail icon and view the
+    quest, and either accept or reject it. Quests are dynamically and randomly generated,
+    with either 1, 2, or 3 plant types required and 1, 2, or 3 individual plants required
+    (Ex. 1 Fire, 3 Void). Quests can be viewed and completed by pressing esc and clicking
+    the quest log button. Testing buttons were added to quickly complete quests (press
+    q to add 1 basic, w for fire, e for ice, and r for void. It increases your number
+    of that plant harvested). For the real game, a plant will have to be fully grown
+    and harvested using the sicle to increase the harvested count. I also moved the
+    fertilizer and sprinkler upgrades to the main game screen so multiple can be purchased
+    at once. I also added hotkeys for the bottom left tools that can be accesed by
+    pressing the number listed below them. I also simplified the shop window to be
+    a single page. I also added red and green highlights to the farm tiles that indicate
+    if an action can be made on it using the currently equiped item. Lastly, sounds
+    were added to the game for background music, buttons, and plant shooting.'
 --- !u!114 &114243496656980560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17024,6 +17037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d01651cbe79cf34298b71e84ff89116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   plantLevel1: {fileID: 1786864968172032, guid: f39c4232b50480a4db1e99a39bd7153e,
     type: 2}
   fireBullet: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c, type: 2}
@@ -17310,6 +17324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d01651cbe79cf34298b71e84ff89116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   plantLevel1: {fileID: 1786864968172032, guid: f39c4232b50480a4db1e99a39bd7153e,
     type: 2}
   fireBullet: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c, type: 2}
@@ -17423,6 +17438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d01651cbe79cf34298b71e84ff89116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   plantLevel1: {fileID: 1786864968172032, guid: f39c4232b50480a4db1e99a39bd7153e,
     type: 2}
   fireBullet: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c, type: 2}
@@ -17779,6 +17795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d01651cbe79cf34298b71e84ff89116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   plantLevel1: {fileID: 1786864968172032, guid: f39c4232b50480a4db1e99a39bd7153e,
     type: 2}
   fireBullet: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c, type: 2}
@@ -17832,6 +17849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78949489d9b2aac43826e6e7156f53b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   instructionsWindow: {fileID: 1846706595870912}
   gameOverWindow: {fileID: 1922825185351110}
   gameOverMenuButton: {fileID: 0}
@@ -18213,7 +18231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7372549, g: 0.56078434, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -18675,7 +18693,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.52205884, g: 0.52205884, b: 0.52205884, a: 1}
+    m_HighlightedColor: {r: 0.7794118, g: 0.7794118, b: 0.7794118, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -18814,6 +18832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d01651cbe79cf34298b71e84ff89116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   plantLevel1: {fileID: 1786864968172032, guid: f39c4232b50480a4db1e99a39bd7153e,
     type: 2}
   fireBullet: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c, type: 2}
@@ -18867,6 +18886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d01651cbe79cf34298b71e84ff89116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   plantLevel1: {fileID: 1786864968172032, guid: f39c4232b50480a4db1e99a39bd7153e,
     type: 2}
   fireBullet: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c, type: 2}
@@ -19434,7 +19454,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224089931006147090}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.5591363
+  m_Size: 0.34499055
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -19488,6 +19508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d01651cbe79cf34298b71e84ff89116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   plantLevel1: {fileID: 1786864968172032, guid: f39c4232b50480a4db1e99a39bd7153e,
     type: 2}
   fireBullet: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c, type: 2}
@@ -19796,6 +19817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d01651cbe79cf34298b71e84ff89116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   plantLevel1: {fileID: 1786864968172032, guid: f39c4232b50480a4db1e99a39bd7153e,
     type: 2}
   fireBullet: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c, type: 2}
@@ -20686,6 +20708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d01651cbe79cf34298b71e84ff89116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   plantLevel1: {fileID: 1786864968172032, guid: f39c4232b50480a4db1e99a39bd7153e,
     type: 2}
   fireBullet: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c, type: 2}
@@ -20727,6 +20750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d01651cbe79cf34298b71e84ff89116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   plantLevel1: {fileID: 1786864968172032, guid: f39c4232b50480a4db1e99a39bd7153e,
     type: 2}
   fireBullet: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c, type: 2}
@@ -20926,7 +20950,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.52205884, g: 0.52205884, b: 0.52205884, a: 1}
+    m_HighlightedColor: {r: 0.7794118, g: 0.7794118, b: 0.7794118, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -20969,6 +20993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d01651cbe79cf34298b71e84ff89116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   plantLevel1: {fileID: 1786864968172032, guid: f39c4232b50480a4db1e99a39bd7153e,
     type: 2}
   fireBullet: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c, type: 2}
@@ -21209,6 +21234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d01651cbe79cf34298b71e84ff89116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   plantLevel1: {fileID: 1786864968172032, guid: f39c4232b50480a4db1e99a39bd7153e,
     type: 2}
   fireBullet: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c, type: 2}
@@ -21621,6 +21647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d01651cbe79cf34298b71e84ff89116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   plantLevel1: {fileID: 1786864968172032, guid: f39c4232b50480a4db1e99a39bd7153e,
     type: 2}
   fireBullet: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c, type: 2}
@@ -21722,6 +21749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d01651cbe79cf34298b71e84ff89116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   plantLevel1: {fileID: 1786864968172032, guid: f39c4232b50480a4db1e99a39bd7153e,
     type: 2}
   fireBullet: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c, type: 2}
@@ -21884,7 +21912,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7372549, g: 0.56078434, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -22179,7 +22207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7372549, g: 0.56078434, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -22361,6 +22389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d01651cbe79cf34298b71e84ff89116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
   plantLevel1: {fileID: 1786864968172032, guid: f39c4232b50480a4db1e99a39bd7153e,
     type: 2}
   fireBullet: {fileID: 1993344455352228, guid: fc7095cfdb1992e4aa1b6fc70852493c, type: 2}
@@ -40632,7 +40661,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 521}
+  m_SizeDelta: {x: 0, y: 844.4}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224089931006147090
 RectTransform:
@@ -40647,7 +40676,7 @@ RectTransform:
   m_Father: {fileID: 224794398644677024}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.44086373}
+  m_AnchorMin: {x: 0, y: 0.65500945}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -40860,7 +40889,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -26.200012, y: 26.199394}
+  m_AnchoredPosition: {x: -26.199951, y: 26.19934}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224461436922206564
@@ -40977,8 +41006,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.7999878, y: 30.800003}
-  m_SizeDelta: {x: 674.2, y: 459.4}
+  m_AnchoredPosition: {x: -0.7999878, y: -0.0005493164}
+  m_SizeDelta: {x: 674.2, y: 844.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224525057126586404
 RectTransform:

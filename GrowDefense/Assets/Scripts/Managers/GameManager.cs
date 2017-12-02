@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class Game_Manager
+public class GameManager
 {
     #region Variables
 
@@ -134,6 +134,8 @@ public class Game_Manager
     #endregion
 
     public float waterLevel = 100;
+    public int questsRequired = 5;
+    public int questsCompleted = 0;
     public int money = 200;
     public int dayTimer = 900;
     public int dayTimerConstant = 900;
@@ -180,16 +182,16 @@ public class Game_Manager
     #region Singleton
 
     // create variable for storing singleton that any script can access
-    private static Game_Manager instance;
+    private static GameManager instance;
 
     // create GameManager
-    private Game_Manager()
+    private GameManager()
     {
 
     }
 
     // Property for Singleton
-    public static Game_Manager Instance
+    public static GameManager Instance
     {
         get
         {
@@ -197,7 +199,7 @@ public class Game_Manager
             if (instance == null)
             {
                 // create and return it
-                instance = new Game_Manager();
+                instance = new GameManager();
             }
             
             // otherwise, just return it
@@ -211,6 +213,8 @@ public class Game_Manager
 
     public void Update()
     {
+        #region Quest Complete Cheat
+
         if(Input.GetKeyUp(KeyCode.Q))
         {
             basicPlantsHarvested++;
@@ -228,6 +232,10 @@ public class Game_Manager
             voidPlantsHarvested++;
         }
 
+        #endregion
+
+        #region Get Objective References
+
         if (!Objective1)
         {
             if(GameObject.FindGameObjectWithTag("Objective1"))
@@ -242,12 +250,20 @@ public class Game_Manager
             }
         }
 
+        #endregion
+
         if (!pauseGame && gameStarted)
         {
+            #region End Game Check
+
             if ((basicPlantsGrown >= basicPlantsRequired) && (firePlantsGrown >= firePlantsRequired) && (icePlantsGrown >= icePlantsRequired) && (voidPlantsGrown >= voidPlantsRequired))
             {
                 gameOver = true;
             }
+
+            #endregion
+
+            #region Day Night Phase
 
             if (currentPhase == Phase.DAY)
             {
@@ -265,7 +281,11 @@ public class Game_Manager
                     }
                 }
             }
+
+            #endregion
         }
+
+        #region Colorblind Modes
 
         if(Input.GetKeyUp(KeyCode.F1))
         {
@@ -281,6 +301,8 @@ public class Game_Manager
         {
             BlindMode = ColorBlindMode.Deuteranope;
         }
+
+        #endregion
     }
 
     #endregion

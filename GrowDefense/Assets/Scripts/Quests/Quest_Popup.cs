@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Quest_Popup : MonoBehaviour
 {
+    #region Variables
+
     public Button completeQuestButton;
     public GameObject letterContent1;
     public GameObject letterContent2;
@@ -18,12 +20,16 @@ public class Quest_Popup : MonoBehaviour
     public int iceRequired = 0;
     public int voidRequired = 0;
 
+    #endregion
+
+    #region Start
+
     // Use this for initialization
     void Start ()
     {
-        Objective1 = Game_Manager.Instance.Objective1;
-        Objective2 = Game_Manager.Instance.Objective2;
-        Objective3 = Game_Manager.Instance.Objective3;
+        Objective1 = GameManager.Instance.Objective1;
+        Objective2 = GameManager.Instance.Objective2;
+        Objective3 = GameManager.Instance.Objective3;
 
         switch (type)
         {
@@ -43,6 +49,8 @@ public class Quest_Popup : MonoBehaviour
 
 
     }
+
+    #endregion
 
     #region Popup Type 1
 
@@ -169,9 +177,11 @@ public class Quest_Popup : MonoBehaviour
 
     #endregion
 
+    #region Accept Quest
+
     public void AcceptQuest()
     {
-        switch(Game_Manager.Instance.currentNumQuests)
+        switch(GameManager.Instance.currentNumQuests)
         {
             case 1:
                 UpdateObjectives(Objective1);
@@ -184,16 +194,24 @@ public class Quest_Popup : MonoBehaviour
                 break;
         }
 
-        Game_Manager.Instance.pauseGame = false;
+        GameManager.Instance.pauseGame = false;
         Destroy(gameObject);
     }
 
+    #endregion
+
+    #region Reject Quest
+
     public void RejectQuest()
     {
-        Game_Manager.Instance.pauseGame = false;
-        Game_Manager.Instance.currentNumQuests--;
+        GameManager.Instance.pauseGame = false;
+        GameManager.Instance.currentNumQuests--;
         Destroy(gameObject);
     }
+
+    #endregion
+
+    #region Update Objectives
 
     public void UpdateObjectives(GameObject objective)
     {
@@ -357,4 +375,6 @@ public class Quest_Popup : MonoBehaviour
 
         #endregion
     }
+
+    #endregion
 }

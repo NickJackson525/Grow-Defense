@@ -5,16 +5,16 @@ using UnityEngine.UI;
 
 public class Money_Change : MonoBehaviour
 {
+    #region Variables
+
     int timer = 15;
 
-	// Use this for initialization
-	void Start ()
-    {
-        
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    #endregion
+
+    #region Update
+
+    // Update is called once per frame
+    void Update ()
     {
         timer--;
 
@@ -29,4 +29,6 @@ public class Money_Change : MonoBehaviour
             Destroy(gameObject);
         }
 	}
+
+    #endregion
 }

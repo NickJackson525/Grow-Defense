@@ -31,10 +31,10 @@ public class UI_Canvas_Controller : MonoBehaviour
     void Start ()
     {
         audioManager = GameObject.Find("Audio Manager").GetComponent<Audio_Manager>();
-        Game_Manager.Instance.firePlantsGrown = 0;
-        Game_Manager.Instance.gameOver = false;
-        Game_Manager.Instance.money = 200;
-        Game_Manager.Instance.waterLevel = 100;
+        GameManager.Instance.firePlantsGrown = 0;
+        GameManager.Instance.gameOver = false;
+        GameManager.Instance.money = 200;
+        GameManager.Instance.waterLevel = 100;
 
         if (playButton)
         {
@@ -53,9 +53,9 @@ public class UI_Canvas_Controller : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        Game_Manager.Instance.Update();
+        GameManager.Instance.Update();
 
-        if (Game_Manager.Instance.gameOver)
+        if (GameManager.Instance.gameOver)
         {
             gameOverWindow.SetActive(true);
             gameOverMenuButton.SetActive(true);
@@ -66,7 +66,7 @@ public class UI_Canvas_Controller : MonoBehaviour
                 mainMenu.Select();
             }
 
-            if ((Game_Manager.Instance.firePlantsGrown >= Game_Manager.Instance.firePlantsRequired) && (Game_Manager.Instance.icePlantsGrown >= Game_Manager.Instance.icePlantsRequired) && (Game_Manager.Instance.voidPlantsGrown >= Game_Manager.Instance.voidPlantsRequired))
+            if ((GameManager.Instance.firePlantsGrown >= GameManager.Instance.firePlantsRequired) && (GameManager.Instance.icePlantsGrown >= GameManager.Instance.icePlantsRequired) && (GameManager.Instance.voidPlantsGrown >= GameManager.Instance.voidPlantsRequired))
             {
                 gameOverTitle.GetComponent<Text>().text = "You Win!";
             }
@@ -91,19 +91,19 @@ public class UI_Canvas_Controller : MonoBehaviour
             //gameOverNextLevelButton.SetActive(false);
             gameOverWindow.SetActive(false);
 
-            Game_Manager.Instance.StartLevel(Game_Manager.Instance.currentLevel);
-            Game_Manager.Instance.gameStarted = true;
+            GameManager.Instance.StartLevel(GameManager.Instance.currentLevel);
+            GameManager.Instance.gameStarted = true;
 
-            switch(Game_Manager.Instance.currentLevel)
+            switch(GameManager.Instance.currentLevel)
             {
-                case Game_Manager.Level.ONE:
-                    Game_Manager.Instance.currentLevel = Game_Manager.Level.TWO;
+                case GameManager.Level.ONE:
+                    GameManager.Instance.currentLevel = GameManager.Level.TWO;
                     break;
-                case Game_Manager.Level.TWO:
-                    Game_Manager.Instance.currentLevel = Game_Manager.Level.THREE;
+                case GameManager.Level.TWO:
+                    GameManager.Instance.currentLevel = GameManager.Level.THREE;
                     break;
-                case Game_Manager.Level.THREE:
-                    Game_Manager.Instance.currentLevel = Game_Manager.Level.FOUR;
+                case GameManager.Level.THREE:
+                    GameManager.Instance.currentLevel = GameManager.Level.FOUR;
                     break;
             }
         }
@@ -173,16 +173,16 @@ public class UI_Canvas_Controller : MonoBehaviour
             switch (newControls)
             {
                 case "WASD":
-                    Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.WASD;
+                    GameManager.Instance.currentControls = GameManager.ControlScheme.WASD;
                     break;
                 case "Arrows":
-                    Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.ARROWS;
+                    GameManager.Instance.currentControls = GameManager.ControlScheme.ARROWS;
                     break;
                 case "IJKL":
-                    Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.IJKL;
+                    GameManager.Instance.currentControls = GameManager.ControlScheme.IJKL;
                     break;
                 default:
-                    Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.WASD;
+                    GameManager.Instance.currentControls = GameManager.ControlScheme.WASD;
                     break;
             }
         }
@@ -220,22 +220,22 @@ public class UI_Canvas_Controller : MonoBehaviour
         public void MainMenu()
         {
             audioManager.PlayButtonSound();
-            Game_Manager.Instance.firePlantsGrown = 0;
-            Game_Manager.Instance.gameOver = false;
-            Game_Manager.Instance.pauseGame = false;
-            Game_Manager.Instance.placingUpgrade = false;
-            Game_Manager.Instance.purchasedFireUpgrade = false;
-            Game_Manager.Instance.purchasedIceUpgrade = false;
-            Game_Manager.Instance.purchasedVoidUpgrade = false;
-            Game_Manager.Instance.purchasedWaterEfficiency = false;
-            Game_Manager.Instance.money = 200;
-            Game_Manager.Instance.dayTimer = 900;
-            Game_Manager.Instance.waveNumber = 1;
-            Game_Manager.Instance.firePlantsGrown = 0;
-            Game_Manager.Instance.icePlantsGrown = 0;
-            Game_Manager.Instance.voidPlantsGrown = 0;
-            Game_Manager.Instance.currentShopSelection = Game_Manager.ShopItems.FIRE;
-            Game_Manager.Instance.gameStarted = false;
+            GameManager.Instance.firePlantsGrown = 0;
+            GameManager.Instance.gameOver = false;
+            GameManager.Instance.pauseGame = false;
+            GameManager.Instance.placingUpgrade = false;
+            GameManager.Instance.purchasedFireUpgrade = false;
+            GameManager.Instance.purchasedIceUpgrade = false;
+            GameManager.Instance.purchasedVoidUpgrade = false;
+            GameManager.Instance.purchasedWaterEfficiency = false;
+            GameManager.Instance.money = 200;
+            GameManager.Instance.dayTimer = 900;
+            GameManager.Instance.waveNumber = 1;
+            GameManager.Instance.firePlantsGrown = 0;
+            GameManager.Instance.icePlantsGrown = 0;
+            GameManager.Instance.voidPlantsGrown = 0;
+            GameManager.Instance.currentShopSelection = GameManager.ShopItems.FIRE;
+            GameManager.Instance.gameStarted = false;
             Load_Scene("Main Menu");
         }
 

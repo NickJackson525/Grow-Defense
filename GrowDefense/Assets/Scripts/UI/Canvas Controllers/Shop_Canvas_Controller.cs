@@ -41,35 +41,35 @@ public class Shop_Canvas_Controller : MonoBehaviour
         }
         else
         {
-            if (Game_Manager.Instance.placingUpgrade)
+            if (GameManager.Instance.placingUpgrade)
             {
-                Game_Manager.Instance.pauseGame = false;
+                GameManager.Instance.pauseGame = false;
             }
         }
 
-        if(Game_Manager.Instance.purchasedWaterEfficiency)
+        if(GameManager.Instance.purchasedWaterEfficiency)
         {
             waterEfficiencyUpgradeButton.GetComponentInChildren<Text>().text = "Purchased";
         }
 
-        if (Game_Manager.Instance.purchasedFireUpgrade)
+        if (GameManager.Instance.purchasedFireUpgrade)
         {
             fireUpgradeButton.GetComponentInChildren<Text>().text = "Purchased";
         }
 
-        if (Game_Manager.Instance.purchasedIceUpgrade)
+        if (GameManager.Instance.purchasedIceUpgrade)
         {
             iceUpgradeButton.GetComponentInChildren<Text>().text = "Purchased";
         }
 
-        if (Game_Manager.Instance.purchasedVoidUpgrade)
+        if (GameManager.Instance.purchasedVoidUpgrade)
         {
             voidUpgradeButton.GetComponentInChildren<Text>().text = "Purchased";
         }
 
         if(shopWindow.activeSelf)
         {
-            Game_Manager.Instance.pauseGame = true;
+            GameManager.Instance.pauseGame = true;
         }
 
         if(Input.GetKeyUp(KeyCode.Escape))
@@ -77,7 +77,7 @@ public class Shop_Canvas_Controller : MonoBehaviour
             if (shopWindow.activeSelf)
             {
                 shopWindow.SetActive(false);
-                Game_Manager.Instance.pauseGame = false;
+                GameManager.Instance.pauseGame = false;
             }
         }
     }
@@ -108,13 +108,13 @@ public class Shop_Canvas_Controller : MonoBehaviour
                 {
                     shopWindow.SetActive(false);
                     shopButton.GetComponentInChildren<Text>().text = "Shop";
-                    Game_Manager.Instance.pauseGame = false;
+                    GameManager.Instance.pauseGame = false;
                 }
                 else
                 {
                     shopWindow.SetActive(true);
                     shopButton.GetComponentInChildren<Text>().text = "Exit";
-                    Game_Manager.Instance.pauseGame = true;
+                    GameManager.Instance.pauseGame = true;
                 }
             }
         }
@@ -127,11 +127,11 @@ public class Shop_Canvas_Controller : MonoBehaviour
         {
             audioManager.PlayButtonSound();
 
-            if ((Game_Manager.Instance.money >= 200) && !Game_Manager.Instance.purchasedWaterEfficiency)
+            if ((GameManager.Instance.money >= 200) && !GameManager.Instance.purchasedWaterEfficiency)
             {
                 waterEfficiencyUpgradeButton.GetComponentInChildren<Text>().text = "Purchased";
-                Game_Manager.Instance.purchasedWaterEfficiency = true;
-                Game_Manager.Instance.money -= 200;
+                GameManager.Instance.purchasedWaterEfficiency = true;
+                GameManager.Instance.money -= 200;
             }
         }
 
@@ -143,10 +143,10 @@ public class Shop_Canvas_Controller : MonoBehaviour
         {
             audioManager.PlayButtonSound();
 
-            if ((Game_Manager.Instance.money >= 200) && !Game_Manager.Instance.purchasedFireUpgrade)
+            if ((GameManager.Instance.money >= 200) && !GameManager.Instance.purchasedFireUpgrade)
             {
-                Game_Manager.Instance.money -= 200;
-                Game_Manager.Instance.purchasedFireUpgrade = true;
+                GameManager.Instance.money -= 200;
+                GameManager.Instance.purchasedFireUpgrade = true;
                 fireUpgradeButton.GetComponentInChildren<Text>().text = "Purchased";
             }
         }
@@ -159,10 +159,10 @@ public class Shop_Canvas_Controller : MonoBehaviour
         {
             audioManager.PlayButtonSound();
 
-            if ((Game_Manager.Instance.money >= 200) && !Game_Manager.Instance.purchasedIceUpgrade)
+            if ((GameManager.Instance.money >= 200) && !GameManager.Instance.purchasedIceUpgrade)
             {
-                Game_Manager.Instance.money -= 200;
-                Game_Manager.Instance.purchasedIceUpgrade = true;
+                GameManager.Instance.money -= 200;
+                GameManager.Instance.purchasedIceUpgrade = true;
                 iceUpgradeButton.GetComponentInChildren<Text>().text = "Purchased";
             }
         }
@@ -175,10 +175,10 @@ public class Shop_Canvas_Controller : MonoBehaviour
         {
             audioManager.PlayButtonSound();
 
-            if ((Game_Manager.Instance.money >= 200) && !Game_Manager.Instance.purchasedVoidUpgrade)
+            if ((GameManager.Instance.money >= 200) && !GameManager.Instance.purchasedVoidUpgrade)
             {
-                Game_Manager.Instance.money -= 200;
-                Game_Manager.Instance.purchasedVoidUpgrade = true;
+                GameManager.Instance.money -= 200;
+                GameManager.Instance.purchasedVoidUpgrade = true;
                 voidUpgradeButton.GetComponentInChildren<Text>().text = "Purchased";
             }
         }
