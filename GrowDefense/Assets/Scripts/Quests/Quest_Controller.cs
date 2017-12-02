@@ -37,20 +37,23 @@ public class Quest_Controller : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-		if(timer > 0)
+        if (!GameManager.Instance.pauseGame)
         {
-            timer--;
-        }
-        else
-        {
-            if((GameManager.Instance.currentNumQuests < 3) && !unviewedQuest && GameManager.Instance.gameStarted)
+            if (timer > 0)
             {
-                CreateQuest();
-                unviewedQuest = true;
-                GameManager.Instance.currentNumQuests++;
+                timer--;
             }
+            else
+            {
+                if ((GameManager.Instance.currentNumQuests < 3) && !unviewedQuest && GameManager.Instance.gameStarted)
+                {
+                    CreateQuest();
+                    unviewedQuest = true;
+                    GameManager.Instance.currentNumQuests++;
+                }
 
-            timer = Random.Range(480, 916);
+                timer = Random.Range(480, 916);
+            }
         }
 	}
 
@@ -60,23 +63,72 @@ public class Quest_Controller : MonoBehaviour
 
     public void CreateQuest()
     {
-        int questType = Random.Range(1, 4);
+        #region Scale Quest Types
 
-        switch(questType)
+        if(GameManager.Instance.currentLevel == 1)
         {
-            case 1:
-                OnePlantTypeQuest();
-                break;
-            case 2:
-                TwoPlantTypeQuest();
-                break;
-            case 3:
-                ThreePlantTypeQuest();
-                break;
-            default:
-                TwoPlantTypeQuest();
-                break;
+            OnePlantTypeQuest();
         }
+        else if(GameManager.Instance.currentLevel == 2)
+        {
+            int questType = Random.Range(1, 3);
+
+            switch (questType)
+            {
+                case 1:
+                    OnePlantTypeQuest();
+                    break;
+                case 2:
+                    TwoPlantTypeQuest();
+                    break;
+                default:
+                    TwoPlantTypeQuest();
+                    break;
+            }
+        }
+        else if (GameManager.Instance.currentLevel > 5)
+        {
+            int questType = Random.Range(1, 3);
+
+            switch (questType)
+            {
+                case 1:
+                    TwoPlantTypeQuest();
+                    break;
+                case 2:
+                    ThreePlantTypeQuest();
+                    break;
+                default:
+                    TwoPlantTypeQuest();
+                    break;
+            }
+        }
+        else if (GameManager.Instance.currentLevel > 10)
+        {
+            ThreePlantTypeQuest();
+        }
+        else
+        {
+            int questType = Random.Range(1, 4);
+
+            switch (questType)
+            {
+                case 1:
+                    OnePlantTypeQuest();
+                    break;
+                case 2:
+                    TwoPlantTypeQuest();
+                    break;
+                case 3:
+                    ThreePlantTypeQuest();
+                    break;
+                default:
+                    TwoPlantTypeQuest();
+                    break;
+            }
+        }
+
+        #endregion
 
         createdQuest.GetComponent<Quest_Popup>().basicRequired = basicRequired;
         createdQuest.GetComponent<Quest_Popup>().fireRequired = fireRequired;

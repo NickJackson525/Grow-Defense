@@ -51,6 +51,11 @@ public class Farm_Controller : MonoBehaviour
             GameManager.Instance.money += 100;
         }
 
+        if(!isSelected)
+        {
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        }
+
         if(!GameManager.Instance.pauseGame)
         {
             #region Update Sprite

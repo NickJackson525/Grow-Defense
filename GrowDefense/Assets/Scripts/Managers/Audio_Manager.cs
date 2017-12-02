@@ -98,12 +98,15 @@ public class Audio_Manager : MonoBehaviour
 
     public void PlayButtonSound()
     {
-        effectSoundSource.PlayOneShot(button, .6f);
+        if (!effectSoundSource.isPlaying)
+        {
+            effectSoundSource.PlayOneShot(button, .6f);
+        }
     }
 
     public void PlayPlantShoot()
     {
-        effectSoundSource.PlayOneShot(plantShoot, .4f);
+        effectSoundSource.PlayOneShot(plantShoot, .2f);
     }
 
     public void PlayPlantingSound()

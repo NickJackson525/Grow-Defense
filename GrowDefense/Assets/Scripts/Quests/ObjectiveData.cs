@@ -93,11 +93,13 @@ public class ObjectiveData : MonoBehaviour
                 break;
         }
 
-        #endregion
-
         GameManager.Instance.money += questReward;
         questReward = 0;
+
+        #endregion
+
         GameManager.Instance.currentNumQuests--;
+        GameManager.Instance.questsCompleted++;
 
         #region Delete Objective
 

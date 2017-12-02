@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager
 {
@@ -42,82 +42,6 @@ public class GameManager
 
     #endregion
 
-    #region Level Dictionary
-
-    public Dictionary<Level, Dictionary<LevelFeatures, int>> Levels = new Dictionary<Level, Dictionary<LevelFeatures, int>>()
-    {
-        {
-            Level.ONE, new Dictionary<LevelFeatures, int>
-            {
-                {LevelFeatures.Ladybug, 1},
-                {LevelFeatures.NEXTENEMY, 0},
-                {LevelFeatures.basicPlantsRequired, 5},
-                {LevelFeatures.firePlantsRequired, 5},
-                {LevelFeatures.icePlantsRequired, 5},
-                {LevelFeatures.voidPlantsRequired, 5}
-            }
-        },
-        {
-            Level.TWO, new Dictionary<LevelFeatures, int>
-            {
-                {LevelFeatures.Ladybug, 1},
-                {LevelFeatures.NEXTENEMY, 0},
-                {LevelFeatures.basicPlantsRequired, 5},
-                {LevelFeatures.firePlantsRequired, 5},
-                {LevelFeatures.icePlantsRequired, 5},
-                {LevelFeatures.voidPlantsRequired, 0}
-            }
-        },
-        {
-            Level.THREE, new Dictionary<LevelFeatures, int>
-            {
-                {LevelFeatures.Ladybug, 1},
-                {LevelFeatures.NEXTENEMY, 0},
-                {LevelFeatures.basicPlantsRequired, 5},
-                {LevelFeatures.firePlantsRequired, 5},
-                {LevelFeatures.icePlantsRequired, 5},
-                {LevelFeatures.voidPlantsRequired, 5}
-            }
-        }
-    };
-
-    #endregion
-
-    #region Quest Dictionary
-
-    public Dictionary<QuestType, Dictionary<QuestFeatures, int>> quests = new Dictionary<QuestType, Dictionary<QuestFeatures, int>>()
-    {
-        {
-            QuestType.onePlant, new Dictionary<QuestFeatures, int>
-            {
-                {QuestFeatures.basicsRequired, 1},
-                {QuestFeatures.fireRequired, 0},
-                {QuestFeatures.iceRequired, 5},
-                {QuestFeatures.voidRequired, 5}
-            }
-        },
-        {
-            QuestType.twoPlants, new Dictionary<QuestFeatures, int>
-            {
-                {QuestFeatures.basicsRequired, 1},
-                {QuestFeatures.fireRequired, 0},
-                {QuestFeatures.iceRequired, 5},
-                {QuestFeatures.voidRequired, 5}
-            }
-        },
-        {
-            QuestType.threePlants, new Dictionary<QuestFeatures, int>
-            {
-                {QuestFeatures.basicsRequired, 1},
-                {QuestFeatures.fireRequired, 0},
-                {QuestFeatures.iceRequired, 5},
-                {QuestFeatures.voidRequired, 5}
-            }
-        }
-    };
-
-    #endregion
-
     #region Enums
 
     public enum ControlScheme { WASD, ARROWS, IJKL}
@@ -126,28 +50,17 @@ public class GameManager
     public enum BulletType { BASIC, FIRE, ICE, VOID }
     public enum Phase { DAY, NIGHT}
     public enum ColorBlindMode { Normal, Protanope, Deuteranope}
-    public enum Level { ONE, TWO, THREE, FOUR}
-    public enum LevelFeatures { Ladybug, NEXTENEMY, basicPlantsRequired, firePlantsRequired, icePlantsRequired, voidPlantsRequired}
-    public enum QuestType { onePlant, twoPlants, threePlants}
-    public enum QuestFeatures { basicsRequired, fireRequired, iceRequired, voidRequired}
 
     #endregion
 
     public float waterLevel = 100;
+    public int currentLevel = 1;
     public int questsRequired = 5;
     public int questsCompleted = 0;
     public int money = 200;
     public int dayTimer = 900;
     public int dayTimerConstant = 900;
     public int waveNumber = 1;
-    public int basicPlantsGrown = 0;
-    public int firePlantsGrown = 0;
-    public int icePlantsGrown = 0;
-    public int voidPlantsGrown = 0;
-    public int basicPlantsRequired = 5;
-    public int firePlantsRequired = 5;
-    public int icePlantsRequired = 5;
-    public int voidPlantsRequired = 5;
     public int basicPlantsHarvested = 0;
     public int firePlantsHarvested = 0;
     public int icePlantsHarvested = 0;
@@ -158,7 +71,6 @@ public class GameManager
     public const int maxPlantLevel = 3;
     public ShopItems currentShopSelection = ShopItems.BASIC;
     public Phase currentPhase = Phase.DAY;
-    public Level currentLevel;
     public bool gameStarted = false;
     public bool gameOver = false;
     public bool pauseGame = false;
@@ -252,17 +164,21 @@ public class GameManager
 
         #endregion
 
-        if (!pauseGame && gameStarted)
+        if(gameStarted)
         {
             #region End Game Check
 
-            if ((basicPlantsGrown >= basicPlantsRequired) && (firePlantsGrown >= firePlantsRequired) && (icePlantsGrown >= icePlantsRequired) && (voidPlantsGrown >= voidPlantsRequired))
+            if (questsCompleted >= questsRequired)
             {
                 gameOver = true;
+                pauseGame = true;
             }
 
             #endregion
+        }
 
+        if (!pauseGame && gameStarted)
+        {
             #region Day Night Phase
 
             if (currentPhase == Phase.DAY)
@@ -309,14 +225,88 @@ public class GameManager
 
     #region Public Methods
 
-    public void StartLevel(Level nextLevel)
-    {
-        basicPlantsRequired = Levels[nextLevel][LevelFeatures.basicPlantsRequired];
-        firePlantsRequired = Levels[nextLevel][LevelFeatures.firePlantsRequired];
-        icePlantsRequired = Levels[nextLevel][LevelFeatures.icePlantsRequired];
-        voidPlantsRequired = Levels[nextLevel][LevelFeatures.voidPlantsRequired];
-        gameStarted = true;
-    }
+        #region Start Level
+
+        public void StartLevel()
+        {
+            questsCompleted = 0;
+            gameStarted = true;
+
+            if (currentLevel == 1)
+            {
+                questsRequired = 5;
+            }
+            else
+            {
+                basicPlantsHarvested = 0;
+                firePlantsHarvested = 0;
+                icePlantsHarvested = 0;
+                voidPlantsHarvested = 0;
+                gameOver = false;
+                pauseGame = false;
+                placingUpgrade = false;
+                purchasedFireUpgrade = false;
+                purchasedIceUpgrade = false;
+                purchasedVoidUpgrade = false;
+                purchasedWaterEfficiency = false;
+                dayTimer = 900;
+                currentPhase = Phase.DAY;
+                waveNumber = 1;
+                questsRequired += Random.Range(2, 5);
+            }
+        }
+
+        #endregion
+
+        #region Next Level
+    
+        public void NextLevel()
+        {
+            basicPlantsHarvested = 0;
+            firePlantsHarvested = 0;
+            icePlantsHarvested = 0;
+            voidPlantsHarvested = 0;
+            gameOver = false;
+            pauseGame = false;
+            placingUpgrade = false;
+            purchasedFireUpgrade = false;
+            purchasedIceUpgrade = false;
+            purchasedVoidUpgrade = false;
+            purchasedWaterEfficiency = false;
+            dayTimer = 900;
+            currentPhase = Phase.DAY;
+            waveNumber = 1;
+            gameStarted = false;
+            SceneManager.LoadScene("Map 1");
+        }
+
+        #endregion
+
+        #region Main Menu
+
+        public void MainMenu()
+        {
+            basicPlantsHarvested = 0;
+            firePlantsHarvested = 0;
+            icePlantsHarvested = 0;
+            voidPlantsHarvested = 0;
+            gameOver = false;
+            pauseGame = false;
+            placingUpgrade = false;
+            purchasedFireUpgrade = false;
+            purchasedIceUpgrade = false;
+            purchasedVoidUpgrade = false;
+            purchasedWaterEfficiency = false;
+            money = 200;
+            dayTimer = 900;
+            currentPhase = Phase.DAY;
+            waveNumber = 1;
+            currentLevel = 1;
+            currentShopSelection = GameManager.ShopItems.BASIC;
+            gameStarted = false;
+        }
+
+        #endregion
 
     #endregion
 }

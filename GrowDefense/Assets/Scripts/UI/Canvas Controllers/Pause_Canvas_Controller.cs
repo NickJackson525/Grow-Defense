@@ -40,6 +40,12 @@ public class Pause_Canvas_Controller : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
+        if (GameManager.Instance.gameOver)
+        {
+            BackToPauseMenu();
+            pauseWindow.SetActive(false);
+        }
+
         UpdateObjectives(GameManager.Instance.Objective1);
         UpdateObjectives(GameManager.Instance.Objective2);
         UpdateObjectives(GameManager.Instance.Objective3);
@@ -203,33 +209,18 @@ public class Pause_Canvas_Controller : MonoBehaviour
             backstoryPanel.SetActive(false);
         }
 
-    #endregion
+        #endregion
 
         #region Main Menu
 
         public void MainMenu()
         {
             audioManager.PlayButtonSound();
-            GameManager.Instance.firePlantsGrown = 0;
-            GameManager.Instance.gameOver = false;
-            GameManager.Instance.pauseGame = false;
-            GameManager.Instance.placingUpgrade = false;
-            GameManager.Instance.purchasedFireUpgrade = false;
-            GameManager.Instance.purchasedIceUpgrade = false;
-            GameManager.Instance.purchasedVoidUpgrade = false;
-            GameManager.Instance.purchasedWaterEfficiency = false;
-            GameManager.Instance.money = 200;
-            GameManager.Instance.dayTimer = 900;
-            GameManager.Instance.waveNumber = 1;
-            GameManager.Instance.firePlantsGrown = 0;
-            GameManager.Instance.icePlantsGrown = 0;
-            GameManager.Instance.voidPlantsGrown = 0;
-            GameManager.Instance.currentShopSelection = GameManager.ShopItems.FIRE;
-            GameManager.Instance.gameStarted = false;
+            GameManager.Instance.MainMenu();
             Load_Scene("Main Menu");
         }
 
-    #endregion
+        #endregion
 
         #region Update Objectives
 

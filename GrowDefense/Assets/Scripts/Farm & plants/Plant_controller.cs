@@ -156,18 +156,7 @@ public class Plant_controller : MonoBehaviour
                     range++;
                     growthTimer = 3600;
 
-                    switch (thisPlant)
-                    {
-                        case GameManager.ShopItems.FIRE:
-                            GameManager.Instance.firePlantsGrown++;
-                            break;
-                        case GameManager.ShopItems.ICE:
-                            GameManager.Instance.icePlantsGrown++;
-                            break;
-                        case GameManager.ShopItems.VOID:
-                            GameManager.Instance.voidPlantsGrown++;
-                            break;
-                    }
+                    //TODO: add some sort of animation or particle effect to show that this plant is now fully grown
                 }
             }
 

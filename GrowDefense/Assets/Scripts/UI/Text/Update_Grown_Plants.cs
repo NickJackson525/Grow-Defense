@@ -19,16 +19,16 @@ public class Update_Grown_Plants : MonoBehaviour
         switch(type)
         {
             case GameManager.ShopItems.FIRE:
-                GetComponent<Text>().text = GameManager.Instance.firePlantsGrown + " / " + GameManager.Instance.firePlantsRequired;
+                //GetComponent<Text>().text = GameManager.Instance.firePlantsGrown + " / " + GameManager.Instance.firePlantsRequired;
                 break;
             case GameManager.ShopItems.ICE:
-                GetComponent<Text>().text = GameManager.Instance.icePlantsGrown + " / " + GameManager.Instance.icePlantsRequired;
+                //GetComponent<Text>().text = GameManager.Instance.icePlantsGrown + " / " + GameManager.Instance.icePlantsRequired;
                 break;
             case GameManager.ShopItems.VOID:
-                GetComponent<Text>().text = GameManager.Instance.voidPlantsGrown + " / " + GameManager.Instance.voidPlantsRequired;
+                //GetComponent<Text>().text = GameManager.Instance.voidPlantsGrown + " / " + GameManager.Instance.voidPlantsRequired;
                 break;
             default:
-                GetComponent<Text>().text = GameManager.Instance.firePlantsGrown + " / " + GameManager.Instance.firePlantsRequired;
+                //GetComponent<Text>().text = GameManager.Instance.firePlantsGrown + " / " + GameManager.Instance.firePlantsRequired;
                 break;
         }
     }

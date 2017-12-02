@@ -35,7 +35,12 @@ public class Shop_Canvas_Controller : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if(timer > 0)
+        if (GameManager.Instance.gameOver)
+        {
+            shopWindow.SetActive(false);
+        }
+
+        if (timer > 0)
         {
             timer--;
         }
