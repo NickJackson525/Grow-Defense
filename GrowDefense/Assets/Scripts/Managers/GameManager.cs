@@ -242,6 +242,7 @@ public class GameManager
                 firePlantsHarvested = 0;
                 icePlantsHarvested = 0;
                 voidPlantsHarvested = 0;
+                currentNumQuests = 0;
                 gameOver = false;
                 pauseGame = false;
                 placingUpgrade = false;
@@ -266,6 +267,7 @@ public class GameManager
             firePlantsHarvested = 0;
             icePlantsHarvested = 0;
             voidPlantsHarvested = 0;
+            currentNumQuests = 0;
             gameOver = false;
             pauseGame = false;
             placingUpgrade = false;
