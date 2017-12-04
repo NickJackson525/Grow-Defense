@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Tutorial_Canvas_Controller : MonoBehaviour
@@ -15,6 +16,7 @@ public class Tutorial_Canvas_Controller : MonoBehaviour
     public GameObject tutorialSelect2;
     public GameObject tutorialSelect3;
     public GameObject spawner;
+    public GameObject QuestController;
     public int flashTimer = 30;
 
     // Use this for initialization
@@ -27,7 +29,7 @@ public class Tutorial_Canvas_Controller : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if(dialogWindow.activeSelf)
+        if(dialogWindow.activeSelf && (Tutorial_Manager.Instance.InstructionsIndex < 10))
         {
             GameManager.Instance.pauseGame = true;
         }
@@ -74,6 +76,11 @@ public class Tutorial_Canvas_Controller : MonoBehaviour
                 flashTimer = 30;
             }
         }
+        else
+        {
+            tutorialSelect1.SetActive(false);
+            tutorialSelect3.SetActive(false);
+        }
 
         #endregion
 
@@ -100,13 +107,28 @@ public class Tutorial_Canvas_Controller : MonoBehaviour
             GameManager.Instance.pauseGame = true;
             GameManager.Instance.currentPhase = GameManager.Phase.DAY;
         }
+        else if ((Tutorial_Manager.Instance.InstructionsIndex == 10) && GameManager.Instance.firePlantsHarvested > 0 && GameManager.Instance.currentNumQuests > 0)
+        {
+            dialogWindow.SetActive(true);
+            GameManager.Instance.pauseGame = true;
+        }
+        else if (!dialogWindow.activeSelf && (Tutorial_Manager.Instance.InstructionsIndex == 11) && GameManager.Instance.money > 5)
+        {
+            dialogWindow.SetActive(true);
+            GameManager.Instance.pauseGame = true;
+        }
 
         #endregion
     }
 
     public void NextDialogText(GameObject button)
     {
-        dialogBox.GetComponent<Text>().text = Tutorial_Manager.Instance.InstructionsText[Tutorial_Manager.Instance.InstructionsIndex];
+        audioManager.PlayButtonSound();
+
+        if (Tutorial_Manager.Instance.InstructionsIndex < 11)
+        {
+            dialogBox.GetComponent<Text>().text = Tutorial_Manager.Instance.InstructionsText[Tutorial_Manager.Instance.InstructionsIndex];
+        }
 
         switch (Tutorial_Manager.Instance.InstructionsIndex)
         {
@@ -147,14 +169,30 @@ public class Tutorial_Canvas_Controller : MonoBehaviour
                 button.GetComponentInChildren<Text>().text = "Okay";
                 break;
             case 9:
-                //TODO: add code to spawn quests here (make sure its a 1 fire plant quest)
+                QuestController.GetComponent<Quest_Controller>().CreateTutorialQuest();
                 dialogWindow.SetActive(false);
                 GameManager.Instance.pauseGame = false;
                 button.GetComponentInChildren<Text>().text = "Okay";
                 break;
+            case 10:
+                dialogWindow.SetActive(false);
+                GameManager.Instance.pauseGame = false;
+                button.GetComponentInChildren<Text>().text = "Okay";
+                break;
+            case 11:
+                button.GetComponentInChildren<Text>().text = "Next";
+                Tutorial_Manager.Instance.InstructionsIndex = 1;
+                Tutorial_Manager.Instance.tutorialStartred = false;
+                GameManager.Instance.completedTutorial = true;
+                GameManager.Instance.pauseGame = false;
+                SceneManager.LoadScene("Map 1");
+                break;
         }
 
-        Tutorial_Manager.Instance.InstructionsIndex++;
+        if (Tutorial_Manager.Instance.InstructionsIndex < 11)
+        {
+            Tutorial_Manager.Instance.InstructionsIndex++;
+        }
     }
 
     #region Start Tutorial
@@ -167,6 +205,19 @@ public class Tutorial_Canvas_Controller : MonoBehaviour
         gameOverWindow.SetActive(false);
         Tutorial_Manager.Instance.StartTutorial();
         NextDialogText(nextButton);
+    }
+
+    #endregion
+
+    #region Skip Tutorial
+
+    public void SkipTutorial()
+    {
+        audioManager.PlayButtonSound();
+        nextButton.GetComponentInChildren<Text>().text = "Next";
+        Tutorial_Manager.Instance.InstructionsIndex = 1;
+        GameManager.Instance.completedTutorial = true;
+        SceneManager.LoadScene("Map 1");
     }
 
     #endregion

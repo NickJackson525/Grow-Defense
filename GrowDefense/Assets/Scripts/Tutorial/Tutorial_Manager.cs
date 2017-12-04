@@ -52,11 +52,12 @@ public class Tutorial_Manager
         },
         {9,
             "Good job. Now open up the <Color=Yellow>Quest Log</Color> by pressing <Color=Yellow>Escape</Color> then " +
-            "<Color=Yellow>Quest Log</Color>. Then <Color=Yellow>Left Click</Color> on  <Color=Yellow>Complete</Color> and " +
+            "<Color=Yellow>Quest Log</Color>. Then <Color=Yellow>Left Click</Color> on <Color=Yellow>Complete</Color> and " +
             "you'll get your reward!"
         },
         {10,
-            ""
+            "Nice job! Looks like you won't be needing my help anymore, but I might pop in every now and then to give you " +
+            "a tip or two. There's always more to learn! See you around fellow farmer, and good luck defending your farm!"
         },
     };
 

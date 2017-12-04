@@ -160,6 +160,12 @@ public class Plant_controller : MonoBehaviour
                 }
             }
 
+            if(Tutorial_Manager.Instance.tutorialStartred && Tutorial_Manager.Instance.InstructionsIndex == 10 && thisPlant == GameManager.ShopItems.FIRE)
+            {
+                currentLevel = 3;
+                range = 3;
+            }
+
             #endregion
 
             if (shootTimer == 0)

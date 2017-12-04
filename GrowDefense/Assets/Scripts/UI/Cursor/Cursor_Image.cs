@@ -41,7 +41,7 @@ public class Cursor_Image : MonoBehaviour
         Cursor.visible = false;
         updatePosition = Input.mousePosition;
         updatePosition = Camera.main.ScreenToWorldPoint(updatePosition);
-        updatePosition = new Vector3(updatePosition.x, updatePosition.y, -3);
+        updatePosition = new Vector3(updatePosition.x + .1f, updatePosition.y - .1f, -3);
         transform.position = Vector2.Lerp(transform.position, updatePosition, moveSpeed);
         transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
 

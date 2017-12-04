@@ -83,9 +83,25 @@ public class UI_Canvas_Controller : MonoBehaviour
 
     #region Public Methods
 
+        #region Play Game
+
+    public void PlayGame()
+    {
+        if(!GameManager.Instance.completedTutorial)
+        {
+            Load_Scene("Tutorial");
+        }
+        else
+        {
+            Load_Scene("Map 1");
+        }
+    }
+
+    #endregion
+
         #region Start Game
 
-        public void StartGame()
+    public void StartGame()
         {
             audioManager.PlayButtonSound();
             shopButton.SetActive(true);

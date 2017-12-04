@@ -39,6 +39,11 @@ public class Quest_Popup : MonoBehaviour
         Objective3 = GameManager.Instance.Objective3;
         randomCharacter = Random.Range(1, 6);
 
+        if(Tutorial_Manager.Instance.tutorialStartred)
+        {
+            randomCharacter = 1;
+        }
+
         switch (type)
         {
             case 1:
@@ -318,9 +323,12 @@ public class Quest_Popup : MonoBehaviour
 
     public void RejectQuest()
     {
-        GameManager.Instance.pauseGame = false;
-        GameManager.Instance.currentNumQuests--;
-        Destroy(gameObject);
+        if (!Tutorial_Manager.Instance.tutorialStartred)
+        {
+            GameManager.Instance.pauseGame = false;
+            GameManager.Instance.currentNumQuests--;
+            Destroy(gameObject);
+        }
     }
 
     #endregion

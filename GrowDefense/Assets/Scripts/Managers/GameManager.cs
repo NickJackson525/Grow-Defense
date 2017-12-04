@@ -82,6 +82,7 @@ public class GameManager
     public bool purchasedFireUpgrade = false;
     public bool purchasedIceUpgrade = false;
     public bool purchasedVoidUpgrade = false;
+    public bool completedTutorial = false;
     public ControlScheme currentControls = ControlScheme.WASD;
     public ColorBlindMode BlindMode = ColorBlindMode.Normal;
     public GameObject pauseWindow;
@@ -175,6 +176,10 @@ public class GameManager
             }
 
             #endregion
+        }
+        else
+        {
+            pauseGame = false;
         }
 
         if (!pauseGame && gameStarted)

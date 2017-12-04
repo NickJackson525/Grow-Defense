@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Spawner : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if (!GameManager.Instance.pauseGame && GameManager.Instance.gameStarted && !Tutorial_Manager.Instance.tutorialStartred)
+        if (!GameManager.Instance.pauseGame && GameManager.Instance.gameStarted && (SceneManager.GetActiveScene().name != "Tutorial"))
         {
             if ((GameManager.Instance.currentPhase == GameManager.Phase.NIGHT) && (spawnCount < totalWaveEnemies) && (!GameManager.Instance.gameOver))
             {

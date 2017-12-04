@@ -143,6 +143,27 @@ public class Quest_Controller : MonoBehaviour
         voidRequired = 0;
     }
 
+    public void CreateTutorialQuest()
+    {
+        unviewedQuest = true;
+        GameManager.Instance.currentNumQuests++;
+        createdQuest = Instantiate(questPopup, spawnLocation.transform.position, transform.rotation, parent.transform);
+        createdQuest.GetComponent<Quest_Popup>().type = 1;
+        fireRequired = 1;
+
+        createdQuest.GetComponent<Quest_Popup>().basicRequired = basicRequired;
+        createdQuest.GetComponent<Quest_Popup>().fireRequired = fireRequired;
+        createdQuest.GetComponent<Quest_Popup>().iceRequired = iceRequired;
+        createdQuest.GetComponent<Quest_Popup>().voidRequired = voidRequired;
+
+        GetComponent<Image>().sprite = newMailIcon;
+
+        basicRequired = 0;
+        fireRequired = 0;
+        iceRequired = 0;
+        voidRequired = 0;
+    }
+
     #endregion
 
     #region Quest Types

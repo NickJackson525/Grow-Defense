@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Night_Phase : MonoBehaviour
@@ -18,7 +19,7 @@ public class Night_Phase : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if (!Tutorial_Manager.Instance.tutorialStartred)
+        if (SceneManager.GetActiveScene().name != "Tutorial")
         {
             if (GameManager.Instance.currentPhase == GameManager.Phase.NIGHT)
             {

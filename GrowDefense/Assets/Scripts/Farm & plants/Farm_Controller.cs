@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Farm_Controller : MonoBehaviour
 {
@@ -109,19 +110,22 @@ public class Farm_Controller : MonoBehaviour
             {
                 if ((GameManager.Instance.currentShopSelection != GameManager.ShopItems.BASIC) && (GameManager.Instance.money >= 50))
                 {
-                    audioManager.PlayPlantingSound();
-                    newPlant = Instantiate(plantLevel1, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
-                    newPlant.GetComponent<Plant_controller>().thisPlant = GameManager.Instance.currentShopSelection;
-                    newPlant.GetComponent<Plant_controller>().thisTile = gameObject;
-                    gameObject.GetComponent<Farm_Controller>().isPlanted = true;
-                    GameManager.Instance.money -= 50;
-
-                    if (hasFertilizer)
+                    if ((SceneManager.GetActiveScene().name != "Tutorial") || (Tutorial_Manager.Instance.tutorialStartred && (GameManager.Instance.currentShopSelection == GameManager.ShopItems.FIRE)))
                     {
-                        newPlant.GetComponent<Plant_controller>().isFertilized = true;
+                        audioManager.PlayPlantingSound();
+                        newPlant = Instantiate(plantLevel1, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
+                        newPlant.GetComponent<Plant_controller>().thisPlant = GameManager.Instance.currentShopSelection;
+                        newPlant.GetComponent<Plant_controller>().thisTile = gameObject;
+                        gameObject.GetComponent<Farm_Controller>().isPlanted = true;
+                        GameManager.Instance.money -= 50;
+
+                        if (hasFertilizer)
+                        {
+                            newPlant.GetComponent<Plant_controller>().isFertilized = true;
+                        }
                     }
                 }
-                else if (!Tutorial_Manager.Instance.tutorialStartred || (Tutorial_Manager.Instance.tutorialStartred && tutorialTile1))
+                else if ((SceneManager.GetActiveScene().name != "Tutorial") || (Tutorial_Manager.Instance.tutorialStartred && tutorialTile1))
                 {
                     audioManager.PlayPlantingSound();
                     newPlant = Instantiate(plantLevel1, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
@@ -261,7 +265,7 @@ public class Farm_Controller : MonoBehaviour
         {
             isSelected = true;
 
-            if (!Tutorial_Manager.Instance.tutorialStartred)
+            if (SceneManager.GetActiveScene().name != "Tutorial")
             {
                 switch (GameManager.Instance.currentShopSelection)
                 {
@@ -346,7 +350,7 @@ public class Farm_Controller : MonoBehaviour
         {
             isSelected = true;
 
-            if (!Tutorial_Manager.Instance.tutorialStartred)
+            if (SceneManager.GetActiveScene().name != "Tutorial")
             {
                 switch (GameManager.Instance.currentShopSelection)
                 {
