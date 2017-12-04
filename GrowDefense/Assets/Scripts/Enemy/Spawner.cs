@@ -32,7 +32,7 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if (!GameManager.Instance.pauseGame && GameManager.Instance.gameStarted)
+        if (!GameManager.Instance.pauseGame && GameManager.Instance.gameStarted && !Tutorial_Manager.Instance.tutorialStartred)
         {
             if ((GameManager.Instance.currentPhase == GameManager.Phase.NIGHT) && (spawnCount < totalWaveEnemies) && (!GameManager.Instance.gameOver))
             {
@@ -72,6 +72,16 @@ public class Spawner : MonoBehaviour
             }
         }
 	}
+
+    #endregion
+
+    #region Public Methods
+
+    public void SpawnBug()
+    {
+        bugCreated = Instantiate(bug1, transform.position, transform.rotation);
+        bugCreated.GetComponent<Enemy_Controller>().health += 1 * (int)Mathf.Pow(2f, GameManager.Instance.waveNumber - 1);
+    }
 
     #endregion
 }

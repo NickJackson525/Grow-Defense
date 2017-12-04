@@ -99,7 +99,7 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         #region Next Level
 
-        public void NextLevel()
+    public void NextLevel()
         {
             audioManager.PlayButtonSound();
             shopButton.SetActive(true);

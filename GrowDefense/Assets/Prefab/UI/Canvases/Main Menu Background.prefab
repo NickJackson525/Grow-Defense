@@ -17853,6 +17853,7 @@ MonoBehaviour:
   instructionsWindow: {fileID: 1846706595870912}
   gameOverWindow: {fileID: 1922825185351110}
   gameOverMenuButton: {fileID: 0}
+  gameOverNextLevelButton: {fileID: 0}
   gameOverTitle: {fileID: 0}
   settingsWindow: {fileID: 1508356883121974}
   shopButton: {fileID: 0}

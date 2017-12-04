@@ -24,7 +24,7 @@ public class Shop_Item_Select : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-		if((gameObject.name != "Build_Select") && Input.GetMouseButtonUp(0) && mouseHover)
+		if(!GameManager.Instance.pauseGame && (gameObject.name != "Build_Select") && Input.GetMouseButtonUp(0) && mouseHover)
         {
 
             buildSelect.transform.position = transform.position;

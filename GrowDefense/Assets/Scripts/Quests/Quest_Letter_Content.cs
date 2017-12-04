@@ -7,11 +7,12 @@ public class Quest_Letter_Content : MonoBehaviour
 {
     #region Variables
 
-    public int type;
+    public GameObject characterIcon;
     public Text Line2;
     public Text Line4;
     public Text Line5;
     public Text SignatureLine;
+    public int type;
     public int basicRequired = 0;
     public int fireRequired = 0;
     public int iceRequired = 0;

@@ -12,6 +12,7 @@ public class ObjectiveData : MonoBehaviour
     public Sprite firePlant;
     public Sprite icePlant;
     public Sprite voidPlant;
+    public GameObject characterIcon;
     public GameObject plant1;
     public GameObject plant2;
     public GameObject plant3;
@@ -35,9 +36,12 @@ public class ObjectiveData : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
+        characterIcon.SetActive(true);
+
         if ((basicRequired <= 0) && (fireRequired <= 0) && (iceRequired <= 0) && (voidRequired <= 0))
         {
             completeQuestButton.interactable = false;
+            characterIcon.SetActive(false);
         }
         else if ((GameManager.Instance.basicPlantsHarvested >= basicRequired) && (GameManager.Instance.firePlantsHarvested >= fireRequired) && (GameManager.Instance.icePlantsHarvested >= iceRequired) && (GameManager.Instance.voidPlantsHarvested >= voidRequired))
         {
@@ -108,6 +112,7 @@ public class ObjectiveData : MonoBehaviour
         {
             #region Make Objective 1 blank
 
+            characterIcon.SetActive(false);
             plant1.SetActive(false);
             plant2.SetActive(false);
             plant3.SetActive(false);
@@ -128,6 +133,7 @@ public class ObjectiveData : MonoBehaviour
             {
                 #region Make Objective 2 blank
 
+                characterIcon.SetActive(false);
                 plant1.SetActive(false);
                 plant2.SetActive(false);
                 plant3.SetActive(false);
@@ -145,6 +151,7 @@ public class ObjectiveData : MonoBehaviour
             {
                 #region Move Objective 2 Up
 
+                characterIcon.GetComponent<Image>().sprite = GameManager.Instance.Objective2.GetComponent<ObjectiveData>().characterIcon.GetComponent<Image>().sprite;
                 plant1.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.Objective2.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite;
                 plant2.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.Objective2.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite;
                 plant3.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.Objective2.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite;
@@ -160,6 +167,7 @@ public class ObjectiveData : MonoBehaviour
 
                 #region Make Objective 2 blank
 
+                GameManager.Instance.Objective2.GetComponent<ObjectiveData>().characterIcon.SetActive(false);
                 GameManager.Instance.Objective2.GetComponent<ObjectiveData>().plant1.SetActive(false);
                 GameManager.Instance.Objective2.GetComponent<ObjectiveData>().plant2.SetActive(false);
                 GameManager.Instance.Objective2.GetComponent<ObjectiveData>().plant3.SetActive(false);
@@ -183,6 +191,7 @@ public class ObjectiveData : MonoBehaviour
                 case 1:
                     #region Move Objective 2 Up
 
+                    characterIcon.GetComponent<Image>().sprite = GameManager.Instance.Objective2.GetComponent<ObjectiveData>().characterIcon.GetComponent<Image>().sprite;
                     plant1.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.Objective2.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite;
                     plant2.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.Objective2.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite;
                     plant3.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.Objective2.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite;
@@ -198,6 +207,7 @@ public class ObjectiveData : MonoBehaviour
 
                     #region Move Objective 3 Up
 
+                    GameManager.Instance.Objective2.GetComponent<ObjectiveData>().characterIcon.GetComponent<Image>().sprite = GameManager.Instance.Objective3.GetComponent<ObjectiveData>().characterIcon.GetComponent<Image>().sprite;
                     GameManager.Instance.Objective2.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.Objective3.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite;
                     GameManager.Instance.Objective2.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.Objective3.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite;
                     GameManager.Instance.Objective2.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.Objective3.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite;
@@ -213,6 +223,7 @@ public class ObjectiveData : MonoBehaviour
 
                     #region Make Objective 3 blank
 
+                    GameManager.Instance.Objective3.GetComponent<ObjectiveData>().characterIcon.SetActive(false);
                     GameManager.Instance.Objective3.GetComponent<ObjectiveData>().plant1.SetActive(false);
                     GameManager.Instance.Objective3.GetComponent<ObjectiveData>().plant2.SetActive(false);
                     GameManager.Instance.Objective3.GetComponent<ObjectiveData>().plant3.SetActive(false);
@@ -230,6 +241,7 @@ public class ObjectiveData : MonoBehaviour
                 case 2:
                     #region Move Objective 3 Up
 
+                    characterIcon.GetComponent<Image>().sprite = GameManager.Instance.Objective3.GetComponent<ObjectiveData>().characterIcon.GetComponent<Image>().sprite;
                     plant1.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.Objective3.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite;
                     plant2.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.Objective3.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite;
                     plant3.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.Objective3.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite;
@@ -245,6 +257,7 @@ public class ObjectiveData : MonoBehaviour
 
                     #region Make Objective 3 blank
 
+                    GameManager.Instance.Objective3.GetComponent<ObjectiveData>().characterIcon.SetActive(false);
                     GameManager.Instance.Objective3.GetComponent<ObjectiveData>().plant1.SetActive(false);
                     GameManager.Instance.Objective3.GetComponent<ObjectiveData>().plant2.SetActive(false);
                     GameManager.Instance.Objective3.GetComponent<ObjectiveData>().plant3.SetActive(false);
@@ -262,6 +275,7 @@ public class ObjectiveData : MonoBehaviour
                 case 3:
                     #region Make Objective 3 blank
 
+                    characterIcon.SetActive(false);
                     plant1.SetActive(false);
                     plant2.SetActive(false);
                     plant3.SetActive(false);
@@ -295,6 +309,7 @@ public class ObjectiveData : MonoBehaviour
         objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(false);
         objective.GetComponent<ObjectiveData>().plant3.SetActive(false);
         objective.GetComponent<ObjectiveData>().plant3Grown.SetActive(false);
+        objective.GetComponent<ObjectiveData>().characterIcon.SetActive(true);
 
         #region Update Basic
 

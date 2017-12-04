@@ -8,6 +8,12 @@ public class Quest_Popup : MonoBehaviour
     #region Variables
 
     public Button completeQuestButton;
+    public Sprite Portrait1;
+    public Sprite Portrait2;
+    public Sprite Portrait3;
+    public Sprite Portrait4;
+    public Sprite Portrait5;
+    public Sprite Portrait6;
     public GameObject letterContent1;
     public GameObject letterContent2;
     public GameObject letterContent3;
@@ -19,6 +25,7 @@ public class Quest_Popup : MonoBehaviour
     public int fireRequired = 0;
     public int iceRequired = 0;
     public int voidRequired = 0;
+    int randomCharacter = 0;
 
     #endregion
 
@@ -30,6 +37,7 @@ public class Quest_Popup : MonoBehaviour
         Objective1 = GameManager.Instance.Objective1;
         Objective2 = GameManager.Instance.Objective2;
         Objective3 = GameManager.Instance.Objective3;
+        randomCharacter = Random.Range(1, 6);
 
         switch (type)
         {
@@ -46,8 +54,6 @@ public class Quest_Popup : MonoBehaviour
                 TypeTwo();
                 break;
         }
-
-
     }
 
     #endregion
@@ -65,6 +71,42 @@ public class Quest_Popup : MonoBehaviour
         letterContent1.GetComponent<Quest_Letter_Content>().fireRequired = fireRequired;
         letterContent1.GetComponent<Quest_Letter_Content>().iceRequired = iceRequired;
         letterContent1.GetComponent<Quest_Letter_Content>().voidRequired = voidRequired;
+
+        #region Change Character Icon
+
+        switch (randomCharacter)
+        {
+            case 1:
+                letterContent1.GetComponent<Quest_Letter_Content>().characterIcon.GetComponent<Image>().sprite = Portrait1;
+                letterContent1.GetComponent<Quest_Letter_Content>().SignatureLine.text = "-Linus"; 
+                break;
+            case 2:
+                letterContent1.GetComponent<Quest_Letter_Content>().characterIcon.GetComponent<Image>().sprite = Portrait2;
+                letterContent1.GetComponent<Quest_Letter_Content>().SignatureLine.text = "-Frank";
+                break;
+            case 3:
+                letterContent1.GetComponent<Quest_Letter_Content>().characterIcon.GetComponent<Image>().sprite = Portrait3;
+                letterContent1.GetComponent<Quest_Letter_Content>().SignatureLine.text = "-Chandler";
+                break;
+            case 4:
+                letterContent1.GetComponent<Quest_Letter_Content>().characterIcon.GetComponent<Image>().sprite = Portrait4;
+                letterContent1.GetComponent<Quest_Letter_Content>().SignatureLine.text = "-Jane";
+                break;
+            case 5:
+                letterContent1.GetComponent<Quest_Letter_Content>().characterIcon.GetComponent<Image>().sprite = Portrait5;
+                letterContent1.GetComponent<Quest_Letter_Content>().SignatureLine.text = "-Chris";
+                break;
+            case 6:
+                letterContent1.GetComponent<Quest_Letter_Content>().characterIcon.GetComponent<Image>().sprite = Portrait6;
+                letterContent1.GetComponent<Quest_Letter_Content>().SignatureLine.text = "-George";
+                break;
+            default:
+                letterContent1.GetComponent<Quest_Letter_Content>().characterIcon.GetComponent<Image>().sprite = Portrait1;
+                letterContent1.GetComponent<Quest_Letter_Content>().SignatureLine.text = "-Linus";
+                break;
+        }
+
+        #endregion
 
         if (basicRequired > 0)
         {
@@ -103,6 +145,42 @@ public class Quest_Popup : MonoBehaviour
         letterContent2.GetComponent<Quest_Letter_Content>().fireRequired = fireRequired;
         letterContent2.GetComponent<Quest_Letter_Content>().iceRequired = iceRequired;
         letterContent2.GetComponent<Quest_Letter_Content>().voidRequired = voidRequired;
+
+        #region Change Character Icon
+
+        switch (randomCharacter)
+        {
+            case 1:
+                letterContent2.GetComponent<Quest_Letter_Content>().characterIcon.GetComponent<Image>().sprite = Portrait1;
+                letterContent2.GetComponent<Quest_Letter_Content>().SignatureLine.text = "-Linus";
+                break;
+            case 2:
+                letterContent2.GetComponent<Quest_Letter_Content>().characterIcon.GetComponent<Image>().sprite = Portrait2;
+                letterContent2.GetComponent<Quest_Letter_Content>().SignatureLine.text = "-Frank";
+                break;
+            case 3:
+                letterContent2.GetComponent<Quest_Letter_Content>().characterIcon.GetComponent<Image>().sprite = Portrait3;
+                letterContent2.GetComponent<Quest_Letter_Content>().SignatureLine.text = "-Chandler";
+                break;
+            case 4:
+                letterContent2.GetComponent<Quest_Letter_Content>().characterIcon.GetComponent<Image>().sprite = Portrait4;
+                letterContent2.GetComponent<Quest_Letter_Content>().SignatureLine.text = "-Jane";
+                break;
+            case 5:
+                letterContent2.GetComponent<Quest_Letter_Content>().characterIcon.GetComponent<Image>().sprite = Portrait5;
+                letterContent2.GetComponent<Quest_Letter_Content>().SignatureLine.text = "-Chris";
+                break;
+            case 6:
+                letterContent2.GetComponent<Quest_Letter_Content>().characterIcon.GetComponent<Image>().sprite = Portrait6;
+                letterContent2.GetComponent<Quest_Letter_Content>().SignatureLine.text = "-George";
+                break;
+            default:
+                letterContent2.GetComponent<Quest_Letter_Content>().characterIcon.GetComponent<Image>().sprite = Portrait1;
+                letterContent2.GetComponent<Quest_Letter_Content>().SignatureLine.text = "-Linus";
+                break;
+        }
+
+        #endregion
 
         if ((basicRequired > 0) && (fireRequired > 0))
         {
@@ -152,6 +230,42 @@ public class Quest_Popup : MonoBehaviour
         letterContent3.GetComponent<Quest_Letter_Content>().fireRequired = fireRequired;
         letterContent3.GetComponent<Quest_Letter_Content>().iceRequired = iceRequired;
         letterContent3.GetComponent<Quest_Letter_Content>().voidRequired = voidRequired;
+
+        #region Change Character Icon
+
+        switch (randomCharacter)
+        {
+            case 1:
+                letterContent3.GetComponent<Quest_Letter_Content>().characterIcon.GetComponent<Image>().sprite = Portrait1;
+                letterContent3.GetComponent<Quest_Letter_Content>().SignatureLine.text = "-Linus";
+                break;
+            case 2:
+                letterContent3.GetComponent<Quest_Letter_Content>().characterIcon.GetComponent<Image>().sprite = Portrait2;
+                letterContent3.GetComponent<Quest_Letter_Content>().SignatureLine.text = "-Frank";
+                break;
+            case 3:
+                letterContent3.GetComponent<Quest_Letter_Content>().characterIcon.GetComponent<Image>().sprite = Portrait3;
+                letterContent3.GetComponent<Quest_Letter_Content>().SignatureLine.text = "-Chandler";
+                break;
+            case 4:
+                letterContent3.GetComponent<Quest_Letter_Content>().characterIcon.GetComponent<Image>().sprite = Portrait4;
+                letterContent3.GetComponent<Quest_Letter_Content>().SignatureLine.text = "-Jane";
+                break;
+            case 5:
+                letterContent3.GetComponent<Quest_Letter_Content>().characterIcon.GetComponent<Image>().sprite = Portrait5;
+                letterContent3.GetComponent<Quest_Letter_Content>().SignatureLine.text = "-Chris";
+                break;
+            case 6:
+                letterContent3.GetComponent<Quest_Letter_Content>().characterIcon.GetComponent<Image>().sprite = Portrait6;
+                letterContent3.GetComponent<Quest_Letter_Content>().SignatureLine.text = "-George";
+                break;
+            default:
+                letterContent3.GetComponent<Quest_Letter_Content>().characterIcon.GetComponent<Image>().sprite = Portrait1;
+                letterContent3.GetComponent<Quest_Letter_Content>().SignatureLine.text = "-Linus";
+                break;
+        }
+
+        #endregion
 
         if ((basicRequired > 0) && (fireRequired > 0) && (iceRequired > 0))
         {
@@ -216,7 +330,6 @@ public class Quest_Popup : MonoBehaviour
     public void UpdateObjectives(GameObject objective)
     {
         objective.SetActive(true);
-
         objective.GetComponent<ObjectiveData>().type = type;
         objective.GetComponent<ObjectiveData>().basicRequired = basicRequired;
         objective.GetComponent<ObjectiveData>().fireRequired = fireRequired;
@@ -228,6 +341,28 @@ public class Quest_Popup : MonoBehaviour
         objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(false);
         objective.GetComponent<ObjectiveData>().plant3.SetActive(false);
         objective.GetComponent<ObjectiveData>().plant3Grown.SetActive(false);
+
+        switch(randomCharacter)
+        {
+            case 1:
+                objective.GetComponent<ObjectiveData>().characterIcon.GetComponent<Image>().sprite = Portrait1;
+                break;
+            case 2:
+                objective.GetComponent<ObjectiveData>().characterIcon.GetComponent<Image>().sprite = Portrait2;
+                break;
+            case 3:
+                objective.GetComponent<ObjectiveData>().characterIcon.GetComponent<Image>().sprite = Portrait3;
+                break;
+            case 4:
+                objective.GetComponent<ObjectiveData>().characterIcon.GetComponent<Image>().sprite = Portrait4;
+                break;
+            case 5:
+                objective.GetComponent<ObjectiveData>().characterIcon.GetComponent<Image>().sprite = Portrait5;
+                break;
+            default:
+                objective.GetComponent<ObjectiveData>().characterIcon.GetComponent<Image>().sprite = Portrait1;
+                break;
+        }
 
         #region Update Basic
 

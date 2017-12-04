@@ -23,6 +23,7 @@ public class Farm_Controller : MonoBehaviour
     public bool isSelected = false;
     public bool hasSprinkler = false;
     public bool hasFertilizer = false;
+    public bool tutorialTile1 = false;
     GameObject newPlant;
     GameObject createdSelect;
     GameObject createdUpgrade;
@@ -120,7 +121,7 @@ public class Farm_Controller : MonoBehaviour
                         newPlant.GetComponent<Plant_controller>().isFertilized = true;
                     }
                 }
-                else
+                else if (!Tutorial_Manager.Instance.tutorialStartred || (Tutorial_Manager.Instance.tutorialStartred && tutorialTile1))
                 {
                     audioManager.PlayPlantingSound();
                     newPlant = Instantiate(plantLevel1, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation);
@@ -192,7 +193,7 @@ public class Farm_Controller : MonoBehaviour
 
             if ((isSelected) && (Input.GetMouseButtonUp(1) || Input.GetButtonUp("RightTrigger")) && (GameManager.Instance.waterLevel >= 10) && (!GameManager.Instance.gameOver))
             {
-                if (waterLevel <= 50)
+                if (waterLevel <= 50 && isPlanted)
                 {
                     waterLevel += 20;
                     GameManager.Instance.waterLevel -= 10;
@@ -260,78 +261,81 @@ public class Farm_Controller : MonoBehaviour
         {
             isSelected = true;
 
-            switch(GameManager.Instance.currentShopSelection)
+            if (!Tutorial_Manager.Instance.tutorialStartred)
             {
-                case GameManager.ShopItems.FERTILIZER:
-                    if(!hasFertilizer && (GameManager.Instance.money < 50))
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
-                    }
-                    else if(!hasFertilizer && (GameManager.Instance.money >= 50))
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
-                    }
-                    else
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-                    }
-                    break;
-                case GameManager.ShopItems.SPRINKLER:
-                    if (!hasSprinkler && (GameManager.Instance.money < 25))
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
-                    }
-                    else if (!hasSprinkler && (GameManager.Instance.money >= 25))
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
-                    }
-                    else
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-                    }
-                    break;
-                case GameManager.ShopItems.SICLE:
-                    if (!isPlanted || (isPlanted && (newPlant.GetComponent<Plant_controller>().currentLevel < 3)))
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
-                    }
-                    else if ((isPlanted && (newPlant.GetComponent<Plant_controller>().currentLevel == 3)))
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
-                    }
-                    else
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-                    }
-                    break;
-                case GameManager.ShopItems.WATER:
-                    if (GameManager.Instance.waterLevel <= 0)
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
-                    }
-                    else
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
-                    }
-                    break;
-                default:
-                    if (!isPlanted && (((GameManager.Instance.currentShopSelection == GameManager.ShopItems.BASIC) && (GameManager.Instance.money >= 25)) || ((GameManager.Instance.currentShopSelection != GameManager.ShopItems.BASIC) && (GameManager.Instance.money >= 50))))
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
-                    }
-                    else if (!isPlanted && (((GameManager.Instance.currentShopSelection == GameManager.ShopItems.BASIC) && (GameManager.Instance.money < 25)) || ((GameManager.Instance.currentShopSelection != GameManager.ShopItems.BASIC) && (GameManager.Instance.money < 50))))
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
-                    }
-                    else if (isPlanted)
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
-                    }
-                    else
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-                    }
-                    break;
+                switch (GameManager.Instance.currentShopSelection)
+                {
+                    case GameManager.ShopItems.FERTILIZER:
+                        if (!hasFertilizer && (GameManager.Instance.money < 50))
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                        }
+                        else if (!hasFertilizer && (GameManager.Instance.money >= 50))
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+                        }
+                        else
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                        }
+                        break;
+                    case GameManager.ShopItems.SPRINKLER:
+                        if (!hasSprinkler && (GameManager.Instance.money < 25))
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                        }
+                        else if (!hasSprinkler && (GameManager.Instance.money >= 25))
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+                        }
+                        else
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                        }
+                        break;
+                    case GameManager.ShopItems.SICLE:
+                        if (!isPlanted || (isPlanted && (newPlant.GetComponent<Plant_controller>().currentLevel < 3)))
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                        }
+                        else if ((isPlanted && (newPlant.GetComponent<Plant_controller>().currentLevel == 3)))
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+                        }
+                        else
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                        }
+                        break;
+                    case GameManager.ShopItems.WATER:
+                        if (GameManager.Instance.waterLevel <= 0)
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                        }
+                        else
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+                        }
+                        break;
+                    default:
+                        if (!isPlanted && (((GameManager.Instance.currentShopSelection == GameManager.ShopItems.BASIC) && (GameManager.Instance.money >= 25)) || ((GameManager.Instance.currentShopSelection != GameManager.ShopItems.BASIC) && (GameManager.Instance.money >= 50))))
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+                        }
+                        else if (!isPlanted && (((GameManager.Instance.currentShopSelection == GameManager.ShopItems.BASIC) && (GameManager.Instance.money < 25)) || ((GameManager.Instance.currentShopSelection != GameManager.ShopItems.BASIC) && (GameManager.Instance.money < 50))))
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                        }
+                        else if (isPlanted)
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                        }
+                        else
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                        }
+                        break;
+                }
             }
         }
     }
@@ -342,78 +346,81 @@ public class Farm_Controller : MonoBehaviour
         {
             isSelected = true;
 
-            switch (GameManager.Instance.currentShopSelection)
+            if (!Tutorial_Manager.Instance.tutorialStartred)
             {
-                case GameManager.ShopItems.FERTILIZER:
-                    if (!hasFertilizer && (GameManager.Instance.money < 50))
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
-                    }
-                    else if (!hasFertilizer && (GameManager.Instance.money >= 50))
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
-                    }
-                    else
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
-                    }
-                    break;
-                case GameManager.ShopItems.SPRINKLER:
-                    if (!hasSprinkler && (GameManager.Instance.money < 25))
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
-                    }
-                    else if (!hasSprinkler && (GameManager.Instance.money >= 25))
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
-                    }
-                    else
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
-                    }
-                    break;
-                case GameManager.ShopItems.SICLE:
-                    if (!isPlanted || (isPlanted && (newPlant.GetComponent<Plant_controller>().currentLevel < 3)))
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
-                    }
-                    else if ((isPlanted && (newPlant.GetComponent<Plant_controller>().currentLevel == 3)))
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
-                    }
-                    else
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-                    }
-                    break;
-                case GameManager.ShopItems.WATER:
-                    if (GameManager.Instance.waterLevel <= 0)
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
-                    }
-                    else
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
-                    }
-                    break;
-                default:
-                    if(!isPlanted && (((GameManager.Instance.currentShopSelection == GameManager.ShopItems.BASIC) && (GameManager.Instance.money >= 25)) || ((GameManager.Instance.currentShopSelection != GameManager.ShopItems.BASIC) && (GameManager.Instance.money >= 50))))
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
-                    }
-                    else if(!isPlanted && (((GameManager.Instance.currentShopSelection == GameManager.ShopItems.BASIC) && (GameManager.Instance.money < 25)) || ((GameManager.Instance.currentShopSelection != GameManager.ShopItems.BASIC) && (GameManager.Instance.money < 50))))
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
-                    }
-                    else if (isPlanted)
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
-                    }
-                    else
-                    {
-                        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-                    }
-                    break;
+                switch (GameManager.Instance.currentShopSelection)
+                {
+                    case GameManager.ShopItems.FERTILIZER:
+                        if (!hasFertilizer && (GameManager.Instance.money < 50))
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                        }
+                        else if (!hasFertilizer && (GameManager.Instance.money >= 50))
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+                        }
+                        else
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                        }
+                        break;
+                    case GameManager.ShopItems.SPRINKLER:
+                        if (!hasSprinkler && (GameManager.Instance.money < 25))
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                        }
+                        else if (!hasSprinkler && (GameManager.Instance.money >= 25))
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+                        }
+                        else
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                        }
+                        break;
+                    case GameManager.ShopItems.SICLE:
+                        if (!isPlanted || (isPlanted && (newPlant.GetComponent<Plant_controller>().currentLevel < 3)))
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                        }
+                        else if ((isPlanted && (newPlant.GetComponent<Plant_controller>().currentLevel == 3)))
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+                        }
+                        else
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                        }
+                        break;
+                    case GameManager.ShopItems.WATER:
+                        if (GameManager.Instance.waterLevel <= 0)
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                        }
+                        else
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+                        }
+                        break;
+                    default:
+                        if (!isPlanted && (((GameManager.Instance.currentShopSelection == GameManager.ShopItems.BASIC) && (GameManager.Instance.money >= 25)) || ((GameManager.Instance.currentShopSelection != GameManager.ShopItems.BASIC) && (GameManager.Instance.money >= 50))))
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+                        }
+                        else if (!isPlanted && (((GameManager.Instance.currentShopSelection == GameManager.ShopItems.BASIC) && (GameManager.Instance.money < 25)) || ((GameManager.Instance.currentShopSelection != GameManager.ShopItems.BASIC) && (GameManager.Instance.money < 50))))
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                        }
+                        else if (isPlanted)
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                        }
+                        else
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                        }
+                        break;
+                }
             }
         }
     }

@@ -18,15 +18,29 @@ public class Night_Phase : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-		if(GameManager.Instance.currentPhase == GameManager.Phase.NIGHT)
+        if (!Tutorial_Manager.Instance.tutorialStartred)
         {
-            GetComponent<Image>().color = Night;
-            dayNightWheel.transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 117 + (((float)GameManager.Instance.spawnCount / (float)GameManager.Instance.totalWaveEnemies) * 270f));
+            if (GameManager.Instance.currentPhase == GameManager.Phase.NIGHT)
+            {
+                GetComponent<Image>().color = Night;
+                dayNightWheel.transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 117 + (((float)GameManager.Instance.spawnCount / (float)GameManager.Instance.totalWaveEnemies) * 270f));
+            }
+            else
+            {
+                GetComponent<Image>().color = Day;
+                dayNightWheel.transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 27 + ((((float)GameManager.Instance.dayTimerConstant - (float)GameManager.Instance.dayTimer) / (float)GameManager.Instance.dayTimerConstant) * 90f));
+            }
         }
         else
         {
-            GetComponent<Image>().color = Day;
-            dayNightWheel.transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 27 + ((((float)GameManager.Instance.dayTimerConstant - (float)GameManager.Instance.dayTimer) / (float)GameManager.Instance.dayTimerConstant) * 90f));
+            if (GameManager.Instance.currentPhase == GameManager.Phase.NIGHT)
+            {
+                GetComponent<Image>().color = Night;
+            }
+            else
+            {
+                GetComponent<Image>().color = Day;
+            }
         }
     }
 
