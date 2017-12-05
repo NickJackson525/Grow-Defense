@@ -40,7 +40,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if (GameManager.Instance.gameOver)
+        if (GameManager.Instance.gameOver && pauseWindow.activeSelf)
         {
             BackToPauseMenu();
             pauseWindow.SetActive(false);
