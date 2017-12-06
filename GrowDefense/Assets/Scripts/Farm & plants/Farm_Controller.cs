@@ -15,6 +15,7 @@ public class Farm_Controller : MonoBehaviour
     public GameObject select;
     public GameObject sprinkler;
     public GameObject fertilizer;
+    public GameObject helpPopup;
     public Sprite unwateredTile;
     public Sprite wateredTile1;
     public Sprite wateredTile2;
@@ -40,6 +41,7 @@ public class Farm_Controller : MonoBehaviour
     void Start ()
     {
         audioManager = GameObject.Find("Audio Manager").GetComponent<Audio_Manager>();
+        helpPopup = GameObject.FindGameObjectWithTag("HelpPopup");
     }
 
     #endregion
@@ -66,7 +68,7 @@ public class Farm_Controller : MonoBehaviour
                 GameManager.Instance.totalUnwateredPlants++;
                 updateTotalUnwatered = true;
             }
-            else if (isPlanted && (waterLevel > 0))
+            else if (isPlanted && (waterLevel > 0) && updateTotalUnwatered)
             {
                 GameManager.Instance.totalUnwateredPlants--;
                 updateTotalUnwatered = false;
@@ -114,7 +116,7 @@ public class Farm_Controller : MonoBehaviour
             #endregion
         }
 
-        if (!GameManager.Instance.pauseGame && !GameManager.Instance.placingUpgrade && !GameManager.Instance.wateringCanSelected && !GameManager.Instance.SicleSelected)
+        if (!GameManager.Instance.pauseGame && !GameManager.Instance.placingUpgrade && !GameManager.Instance.wateringCanSelected && !GameManager.Instance.SicleSelected && !GameManager.Instance.sellingItem)
         {
             #region Create Plant
 
@@ -137,6 +139,26 @@ public class Farm_Controller : MonoBehaviour
                         }
                     }
                 }
+                else if((GameManager.Instance.currentShopSelection != GameManager.ShopItems.BASIC) && (GameManager.Instance.money < 50))
+                {
+                    if (!GameManager.Instance.gameStarted)
+                    {
+                        helpPopup.GetComponent<HelpPopup>().thisHelpType = HelpPopup.HelpType.NOMONEY1;
+                    }
+                    else
+                    {
+                        if (Random.Range(1, 3) == 1)
+                        {
+                            helpPopup.GetComponent<HelpPopup>().thisHelpType = HelpPopup.HelpType.NOMONEY2;
+                        }
+                        else
+                        {
+                            helpPopup.GetComponent<HelpPopup>().thisHelpType = HelpPopup.HelpType.NOMONEY3;
+                        }
+                    }
+
+                    helpPopup.GetComponent<HelpPopup>().MoveDown();
+                }
                 else if ((SceneManager.GetActiveScene().name != "Tutorial") || (Tutorial_Manager.Instance.tutorialStartred && tutorialTile1))
                 {
                     audioManager.PlayPlantingSound();
@@ -152,10 +174,30 @@ public class Farm_Controller : MonoBehaviour
                     }
                 }
             }
+            else if ((isSelected) && (!isPlanted) && (Input.GetMouseButtonUp(0) || Input.GetButtonUp("AButton")) && (GameManager.Instance.money < 25) && !GameManager.Instance.gameOver)
+            {
+                if(!GameManager.Instance.gameStarted)
+                {
+                    helpPopup.GetComponent<HelpPopup>().thisHelpType = HelpPopup.HelpType.NOMONEY1;
+                }
+                else
+                {
+                    if(Random.Range(1,3) == 1)
+                    {
+                        helpPopup.GetComponent<HelpPopup>().thisHelpType = HelpPopup.HelpType.NOMONEY2;
+                    }
+                    else
+                    {
+                        helpPopup.GetComponent<HelpPopup>().thisHelpType = HelpPopup.HelpType.NOMONEY3;
+                    }
+                }
+
+                helpPopup.GetComponent<HelpPopup>().MoveDown();
+            }
 
             #endregion
         }
-        else if (!GameManager.Instance.pauseGame && GameManager.Instance.placingUpgrade && !GameManager.Instance.wateringCanSelected && !GameManager.Instance.SicleSelected)
+        else if (!GameManager.Instance.pauseGame && GameManager.Instance.placingUpgrade && !GameManager.Instance.wateringCanSelected && !GameManager.Instance.SicleSelected && !GameManager.Instance.sellingItem)
         {
             #region Place Upgrade
 
@@ -203,7 +245,7 @@ public class Farm_Controller : MonoBehaviour
 
             #endregion
         }
-        else if (!GameManager.Instance.pauseGame && !GameManager.Instance.placingUpgrade && GameManager.Instance.wateringCanSelected && !GameManager.Instance.SicleSelected)
+        else if (!GameManager.Instance.pauseGame && !GameManager.Instance.placingUpgrade && GameManager.Instance.wateringCanSelected && !GameManager.Instance.SicleSelected && !GameManager.Instance.sellingItem)
         {
             #region Water Tile
 
@@ -218,7 +260,7 @@ public class Farm_Controller : MonoBehaviour
 
             #endregion
         }
-        else if (!GameManager.Instance.pauseGame && !GameManager.Instance.placingUpgrade && !GameManager.Instance.wateringCanSelected && GameManager.Instance.SicleSelected)
+        else if (!GameManager.Instance.pauseGame && !GameManager.Instance.placingUpgrade && !GameManager.Instance.wateringCanSelected && GameManager.Instance.SicleSelected && !GameManager.Instance.sellingItem)
         {
             #region Sicle Plant
 
@@ -237,6 +279,51 @@ public class Farm_Controller : MonoBehaviour
                         break;
                     case GameManager.ShopItems.VOID:
                         GameManager.Instance.voidPlantsHarvested++;
+                        break;
+                }
+
+                isPlanted = false;
+                Destroy(newPlant);
+                newPlant = null;
+            }
+
+            #endregion
+        }
+        else if (!GameManager.Instance.pauseGame && !GameManager.Instance.placingUpgrade && !GameManager.Instance.wateringCanSelected && !GameManager.Instance.SicleSelected && GameManager.Instance.sellingItem)
+        {
+            #region Sell Plant
+
+            if ((isPlanted) && (isSelected) && Input.GetMouseButtonUp(0) && (!GameManager.Instance.gameOver))
+            {
+                switch (newPlant.GetComponent<Plant_controller>().thisPlant)
+                {
+                    case GameManager.ShopItems.BASIC:
+                        if(newPlant.GetComponent<Plant_controller>().currentLevel == 1)
+                        {
+                            GameManager.Instance.money += 15;
+                        }
+                        else if (newPlant.GetComponent<Plant_controller>().currentLevel == 2)
+                        {
+                            GameManager.Instance.money += 25;
+                        }
+                        else
+                        {
+                            GameManager.Instance.money += 75;
+                        }
+                        break;
+                    default:
+                        if (newPlant.GetComponent<Plant_controller>().currentLevel == 1)
+                        {
+                            GameManager.Instance.money += 30;
+                        }
+                        else if (newPlant.GetComponent<Plant_controller>().currentLevel == 2)
+                        {
+                            GameManager.Instance.money += 50;
+                        }
+                        else
+                        {
+                            GameManager.Instance.money += 150;
+                        }
                         break;
                 }
 
@@ -323,6 +410,16 @@ public class Farm_Controller : MonoBehaviour
                             GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
                         }
                         break;
+                    case GameManager.ShopItems.SELL:
+                        if (!isPlanted)
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                        }
+                        else
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
+                        }
+                        break;
                     case GameManager.ShopItems.WATER:
                         if (GameManager.Instance.waterLevel <= 0)
                         {
@@ -406,6 +503,16 @@ public class Farm_Controller : MonoBehaviour
                         else
                         {
                             GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                        }
+                        break;
+                    case GameManager.ShopItems.SELL:
+                        if (!isPlanted)
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(1, .447f, .447f, 1);
+                        }
+                        else
+                        {
+                            GetComponent<SpriteRenderer>().color = new Color(0, 1, 0, 1);
                         }
                         break;
                     case GameManager.ShopItems.WATER:

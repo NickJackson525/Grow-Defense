@@ -17,7 +17,10 @@ public class HelpPopup : MonoBehaviour
     public HelpType thisHelpType = HelpType.DRYPLANTS;
     public Text popupText;
     public Vector3 startPos;
+    public int popupCooldown = 0;
+    int autoHide = 0;
     bool moveBack = false;
+    bool moveDown = false;
 
     private void Start()
     {
@@ -26,25 +29,56 @@ public class HelpPopup : MonoBehaviour
 
     private void Update()
     {
+        if(popupCooldown > 0)
+        {
+            popupCooldown--;
+        }
+
+        if(autoHide > 0)
+        {
+            autoHide--;
+
+            if((autoHide == 0) && (transform.position != startPos))
+            {
+                MoveUp();
+            }
+        }
+
         if(moveBack)
         {
-            transform.position = Vector3.Lerp(transform.position, startPos, .05f);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, startPos.y, transform.position.z), .05f);
 
             if(Vector3.Distance(transform.position, startPos) <= .1f)
             {
                 transform.position = startPos;
                 moveBack = false;
+                autoHide = 0;
+            }
+        }
+
+        if(moveDown)
+        {
+            if ((Vector3.Distance(transform.position, new Vector3(transform.position.x, 4.6f, transform.position.z)) > .1f) && (popupCooldown <= 0))
+            {
+                transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 4.6f, transform.position.z), .05f);
+            }
+            else if (Vector3.Distance(transform.position, new Vector3(transform.position.x, 4.6f, transform.position.z)) < .1f)
+            {
+                autoHide = 240;
+                moveDown = false;
             }
         }
     }
 
     public void MoveDown()
     {
-        transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, 4.6f, transform.position.z), .05f);
+        popupText.text = PopupInfo[thisHelpType];
+        moveDown = true;
     }
 
     public void MoveUp()
     {
         moveBack = true;
+        popupCooldown = 360;
     }
 }

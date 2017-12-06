@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Quest_Popup : MonoBehaviour
@@ -39,7 +40,7 @@ public class Quest_Popup : MonoBehaviour
         Objective3 = GameManager.Instance.Objective3;
         randomCharacter = Random.Range(1, 6);
 
-        if(Tutorial_Manager.Instance.tutorialStartred)
+        if(SceneManager.GetActiveScene().name == "Tutorial")
         {
             randomCharacter = 1;
         }
@@ -323,7 +324,7 @@ public class Quest_Popup : MonoBehaviour
 
     public void RejectQuest()
     {
-        if (!Tutorial_Manager.Instance.tutorialStartred)
+        if (SceneManager.GetActiveScene().name != "Tutorial")
         {
             GameManager.Instance.pauseGame = false;
             GameManager.Instance.currentNumQuests--;

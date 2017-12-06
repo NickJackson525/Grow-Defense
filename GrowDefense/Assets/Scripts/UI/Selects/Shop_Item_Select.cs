@@ -37,6 +37,7 @@ public class Shop_Item_Select : MonoBehaviour
                 GameManager.Instance.placingUpgrade = true;
                 GameManager.Instance.wateringCanSelected = false;
                 GameManager.Instance.SicleSelected = false;
+                GameManager.Instance.sellingItem = false;
             }
             else
             {
@@ -52,6 +53,7 @@ public class Shop_Item_Select : MonoBehaviour
                 GameManager.Instance.wateringCanSelected = true;
                 GameManager.Instance.placingUpgrade = false;
                 GameManager.Instance.SicleSelected = false;
+                GameManager.Instance.sellingItem = false;
             }
             else
             {
@@ -67,10 +69,27 @@ public class Shop_Item_Select : MonoBehaviour
                 GameManager.Instance.SicleSelected = true;
                 GameManager.Instance.wateringCanSelected = false;
                 GameManager.Instance.placingUpgrade = false;
+                GameManager.Instance.sellingItem = false;
             }
             else
             {
                 GameManager.Instance.SicleSelected = false;
+            }
+
+            #endregion
+
+            #region Sell
+
+            if (thisItem == GameManager.ShopItems.SELL)
+            {
+                GameManager.Instance.SicleSelected = false;
+                GameManager.Instance.wateringCanSelected = false;
+                GameManager.Instance.placingUpgrade = false;
+                GameManager.Instance.sellingItem = true;
+            }
+            else
+            {
+                GameManager.Instance.sellingItem = false;
             }
 
             #endregion
@@ -85,6 +104,7 @@ public class Shop_Item_Select : MonoBehaviour
             GameManager.Instance.placingUpgrade = false;
             GameManager.Instance.SicleSelected = false;
             GameManager.Instance.wateringCanSelected = true;
+            GameManager.Instance.sellingItem = false;
         }
         else if ((gameObject.name == "Build_Select") && Input.GetKeyUp(KeyCode.Alpha2))
         {
@@ -93,6 +113,16 @@ public class Shop_Item_Select : MonoBehaviour
             GameManager.Instance.placingUpgrade = false;
             GameManager.Instance.SicleSelected = true;
             GameManager.Instance.wateringCanSelected = false;
+            GameManager.Instance.sellingItem = false;
+        }
+        else if ((gameObject.name == "Build_Select") && Input.GetKeyUp(KeyCode.Alpha3))
+        {
+            buildSelect.transform.position = sicleSelect.transform.position;
+            GameManager.Instance.currentShopSelection = GameManager.ShopItems.SELL;
+            GameManager.Instance.placingUpgrade = false;
+            GameManager.Instance.SicleSelected = false;
+            GameManager.Instance.wateringCanSelected = false;
+            GameManager.Instance.sellingItem = true;
         }
 
         #endregion

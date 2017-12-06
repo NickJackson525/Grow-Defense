@@ -63,7 +63,7 @@ public class Cursor_Image : MonoBehaviour
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 20f);
         }
 
-        if(GameManager.Instance.gameOver || GameManager.Instance.pauseGame || GameManager.Instance.placingUpgrade || (SceneManager.GetActiveScene().name == "Main Menu"))
+        if(GameManager.Instance.gameOver || GameManager.Instance.pauseGame || GameManager.Instance.placingUpgrade || GameManager.Instance.sellingItem || (SceneManager.GetActiveScene().name == "Main Menu"))
         {
             GetComponent<SpriteRenderer>().sprite = defaultCursor;
         }
@@ -108,6 +108,12 @@ public class Cursor_Image : MonoBehaviour
                 case GameManager.ShopItems.SICLE:
                     GetComponent<SpriteRenderer>().sprite = sicleCursor;
                     break;
+                case GameManager.ShopItems.SELL:
+                    GetComponent<SpriteRenderer>().sprite = defaultCursor;
+                    break;
+                default:
+                    GetComponent<SpriteRenderer>().sprite = defaultCursor;
+                    break;
             }
         }
     }
@@ -141,6 +147,12 @@ public class Cursor_Image : MonoBehaviour
                     break;
                 case GameManager.ShopItems.SICLE:
                     GetComponent<SpriteRenderer>().sprite = sicleCursor;
+                    break;
+                case GameManager.ShopItems.SELL:
+                    GetComponent<SpriteRenderer>().sprite = defaultCursor;
+                    break;
+                default:
+                    GetComponent<SpriteRenderer>().sprite = defaultCursor;
                     break;
             }
         }

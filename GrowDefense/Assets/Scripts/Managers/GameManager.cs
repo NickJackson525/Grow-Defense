@@ -46,7 +46,7 @@ public class GameManager
 
     public enum ControlScheme { WASD, ARROWS, IJKL}
     public enum Direction { UP, DOWN, LEFT, RIGHT}
-    public enum ShopItems { BASIC, FIRE, ICE, VOID, SPRINKLER, FERTILIZER, WATER, SICLE}
+    public enum ShopItems { BASIC, FIRE, ICE, VOID, SPRINKLER, FERTILIZER, WATER, SICLE, SELL}
     public enum BulletType { BASIC, FIRE, ICE, VOID }
     public enum Phase { DAY, NIGHT}
     public enum ColorBlindMode { Normal, Protanope, Deuteranope}
@@ -78,6 +78,7 @@ public class GameManager
     public bool placingUpgrade = false;
     public bool wateringCanSelected = false;
     public bool SicleSelected = false;
+    public bool sellingItem = false;
     public bool purchasedWaterEfficiency = false;
     public bool purchasedBasicUpgrade = false;
     public bool purchasedFireUpgrade = false;

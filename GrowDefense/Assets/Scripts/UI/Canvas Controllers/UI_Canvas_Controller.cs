@@ -55,9 +55,8 @@ public class UI_Canvas_Controller : MonoBehaviour
     {
         GameManager.Instance.Update();
 
-        if (GameManager.Instance.totalUnwateredPlants >= 2)
+        if ((GameManager.Instance.totalUnwateredPlants >= 2) && GameManager.Instance.gameStarted)
         {
-            helpPopup.SetActive(true);
             helpPopup.GetComponent<HelpPopup>().thisHelpType = HelpPopup.HelpType.DRYPLANTS;
             helpPopup.GetComponent<HelpPopup>().MoveDown();
         }
