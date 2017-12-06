@@ -25,6 +25,7 @@ public class Farm_Controller : MonoBehaviour
     public bool hasSprinkler = false;
     public bool hasFertilizer = false;
     public bool tutorialTile1 = false;
+    bool updateTotalUnwatered = false;
     GameObject newPlant;
     GameObject createdSelect;
     GameObject createdUpgrade;
@@ -60,6 +61,17 @@ public class Farm_Controller : MonoBehaviour
 
         if(!GameManager.Instance.pauseGame)
         {
+            if(isPlanted && (waterLevel <= 0) && !updateTotalUnwatered)
+            {
+                GameManager.Instance.totalUnwateredPlants++;
+                updateTotalUnwatered = true;
+            }
+            else if (isPlanted && (waterLevel > 0))
+            {
+                GameManager.Instance.totalUnwateredPlants--;
+                updateTotalUnwatered = false;
+            }
+
             #region Update Sprite
 
             if (waterLevel == 0)

@@ -16,6 +16,7 @@ public class UI_Canvas_Controller : MonoBehaviour
     public GameObject gameOverTitle;
     public GameObject settingsWindow;
     public GameObject shopButton;
+    public GameObject helpPopup;
     public Button playButton;
     public Button instructionsButton;
     public Button creditsButton;
@@ -53,6 +54,13 @@ public class UI_Canvas_Controller : MonoBehaviour
     void Update ()
     {
         GameManager.Instance.Update();
+
+        if (GameManager.Instance.totalUnwateredPlants >= 2)
+        {
+            helpPopup.SetActive(true);
+            helpPopup.GetComponent<HelpPopup>().thisHelpType = HelpPopup.HelpType.DRYPLANTS;
+            helpPopup.GetComponent<HelpPopup>().MoveDown();
+        }
 
         if (GameManager.Instance.gameOver)
         {
