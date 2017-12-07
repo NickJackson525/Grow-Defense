@@ -7,6 +7,7 @@ public class Shop_Item_Select : MonoBehaviour
     #region Variables
 
     public GameManager.ShopItems thisItem;
+    public GameObject cursor;
     public GameObject buildSelect;
     public GameObject fireSelect;
     public GameObject iceSelect;
@@ -15,6 +16,7 @@ public class Shop_Item_Select : MonoBehaviour
     public GameObject sprinklerSelect;
     public GameObject waterSelect;
     public GameObject sicleSelect;
+    public GameObject sellSelect;
     bool mouseHover = false;
 
     #endregion
@@ -105,6 +107,7 @@ public class Shop_Item_Select : MonoBehaviour
             GameManager.Instance.SicleSelected = false;
             GameManager.Instance.wateringCanSelected = true;
             GameManager.Instance.sellingItem = false;
+            cursor.GetComponent<SpriteRenderer>().sprite = cursor.GetComponent<Cursor_Image>().wateringCanCursor;
         }
         else if ((gameObject.name == "Build_Select") && Input.GetKeyUp(KeyCode.Alpha2))
         {
@@ -114,15 +117,17 @@ public class Shop_Item_Select : MonoBehaviour
             GameManager.Instance.SicleSelected = true;
             GameManager.Instance.wateringCanSelected = false;
             GameManager.Instance.sellingItem = false;
+            cursor.GetComponent<SpriteRenderer>().sprite = cursor.GetComponent<Cursor_Image>().sicleCursor;
         }
         else if ((gameObject.name == "Build_Select") && Input.GetKeyUp(KeyCode.Alpha3))
         {
-            buildSelect.transform.position = sicleSelect.transform.position;
+            buildSelect.transform.position = sellSelect.transform.position;
             GameManager.Instance.currentShopSelection = GameManager.ShopItems.SELL;
             GameManager.Instance.placingUpgrade = false;
             GameManager.Instance.SicleSelected = false;
             GameManager.Instance.wateringCanSelected = false;
             GameManager.Instance.sellingItem = true;
+            cursor.GetComponent<SpriteRenderer>().sprite = cursor.GetComponent<Cursor_Image>().sellCursor;
         }
 
         #endregion

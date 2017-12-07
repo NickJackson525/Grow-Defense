@@ -189,9 +189,21 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         #endregion
 
+        #region Adjust Sound Effect Volume
+
+
+
+        #endregion
+
+        #region Adjust Background Sound Volume
+
+
+
+        #endregion
+
         #region Set Controls
 
-        public void SetControls(string newControls)
+    public void SetControls(string newControls)
         {
             audioManager.PlayButtonSound();
 

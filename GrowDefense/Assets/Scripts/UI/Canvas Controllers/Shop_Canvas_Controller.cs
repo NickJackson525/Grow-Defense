@@ -76,15 +76,6 @@ public class Shop_Canvas_Controller : MonoBehaviour
         {
             GameManager.Instance.pauseGame = true;
         }
-
-        if(Input.GetKeyUp(KeyCode.Escape))
-        {
-            if (shopWindow.activeSelf)
-            {
-                shopWindow.SetActive(false);
-                GameManager.Instance.pauseGame = false;
-            }
-        }
     }
 
     #endregion

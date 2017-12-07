@@ -8,6 +8,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
     #region Variables
 
     public Audio_Manager audioManager;
+    public GameObject shopButton;
     public GameObject shopWindow;
     public GameObject pauseWindow;
     public GameObject pauseTitle;
@@ -63,6 +64,12 @@ public class Pause_Canvas_Controller : MonoBehaviour
                 pauseWindow.SetActive(true);
                 GameManager.Instance.pauseGame = true;
             }
+        }
+        else if (Input.GetKeyUp(KeyCode.Escape) && shopWindow.activeSelf)
+        {
+            shopWindow.SetActive(false);
+            GameManager.Instance.pauseGame = false;
+            shopButton.GetComponentInChildren<Text>().text = "Shop";
         }
 
         if (pauseWindow.activeSelf)

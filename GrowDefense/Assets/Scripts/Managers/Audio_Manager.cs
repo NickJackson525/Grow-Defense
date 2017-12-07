@@ -18,6 +18,7 @@ public class Audio_Manager : MonoBehaviour
     public AudioClip plantInGound4;
     public AudioClip button;
     public AudioClip plantShoot;
+    public AudioClip sell;
 
     #endregion
 
@@ -76,6 +77,7 @@ public class Audio_Manager : MonoBehaviour
         plantInGound4 = Resources.Load<AudioClip>("Sounds/plantInGround4");
         button = Resources.Load<AudioClip>("Sounds/ButtonClick");
         plantShoot = Resources.Load<AudioClip>("Sounds/plantShoot");
+        sell = Resources.Load<AudioClip>("Sounds/SellPlant");
 
         PlayBackgroundMusic();
     }
@@ -107,6 +109,11 @@ public class Audio_Manager : MonoBehaviour
     public void PlayPlantShoot()
     {
         effectSoundSource.PlayOneShot(plantShoot, .2f);
+    }
+
+    public void PlayMoneySound()
+    {
+        effectSoundSource.PlayOneShot(sell, .2f);
     }
 
     public void PlayPlantingSound()

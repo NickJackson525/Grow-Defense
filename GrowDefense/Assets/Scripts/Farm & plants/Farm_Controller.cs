@@ -295,6 +295,8 @@ public class Farm_Controller : MonoBehaviour
 
             if ((isPlanted) && (isSelected) && Input.GetMouseButtonUp(0) && (!GameManager.Instance.gameOver))
             {
+                audioManager.PlayMoneySound();
+
                 switch (newPlant.GetComponent<Plant_controller>().thisPlant)
                 {
                     case GameManager.ShopItems.BASIC:
