@@ -19,6 +19,8 @@ public class Audio_Manager : MonoBehaviour
     public AudioClip button;
     public AudioClip plantShoot;
     public AudioClip sell;
+    public float musicVolume = 1;
+    public float effectVolume = 1;
 
     #endregion
 
@@ -92,6 +94,8 @@ public class Audio_Manager : MonoBehaviour
         {
             PlayBackgroundMusic();
         }
+
+        backgroundMusicSource.volume = .3f * musicVolume;
     }
 
     #endregion
@@ -100,20 +104,17 @@ public class Audio_Manager : MonoBehaviour
 
     public void PlayButtonSound()
     {
-        if (!effectSoundSource.isPlaying)
-        {
-            effectSoundSource.PlayOneShot(button, .6f);
-        }
+        effectSoundSource.PlayOneShot(button, .6f * effectVolume);
     }
 
     public void PlayPlantShoot()
     {
-        effectSoundSource.PlayOneShot(plantShoot, .2f);
+        effectSoundSource.PlayOneShot(plantShoot, .2f * effectVolume);
     }
 
     public void PlayMoneySound()
     {
-        effectSoundSource.PlayOneShot(sell, .2f);
+        effectSoundSource.PlayOneShot(sell, .2f * effectVolume);
     }
 
     public void PlayPlantingSound()
@@ -123,19 +124,19 @@ public class Audio_Manager : MonoBehaviour
         switch (rand)
         {
             case 1:
-                effectSoundSource.PlayOneShot(plantInGound1, .5f);
+                effectSoundSource.PlayOneShot(plantInGound1, .5f * effectVolume);
                 break;
             case 2:
-                effectSoundSource.PlayOneShot(plantInGound2, .5f);
+                effectSoundSource.PlayOneShot(plantInGound2, .5f * effectVolume);
                 break;
             case 3:
-                effectSoundSource.PlayOneShot(plantInGound3, .5f);
+                effectSoundSource.PlayOneShot(plantInGound3, .5f * effectVolume);
                 break;
             case 4:
-                effectSoundSource.PlayOneShot(plantInGound4, .5f);
+                effectSoundSource.PlayOneShot(plantInGound4, .5f * effectVolume);
                 break;
             default:
-                effectSoundSource.PlayOneShot(plantInGound1, .5f);
+                effectSoundSource.PlayOneShot(plantInGound1, .5f * effectVolume);
                 break;
         }
     }
@@ -148,20 +149,20 @@ public class Audio_Manager : MonoBehaviour
         switch (rand)
         {
             case 0:
-                backgroundMusicSource.PlayOneShot(backroundMusic1, .3f);
-                backgroundMusicSource.volume = .3f;
+                backgroundMusicSource.PlayOneShot(backroundMusic1, .3f * musicVolume);
+                backgroundMusicSource.volume = .3f * musicVolume;
                 break;
             case 1:
-                backgroundMusicSource.PlayOneShot(backroundMusic2, .5f);
-                backgroundMusicSource.volume = .5f;
+                backgroundMusicSource.PlayOneShot(backroundMusic2, .3f * musicVolume);
+                backgroundMusicSource.volume = .3f * musicVolume;
                 break;
             case 2:
-                backgroundMusicSource.PlayOneShot(backroundMusic3, .5f);
-                backgroundMusicSource.volume = .5f;
+                backgroundMusicSource.PlayOneShot(backroundMusic3, .3f * musicVolume);
+                backgroundMusicSource.volume = .3f * musicVolume;
                 break;
             default:
-                backgroundMusicSource.PlayOneShot(backroundMusic1, .3f);
-                backgroundMusicSource.volume = .3f;
+                backgroundMusicSource.PlayOneShot(backroundMusic1, .3f * musicVolume);
+                backgroundMusicSource.volume = .3f * musicVolume;
                 break;
         }
     }

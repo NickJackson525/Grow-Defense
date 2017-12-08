@@ -23,6 +23,8 @@ public class Pause_Canvas_Controller : MonoBehaviour
     public GameObject instructionsPanel;
     public GameObject creditsPanel;
     public GameObject backstoryPanel;
+    public GameObject settingsButton;
+    public GameObject settingsWindow;
 
     #endregion
 
@@ -109,6 +111,8 @@ public class Pause_Canvas_Controller : MonoBehaviour
             instructionsPanel.SetActive(false);
             creditsPanel.SetActive(false);
             backstoryPanel.SetActive(false);
+            settingsButton.SetActive(false);
+            settingsWindow.SetActive(false);
         }
 
         #endregion
@@ -130,6 +134,8 @@ public class Pause_Canvas_Controller : MonoBehaviour
             instructionsPanel.SetActive(false);
             creditsPanel.SetActive(false);
             backstoryPanel.SetActive(false);
+            settingsButton.SetActive(false);
+            settingsWindow.SetActive(false);
         }
 
         #endregion
@@ -151,6 +157,8 @@ public class Pause_Canvas_Controller : MonoBehaviour
             instructionsPanel.SetActive(true);
             creditsPanel.SetActive(false);
             backstoryPanel.SetActive(false);
+            settingsButton.SetActive(false);
+            settingsWindow.SetActive(false);
         }
 
         #endregion
@@ -172,6 +180,8 @@ public class Pause_Canvas_Controller : MonoBehaviour
             instructionsPanel.SetActive(false);
             creditsPanel.SetActive(true);
             backstoryPanel.SetActive(false);
+            settingsButton.SetActive(false);
+            settingsWindow.SetActive(false);
         }
 
         #endregion
@@ -193,6 +203,31 @@ public class Pause_Canvas_Controller : MonoBehaviour
             instructionsPanel.SetActive(false);
             creditsPanel.SetActive(false);
             backstoryPanel.SetActive(true);
+            settingsButton.SetActive(false);
+            settingsWindow.SetActive(false);
+        }
+
+    #endregion
+
+        #region Settings Window
+
+        public void SettingsOpen()
+        {
+            audioManager.PlayButtonSound();
+            pauseTitle.SetActive(false);
+            objectivesButton.SetActive(false);
+            controlsButton.SetActive(false);
+            instructionsButton.SetActive(false);
+            creditsButton.SetActive(false);
+            backstoryButton.SetActive(false);
+            mainMenuButton.SetActive(false);
+            objectivesPanel.SetActive(false);
+            controlsPanel.SetActive(false);
+            instructionsPanel.SetActive(false);
+            creditsPanel.SetActive(false);
+            backstoryPanel.SetActive(false);
+            settingsButton.SetActive(false);
+            settingsWindow.SetActive(true);
         }
 
         #endregion
@@ -214,6 +249,8 @@ public class Pause_Canvas_Controller : MonoBehaviour
             instructionsPanel.SetActive(false);
             creditsPanel.SetActive(false);
             backstoryPanel.SetActive(false);
+            settingsButton.SetActive(true);
+            settingsWindow.SetActive(false);
         }
 
         #endregion

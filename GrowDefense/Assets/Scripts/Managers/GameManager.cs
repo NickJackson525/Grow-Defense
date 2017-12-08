@@ -85,6 +85,7 @@ public class GameManager
     public bool purchasedIceUpgrade = false;
     public bool purchasedVoidUpgrade = false;
     public bool completedTutorial = false;
+    public bool helpPopupsEnabled = true;
     public ControlScheme currentControls = ControlScheme.WASD;
     public ColorBlindMode BlindMode = ColorBlindMode.Normal;
     public GameObject pauseWindow;
@@ -160,7 +161,19 @@ public class GameManager
                 Objective2 = GameObject.FindGameObjectWithTag("Objective2");
                 Objective3 = GameObject.FindGameObjectWithTag("Objective3");
 
-                pauseWindow.GetComponent<Pause_Canvas_Controller>().BackToPauseMenu();
+                pauseWindow.GetComponent<Pause_Canvas_Controller>().pauseTitle.SetActive(true);
+                pauseWindow.GetComponent<Pause_Canvas_Controller>().objectivesButton.SetActive(true);
+                pauseWindow.GetComponent<Pause_Canvas_Controller>().controlsButton.SetActive(true);
+                pauseWindow.GetComponent<Pause_Canvas_Controller>().instructionsButton.SetActive(true);
+                pauseWindow.GetComponent<Pause_Canvas_Controller>().creditsButton.SetActive(true);
+                pauseWindow.GetComponent<Pause_Canvas_Controller>().backstoryButton.SetActive(true);
+                pauseWindow.GetComponent<Pause_Canvas_Controller>().mainMenuButton.SetActive(true);
+                pauseWindow.GetComponent<Pause_Canvas_Controller>().settingsButton.SetActive(true);
+                pauseWindow.GetComponent<Pause_Canvas_Controller>().objectivesPanel.SetActive(false);
+                pauseWindow.GetComponent<Pause_Canvas_Controller>().controlsPanel.SetActive(false);
+                pauseWindow.GetComponent<Pause_Canvas_Controller>().instructionsPanel.SetActive(false);
+                pauseWindow.GetComponent<Pause_Canvas_Controller>().creditsPanel.SetActive(false);
+                pauseWindow.GetComponent<Pause_Canvas_Controller>().backstoryPanel.SetActive(false);
                 pauseWindow.GetComponent<Pause_Canvas_Controller>().pauseWindow.SetActive(false);
             }
         }

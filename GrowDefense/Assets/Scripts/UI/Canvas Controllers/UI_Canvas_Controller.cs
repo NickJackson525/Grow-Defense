@@ -94,13 +94,15 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         public void PlayGame()
         {
-            if(!GameManager.Instance.completedTutorial)
+            audioManager.PlayButtonSound();
+
+            if (!GameManager.Instance.completedTutorial)
             {
-                Load_Scene("Tutorial");
+                SceneManager.LoadScene("Tutorial");
             }
             else
             {
-                Load_Scene("Map 1");
+                SceneManager.LoadScene("Map 1");
             }
         }
 
@@ -140,7 +142,7 @@ public class UI_Canvas_Controller : MonoBehaviour
         public void Load_Scene(string sceneName)
         {
             audioManager.PlayButtonSound();
-            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+            SceneManager.LoadScene(sceneName);
         }
 
         #endregion
@@ -186,18 +188,6 @@ public class UI_Canvas_Controller : MonoBehaviour
                 settingsWindow.SetActive(true);
             }
         }
-
-        #endregion
-
-        #region Adjust Sound Effect Volume
-
-
-
-        #endregion
-
-        #region Adjust Background Sound Volume
-
-
 
         #endregion
 

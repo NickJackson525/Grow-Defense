@@ -56,7 +56,7 @@ public class HelpPopup : MonoBehaviour
             }
         }
 
-        if(moveDown)
+        if (moveDown && GameManager.Instance.helpPopupsEnabled)
         {
             if ((Vector3.Distance(transform.position, new Vector3(transform.position.x, 4.6f, transform.position.z)) > .1f) && (popupCooldown <= 0))
             {

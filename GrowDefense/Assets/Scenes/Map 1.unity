@@ -387,6 +387,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 223033727580340458, guid: 81105ddd986be4e43afd0b3e063aecdf,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 876196202}
     - target: {fileID: 114739588156148738, guid: 81105ddd986be4e43afd0b3e063aecdf,
         type: 2}
       propertyPath: shopButton
@@ -397,15 +402,14 @@ Prefab:
       propertyPath: shopWindow
       value: 
       objectReference: {fileID: 751293193}
-    - target: {fileID: 223033727580340458, guid: 81105ddd986be4e43afd0b3e063aecdf,
-        type: 2}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 876196202}
     - target: {fileID: 224341995738875666, guid: 81105ddd986be4e43afd0b3e063aecdf,
         type: 2}
       propertyPath: m_AnchoredPosition.y
       value: 50.36091
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782682564391492, guid: 81105ddd986be4e43afd0b3e063aecdf, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 81105ddd986be4e43afd0b3e063aecdf, type: 2}
