@@ -121,6 +121,7 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.Spa
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.SpatialMappingRenderer
 1c286e36708fba20cdf14d073b42055c Assembly-CSharp.dll:.Multiselect
 abfbbda0a9e5a5c42cc13d40423f3e4c Assembly-CSharp.dll:.Bullet
+a6d9cf369b184a97a22107d872a3ed61 Assembly-CSharp.dll:.VolumeLevel
 44ef46843585bcc8c2a06e05b34151e2 Assembly-CSharp.dll:.FlashTutorialSelect
 fd0ac5a8a484c62a2406116232887af1 Assembly-CSharp.dll:.Plant_controller
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Fertilizer
@@ -140,6 +141,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 73843688b51256aed059f049c540bca8 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 b48cefef73b049c833fef54031f7f2e3 Assembly-CSharp.dll:.UI_Canvas_Controller
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ToggleHelpPopups
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
 5f2ad81aa8994e8fbe25d1e57afe6773 UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.PlaymodeTestsController
 64eb32cc721b1cc68a91ed57461e188c UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.RemoteTestResultSender
@@ -162,5 +164,3 @@ e78126e7295f45e3f7d37f78e4ace355 Assembly-CSharp.dll:.Enemy_Controller
 92aa7ff041ef3d779e6673c04c0899ab Assembly-CSharp.dll:.Follow_Joystick
 361606995cb3265fbc51f74c51c73120 Assembly-CSharp.dll:.Quest_Popup
 4e5da351bcfc950aa4405d59d1bd0913 Assembly-CSharp.dll:jp.gulti.ColorBlind.ColorBlindnessSimulator
-a6d9cf369b184a97a22107d872a3ed61 Assembly-CSharp.dll:.VolumeLevel
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ToggleHelpPopups
