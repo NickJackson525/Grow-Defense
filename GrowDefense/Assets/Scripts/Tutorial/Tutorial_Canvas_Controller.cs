@@ -17,7 +17,9 @@ public class Tutorial_Canvas_Controller : MonoBehaviour
     public GameObject tutorialSelect3;
     public GameObject spawner;
     public GameObject QuestController;
+    public GameObject helpPopup;
     public int flashTimer = 30;
+    int reminderTimer = 0;
 
     // Use this for initialization
     void Start ()
@@ -32,6 +34,44 @@ public class Tutorial_Canvas_Controller : MonoBehaviour
         if(dialogWindow.activeSelf && (Tutorial_Manager.Instance.InstructionsIndex < 10))
         {
             GameManager.Instance.pauseGame = true;
+        }
+
+        if(reminderTimer > 0)
+        {
+            reminderTimer--;
+
+            if(reminderTimer == 0)
+            {
+                reminderTimer = 300;
+
+                switch (Tutorial_Manager.Instance.InstructionsIndex)
+                {
+                    case 4:
+                        helpPopup.GetComponent<HelpPopup>().thisHelpType = HelpPopup.HelpType.TUTORIAL1;
+                        helpPopup.GetComponent<HelpPopup>().MoveDown();
+                        break;
+                    case 5:
+                        helpPopup.GetComponent<HelpPopup>().thisHelpType = HelpPopup.HelpType.TUTORIAL2;
+                        helpPopup.GetComponent<HelpPopup>().MoveDown();
+                        break;
+                    case 7:
+                        helpPopup.GetComponent<HelpPopup>().thisHelpType = HelpPopup.HelpType.TUTORIAL3;
+                        helpPopup.GetComponent<HelpPopup>().MoveDown();
+                        break;
+                    case 8:
+                        helpPopup.GetComponent<HelpPopup>().thisHelpType = HelpPopup.HelpType.TUTORIAL4;
+                        helpPopup.GetComponent<HelpPopup>().MoveDown();
+                        break;
+                    case 10:
+                        helpPopup.GetComponent<HelpPopup>().thisHelpType = HelpPopup.HelpType.TUTORIAL5;
+                        helpPopup.GetComponent<HelpPopup>().MoveDown();
+                        break;
+                    case 11:
+                        helpPopup.GetComponent<HelpPopup>().thisHelpType = HelpPopup.HelpType.TUTORIAL6;
+                        helpPopup.GetComponent<HelpPopup>().MoveDown();
+                        break;
+                }
+            }
         }
 
         #region Flash selects
@@ -90,32 +130,44 @@ public class Tutorial_Canvas_Controller : MonoBehaviour
         {
             dialogWindow.SetActive(true);
             GameManager.Instance.pauseGame = true;
+            reminderTimer = 0;
+            helpPopup.GetComponent<HelpPopup>().MoveUp();
         }
         else if((Tutorial_Manager.Instance.InstructionsIndex == 5) && GameManager.Instance.waterLevel < 100)
         {
             dialogWindow.SetActive(true);
             GameManager.Instance.pauseGame = true;
+            reminderTimer = 0;
+            helpPopup.GetComponent<HelpPopup>().MoveUp();
         }
         else if ((Tutorial_Manager.Instance.InstructionsIndex == 7) && GameManager.Instance.money == 0)
         {
             dialogWindow.SetActive(true);
             GameManager.Instance.pauseGame = true;
+            reminderTimer = 0;
+            helpPopup.GetComponent<HelpPopup>().MoveUp();
         }
         else if ((Tutorial_Manager.Instance.InstructionsIndex == 8) && GameManager.Instance.money > 0)
         {
             dialogWindow.SetActive(true);
             GameManager.Instance.pauseGame = true;
             GameManager.Instance.currentPhase = GameManager.Phase.DAY;
+            reminderTimer = 0;
+            helpPopup.GetComponent<HelpPopup>().MoveUp();
         }
         else if ((Tutorial_Manager.Instance.InstructionsIndex == 10) && GameManager.Instance.firePlantsHarvested > 0 && GameManager.Instance.currentNumQuests > 0)
         {
             dialogWindow.SetActive(true);
             GameManager.Instance.pauseGame = true;
+            reminderTimer = 0;
+            helpPopup.GetComponent<HelpPopup>().MoveUp();
         }
         else if (!dialogWindow.activeSelf && (Tutorial_Manager.Instance.InstructionsIndex == 11) && GameManager.Instance.money > 5)
         {
             dialogWindow.SetActive(true);
             GameManager.Instance.pauseGame = true;
+            reminderTimer = 0;
+            helpPopup.GetComponent<HelpPopup>().MoveUp();
         }
 
         #endregion
@@ -143,11 +195,13 @@ public class Tutorial_Canvas_Controller : MonoBehaviour
                 GameManager.Instance.pauseGame = false;
                 dialogWindow.SetActive(false);
                 button.GetComponentInChildren<Text>().text = "Okay";
+                reminderTimer = 300;
                 break;
             case 4:
                 GameManager.Instance.pauseGame = false;
                 dialogWindow.SetActive(false);
                 button.GetComponentInChildren<Text>().text = "Next";
+                reminderTimer = 300;
                 break;
             case 5:
                 button.GetComponentInChildren<Text>().text = "Okay";
@@ -157,6 +211,7 @@ public class Tutorial_Canvas_Controller : MonoBehaviour
                 GameManager.Instance.pauseGame = false;
                 dialogWindow.SetActive(false);
                 button.GetComponentInChildren<Text>().text = "Okay";
+                reminderTimer = 300;
                 break;
             case 7:
                 GameManager.Instance.currentPhase = GameManager.Phase.NIGHT;
@@ -164,6 +219,7 @@ public class Tutorial_Canvas_Controller : MonoBehaviour
                 dialogWindow.SetActive(false);
                 GameManager.Instance.pauseGame = false;
                 button.GetComponentInChildren<Text>().text = "Next";
+                reminderTimer = 300;
                 break;
             case 8:
                 button.GetComponentInChildren<Text>().text = "Okay";
@@ -173,11 +229,13 @@ public class Tutorial_Canvas_Controller : MonoBehaviour
                 dialogWindow.SetActive(false);
                 GameManager.Instance.pauseGame = false;
                 button.GetComponentInChildren<Text>().text = "Okay";
+                reminderTimer = 300;
                 break;
             case 10:
                 dialogWindow.SetActive(false);
                 GameManager.Instance.pauseGame = false;
                 button.GetComponentInChildren<Text>().text = "Okay";
+                reminderTimer = 300;
                 break;
             case 11:
                 button.GetComponentInChildren<Text>().text = "Next";
