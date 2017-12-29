@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-//using UnityEditor.SceneManagement;
 
 public class UI_Canvas_Controller : MonoBehaviour
 {
     #region Variables
 
+    public Audio_Manager audioManager;
     public GameObject instructionsWindow;
     public GameObject gameOverWindow;
     public GameObject gameOverMenuButton;
-    //public GameObject gameOverNextLevelButton;
+    public GameObject gameOverNextLevelButton;
     public GameObject gameOverTitle;
     public GameObject settingsWindow;
     public GameObject shopButton;
+    public GameObject helpPopup;
     public Button playButton;
     public Button instructionsButton;
     public Button creditsButton;
@@ -30,10 +31,10 @@ public class UI_Canvas_Controller : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        Game_Manager.Instance.firePlantsGrown = 0;
-        Game_Manager.Instance.gameOver = false;
-        Game_Manager.Instance.money = 200;
-        Game_Manager.Instance.waterLevel = 100;
+        audioManager = GameObject.Find("Audio Manager").GetComponent<Audio_Manager>();
+        GameManager.Instance.gameOver = false;
+        GameManager.Instance.money = 200;
+        GameManager.Instance.waterLevel = 100;
 
         if (playButton)
         {
@@ -52,26 +53,35 @@ public class UI_Canvas_Controller : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        Game_Manager.Instance.Update();
+        GameManager.Instance.Update();
 
-        if (Game_Manager.Instance.gameOver)
+        if ((GameManager.Instance.totalUnwateredPlants >= 2) && GameManager.Instance.gameStarted)
         {
-            gameOverWindow.SetActive(true);
-            gameOverMenuButton.SetActive(true);
-            //gameOverNextLevelButton.SetActive(true);
+            helpPopup.GetComponent<HelpPopup>().thisHelpType = HelpPopup.HelpType.DRYPLANTS;
+            helpPopup.GetComponent<HelpPopup>().MoveDown();
+        }
 
-            if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
+        if (GameManager.Instance.gameOver)
+        {
+            if (!gameOverWindow.activeSelf)
             {
-                mainMenu.Select();
-            }
+                gameOverWindow.SetActive(true);
+                gameOverMenuButton.SetActive(true);
 
-            if ((Game_Manager.Instance.firePlantsGrown >= Game_Manager.Instance.firePlantsRequired) && (Game_Manager.Instance.icePlantsGrown >= Game_Manager.Instance.icePlantsRequired) && (Game_Manager.Instance.voidPlantsGrown >= Game_Manager.Instance.voidPlantsRequired))
-            {
-                gameOverTitle.GetComponent<Text>().text = "You Win!";
-            }
-            else
-            {
-                gameOverTitle.GetComponent<Text>().text = "You Lose!";
+                if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
+                {
+                    mainMenu.Select();
+                }
+
+                if (GameManager.Instance.questsCompleted >= GameManager.Instance.questsRequired)
+                {
+                    gameOverTitle.GetComponent<Text>().text = "You Win!";
+                    gameOverNextLevelButton.SetActive(true);
+                }
+                else
+                {
+                    gameOverTitle.GetComponent<Text>().text = "You Lose!";
+                }
             }
         }
 	}
@@ -80,30 +90,49 @@ public class UI_Canvas_Controller : MonoBehaviour
 
     #region Public Methods
 
+        #region Play Game
+
+        public void PlayGame()
+        {
+            audioManager.PlayButtonSound();
+
+            if (!GameManager.Instance.completedTutorial)
+            {
+                SceneManager.LoadScene("Tutorial");
+            }
+            else
+            {
+                SceneManager.LoadScene("Map 1");
+            }
+        }
+
+        #endregion
+
         #region Start Game
 
         public void StartGame()
         {
+            audioManager.PlayButtonSound();
             shopButton.SetActive(true);
             gameOverMenuButton.SetActive(false);
-            //gameOverNextLevelButton.SetActive(false);
+            gameOverNextLevelButton.SetActive(false);
             gameOverWindow.SetActive(false);
+            GameManager.Instance.StartLevel();
+        }
 
-            Game_Manager.Instance.StartLevel(Game_Manager.Instance.currentLevel);
-            Game_Manager.Instance.gameStarted = true;
+        #endregion
 
-            switch(Game_Manager.Instance.currentLevel)
-            {
-                case Game_Manager.Level.ONE:
-                    Game_Manager.Instance.currentLevel = Game_Manager.Level.TWO;
-                    break;
-                case Game_Manager.Level.TWO:
-                    Game_Manager.Instance.currentLevel = Game_Manager.Level.THREE;
-                    break;
-                case Game_Manager.Level.THREE:
-                    Game_Manager.Instance.currentLevel = Game_Manager.Level.FOUR;
-                    break;
-            }
+        #region Next Level
+
+        public void NextLevel()
+        {
+            audioManager.PlayButtonSound();
+            shopButton.SetActive(true);
+            gameOverMenuButton.SetActive(false);
+            gameOverNextLevelButton.SetActive(false);
+            gameOverWindow.SetActive(false);
+            GameManager.Instance.currentLevel++;
+            GameManager.Instance.NextLevel();
         }
 
         #endregion
@@ -111,16 +140,18 @@ public class UI_Canvas_Controller : MonoBehaviour
         #region Load Scene
 
         public void Load_Scene(string sceneName)
-            {
-                UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
-            }
+        {
+            audioManager.PlayButtonSound();
+            SceneManager.LoadScene(sceneName);
+        }
 
-            #endregion
+        #endregion
 
         #region Instructions
 
         public void InstructionsOpen()
         {
+            audioManager.PlayButtonSound();
             instructionsWindow.SetActive(true);
 
             if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
@@ -131,6 +162,7 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         public void InstructionsClose()
         {
+            audioManager.PlayButtonSound();
             instructionsWindow.SetActive(false);
 
             if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
@@ -145,6 +177,8 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         public void SettingsOpenClose()
         {
+            audioManager.PlayButtonSound();
+
             if (settingsWindow.activeSelf)
             {
                 settingsWindow.SetActive(false);
@@ -159,21 +193,23 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         #region Set Controls
 
-        public void SetControls(string newControls)
+    public void SetControls(string newControls)
         {
-            switch(newControls)
+            audioManager.PlayButtonSound();
+
+            switch (newControls)
             {
                 case "WASD":
-                    Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.WASD;
+                    GameManager.Instance.currentControls = GameManager.ControlScheme.WASD;
                     break;
                 case "Arrows":
-                    Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.ARROWS;
+                    GameManager.Instance.currentControls = GameManager.ControlScheme.ARROWS;
                     break;
                 case "IJKL":
-                    Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.IJKL;
+                    GameManager.Instance.currentControls = GameManager.ControlScheme.IJKL;
                     break;
                 default:
-                    Game_Manager.Instance.currentControls = Game_Manager.ControlScheme.WASD;
+                    GameManager.Instance.currentControls = GameManager.ControlScheme.WASD;
                     break;
             }
         }
@@ -184,6 +220,7 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         public void CreditsOpen()
         {
+            audioManager.PlayButtonSound();
             gameOverWindow.SetActive(true);
 
             if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
@@ -194,8 +231,9 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         public void CreditsClose()
         {
+            audioManager.PlayButtonSound();
             gameOverWindow.SetActive(false);
-
+            
             if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
             {
                 creditsButton.Select();
@@ -208,22 +246,8 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         public void MainMenu()
         {
-            Game_Manager.Instance.firePlantsGrown = 0;
-            Game_Manager.Instance.gameOver = false;
-            Game_Manager.Instance.pauseGame = false;
-            Game_Manager.Instance.placingUpgrade = false;
-            Game_Manager.Instance.purchasedFireUpgrade = false;
-            Game_Manager.Instance.purchasedIceUpgrade = false;
-            Game_Manager.Instance.purchasedVoidUpgrade = false;
-            Game_Manager.Instance.purchasedWaterEfficiency = false;
-            Game_Manager.Instance.money = 200;
-            Game_Manager.Instance.dayTimer = 900;
-            Game_Manager.Instance.waveNumber = 1;
-            Game_Manager.Instance.firePlantsGrown = 0;
-            Game_Manager.Instance.icePlantsGrown = 0;
-            Game_Manager.Instance.voidPlantsGrown = 0;
-            Game_Manager.Instance.currentPlantSelection = Game_Manager.PlantType.FIRE;
-            Game_Manager.Instance.gameStarted = false;
+            audioManager.PlayButtonSound();
+            GameManager.Instance.MainMenu();
             Load_Scene("Main Menu");
         }
 

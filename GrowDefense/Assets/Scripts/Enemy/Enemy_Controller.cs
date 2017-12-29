@@ -15,7 +15,7 @@ public class Enemy_Controller : MonoBehaviour
     float slowDownPercent = 1f;
     public GameObject[] fullPath;
     public int pathCount = 0;
-    public int health = 70;
+    public int health = 30;
     public int moneyGivenOnDeath = 5;
     int DOT_effectTimer = 0;
     int slowEffectTimer = 0;
@@ -43,7 +43,7 @@ public class Enemy_Controller : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if (!Game_Manager.Instance.pauseGame)
+        if (!GameManager.Instance.pauseGame)
         {
             #region DOT Effect
 
@@ -122,7 +122,7 @@ public class Enemy_Controller : MonoBehaviour
 
             if (health <= 0)
             {
-                Game_Manager.Instance.money += moneyGivenOnDeath;
+                GameManager.Instance.money += moneyGivenOnDeath;
                 Destroy(this.gameObject);
             }
 

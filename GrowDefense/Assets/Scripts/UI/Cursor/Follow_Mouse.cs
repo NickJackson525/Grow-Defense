@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Follow_Mouse : MonoBehaviour
 {
+    #region Variables
+
     public GameObject followJoystick;
     public int moveSpeed = 5;
     Vector3 updatePosition;
     public float gridSideLength = .64f;
 
-    private void Start()
-    {
-        
-    }
+    #endregion
+
+    #region Update
 
     void Update()
     {
@@ -35,6 +36,10 @@ public class Follow_Mouse : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Lock To Grid
+
     public Vector3 GetGridPosition()
     {
         return GetSnappedPosition(transform.position);
@@ -53,4 +58,6 @@ public class Follow_Mouse : MonoBehaviour
         );
         return gridPosition;
     }
+
+    #endregion
 }

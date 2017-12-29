@@ -2,24 +2,39 @@
 using System.Collections;
 
 [ExecuteInEditMode]
-public class ZST_SnapToGrid : MonoBehaviour {
+public class ZST_SnapToGrid : MonoBehaviour
+{
+    #region Variables
 
-	public float gridSideLength = .64f;
+    public float gridSideLength = .64f;
 
-	void Update () {
+    #endregion
 
+    #region Update
+
+    void Update ()
+    {
 		// we don't want to force things into a grid during play mode
 		if (Application.isPlaying) {return;}
 
         transform.localPosition = GetSnappedPosition(transform.localPosition);
 	}
 
-	public Vector3 GetGridPosition() {
+    #endregion
+
+    #region Get Grid Position
+
+    public Vector3 GetGridPosition()
+    {
 		return GetSnappedPosition(transform.position);
 	}
 
-	public Vector3 GetSnappedPosition(Vector3 position) {
+    #endregion
 
+    #region Get Snapped Position
+
+    public Vector3 GetSnappedPosition(Vector3 position)
+    {
 		// not fatal in the Editor, but just better not to divide by 0 if we can avoid it
 		if (gridSideLength == 0) {return position;}
 
@@ -30,4 +45,6 @@ public class ZST_SnapToGrid : MonoBehaviour {
 		);
 		return gridPosition;
 	}
+
+    #endregion
 }

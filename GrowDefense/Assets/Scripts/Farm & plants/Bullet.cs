@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     public int slowEffectTimer = 0;
     public int level = 1;
     public float speed = .2f;
-    public Game_Manager.PlantType type = Game_Manager.PlantType.FIRE;
+    public GameManager.ShopItems type = GameManager.ShopItems.BASIC;
 
     #endregion
 
@@ -27,7 +27,20 @@ public class Bullet : MonoBehaviour
     {
 		switch(type)
         {
-            case Game_Manager.PlantType.FIRE:
+            case GameManager.ShopItems.BASIC:
+                GetComponent<SpriteRenderer>().sprite = thisSprite;
+                damage = 2 * level;
+                slowDownPercent = 0;
+                damageOverTime = 0;
+                DOT_effectTimer = 0;
+                slowEffectTimer = 0;
+
+                if (GameManager.Instance.purchasedFireUpgrade)
+                {
+                    damageOverTime = damageOverTime * 2;
+                }
+                break;
+            case GameManager.ShopItems.FIRE:
                 GetComponent<SpriteRenderer>().sprite = thisSprite;
                 damage = 2 * level;
                 slowDownPercent = 0;
@@ -35,25 +48,25 @@ public class Bullet : MonoBehaviour
                 DOT_effectTimer = 600;
                 slowEffectTimer = 0;
 
-                if(Game_Manager.Instance.purchasedFireUpgrade)
+                if(GameManager.Instance.purchasedFireUpgrade)
                 {
                     damageOverTime = damageOverTime * 2;
                 }
                 break;
-            case Game_Manager.PlantType.ICE:
+            case GameManager.ShopItems.ICE:
                 GetComponent<SpriteRenderer>().sprite = thisSprite;
                 damage = 6 * level;
                 slowDownPercent = .1f * (float)level;
                 damageOverTime = 0;
                 DOT_effectTimer = 0;
-                slowEffectTimer = 30;
+                slowEffectTimer = 300;
 
-                if (Game_Manager.Instance.purchasedIceUpgrade)
+                if (GameManager.Instance.purchasedIceUpgrade)
                 {
                     slowDownPercent = slowDownPercent * 2;
                 }
                 break;
-            case Game_Manager.PlantType.VOID:
+            case GameManager.ShopItems.VOID:
                 GetComponent<SpriteRenderer>().sprite = thisSprite;
                 damage = 5;
                 slowDownPercent = 0;
@@ -61,7 +74,7 @@ public class Bullet : MonoBehaviour
                 DOT_effectTimer = 0;
                 slowEffectTimer = 0;
 
-                if (Game_Manager.Instance.purchasedVoidUpgrade)
+                if (GameManager.Instance.purchasedVoidUpgrade)
                 {
                     damage = damage * 2;
                 }
@@ -70,11 +83,11 @@ public class Bullet : MonoBehaviour
                 GetComponent<SpriteRenderer>().sprite = thisSprite;
                 damage = 2 * level;
                 slowDownPercent = 0;
-                damageOverTime = 1 * level;
-                DOT_effectTimer = 600;
+                damageOverTime = 0;
+                DOT_effectTimer = 0;
                 slowEffectTimer = 0;
 
-                if (Game_Manager.Instance.purchasedFireUpgrade)
+                if (GameManager.Instance.purchasedFireUpgrade)
                 {
                     damageOverTime = damageOverTime * 2;
                 }
@@ -89,13 +102,16 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if (target == null)
+        if (!GameManager.Instance.pauseGame)
         {
-            Destroy(this.gameObject);
-        }
-        else if (move)
-        {
-            this.gameObject.transform.position = Vector3.Lerp(transform.position, target.transform.position, speed);
+            if (target == null)
+            {
+                Destroy(this.gameObject);
+            }
+            else if (move)
+            {
+                this.gameObject.transform.position = Vector3.Lerp(transform.position, target.transform.position, speed);
+            }
         }
 	}
 

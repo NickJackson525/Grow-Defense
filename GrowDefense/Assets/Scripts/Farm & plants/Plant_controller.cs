@@ -7,19 +7,16 @@ public class Plant_controller : MonoBehaviour
 {
     #region Variables
 
-    public Sprite firePlantLv1;
-    public Sprite firePlantLv2;
+    public Audio_Manager audioManager;
+    public Sprite basicPlant;
     public Sprite firePlantLv3;
-    public Sprite icePlantLv1;
-    public Sprite icePlantLv2;
     public Sprite icePlantLv3;
-    public Sprite voidPlantLv1;
-    public Sprite voidPlantLv2;
     public Sprite voidPlantLv3;
+    public Sprite basicBullet;
     public Sprite fireBullet;
     public Sprite iceBullet;
     public Sprite voidBullet;
-    public Game_Manager.PlantType thisPlant;
+    public GameManager.ShopItems thisPlant;
     public GameObject bullet;
     public GameObject currentTarget;
     GameObject createdBullet;
@@ -27,7 +24,7 @@ public class Plant_controller : MonoBehaviour
     public GameObject thisTile;
     int shootTimer = 0;
     int growthTimer = 1800;
-    int currentLevel = 1;
+    public int currentLevel = 1;
     float currentAlpha = 255;
     public bool isFertilized = false;
     bool canShoot = true;
@@ -42,19 +39,24 @@ public class Plant_controller : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        audioManager = GameObject.Find("Audio Manager").GetComponent<Audio_Manager>();
+
         switch (thisPlant)
         {
-            case Game_Manager.PlantType.FIRE:
+            case GameManager.ShopItems.BASIC:
+                GetComponent<SpriteRenderer>().sprite = basicPlant;
+                break;
+            case GameManager.ShopItems.FIRE:
                 GetComponent<SpriteRenderer>().sprite = firePlantLv3;
                 break;
-            case Game_Manager.PlantType.ICE:
+            case GameManager.ShopItems.ICE:
                 GetComponent<SpriteRenderer>().sprite = icePlantLv3;
                 break;
-            case Game_Manager.PlantType.VOID:
+            case GameManager.ShopItems.VOID:
                 GetComponent<SpriteRenderer>().sprite = voidPlantLv3;
                 break;
             default:
-                GetComponent<SpriteRenderer>().sprite = firePlantLv3;
+                GetComponent<SpriteRenderer>().sprite = basicPlant;
                 break;
         }
 
@@ -96,13 +98,13 @@ public class Plant_controller : MonoBehaviour
 
         #endregion
 
-        if (!Game_Manager.Instance.pauseGame && Game_Manager.Instance.gameStarted)
+        if (!GameManager.Instance.pauseGame && (GameManager.Instance.gameStarted || Tutorial_Manager.Instance.tutorialStartred))
         {
             currentTarget = FindClosestEnemy();
             testEnemyExist = GameObject.FindGameObjectWithTag("Enemy");
             shootTimer--;
 
-            if ((currentLevel < Game_Manager.maxPlantLevel) && (thisTile.GetComponent<Farm_Controller>().waterLevel > 0) && (Game_Manager.Instance.currentPhase == Game_Manager.Phase.DAY))
+            if ((currentLevel < GameManager.maxPlantLevel) && (thisTile.GetComponent<Farm_Controller>().waterLevel > 0) && (GameManager.Instance.currentPhase == GameManager.Phase.DAY))
             {
                 if (isFertilized)
                 {
@@ -121,7 +123,7 @@ public class Plant_controller : MonoBehaviour
                 currentAlpha = 255f;
                 spriteRender.color = new Color(spriteRender.color.r, spriteRender.color.g, spriteRender.color.b, currentAlpha / 255f);
             }
-            else if (((currentAlpha >= 255) || (thisTile.GetComponent<Farm_Controller>().waterLevel <= 0)) && (Game_Manager.Instance.currentPhase == Game_Manager.Phase.NIGHT))
+            else if (((currentAlpha >= 255) || (thisTile.GetComponent<Farm_Controller>().waterLevel <= 0)) && (GameManager.Instance.currentPhase == GameManager.Phase.NIGHT))
             {
                 currentAlpha = 125f;
                 spriteRender.color = new Color(spriteRender.color.r, spriteRender.color.g, spriteRender.color.b, currentAlpha / 255f);
@@ -154,19 +156,14 @@ public class Plant_controller : MonoBehaviour
                     range++;
                     growthTimer = 3600;
 
-                    switch (thisPlant)
-                    {
-                        case Game_Manager.PlantType.FIRE:
-                            Game_Manager.Instance.firePlantsGrown++;
-                            break;
-                        case Game_Manager.PlantType.ICE:
-                            Game_Manager.Instance.icePlantsGrown++;
-                            break;
-                        case Game_Manager.PlantType.VOID:
-                            Game_Manager.Instance.voidPlantsGrown++;
-                            break;
-                    }
+                    //TODO: add some sort of animation or particle effect to show that this plant is now fully grown
                 }
+            }
+
+            if(Tutorial_Manager.Instance.tutorialStartred && Tutorial_Manager.Instance.InstructionsIndex == 10 && thisPlant == GameManager.ShopItems.FIRE)
+            {
+                currentLevel = 3;
+                range = 3;
             }
 
             #endregion
@@ -184,6 +181,7 @@ public class Plant_controller : MonoBehaviour
                 {
                     if (Vector2.Distance(currentTarget.transform.position, this.gameObject.transform.position) <= range)
                     {
+                        audioManager.PlayPlantShoot();
                         createdBullet = Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, 0f), transform.rotation);
                         createdBullet.GetComponent<Bullet>().move = true;
                         createdBullet.GetComponent<Bullet>().target = currentTarget;
@@ -194,7 +192,7 @@ public class Plant_controller : MonoBehaviour
 
                         if (currentLevel < 3)
                         {
-                            if (Game_Manager.Instance.purchasedWaterEfficiency)
+                            if (GameManager.Instance.purchasedWaterEfficiency)
                             {
                                 thisTile.GetComponent<Farm_Controller>().waterLevel -= .5f;
                             }
@@ -204,24 +202,27 @@ public class Plant_controller : MonoBehaviour
                             }
                         }
 
-                        if (thisPlant == Game_Manager.PlantType.VOID)
+                        if (thisPlant == GameManager.ShopItems.VOID)
                         {
                             shootTimer = shootTimer / 2;
                         }
 
                         switch (thisPlant)
                         {
-                            case Game_Manager.PlantType.FIRE:
+                            case GameManager.ShopItems.BASIC:
+                                createdBullet.GetComponent<Bullet>().thisSprite = basicBullet;
+                                break;
+                            case GameManager.ShopItems.FIRE:
                                 createdBullet.GetComponent<Bullet>().thisSprite = fireBullet;
                                 break;
-                            case Game_Manager.PlantType.ICE:
+                            case GameManager.ShopItems.ICE:
                                 createdBullet.GetComponent<Bullet>().thisSprite = iceBullet;
                                 break;
-                            case Game_Manager.PlantType.VOID:
+                            case GameManager.ShopItems.VOID:
                                 createdBullet.GetComponent<Bullet>().thisSprite = voidBullet;
                                 break;
                             default:
-                                createdBullet.GetComponent<Bullet>().thisSprite = fireBullet;
+                                createdBullet.GetComponent<Bullet>().thisSprite = basicBullet;
                                 break;
                         }
                     }

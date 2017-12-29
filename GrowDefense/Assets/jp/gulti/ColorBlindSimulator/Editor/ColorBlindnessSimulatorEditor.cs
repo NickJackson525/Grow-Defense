@@ -20,15 +20,15 @@ namespace jp.gulti.ColorBlind
 	
 		public override void OnInspectorGUI()
 		{
-			Game_Manager.Instance.BlindMode =  (Game_Manager.ColorBlindMode)EditorGUILayout.EnumPopup("Color Blind Type:", Game_Manager.Instance.BlindMode);
-			switch (Game_Manager.Instance.BlindMode)
+			GameManager.Instance.BlindMode =  (GameManager.ColorBlindMode)EditorGUILayout.EnumPopup("Color Blind Type:", GameManager.Instance.BlindMode);
+			switch (GameManager.Instance.BlindMode)
 			{
-				case Game_Manager.ColorBlindMode.Protanope:
+				case GameManager.ColorBlindMode.Protanope:
 					GUILayout.BeginVertical("box");
 					GUILayout.Label("Protanope(Type I):\nRed Weakness.\n1% of males, 0.01% of females.");
 					GUILayout.EndVertical();
 					break;
-				case Game_Manager.ColorBlindMode.Deuteranope:
+				case GameManager.ColorBlindMode.Deuteranope:
 					GUILayout.BeginVertical("box");
 					GUILayout.Label("Deuteranope(Type II):\nGreen Weakness.\nmost common—6% of males, 0.4% of females");
 					GUILayout.EndVertical();

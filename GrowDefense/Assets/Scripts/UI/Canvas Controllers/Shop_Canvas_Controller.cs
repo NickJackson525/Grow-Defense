@@ -7,12 +7,11 @@ public class Shop_Canvas_Controller : MonoBehaviour
 {
     #region Variables
 
+    public Audio_Manager audioManager;
     public GameObject shopWindow;
+    public GameObject shopButton;
+    public GameObject pauseWindow;
     public GameObject shopWindowTitle;
-    public GameObject farmUpgradesButton;
-    public GameObject plantUpgradesButton;
-    public GameObject farmUpgradesWindow;
-    public GameObject plantUpgradesWindow;
     public GameObject waterEfficiencyUpgradeButton;
     public GameObject fireUpgradeButton;
     public GameObject iceUpgradeButton;
@@ -26,7 +25,7 @@ public class Shop_Canvas_Controller : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-		
+        audioManager = GameObject.Find("Audio Manager").GetComponent<Audio_Manager>();
 	}
 
     #endregion
@@ -36,51 +35,46 @@ public class Shop_Canvas_Controller : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if(timer > 0)
+        if (GameManager.Instance.gameOver)
+        {
+            shopWindow.SetActive(false);
+        }
+
+        if (timer > 0)
         {
             timer--;
         }
         else
         {
-            if (Game_Manager.Instance.placingUpgrade)
+            if (GameManager.Instance.placingUpgrade)
             {
-                Game_Manager.Instance.pauseGame = false;
+                GameManager.Instance.pauseGame = false;
             }
         }
 
-        if(Game_Manager.Instance.purchasedWaterEfficiency)
+        if(GameManager.Instance.purchasedWaterEfficiency)
         {
             waterEfficiencyUpgradeButton.GetComponentInChildren<Text>().text = "Purchased";
         }
 
-        if (Game_Manager.Instance.purchasedFireUpgrade)
+        if (GameManager.Instance.purchasedFireUpgrade)
         {
             fireUpgradeButton.GetComponentInChildren<Text>().text = "Purchased";
         }
 
-        if (Game_Manager.Instance.purchasedIceUpgrade)
+        if (GameManager.Instance.purchasedIceUpgrade)
         {
             iceUpgradeButton.GetComponentInChildren<Text>().text = "Purchased";
         }
 
-        if (Game_Manager.Instance.purchasedVoidUpgrade)
+        if (GameManager.Instance.purchasedVoidUpgrade)
         {
             voidUpgradeButton.GetComponentInChildren<Text>().text = "Purchased";
         }
 
         if(shopWindow.activeSelf)
         {
-            Game_Manager.Instance.pauseGame = true;
-        }
-
-        if(Input.GetKeyUp(KeyCode.Escape))
-        {
-            if (shopWindow.activeSelf)
-            {
-                BackToPauseMenu();
-                shopWindow.SetActive(false);
-                Game_Manager.Instance.pauseGame = false;
-            }
+            GameManager.Instance.pauseGame = true;
         }
     }
 
@@ -92,55 +86,33 @@ public class Shop_Canvas_Controller : MonoBehaviour
 
         public void Load_Scene(string sceneName)
         {
+            audioManager.PlayButtonSound();
             UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
         }
 
-    #endregion
+        #endregion
 
         #region Shop Window
 
         public void ShopWindowOpenClose()
         {
-            if (!Game_Manager.Instance.pauseGame)
+            audioManager.PlayButtonSound();
+
+            if (!pauseWindow.activeSelf)
             {
                 if (shopWindow.activeSelf)
                 {
-                    BackToPauseMenu();
                     shopWindow.SetActive(false);
-                    Game_Manager.Instance.pauseGame = false;
+                    shopButton.GetComponentInChildren<Text>().text = "Shop";
+                    GameManager.Instance.pauseGame = false;
                 }
                 else
                 {
                     shopWindow.SetActive(true);
-                    Game_Manager.Instance.pauseGame = true;
+                    shopButton.GetComponentInChildren<Text>().text = "Exit";
+                    GameManager.Instance.pauseGame = true;
                 }
             }
-        }
-
-        #endregion
-
-        #region Farm Upgrades Window
-
-        public void FarmUpgradesWindow()
-        {
-            shopWindowTitle.SetActive(false);
-            farmUpgradesButton.SetActive(false);
-            plantUpgradesButton.SetActive(false);
-            farmUpgradesWindow.SetActive(true);
-            plantUpgradesWindow.SetActive(false);
-        }
-
-        #endregion
-
-        #region Plant Upgrades Window
-
-        public void PlantUpgradesWindow()
-        {
-            shopWindowTitle.SetActive(false);
-            farmUpgradesButton.SetActive(false);
-            plantUpgradesButton.SetActive(false);
-            farmUpgradesWindow.SetActive(false);
-            plantUpgradesWindow.SetActive(true);
         }
 
         #endregion
@@ -149,66 +121,28 @@ public class Shop_Canvas_Controller : MonoBehaviour
 
         public void WaterEfficiencyUpgrade()
         {
-            if ((Game_Manager.Instance.money >= 200) && !Game_Manager.Instance.purchasedWaterEfficiency)
+            audioManager.PlayButtonSound();
+
+            if ((GameManager.Instance.money >= 200) && !GameManager.Instance.purchasedWaterEfficiency)
             {
                 waterEfficiencyUpgradeButton.GetComponentInChildren<Text>().text = "Purchased";
-                Game_Manager.Instance.purchasedWaterEfficiency = true;
-                Game_Manager.Instance.money -= 200;
+                GameManager.Instance.purchasedWaterEfficiency = true;
+                GameManager.Instance.money -= 200;
             }
         }
 
         #endregion
-
-        #region Sprinkler Upgrade
-
-        public void SprinklerUpgrade()
-        {
-            if(Game_Manager.Instance.money >= 25)
-            {
-                Game_Manager.Instance.placingUpgrade = true;
-                Game_Manager.Instance.currentUpgrade = Game_Manager.PlaceableUpgrade.Sprinkler;
-                Game_Manager.Instance.money -= 25;
-                shopWindowTitle.SetActive(true);
-                farmUpgradesButton.SetActive(true);
-                plantUpgradesButton.SetActive(true);
-                farmUpgradesWindow.SetActive(false);
-                plantUpgradesWindow.SetActive(false);
-                shopWindow.SetActive(false);
-                timer = 30;
-            }
-        }
-
-        #endregion
-
-        #region Fertilizer Upgrade
-
-        public void FertilizerUpgrade()
-        {
-            if (Game_Manager.Instance.money >= 50)
-            {
-                Game_Manager.Instance.placingUpgrade = true;
-                Game_Manager.Instance.currentUpgrade = Game_Manager.PlaceableUpgrade.Fertilizer;
-                Game_Manager.Instance.money -= 50;
-                shopWindowTitle.SetActive(true);
-                farmUpgradesButton.SetActive(true);
-                plantUpgradesButton.SetActive(true);
-                farmUpgradesWindow.SetActive(false);
-                plantUpgradesWindow.SetActive(false);
-                shopWindow.SetActive(false);
-                timer = 30;
-            }
-        }
-
-    #endregion
 
         #region Fire Plant Upgrade
 
         public void FirePlantUpgrade()
         {
-            if ((Game_Manager.Instance.money >= 200) && !Game_Manager.Instance.purchasedFireUpgrade)
+            audioManager.PlayButtonSound();
+
+            if ((GameManager.Instance.money >= 200) && !GameManager.Instance.purchasedFireUpgrade)
             {
-                Game_Manager.Instance.money -= 200;
-                Game_Manager.Instance.purchasedFireUpgrade = true;
+                GameManager.Instance.money -= 200;
+                GameManager.Instance.purchasedFireUpgrade = true;
                 fireUpgradeButton.GetComponentInChildren<Text>().text = "Purchased";
             }
         }
@@ -219,10 +153,12 @@ public class Shop_Canvas_Controller : MonoBehaviour
 
         public void IcePlantUpgrade()
         {
-            if ((Game_Manager.Instance.money >= 200) && !Game_Manager.Instance.purchasedIceUpgrade)
+            audioManager.PlayButtonSound();
+
+            if ((GameManager.Instance.money >= 200) && !GameManager.Instance.purchasedIceUpgrade)
             {
-                Game_Manager.Instance.money -= 200;
-                Game_Manager.Instance.purchasedIceUpgrade = true;
+                GameManager.Instance.money -= 200;
+                GameManager.Instance.purchasedIceUpgrade = true;
                 iceUpgradeButton.GetComponentInChildren<Text>().text = "Purchased";
             }
         }
@@ -233,25 +169,14 @@ public class Shop_Canvas_Controller : MonoBehaviour
 
         public void VoidPlantUpgrade()
         {
-            if ((Game_Manager.Instance.money >= 200) && !Game_Manager.Instance.purchasedVoidUpgrade)
+            audioManager.PlayButtonSound();
+
+            if ((GameManager.Instance.money >= 200) && !GameManager.Instance.purchasedVoidUpgrade)
             {
-                Game_Manager.Instance.money -= 200;
-                Game_Manager.Instance.purchasedVoidUpgrade = true;
+                GameManager.Instance.money -= 200;
+                GameManager.Instance.purchasedVoidUpgrade = true;
                 voidUpgradeButton.GetComponentInChildren<Text>().text = "Purchased";
             }
-        }
-
-        #endregion
-
-        #region Back To Pause Menu
-
-        public void BackToPauseMenu()
-        {
-            shopWindowTitle.SetActive(true);
-            farmUpgradesButton.SetActive(true);
-            plantUpgradesButton.SetActive(true);
-            farmUpgradesWindow.SetActive(false);
-            plantUpgradesWindow.SetActive(false);
         }
 
         #endregion

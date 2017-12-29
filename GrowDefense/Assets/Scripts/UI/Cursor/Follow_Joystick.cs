@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Follow_Joystick : MonoBehaviour
 {
+    #region Variables
+
     public GameObject select;
     public Vector3 updatePosition;
 
-    // Use this for initialization
-    void Start ()
-    {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    #endregion
+
+    #region Update
+
+    // Update is called once per frame
+    void Update ()
     {
         if ((Input.GetJoystickNames().Length > 0) && (Input.GetJoystickNames()[0] != ""))
         {
@@ -28,4 +28,6 @@ public class Follow_Joystick : MonoBehaviour
             transform.position = select.transform.position;
         }
     }
+
+    #endregion
 }

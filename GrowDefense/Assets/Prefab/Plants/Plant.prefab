@@ -65,15 +65,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f024dbc66f9cb4042b15681582510aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePlantLv1: {fileID: 21300000, guid: 55e39d88c96ee1940bda1bdf2e0c0a17, type: 3}
-  firePlantLv2: {fileID: 21300000, guid: 577c4bc7378495846bf239831ff7388d, type: 3}
+  basicPlant: {fileID: 21300000, guid: 2acfb2dde4d9c854994b101204d4e052, type: 3}
   firePlantLv3: {fileID: 21300000, guid: 07cb713e782a86d409fef59c5cf760b2, type: 3}
-  icePlantLv1: {fileID: 21300000, guid: 619f04f3f11a9f14cb919bf3cd791a04, type: 3}
-  icePlantLv2: {fileID: 21300000, guid: e7e8533a6b6b6a047b85728ccc09128e, type: 3}
   icePlantLv3: {fileID: 21300000, guid: a45c9bcd13ce1034db96d51fe8ea6eb6, type: 3}
-  voidPlantLv1: {fileID: 21300000, guid: d48021e8c6fcc7846a1ce54853e378dd, type: 3}
-  voidPlantLv2: {fileID: 21300000, guid: d71fb4a05693b454c8cfe2a131b6d55c, type: 3}
   voidPlantLv3: {fileID: 21300000, guid: 966715bc77119cd4ca59057b6a619602, type: 3}
+  basicBullet: {fileID: 21300000, guid: e796cdc5860f3c34495ad69a6917376f, type: 3}
   fireBullet: {fileID: 21300000, guid: 974ef049104afed4791292f2d12684d0, type: 3}
   iceBullet: {fileID: 21300000, guid: 04a8fdb7667a52d4fb4a2eb8ee2149a9, type: 3}
   voidBullet: {fileID: 21300000, guid: 09a1e4d4c7edcbd4389c3412c3a71d66, type: 3}
@@ -81,6 +77,7 @@ MonoBehaviour:
   bullet: {fileID: 1832230694166976, guid: bb40743516015c249a8ca913534dc370, type: 2}
   currentTarget: {fileID: 0}
   thisTile: {fileID: 0}
+  isFertilized: 0
   range: 1
 --- !u!212 &212577088257536120
 SpriteRenderer:

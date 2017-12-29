@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Pause_Canvas_Controller : MonoBehaviour
 {
     #region Variables
 
+    public Audio_Manager audioManager;
+    public GameObject shopButton;
+    public GameObject shopWindow;
     public GameObject pauseWindow;
+    public GameObject pauseTitle;
     public GameObject objectivesButton;
     public GameObject controlsButton;
     public GameObject instructionsButton;
@@ -18,6 +23,8 @@ public class Pause_Canvas_Controller : MonoBehaviour
     public GameObject instructionsPanel;
     public GameObject creditsPanel;
     public GameObject backstoryPanel;
+    public GameObject settingsButton;
+    public GameObject settingsWindow;
 
     #endregion
 
@@ -26,8 +33,8 @@ public class Pause_Canvas_Controller : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-		
-	}
+        audioManager = GameObject.Find("Audio Manager").GetComponent<Audio_Manager>();
+    }
 
     #endregion
 
@@ -36,24 +43,40 @@ public class Pause_Canvas_Controller : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-		if(Input.GetKeyUp(KeyCode.Escape))
+        if (GameManager.Instance.gameOver && pauseWindow.activeSelf)
+        {
+            BackToPauseMenu();
+            pauseWindow.SetActive(false);
+        }
+
+        UpdateObjectives(GameManager.Instance.Objective1);
+        UpdateObjectives(GameManager.Instance.Objective2);
+        UpdateObjectives(GameManager.Instance.Objective3);
+
+        if (Input.GetKeyUp(KeyCode.Escape) && !shopWindow.activeSelf)
         {
             if(pauseWindow.activeSelf)
             {
                 BackToPauseMenu();
                 pauseWindow.SetActive(false);
-                Game_Manager.Instance.pauseGame = false;
+                GameManager.Instance.pauseGame = false;
             }
             else
             {
                 pauseWindow.SetActive(true);
-                Game_Manager.Instance.pauseGame = true;
+                GameManager.Instance.pauseGame = true;
             }
+        }
+        else if (Input.GetKeyUp(KeyCode.Escape) && shopWindow.activeSelf)
+        {
+            shopWindow.SetActive(false);
+            GameManager.Instance.pauseGame = false;
+            shopButton.GetComponentInChildren<Text>().text = "Shop";
         }
 
         if (pauseWindow.activeSelf)
         {
-            Game_Manager.Instance.pauseGame = true;
+            GameManager.Instance.pauseGame = true;
         }
     }
 
@@ -65,6 +88,7 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void Load_Scene(string sceneName)
         {
+            audioManager.PlayButtonSound();
             UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
         }
 
@@ -74,6 +98,8 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void ObjectivesOpen()
         {
+            audioManager.PlayButtonSound();
+            pauseTitle.SetActive(false);
             objectivesButton.SetActive(false);
             controlsButton.SetActive(false);
             instructionsButton.SetActive(false);
@@ -85,6 +111,8 @@ public class Pause_Canvas_Controller : MonoBehaviour
             instructionsPanel.SetActive(false);
             creditsPanel.SetActive(false);
             backstoryPanel.SetActive(false);
+            settingsButton.SetActive(false);
+            settingsWindow.SetActive(false);
         }
 
         #endregion
@@ -93,6 +121,8 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void ControlsOpen()
         {
+            audioManager.PlayButtonSound();
+            pauseTitle.SetActive(false);
             objectivesButton.SetActive(false);
             controlsButton.SetActive(false);
             instructionsButton.SetActive(false);
@@ -104,6 +134,8 @@ public class Pause_Canvas_Controller : MonoBehaviour
             instructionsPanel.SetActive(false);
             creditsPanel.SetActive(false);
             backstoryPanel.SetActive(false);
+            settingsButton.SetActive(false);
+            settingsWindow.SetActive(false);
         }
 
         #endregion
@@ -112,6 +144,8 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void InstructionsOpen()
         {
+            audioManager.PlayButtonSound();
+            pauseTitle.SetActive(false);
             objectivesButton.SetActive(false);
             controlsButton.SetActive(false);
             instructionsButton.SetActive(false);
@@ -123,6 +157,8 @@ public class Pause_Canvas_Controller : MonoBehaviour
             instructionsPanel.SetActive(true);
             creditsPanel.SetActive(false);
             backstoryPanel.SetActive(false);
+            settingsButton.SetActive(false);
+            settingsWindow.SetActive(false);
         }
 
         #endregion
@@ -131,6 +167,8 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void CreditsOpen()
         {
+            audioManager.PlayButtonSound();
+            pauseTitle.SetActive(false);
             objectivesButton.SetActive(false);
             controlsButton.SetActive(false);
             instructionsButton.SetActive(false);
@@ -142,6 +180,8 @@ public class Pause_Canvas_Controller : MonoBehaviour
             instructionsPanel.SetActive(false);
             creditsPanel.SetActive(true);
             backstoryPanel.SetActive(false);
+            settingsButton.SetActive(false);
+            settingsWindow.SetActive(false);
         }
 
         #endregion
@@ -150,6 +190,8 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void BackstoryOpen()
         {
+            audioManager.PlayButtonSound();
+            pauseTitle.SetActive(false);
             objectivesButton.SetActive(false);
             controlsButton.SetActive(false);
             instructionsButton.SetActive(false);
@@ -161,6 +203,31 @@ public class Pause_Canvas_Controller : MonoBehaviour
             instructionsPanel.SetActive(false);
             creditsPanel.SetActive(false);
             backstoryPanel.SetActive(true);
+            settingsButton.SetActive(false);
+            settingsWindow.SetActive(false);
+        }
+
+    #endregion
+
+        #region Settings Window
+
+        public void SettingsOpen()
+        {
+            audioManager.PlayButtonSound();
+            pauseTitle.SetActive(false);
+            objectivesButton.SetActive(false);
+            controlsButton.SetActive(false);
+            instructionsButton.SetActive(false);
+            creditsButton.SetActive(false);
+            backstoryButton.SetActive(false);
+            mainMenuButton.SetActive(false);
+            objectivesPanel.SetActive(false);
+            controlsPanel.SetActive(false);
+            instructionsPanel.SetActive(false);
+            creditsPanel.SetActive(false);
+            backstoryPanel.SetActive(false);
+            settingsButton.SetActive(false);
+            settingsWindow.SetActive(true);
         }
 
         #endregion
@@ -169,6 +236,8 @@ public class Pause_Canvas_Controller : MonoBehaviour
 
         public void BackToPauseMenu()
         {
+            audioManager.PlayButtonSound();
+            pauseTitle.SetActive(true);
             objectivesButton.SetActive(true);
             controlsButton.SetActive(true);
             instructionsButton.SetActive(true);
@@ -180,31 +249,180 @@ public class Pause_Canvas_Controller : MonoBehaviour
             instructionsPanel.SetActive(false);
             creditsPanel.SetActive(false);
             backstoryPanel.SetActive(false);
+            settingsButton.SetActive(true);
+            settingsWindow.SetActive(false);
         }
 
-    #endregion
+        #endregion
 
         #region Main Menu
 
         public void MainMenu()
         {
-            Game_Manager.Instance.firePlantsGrown = 0;
-            Game_Manager.Instance.gameOver = false;
-            Game_Manager.Instance.pauseGame = false;
-            Game_Manager.Instance.placingUpgrade = false;
-            Game_Manager.Instance.purchasedFireUpgrade = false;
-            Game_Manager.Instance.purchasedIceUpgrade = false;
-            Game_Manager.Instance.purchasedVoidUpgrade = false;
-            Game_Manager.Instance.purchasedWaterEfficiency = false;
-            Game_Manager.Instance.money = 200;
-            Game_Manager.Instance.dayTimer = 900;
-            Game_Manager.Instance.waveNumber = 1;
-            Game_Manager.Instance.firePlantsGrown = 0;
-            Game_Manager.Instance.icePlantsGrown = 0;
-            Game_Manager.Instance.voidPlantsGrown = 0;
-            Game_Manager.Instance.currentPlantSelection = Game_Manager.PlantType.FIRE;
-            Game_Manager.Instance.gameStarted = false;
+            audioManager.PlayButtonSound();
+            GameManager.Instance.MainMenu();
             Load_Scene("Main Menu");
+        }
+
+        #endregion
+
+        #region Update Objectives
+
+        public void UpdateObjectives(GameObject objective)
+        {
+            gameObject.SetActive(true);
+            objective.GetComponent<ObjectiveData>().plant1.SetActive(false);
+            objective.GetComponent<ObjectiveData>().plant1Grown.SetActive(false);
+            objective.GetComponent<ObjectiveData>().plant2.SetActive(false);
+            objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(false);
+            objective.GetComponent<ObjectiveData>().plant3.SetActive(false);
+            objective.GetComponent<ObjectiveData>().plant3Grown.SetActive(false);
+
+            #region Update Basic
+
+            if (objective.GetComponent<ObjectiveData>().basicRequired > 0)
+            {
+                objective.GetComponent<ObjectiveData>().plant1.SetActive(true);
+                objective.GetComponent<ObjectiveData>().plant1Grown.SetActive(true);
+                objective.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().basicPlant;
+                objective.GetComponent<ObjectiveData>().plant1Grown.GetComponent<Text>().text = GameManager.Instance.basicPlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().basicRequired;
+            }
+
+            #endregion
+
+            #region Update Fire
+
+            if (objective.GetComponent<ObjectiveData>().fireRequired > 0)
+            {
+                if (objective.GetComponent<ObjectiveData>().basicRequired > 0)
+                {
+                    objective.GetComponent<ObjectiveData>().plant2.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().firePlant;
+                    objective.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text = GameManager.Instance.firePlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().fireRequired;
+                }
+                else
+                {
+                    objective.GetComponent<ObjectiveData>().plant1.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant1Grown.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().firePlant;
+                    objective.GetComponent<ObjectiveData>().plant1Grown.GetComponent<Text>().text = GameManager.Instance.firePlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().fireRequired;
+                }
+            }
+
+            #endregion
+
+            #region Update Ice
+
+            if (objective.GetComponent<ObjectiveData>().iceRequired > 0)
+            {
+                if (objective.GetComponent<ObjectiveData>().fireRequired > 0)
+                {
+                    if (objective.GetComponent<ObjectiveData>().basicRequired > 0)
+                    {
+                        objective.GetComponent<ObjectiveData>().plant3.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant3Grown.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().icePlant;
+                        objective.GetComponent<ObjectiveData>().plant3Grown.GetComponent<Text>().text = GameManager.Instance.icePlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().iceRequired;
+                    }
+                    else
+                    {
+                        objective.GetComponent<ObjectiveData>().plant2.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().icePlant;
+                        objective.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text = GameManager.Instance.icePlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().iceRequired;
+                    }
+                }
+                else if (objective.GetComponent<ObjectiveData>().basicRequired > 0)
+                {
+                    objective.GetComponent<ObjectiveData>().plant2.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().icePlant;
+                    objective.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text = GameManager.Instance.icePlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().iceRequired;
+                }
+                else
+                {
+                    objective.GetComponent<ObjectiveData>().plant1.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant1Grown.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().icePlant;
+                    objective.GetComponent<ObjectiveData>().plant1Grown.GetComponent<Text>().text = GameManager.Instance.icePlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().iceRequired;
+                }
+            }
+
+            #endregion
+
+            #region Update Void
+
+            if (objective.GetComponent<ObjectiveData>().voidRequired > 0)
+            {
+                if (objective.GetComponent<ObjectiveData>().iceRequired > 0)
+                {
+                    if (objective.GetComponent<ObjectiveData>().fireRequired > 0)
+                    {
+                        if (objective.GetComponent<ObjectiveData>().basicRequired > 0)
+                        {
+                            objective.GetComponent<ObjectiveData>().plant4.SetActive(true);
+                            objective.GetComponent<ObjectiveData>().plant4Grown.SetActive(true);
+                            objective.GetComponent<ObjectiveData>().plant4.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                            objective.GetComponent<ObjectiveData>().plant4Grown.GetComponent<Text>().text = GameManager.Instance.voidPlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().voidRequired;
+                        }
+                        else
+                        {
+                            objective.GetComponent<ObjectiveData>().plant3.SetActive(true);
+                            objective.GetComponent<ObjectiveData>().plant3Grown.SetActive(true);
+                            objective.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                            objective.GetComponent<ObjectiveData>().plant3Grown.GetComponent<Text>().text = GameManager.Instance.voidPlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().voidRequired;
+                        }
+                    }
+                    else if (objective.GetComponent<ObjectiveData>().basicRequired > 0)
+                    {
+                        objective.GetComponent<ObjectiveData>().plant3.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant3Grown.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                        objective.GetComponent<ObjectiveData>().plant3Grown.GetComponent<Text>().text = GameManager.Instance.voidPlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().voidRequired;
+                    }
+                    else
+                    {
+                        objective.GetComponent<ObjectiveData>().plant2.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                        objective.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text = GameManager.Instance.voidPlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().voidRequired;
+                    }
+                }
+                else if (objective.GetComponent<ObjectiveData>().fireRequired > 0)
+                {
+                    if (objective.GetComponent<ObjectiveData>().basicRequired > 0)
+                    {
+                        objective.GetComponent<ObjectiveData>().plant3.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant3Grown.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant3.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                        objective.GetComponent<ObjectiveData>().plant3Grown.GetComponent<Text>().text = GameManager.Instance.voidPlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().voidRequired;
+                    }
+                    else
+                    {
+                        objective.GetComponent<ObjectiveData>().plant2.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(true);
+                        objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                        objective.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text = GameManager.Instance.voidPlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().voidRequired;
+                    }
+                }
+                else if (objective.GetComponent<ObjectiveData>().basicRequired > 0)
+                {
+                    objective.GetComponent<ObjectiveData>().plant2.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant2Grown.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant2.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                    objective.GetComponent<ObjectiveData>().plant2Grown.GetComponent<Text>().text = GameManager.Instance.voidPlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().voidRequired;
+                }
+                else
+                {
+                    objective.GetComponent<ObjectiveData>().plant1.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant1Grown.SetActive(true);
+                    objective.GetComponent<ObjectiveData>().plant1.GetComponent<SpriteRenderer>().sprite = objective.GetComponent<ObjectiveData>().voidPlant;
+                    objective.GetComponent<ObjectiveData>().plant1Grown.GetComponent<Text>().text = GameManager.Instance.voidPlantsHarvested + " / " + objective.GetComponent<ObjectiveData>().voidRequired;
+                }
+            }
+
+            #endregion
         }
 
         #endregion
