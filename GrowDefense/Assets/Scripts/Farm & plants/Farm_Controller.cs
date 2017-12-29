@@ -264,7 +264,7 @@ public class Farm_Controller : MonoBehaviour
         {
             #region Sicle Plant
 
-            if ((isPlanted) && (isSelected) && (Input.GetMouseButtonUp(1) || Input.GetButtonUp("RightTrigger")) && (!GameManager.Instance.gameOver))
+            if ((isPlanted) && (newPlant.GetComponent<Plant_controller>().currentLevel == 3) && (isSelected) && (Input.GetMouseButtonUp(1) || Input.GetButtonUp("RightTrigger")) && (!GameManager.Instance.gameOver))
             {
                 switch(newPlant.GetComponent<Plant_controller>().thisPlant)
                 {

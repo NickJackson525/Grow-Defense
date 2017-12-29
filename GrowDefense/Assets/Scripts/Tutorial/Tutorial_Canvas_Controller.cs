@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Tutorial_Canvas_Controller : MonoBehaviour
 {
+    #region Variables
+
     public Audio_Manager audioManager;
     public GameObject dialogWindow;
     public GameObject nextButton;
@@ -21,15 +23,24 @@ public class Tutorial_Canvas_Controller : MonoBehaviour
     public int flashTimer = 30;
     int reminderTimer = 0;
 
+    #endregion
+
+    #region Start
+
     // Use this for initialization
     void Start ()
     {
         audioManager = GameObject.Find("Audio Manager").GetComponent<Audio_Manager>();
         GameManager.Instance.money = 0;
+        StartTutorial();
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    #endregion
+
+    #region Update
+
+    // Update is called once per frame
+    void Update ()
     {
         if(dialogWindow.activeSelf && (Tutorial_Manager.Instance.InstructionsIndex < 10))
         {
@@ -173,110 +184,119 @@ public class Tutorial_Canvas_Controller : MonoBehaviour
         #endregion
     }
 
-    public void NextDialogText(GameObject button)
-    {
-        audioManager.PlayButtonSound();
-
-        if (Tutorial_Manager.Instance.InstructionsIndex < 11)
-        {
-            dialogBox.GetComponent<Text>().text = Tutorial_Manager.Instance.InstructionsText[Tutorial_Manager.Instance.InstructionsIndex];
-        }
-
-        switch (Tutorial_Manager.Instance.InstructionsIndex)
-        {
-            case 1:
-                button.GetComponentInChildren<Text>().text = "Next";
-                break;
-            case 2:
-                button.GetComponentInChildren<Text>().text = "Okay";
-                break;
-            case 3:
-                GameManager.Instance.money += 25;
-                GameManager.Instance.pauseGame = false;
-                dialogWindow.SetActive(false);
-                button.GetComponentInChildren<Text>().text = "Okay";
-                reminderTimer = 300;
-                break;
-            case 4:
-                GameManager.Instance.pauseGame = false;
-                dialogWindow.SetActive(false);
-                button.GetComponentInChildren<Text>().text = "Next";
-                reminderTimer = 300;
-                break;
-            case 5:
-                button.GetComponentInChildren<Text>().text = "Okay";
-                break;
-            case 6:
-                GameManager.Instance.money += 50;
-                GameManager.Instance.pauseGame = false;
-                dialogWindow.SetActive(false);
-                button.GetComponentInChildren<Text>().text = "Okay";
-                reminderTimer = 300;
-                break;
-            case 7:
-                GameManager.Instance.currentPhase = GameManager.Phase.NIGHT;
-                spawner.GetComponent<Spawner>().SpawnBug();
-                dialogWindow.SetActive(false);
-                GameManager.Instance.pauseGame = false;
-                button.GetComponentInChildren<Text>().text = "Next";
-                reminderTimer = 300;
-                break;
-            case 8:
-                button.GetComponentInChildren<Text>().text = "Okay";
-                break;
-            case 9:
-                QuestController.GetComponent<Quest_Controller>().CreateTutorialQuest();
-                dialogWindow.SetActive(false);
-                GameManager.Instance.pauseGame = false;
-                button.GetComponentInChildren<Text>().text = "Okay";
-                reminderTimer = 300;
-                break;
-            case 10:
-                dialogWindow.SetActive(false);
-                GameManager.Instance.pauseGame = false;
-                button.GetComponentInChildren<Text>().text = "Okay";
-                reminderTimer = 300;
-                break;
-            case 11:
-                button.GetComponentInChildren<Text>().text = "Next";
-                Tutorial_Manager.Instance.InstructionsIndex = 1;
-                Tutorial_Manager.Instance.tutorialStartred = false;
-                GameManager.Instance.completedTutorial = true;
-                GameManager.Instance.pauseGame = false;
-                SceneManager.LoadScene("Map 1");
-                break;
-        }
-
-        if (Tutorial_Manager.Instance.InstructionsIndex < 11)
-        {
-            Tutorial_Manager.Instance.InstructionsIndex++;
-        }
-    }
-
-    #region Start Tutorial
-
-    public void StartTutorial()
-    {
-        audioManager.PlayButtonSound();
-        dialogWindow.SetActive(true);
-        shopButton.SetActive(true);
-        gameOverWindow.SetActive(false);
-        Tutorial_Manager.Instance.StartTutorial();
-        NextDialogText(nextButton);
-    }
-
     #endregion
 
-    #region Skip Tutorial
+    #region Public Methods
 
-    public void SkipTutorial()
-    {
-        audioManager.PlayButtonSound();
-        nextButton.GetComponentInChildren<Text>().text = "Next";
-        Tutorial_Manager.Instance.InstructionsIndex = 1;
-        GameManager.Instance.completedTutorial = true;
-        SceneManager.LoadScene("Map 1");
-    }
+        #region Next Dialog text
+
+        public void NextDialogText(GameObject button)
+        {
+            audioManager.PlayButtonSound();
+
+            if (Tutorial_Manager.Instance.InstructionsIndex < 11)
+            {
+                dialogBox.GetComponent<Text>().text = Tutorial_Manager.Instance.InstructionsText[Tutorial_Manager.Instance.InstructionsIndex];
+            }
+
+            switch (Tutorial_Manager.Instance.InstructionsIndex)
+            {
+                case 1:
+                    button.GetComponentInChildren<Text>().text = "Next";
+                    break;
+                case 2:
+                    button.GetComponentInChildren<Text>().text = "Okay";
+                    break;
+                case 3:
+                    GameManager.Instance.money += 25;
+                    GameManager.Instance.pauseGame = false;
+                    dialogWindow.SetActive(false);
+                    button.GetComponentInChildren<Text>().text = "Okay";
+                    reminderTimer = 300;
+                    break;
+                case 4:
+                    GameManager.Instance.pauseGame = false;
+                    dialogWindow.SetActive(false);
+                    button.GetComponentInChildren<Text>().text = "Next";
+                    reminderTimer = 300;
+                    break;
+                case 5:
+                    button.GetComponentInChildren<Text>().text = "Okay";
+                    break;
+                case 6:
+                    GameManager.Instance.money += 50;
+                    GameManager.Instance.pauseGame = false;
+                    dialogWindow.SetActive(false);
+                    button.GetComponentInChildren<Text>().text = "Okay";
+                    reminderTimer = 300;
+                    break;
+                case 7:
+                    GameManager.Instance.currentPhase = GameManager.Phase.NIGHT;
+                    spawner.GetComponent<Spawner>().SpawnBug();
+                    dialogWindow.SetActive(false);
+                    GameManager.Instance.pauseGame = false;
+                    button.GetComponentInChildren<Text>().text = "Next";
+                    reminderTimer = 300;
+                    break;
+                case 8:
+                    button.GetComponentInChildren<Text>().text = "Okay";
+                    break;
+                case 9:
+                    QuestController.GetComponent<Quest_Controller>().CreateTutorialQuest();
+                    dialogWindow.SetActive(false);
+                    GameManager.Instance.pauseGame = false;
+                    button.GetComponentInChildren<Text>().text = "Okay";
+                    reminderTimer = 300;
+                    break;
+                case 10:
+                    dialogWindow.SetActive(false);
+                    GameManager.Instance.pauseGame = false;
+                    button.GetComponentInChildren<Text>().text = "Okay";
+                    reminderTimer = 300;
+                    break;
+                case 11:
+                    button.GetComponentInChildren<Text>().text = "Next";
+                    Tutorial_Manager.Instance.InstructionsIndex = 1;
+                    Tutorial_Manager.Instance.tutorialStartred = false;
+                    GameManager.Instance.completedTutorial = true;
+                    GameManager.Instance.pauseGame = false;
+                    SceneManager.LoadScene("Map 1");
+                    break;
+            }
+
+            if (Tutorial_Manager.Instance.InstructionsIndex < 11)
+            {
+                Tutorial_Manager.Instance.InstructionsIndex++;
+            }
+        }
+
+        #endregion
+
+        #region Start Tutorial
+
+        public void StartTutorial()
+        {
+            dialogWindow.SetActive(true);
+            shopButton.SetActive(true);
+            gameOverWindow.SetActive(false);
+            Tutorial_Manager.Instance.StartTutorial();
+            NextDialogText(nextButton);
+        }
+
+        #endregion
+
+        #region Skip Tutorial
+
+        public void SkipTutorial()
+        {
+            audioManager.PlayButtonSound();
+            nextButton.GetComponentInChildren<Text>().text = "Next";
+            Tutorial_Manager.Instance.InstructionsIndex = 1;
+            GameManager.Instance.completedTutorial = true;
+            SceneManager.LoadScene("Map 1");
+        }
+
+        #endregion
 
     #endregion
 }
