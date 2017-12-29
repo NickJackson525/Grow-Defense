@@ -157,6 +157,38 @@ Prefab:
       propertyPath: audioManager
       value: 
       objectReference: {fileID: 2035935997}
+    - target: {fileID: 114432686714013362, guid: 22f7ccd513e0be448adb1819606c5775,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: cabba865e4d96174d85ce470de367576,
+        type: 3}
+    - target: {fileID: 114531578865846464, guid: 22f7ccd513e0be448adb1819606c5775,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.2509804
+      objectReference: {fileID: 0}
+    - target: {fileID: 114531578865846464, guid: 22f7ccd513e0be448adb1819606c5775,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.14901961
+      objectReference: {fileID: 0}
+    - target: {fileID: 114531578865846464, guid: 22f7ccd513e0be448adb1819606c5775,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114061040494717700, guid: 22f7ccd513e0be448adb1819606c5775,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: cabba865e4d96174d85ce470de367576,
+        type: 3}
+    - target: {fileID: 114542750063443598, guid: 22f7ccd513e0be448adb1819606c5775,
+        type: 2}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22f7ccd513e0be448adb1819606c5775, type: 2}
   m_IsPrefabParent: 0

@@ -11,7 +11,7 @@ public class Spawner : MonoBehaviour
     GameObject bugCreated;
     public int cooldown = 250;
     public int cooldownConst = 250;
-    public int spawnCount = 0;
+    //public int spawnCount = 0;
     public int spawnRateIncrease = 10;
     int totalWaveEnemies = 5;
     int waveEnemyConstant = 15;
@@ -35,15 +35,15 @@ public class Spawner : MonoBehaviour
     {
         if (!GameManager.Instance.pauseGame && GameManager.Instance.gameStarted && (SceneManager.GetActiveScene().name != "Tutorial"))
         {
-            if ((GameManager.Instance.currentPhase == GameManager.Phase.NIGHT) && (spawnCount < totalWaveEnemies) && (!GameManager.Instance.gameOver))
+            if ((GameManager.Instance.currentPhase == GameManager.Phase.NIGHT) && (GameManager.Instance.nightTimer > 0) && (!GameManager.Instance.gameOver))
             {
                 cooldown--;
 
-                if (spawnCount == 0)
-                {
-                    totalWaveEnemies = waveEnemyConstant * GameManager.Instance.waveNumber;
-                    GameManager.Instance.totalWaveEnemies = totalWaveEnemies;
-                }
+                //if (spawnCount == 0)
+                //{
+                //    totalWaveEnemies = waveEnemyConstant * GameManager.Instance.waveNumber;
+                //    GameManager.Instance.totalWaveEnemies = totalWaveEnemies;
+                //}
 
                 if (cooldown <= 0)
                 {
@@ -56,16 +56,16 @@ public class Spawner : MonoBehaviour
                         cooldown = 50;
                     }
 
-                    spawnCount++;
-                    GameManager.Instance.spawnCount = spawnCount;
+                    //spawnCount++;
+                    //GameManager.Instance.spawnCount = spawnCount;
                 }
             }
             else
             {
-                if ((GameObject.FindGameObjectWithTag("Enemy") == null) && (GameManager.Instance.currentPhase == GameManager.Phase.NIGHT))
+                if (GameManager.Instance.currentPhase == GameManager.Phase.NIGHT)
                 {
                     cooldown = cooldownConst;
-                    spawnCount = 0;
+                    //spawnCount = 0;
                     GameManager.Instance.currentPhase = GameManager.Phase.DAY;
                     GameManager.Instance.dayTimer = GameManager.Instance.dayTimerConstant;
                     GameManager.Instance.waveNumber++;

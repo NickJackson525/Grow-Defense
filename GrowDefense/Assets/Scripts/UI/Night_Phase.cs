@@ -11,6 +11,7 @@ public class Night_Phase : MonoBehaviour
     public GameObject dayNightWheel;
     Color Night = new Color(0, 0, 0, .49f);
     Color Day = new Color(0, 0, 0, 0);
+    float temp = 0;
 
     #endregion
 
@@ -24,12 +25,13 @@ public class Night_Phase : MonoBehaviour
             if (GameManager.Instance.currentPhase == GameManager.Phase.NIGHT)
             {
                 GetComponent<Image>().color = Night;
-                dayNightWheel.transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 117 + (((float)GameManager.Instance.spawnCount / (float)GameManager.Instance.totalWaveEnemies) * 270f));
+                temp = ((((float)GameManager.Instance.nightTimerConstant * GameManager.Instance.waveNumber) - GameManager.Instance.nightTimer) / ((float)GameManager.Instance.nightTimerConstant * GameManager.Instance.waveNumber));
+                dayNightWheel.transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 117 + (temp * 270f));
             }
             else
             {
                 GetComponent<Image>().color = Day;
-                dayNightWheel.transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 27 + ((((float)GameManager.Instance.dayTimerConstant - (float)GameManager.Instance.dayTimer) / (float)GameManager.Instance.dayTimerConstant) * 90f));
+                dayNightWheel.transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 27 + (((GameManager.Instance.dayTimerConstant - GameManager.Instance.dayTimer) / (float)GameManager.Instance.dayTimerConstant) * 90f));
             }
         }
         else

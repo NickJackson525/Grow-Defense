@@ -59,7 +59,9 @@ public class GameManager
     public int questsCompleted = 0;
     public int money = 200;
     public int dayTimer = 900;
+    public int nightTimer = 0;
     public int dayTimerConstant = 900;
+    public int nightTimerConstant = 900;
     public int waveNumber = 1;
     public int basicPlantsHarvested = 0;
     public int firePlantsHarvested = 0;
@@ -207,14 +209,19 @@ public class GameManager
 
                 if (dayTimer <= 0)
                 {
-                    if (currentPhase == Phase.DAY)
-                    {
-                        currentPhase = Phase.NIGHT;
-                    }
-                    else if (currentPhase == Phase.NIGHT)
-                    {
-                        currentPhase = Phase.DAY;
-                    }
+                    currentPhase = Phase.NIGHT;
+                    nightTimer = nightTimerConstant * waveNumber;
+                }
+            }
+            else
+            {
+                nightTimer--;
+
+                if(nightTimer <= 0)
+                {
+                    //currentPhase = Phase.DAY;
+                    //dayTimer = dayTimerConstant;
+                    //waveNumber++;
                 }
             }
 
