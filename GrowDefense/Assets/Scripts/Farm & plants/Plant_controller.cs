@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Plant_controller : MonoBehaviour
 {
@@ -98,7 +99,7 @@ public class Plant_controller : MonoBehaviour
 
         #endregion
 
-        if (!GameManager.Instance.pauseGame && (GameManager.Instance.gameStarted || Tutorial_Manager.Instance.tutorialStartred))
+        if (!GameManager.Instance.pauseGame && ((GameManager.Instance.gameStarted && (SceneManager.GetActiveScene().name == "Map 1")) || (Tutorial_Manager.Instance.tutorialStartred && (SceneManager.GetActiveScene().name == "Tutorial"))))
         {
             currentTarget = FindClosestEnemy();
             testEnemyExist = GameObject.FindGameObjectWithTag("Enemy");

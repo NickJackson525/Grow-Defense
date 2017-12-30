@@ -9,7 +9,15 @@ public class InfoPopup : MonoBehaviour
     public GameManager.ShopItems thisItem;
     public Text title;
     public Text description;
-    float origionalXScale = 0.01720726f;
+    Vector3 updatePosition;
+
+    private void Update()
+    {
+        updatePosition = Input.mousePosition;
+        updatePosition = Camera.main.ScreenToWorldPoint(updatePosition);
+        updatePosition = new Vector3(popup.transform.position.x, updatePosition.y - .1f, popup.transform.position.z);
+        popup.transform.position = Vector2.Lerp(popup.transform.position, updatePosition, 5);
+    }
 
     private void OnMouseEnter()
     {
