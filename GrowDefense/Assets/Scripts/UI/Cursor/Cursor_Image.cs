@@ -117,6 +117,10 @@ public class Cursor_Image : MonoBehaviour
                     break;
             }
         }
+        else if (coll.gameObject.tag == "Panel")
+        {
+            GetComponent<SpriteRenderer>().sprite = defaultCursor;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D coll)
@@ -156,6 +160,10 @@ public class Cursor_Image : MonoBehaviour
                     GetComponent<SpriteRenderer>().sprite = defaultCursor;
                     break;
             }
+        }
+        else if (coll.gameObject.tag == "Panel")
+        {
+            GetComponent<SpriteRenderer>().sprite = defaultCursor;
         }
     }
 

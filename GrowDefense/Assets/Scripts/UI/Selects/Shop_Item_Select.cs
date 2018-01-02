@@ -9,6 +9,7 @@ public class Shop_Item_Select : MonoBehaviour
     public GameManager.ShopItems thisItem;
     public GameObject cursor;
     public GameObject buildSelect;
+    public GameObject basicSelect;
     public GameObject fireSelect;
     public GameObject iceSelect;
     public GameObject voidSelect;
@@ -97,7 +98,7 @@ public class Shop_Item_Select : MonoBehaviour
             #endregion
         }
 
-        #region 1 Through 4 Hotkeys
+        #region Hotkeys
 
         if((gameObject.name == "Build_Select") && Input.GetKeyUp(KeyCode.Alpha1))
         {
@@ -128,6 +129,66 @@ public class Shop_Item_Select : MonoBehaviour
             GameManager.Instance.wateringCanSelected = false;
             GameManager.Instance.sellingItem = true;
             cursor.GetComponent<SpriteRenderer>().sprite = cursor.GetComponent<Cursor_Image>().sellCursor;
+        }
+        else if((gameObject.name == "Build_Select") && Input.GetKeyUp(KeyCode.Q))
+        {
+            buildSelect.transform.position = basicSelect.transform.position;
+            GameManager.Instance.currentShopSelection = GameManager.ShopItems.BASIC;
+            GameManager.Instance.placingUpgrade = false;
+            GameManager.Instance.SicleSelected = false;
+            GameManager.Instance.wateringCanSelected = false;
+            GameManager.Instance.sellingItem = false;
+            cursor.GetComponent<SpriteRenderer>().sprite = cursor.GetComponent<Cursor_Image>().basicSeedPacketCursor;
+        }
+        else if ((gameObject.name == "Build_Select") && Input.GetKeyUp(KeyCode.W))
+        {
+            buildSelect.transform.position = iceSelect.transform.position;
+            GameManager.Instance.currentShopSelection = GameManager.ShopItems.ICE;
+            GameManager.Instance.placingUpgrade = false;
+            GameManager.Instance.SicleSelected = false;
+            GameManager.Instance.wateringCanSelected = false;
+            GameManager.Instance.sellingItem = false;
+            cursor.GetComponent<SpriteRenderer>().sprite = cursor.GetComponent<Cursor_Image>().iceSeedPacketCursor;
+        }
+        else if ((gameObject.name == "Build_Select") && Input.GetKeyUp(KeyCode.E))
+        {
+            buildSelect.transform.position = fireSelect.transform.position;
+            GameManager.Instance.currentShopSelection = GameManager.ShopItems.FIRE;
+            GameManager.Instance.placingUpgrade = false;
+            GameManager.Instance.SicleSelected = false;
+            GameManager.Instance.wateringCanSelected = false;
+            GameManager.Instance.sellingItem = false;
+            cursor.GetComponent<SpriteRenderer>().sprite = cursor.GetComponent<Cursor_Image>().fireSeedPacketCursor;
+        }
+        else if ((gameObject.name == "Build_Select") && Input.GetKeyUp(KeyCode.R))
+        {
+            buildSelect.transform.position = voidSelect.transform.position;
+            GameManager.Instance.currentShopSelection = GameManager.ShopItems.VOID;
+            GameManager.Instance.placingUpgrade = false;
+            GameManager.Instance.SicleSelected = false;
+            GameManager.Instance.wateringCanSelected = false;
+            GameManager.Instance.sellingItem = false;
+            cursor.GetComponent<SpriteRenderer>().sprite = cursor.GetComponent<Cursor_Image>().voidSeedPacketCursor;
+        }
+        else if ((gameObject.name == "Build_Select") && Input.GetKeyUp(KeyCode.T))
+        {
+            buildSelect.transform.position = fertilizerSelect.transform.position;
+            GameManager.Instance.currentShopSelection = GameManager.ShopItems.FERTILIZER;
+            GameManager.Instance.placingUpgrade = true;
+            GameManager.Instance.SicleSelected = false;
+            GameManager.Instance.wateringCanSelected = false;
+            GameManager.Instance.sellingItem = false;
+            cursor.GetComponent<SpriteRenderer>().sprite = cursor.GetComponent<Cursor_Image>().defaultCursor;
+        }
+        else if ((gameObject.name == "Build_Select") && Input.GetKeyUp(KeyCode.Y))
+        {
+            buildSelect.transform.position = sprinklerSelect.transform.position;
+            GameManager.Instance.currentShopSelection = GameManager.ShopItems.SPRINKLER;
+            GameManager.Instance.placingUpgrade = true;
+            GameManager.Instance.SicleSelected = false;
+            GameManager.Instance.wateringCanSelected = false;
+            GameManager.Instance.sellingItem = false;
+            cursor.GetComponent<SpriteRenderer>().sprite = cursor.GetComponent<Cursor_Image>().defaultCursor;
         }
 
         #endregion

@@ -16,6 +16,7 @@ TagManager:
   - Objective3
   - PauseWindow
   - HelpPopup
+  - Panel
   layers:
   - Default
   - TransparentFX
