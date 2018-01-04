@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy_Controller : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class Enemy_Controller : MonoBehaviour
     int DOTMultiplierMax = 4;
     int SlowMultiplier = 0;
     int SlowMultiplierMax= 2;
+    int fullPathLength = 0;
     bool startDOTEffect = false;
 
     #endregion

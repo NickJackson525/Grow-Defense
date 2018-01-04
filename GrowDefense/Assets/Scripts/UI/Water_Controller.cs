@@ -56,7 +56,7 @@ public class Water_Controller : MonoBehaviour
 
     #region Custom Methods
 
-    public void updateSprite()
+    public void UpdateSprite()
     {
         switch (health)
         {
@@ -119,7 +119,7 @@ public class Water_Controller : MonoBehaviour
         if (coll.gameObject.tag == "Enemy")
         {
             health -= 10;
-            updateSprite();
+            UpdateSprite();
             Destroy(coll.gameObject);
         }
     }

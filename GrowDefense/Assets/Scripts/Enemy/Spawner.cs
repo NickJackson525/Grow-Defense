@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class Spawner : MonoBehaviour
 {
     #region Variables
-
+     
+    public GameObject[] fullPath;
     public GameObject bug1;
     GameObject bugCreated;
     public int cooldown = 250;
@@ -49,6 +50,7 @@ public class Spawner : MonoBehaviour
                 {
                     bugCreated = Instantiate(bug1, transform.position, transform.rotation);
                     bugCreated.GetComponent<Enemy_Controller>().health += 1 * (int)Mathf.Pow(2f, GameManager.Instance.waveNumber - 1);
+                    bugCreated.GetComponent<Enemy_Controller>().fullPath = fullPath;
                     cooldown = cooldownConst - (GameManager.Instance.waveNumber * 25);
 
                     if (cooldown < 50)

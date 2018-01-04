@@ -113,6 +113,8 @@ MonoBehaviour:
   - {fileID: 1674796407388248, guid: cc4a82e39848c8944a9f81520d1077ae, type: 2}
   - {fileID: 1935634753771488, guid: 2498d256571f50c46a0a3b90b0d04302, type: 2}
   - {fileID: 1120396211383510, guid: c143d2c18f388dd45883c06a10347495, type: 2}
+  - {fileID: 1191057513739056, guid: 79f1463bde99e14419dc853b489a0337, type: 2}
+  - {fileID: 1852326201024758, guid: ac333041b997a8245be3729d3c2bf73b, type: 2}
   pathCount: 0
   health: 30
   moneyGivenOnDeath: 5

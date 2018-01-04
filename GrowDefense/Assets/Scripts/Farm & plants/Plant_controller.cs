@@ -99,7 +99,7 @@ public class Plant_controller : MonoBehaviour
 
         #endregion
 
-        if (!GameManager.Instance.pauseGame && ((GameManager.Instance.gameStarted && (SceneManager.GetActiveScene().name == "Map 1")) || (Tutorial_Manager.Instance.tutorialStartred && (SceneManager.GetActiveScene().name == "Tutorial"))))
+        if (!GameManager.Instance.pauseGame && ((GameManager.Instance.gameStarted && (SceneManager.GetActiveScene().name.Contains("Map"))) || (Tutorial_Manager.Instance.tutorialStartred && (SceneManager.GetActiveScene().name == "Tutorial"))))
         {
             currentTarget = FindClosestEnemy();
             testEnemyExist = GameObject.FindGameObjectWithTag("Enemy");

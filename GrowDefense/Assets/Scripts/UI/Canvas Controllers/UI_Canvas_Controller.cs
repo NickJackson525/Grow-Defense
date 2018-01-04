@@ -9,6 +9,7 @@ public class UI_Canvas_Controller : MonoBehaviour
     #region Variables
 
     public Audio_Manager audioManager;
+    public GameObject levelSelectWindow;
     public GameObject instructionsWindow;
     public GameObject gameOverWindow;
     public GameObject gameOverMenuButton;
@@ -92,17 +93,40 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         #region Play Game
 
-        public void PlayGame()
+        public void PlayGame(int levelNumber)
+        {
+            switch(levelNumber)
+            {
+                case 1:
+                    SceneManager.LoadScene("Map 1");
+                    break;
+                case 2:
+                    SceneManager.LoadScene("Map 2");
+                    break;
+                case 3:
+                    SceneManager.LoadScene("Map 3");
+                    break;
+                case 4:
+                    SceneManager.LoadScene("Map 4");
+                    break;
+            }
+        }
+
+        #endregion
+
+        #region Level Select
+
+        public void LevelSelectWindow()
         {
             audioManager.PlayButtonSound();
 
-            if (!GameManager.Instance.completedTutorial)
+            if (levelSelectWindow.activeSelf)
             {
-                SceneManager.LoadScene("Tutorial");
+                levelSelectWindow.SetActive(false);
             }
             else
             {
-                SceneManager.LoadScene("Map 1");
+                levelSelectWindow.SetActive(true);
             }
         }
 

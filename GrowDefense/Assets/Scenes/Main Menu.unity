@@ -183,7 +183,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ab99283df271833408e38a2bc26a4101, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &896530278
+--- !u!1001 &1440526577
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -222,16 +222,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114386113591679392, guid: 22f7ccd513e0be448adb1819606c5775,
-        type: 2}
-      propertyPath: audioManager
-      value: 
-      objectReference: {fileID: 2035935997}
     - target: {fileID: 223578828638779614, guid: 22f7ccd513e0be448adb1819606c5775,
         type: 2}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1824830381}
+    - target: {fileID: 114386113591679392, guid: 22f7ccd513e0be448adb1819606c5775,
+        type: 2}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 2035935997}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 22f7ccd513e0be448adb1819606c5775, type: 2}
   m_IsPrefabParent: 0
