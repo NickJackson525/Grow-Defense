@@ -65,70 +65,88 @@ public class Quest_Controller : MonoBehaviour
     {
         #region Scale Quest Types
 
-        if(GameManager.Instance.currentLevel == 1)
-        {
-            OnePlantTypeQuest();
-        }
-        else if(GameManager.Instance.currentLevel == 2)
-        {
-            int questType = Random.Range(1, 3);
+        //if(GameManager.Instance.currentLevel == 1)
+        //{
+        //    OnePlantTypeQuest();
+        //}
+        //else if(GameManager.Instance.currentLevel == 2)
+        //{
+        //    int questType = Random.Range(1, 3);
 
-            switch (questType)
-            {
-                case 1:
-                    OnePlantTypeQuest();
-                    break;
-                case 2:
-                    TwoPlantTypeQuest();
-                    break;
-                default:
-                    TwoPlantTypeQuest();
-                    break;
-            }
-        }
-        else if (GameManager.Instance.currentLevel > 5)
-        {
-            int questType = Random.Range(1, 3);
+        //    switch (questType)
+        //    {
+        //        case 1:
+        //            OnePlantTypeQuest();
+        //            break;
+        //        case 2:
+        //            TwoPlantTypeQuest();
+        //            break;
+        //        default:
+        //            TwoPlantTypeQuest();
+        //            break;
+        //    }
+        //}
+        //else if (GameManager.Instance.currentLevel > 5)
+        //{
+        //    int questType = Random.Range(1, 3);
 
-            switch (questType)
-            {
-                case 1:
-                    TwoPlantTypeQuest();
-                    break;
-                case 2:
-                    ThreePlantTypeQuest();
-                    break;
-                default:
-                    TwoPlantTypeQuest();
-                    break;
-            }
-        }
-        else if (GameManager.Instance.currentLevel > 10)
-        {
-            ThreePlantTypeQuest();
-        }
-        else
-        {
-            int questType = Random.Range(1, 4);
+        //    switch (questType)
+        //    {
+        //        case 1:
+        //            TwoPlantTypeQuest();
+        //            break;
+        //        case 2:
+        //            ThreePlantTypeQuest();
+        //            break;
+        //        default:
+        //            TwoPlantTypeQuest();
+        //            break;
+        //    }
+        //}
+        //else if (GameManager.Instance.currentLevel > 10)
+        //{
+        //    ThreePlantTypeQuest();
+        //}
+        //else
+        //{
+        //    int questType = Random.Range(1, 4);
 
-            switch (questType)
-            {
-                case 1:
-                    OnePlantTypeQuest();
-                    break;
-                case 2:
-                    TwoPlantTypeQuest();
-                    break;
-                case 3:
-                    ThreePlantTypeQuest();
-                    break;
-                default:
-                    TwoPlantTypeQuest();
-                    break;
-            }
-        }
+        //    switch (questType)
+        //    {
+        //        case 1:
+        //            OnePlantTypeQuest();
+        //            break;
+        //        case 2:
+        //            TwoPlantTypeQuest();
+        //            break;
+        //        case 3:
+        //            ThreePlantTypeQuest();
+        //            break;
+        //        default:
+        //            TwoPlantTypeQuest();
+        //            break;
+        //    }
+        //}
 
         #endregion
+
+        int questType = Random.Range(1, 4);
+
+        switch (questType)
+        {
+            case 1:
+                OnePlantTypeQuest();
+                break;
+            case 2:
+                TwoPlantTypeQuest();
+                break;
+            case 3:
+                ThreePlantTypeQuest();
+                break;
+            default:
+                TwoPlantTypeQuest();
+                break;
+        }
 
         createdQuest.GetComponent<Quest_Popup>().basicRequired = basicRequired;
         createdQuest.GetComponent<Quest_Popup>().fireRequired = fireRequired;

@@ -94,6 +94,9 @@ public class GameManager
     public GameObject Objective1;
     public GameObject Objective2;
     public GameObject Objective3;
+    public bool level2Locked = true;
+    public bool level3Locked = true;
+    public bool level4Locked = true;
 
     #endregion
 
@@ -131,6 +134,11 @@ public class GameManager
 
     public void Update()
     {
+        if(Input.GetKeyUp(KeyCode.M))
+        {
+            questsCompleted++;
+        }
+
         #region Quest Complete Cheat
 
         if(Input.GetKeyUp(KeyCode.Q))
@@ -216,13 +224,6 @@ public class GameManager
             else
             {
                 nightTimer--;
-
-                if(nightTimer <= 0)
-                {
-                    //currentPhase = Phase.DAY;
-                    //dayTimer = dayTimerConstant;
-                    //waveNumber++;
-                }
             }
 
             #endregion
@@ -258,30 +259,31 @@ public class GameManager
         {
             questsCompleted = 0;
             gameStarted = true;
+            questsRequired = 15;
 
-            if (currentLevel == 1)
-            {
-                questsRequired = 5;
-            }
-            else
-            {
-                basicPlantsHarvested = 0;
-                firePlantsHarvested = 0;
-                icePlantsHarvested = 0;
-                voidPlantsHarvested = 0;
-                currentNumQuests = 0;
-                gameOver = false;
-                pauseGame = false;
-                placingUpgrade = false;
-                purchasedFireUpgrade = false;
-                purchasedIceUpgrade = false;
-                purchasedVoidUpgrade = false;
-                purchasedWaterEfficiency = false;
-                dayTimer = 900;
-                currentPhase = Phase.DAY;
-                waveNumber = 1;
-                questsRequired += Random.Range(2, 5);
-            }
+            //if (currentLevel == 1)
+            //{
+            //    questsRequired = 5;
+            //}
+            //else
+            //{
+            //    basicPlantsHarvested = 0;
+            //    firePlantsHarvested = 0;
+            //    icePlantsHarvested = 0;
+            //    voidPlantsHarvested = 0;
+            //    currentNumQuests = 0;
+            //    gameOver = false;
+            //    pauseGame = false;
+            //    placingUpgrade = false;
+            //    purchasedFireUpgrade = false;
+            //    purchasedIceUpgrade = false;
+            //    purchasedVoidUpgrade = false;
+            //    purchasedWaterEfficiency = false;
+            //    dayTimer = 900;
+            //    currentPhase = Phase.DAY;
+            //    waveNumber = 1;
+            //    questsRequired += Random.Range(2, 5);
+            //}
         }
 
         #endregion
