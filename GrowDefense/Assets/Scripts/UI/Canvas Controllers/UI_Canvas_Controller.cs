@@ -77,7 +77,7 @@ public class UI_Canvas_Controller : MonoBehaviour
                 if (GameManager.Instance.questsCompleted >= GameManager.Instance.questsRequired)
                 {
                     gameOverTitle.GetComponent<Text>().text = "You Win!";
-                    gameOverNextLevelButton.SetActive(true);
+                    //gameOverNextLevelButton.SetActive(true);
                 }
                 else
                 {
@@ -99,15 +99,19 @@ public class UI_Canvas_Controller : MonoBehaviour
             {
                 case 1:
                     SceneManager.LoadScene("Map 1");
+                    GameManager.Instance.completedLevel = 1;
                     break;
                 case 2:
                     SceneManager.LoadScene("Map 2");
+                    GameManager.Instance.completedLevel = 2;
                     break;
                 case 3:
                     SceneManager.LoadScene("Map 3");
+                    GameManager.Instance.completedLevel = 3;
                     break;
                 case 4:
                     SceneManager.LoadScene("Map 4");
+                    GameManager.Instance.completedLevel = 4;
                     break;
             }
         }

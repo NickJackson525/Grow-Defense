@@ -55,6 +55,7 @@ public class GameManager
 
     public float waterLevel = 100;
     public int currentLevel = 1;
+    public int completedLevel = 1;
     public int questsRequired = 5;
     public int questsCompleted = 0;
     public int money = 200;
@@ -134,14 +135,13 @@ public class GameManager
 
     public void Update()
     {
-        if(Input.GetKeyUp(KeyCode.M))
+        #region Quest Complete Cheat
+
+        if (Input.GetKeyUp(KeyCode.M))
         {
             questsCompleted++;
         }
-
-        #region Quest Complete Cheat
-
-        if(Input.GetKeyUp(KeyCode.Q))
+        if (Input.GetKeyUp(KeyCode.Q))
         {
             basicPlantsHarvested++;
         }
@@ -194,10 +194,25 @@ public class GameManager
         {
             #region End Game Check
 
-            if (questsCompleted >= questsRequired)
+            if ((questsCompleted >= questsRequired) && (gameOver == false))
             {
                 gameOver = true;
                 pauseGame = true;
+
+                switch(completedLevel)
+                {
+                    case 1:
+                        level2Locked = false;
+                        break;
+                    case 2:
+                        level3Locked = false;
+                        break;
+                    case 3:
+                        level4Locked = false;
+                        break;
+                }
+
+                currentLevel++;
             }
 
             #endregion
@@ -332,7 +347,7 @@ public class GameManager
             dayTimer = 900;
             currentPhase = Phase.DAY;
             waveNumber = 1;
-            currentLevel = 1;
+            //currentLevel = 1;
             currentShopSelection = GameManager.ShopItems.BASIC;
             gameStarted = false;
         }
