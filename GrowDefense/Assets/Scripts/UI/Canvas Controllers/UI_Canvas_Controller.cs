@@ -113,7 +113,15 @@ public class UI_Canvas_Controller : MonoBehaviour
                     SceneManager.LoadScene("Map 4");
                     GameManager.Instance.completedLevel = 4;
                     break;
-            }
+                case 5:
+                    SceneManager.LoadScene("Map 5");
+                    GameManager.Instance.completedLevel = 5;
+                    break;
+                case 6:
+                    SceneManager.LoadScene("Map 6");
+                    GameManager.Instance.completedLevel = 6;
+                    break;
+        }
         }
 
         #endregion

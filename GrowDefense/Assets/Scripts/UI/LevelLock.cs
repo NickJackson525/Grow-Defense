@@ -34,6 +34,18 @@ public class LevelLock : MonoBehaviour
                         GetComponent<Image>().sprite = unlocked;
                     }
                     break;
+                case 5:
+                    if (!GameManager.Instance.level5Locked)
+                    {
+                        GetComponent<Image>().sprite = unlocked;
+                    }
+                    break;
+                case 6:
+                    if (!GameManager.Instance.level6Locked)
+                    {
+                        GetComponent<Image>().sprite = unlocked;
+                    }
+                    break;
             }
         }
         else
@@ -54,6 +66,18 @@ public class LevelLock : MonoBehaviour
                     break;
                 case 4:
                     if (!GameManager.Instance.level4Locked)
+                    {
+                        gameObject.SetActive(false);
+                    }
+                    break;
+                case 5:
+                    if (!GameManager.Instance.level5Locked)
+                    {
+                        gameObject.SetActive(false);
+                    }
+                    break;
+                case 6:
+                    if (!GameManager.Instance.level6Locked)
                     {
                         gameObject.SetActive(false);
                     }

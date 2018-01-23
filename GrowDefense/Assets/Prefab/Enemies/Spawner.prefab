@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1435248392555374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.7599998, y: 5.12, z: -3.84}
+  m_LocalPosition: {x: -2.56, y: 3.84, z: -3.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,10 +53,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2df89744f61beda49805a8983f04d40e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fullPath:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   bug1: {fileID: 1099381375926008, guid: bad5769f2cd0ab940bc5254b721c4060, type: 2}
+  bug2: {fileID: 1087616722871556, guid: e86c1d3e2680bf24f97fd6fd7c731b11, type: 2}
   cooldown: 120
   cooldownConst: 180
-  spawnCount: 0
   spawnRateIncrease: 15
 --- !u!114 &114366011688398496
 MonoBehaviour:

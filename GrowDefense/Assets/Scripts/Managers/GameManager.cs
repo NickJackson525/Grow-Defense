@@ -98,6 +98,8 @@ public class GameManager
     public bool level2Locked = true;
     public bool level3Locked = true;
     public bool level4Locked = true;
+    public bool level5Locked = true;
+    public bool level6Locked = true;
 
     #endregion
 
@@ -210,6 +212,12 @@ public class GameManager
                     case 3:
                         level4Locked = false;
                         break;
+                    case 4:
+                        level5Locked = false;
+                        break;
+                    case 5:
+                        level6Locked = false;
+                        break;
                 }
 
                 currentLevel++;
@@ -275,30 +283,6 @@ public class GameManager
             questsCompleted = 0;
             gameStarted = true;
             questsRequired = 15;
-
-            //if (currentLevel == 1)
-            //{
-            //    questsRequired = 5;
-            //}
-            //else
-            //{
-            //    basicPlantsHarvested = 0;
-            //    firePlantsHarvested = 0;
-            //    icePlantsHarvested = 0;
-            //    voidPlantsHarvested = 0;
-            //    currentNumQuests = 0;
-            //    gameOver = false;
-            //    pauseGame = false;
-            //    placingUpgrade = false;
-            //    purchasedFireUpgrade = false;
-            //    purchasedIceUpgrade = false;
-            //    purchasedVoidUpgrade = false;
-            //    purchasedWaterEfficiency = false;
-            //    dayTimer = 900;
-            //    currentPhase = Phase.DAY;
-            //    waveNumber = 1;
-            //    questsRequired += Random.Range(2, 5);
-            //}
         }
 
         #endregion
@@ -347,7 +331,6 @@ public class GameManager
             dayTimer = 900;
             currentPhase = Phase.DAY;
             waveNumber = 1;
-            //currentLevel = 1;
             currentShopSelection = GameManager.ShopItems.BASIC;
             gameStarted = false;
         }

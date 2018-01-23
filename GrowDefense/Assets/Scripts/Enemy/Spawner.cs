@@ -9,13 +9,13 @@ public class Spawner : MonoBehaviour
      
     public GameObject[] fullPath;
     public GameObject bug1;
+    public GameObject bug2;
+    public GameObject bug3;
     GameObject bugCreated;
     public int cooldown = 250;
     public int cooldownConst = 250;
-    //public int spawnCount = 0;
     public int spawnRateIncrease = 10;
-    int totalWaveEnemies = 5;
-    int waveEnemyConstant = 15;
+    int rand;
 
     #endregion
 
@@ -40,16 +40,28 @@ public class Spawner : MonoBehaviour
             {
                 cooldown--;
 
-                //if (spawnCount == 0)
-                //{
-                //    totalWaveEnemies = waveEnemyConstant * GameManager.Instance.waveNumber;
-                //    GameManager.Instance.totalWaveEnemies = totalWaveEnemies;
-                //}
-
                 if (cooldown <= 0)
                 {
-                    bugCreated = Instantiate(bug1, transform.position, transform.rotation);
-                    bugCreated.GetComponent<Enemy_Controller>().health += 1 * (int)Mathf.Pow(2f, GameManager.Instance.waveNumber - 1);
+                    switch(Random.Range(1, 4))
+                    {
+                        case 1:
+                            bugCreated = Instantiate(bug1, transform.position, transform.rotation);
+                            bugCreated.GetComponent<Enemy_Controller>().health += 1 * (int)Mathf.Pow(2f, GameManager.Instance.waveNumber - 1);
+                            break;
+                        case 2:
+                            bugCreated = Instantiate(bug2, transform.position, transform.rotation);
+                            bugCreated.GetComponent<Enemy_Controller>().health += (1 * (int)Mathf.Pow(2f, GameManager.Instance.waveNumber - 1)) / 2;
+                            break;
+                        case 3:
+                            bugCreated = Instantiate(bug3, transform.position, transform.rotation);
+                            bugCreated.GetComponent<Enemy_Controller>().health += (1 * (int)Mathf.Pow(2f, GameManager.Instance.waveNumber - 1)) * 2;
+                            break;
+                        default:
+                            bugCreated = Instantiate(bug1, transform.position, transform.rotation);
+                            bugCreated.GetComponent<Enemy_Controller>().health += 1 * (int)Mathf.Pow(2f, GameManager.Instance.waveNumber - 1);
+                            break;
+                    }
+
                     bugCreated.GetComponent<Enemy_Controller>().fullPath = fullPath;
                     cooldown = cooldownConst - (GameManager.Instance.waveNumber * 25);
 
@@ -57,9 +69,6 @@ public class Spawner : MonoBehaviour
                     {
                         cooldown = 50;
                     }
-
-                    //spawnCount++;
-                    //GameManager.Instance.spawnCount = spawnCount;
                 }
             }
             else

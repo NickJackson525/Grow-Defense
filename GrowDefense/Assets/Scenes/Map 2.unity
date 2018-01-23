@@ -1641,6 +1641,71 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1225812177368228, guid: 81105ddd986be4e43afd0b3e063aecdf, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876065259248472, guid: 81105ddd986be4e43afd0b3e063aecdf, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114834425325605858, guid: 81105ddd986be4e43afd0b3e063aecdf,
+        type: 2}
+      propertyPath: m_Text
+      value: 'Developer: Nick Jackson
+
+        Character Portrait art: Michele Bucelli (https://opengameart.org/users/buch)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 224555044613282850, guid: 81105ddd986be4e43afd0b3e063aecdf,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 4.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224555044613282850, guid: 81105ddd986be4e43afd0b3e063aecdf,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 222.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224693683817125178, guid: 81105ddd986be4e43afd0b3e063aecdf,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 230.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 224645265106071352, guid: 81105ddd986be4e43afd0b3e063aecdf,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224555044613282850, guid: 81105ddd986be4e43afd0b3e063aecdf,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.00000029802
+      objectReference: {fileID: 0}
+    - target: {fileID: 224645265106071352, guid: 81105ddd986be4e43afd0b3e063aecdf,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224645265106071352, guid: 81105ddd986be4e43afd0b3e063aecdf,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224467571078972006, guid: 81105ddd986be4e43afd0b3e063aecdf,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224467571078972006, guid: 81105ddd986be4e43afd0b3e063aecdf,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224467571078972006, guid: 81105ddd986be4e43afd0b3e063aecdf,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: -17
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 81105ddd986be4e43afd0b3e063aecdf, type: 2}
   m_IsPrefabParent: 0
@@ -2482,7 +2547,7 @@ Prefab:
     - target: {fileID: 224394371148371722, guid: af824cec821a27e45b3bd82c87cf3657,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0.65826094
+      value: 0.000000059604645
       objectReference: {fileID: 0}
     - target: {fileID: 224394371148371722, guid: af824cec821a27e45b3bd82c87cf3657,
         type: 2}
@@ -2508,6 +2573,33 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.x
       value: -17.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 114512342812828036, guid: af824cec821a27e45b3bd82c87cf3657,
+        type: 2}
+      propertyPath: m_Text
+      value: 'Developer: Nick Jackson
+
+        Character Portrait art: Michele Bucelli (https://opengameart.org/users/buch)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 224416773585326202, guid: af824cec821a27e45b3bd82c87cf3657,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 7.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224416773585326202, guid: af824cec821a27e45b3bd82c87cf3657,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 203.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 224714948776481946, guid: af824cec821a27e45b3bd82c87cf3657,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 114.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 224416773585326202, guid: af824cec821a27e45b3bd82c87cf3657,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.00000035763
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: af824cec821a27e45b3bd82c87cf3657, type: 2}
@@ -3785,6 +3877,12 @@ Prefab:
       propertyPath: fullPath.Array.data[8]
       value: 
       objectReference: {fileID: 1365042188}
+    - target: {fileID: 114097484212784230, guid: d663aff4ce170dd4184059977c63f95b,
+        type: 2}
+      propertyPath: bug3
+      value: 
+      objectReference: {fileID: 1746181421999976, guid: c168e438d40892d4f80af749f4677b41,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d663aff4ce170dd4184059977c63f95b, type: 2}
   m_IsPrefabParent: 0
