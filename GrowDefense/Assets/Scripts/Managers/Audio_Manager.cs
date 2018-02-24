@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -12,6 +13,8 @@ public class Audio_Manager : MonoBehaviour
     public AudioClip backroundMusic1;
     public AudioClip backroundMusic2;
     public AudioClip backroundMusic3;
+    public AudioClip backroundMusic4;
+    public AudioClip backroundMusic5;
     public AudioClip plantInGound1;
     public AudioClip plantInGound2;
     public AudioClip plantInGound3;
@@ -21,6 +24,7 @@ public class Audio_Manager : MonoBehaviour
     public AudioClip sell;
     public float musicVolume = 1;
     public float effectVolume = 1;
+    private int lastBackgroundTrack = 0;
 
     #endregion
 
@@ -70,9 +74,11 @@ public class Audio_Manager : MonoBehaviour
         effectSoundSource = gameObject.AddComponent<AudioSource>();
 
         //load sound files
-        backroundMusic1 = Resources.Load<AudioClip>("Sounds/Background1");
-        backroundMusic2 = Resources.Load<AudioClip>("Sounds/Background2");
-        backroundMusic3 = Resources.Load<AudioClip>("Sounds/Background3");
+        backroundMusic1 = Resources.Load<AudioClip>("Sounds/BackgroundMusic1");
+        backroundMusic2 = Resources.Load<AudioClip>("Sounds/BackgroundMusic2");
+        backroundMusic3 = Resources.Load<AudioClip>("Sounds/BackgroundMusic3");
+        backroundMusic4 = Resources.Load<AudioClip>("Sounds/BackgroundMusic4");
+        backroundMusic5 = Resources.Load<AudioClip>("Sounds/BackgroundMusic5");
         plantInGound1 = Resources.Load<AudioClip>("Sounds/plantInGround1");
         plantInGound2 = Resources.Load<AudioClip>("Sounds/plantInGround2");
         plantInGound3 = Resources.Load<AudioClip>("Sounds/plantInGround3");
@@ -144,7 +150,14 @@ public class Audio_Manager : MonoBehaviour
     public void PlayBackgroundMusic()
     {
         backgroundMusicSource.Stop();
-        int rand = UnityEngine.Random.Range(0, 3);
+        int rand = UnityEngine.Random.Range(0, 5);
+
+        while(rand == lastBackgroundTrack)
+        {
+            rand = UnityEngine.Random.Range(0, 5);
+        }
+
+        lastBackgroundTrack = rand;
 
         switch (rand)
         {
@@ -158,6 +171,14 @@ public class Audio_Manager : MonoBehaviour
                 break;
             case 2:
                 backgroundMusicSource.PlayOneShot(backroundMusic3, .3f * musicVolume);
+                backgroundMusicSource.volume = .3f * musicVolume;
+                break;
+            case 3:
+                backgroundMusicSource.PlayOneShot(backroundMusic4, .3f * musicVolume);
+                backgroundMusicSource.volume = .3f * musicVolume;
+                break;
+            case 4:
+                backgroundMusicSource.PlayOneShot(backroundMusic5, .3f * musicVolume);
                 backgroundMusicSource.volume = .3f * musicVolume;
                 break;
             default:
