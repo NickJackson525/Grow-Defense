@@ -95,7 +95,7 @@ public class UI_Canvas_Controller : MonoBehaviour
 
         public void PlayGame(int levelNumber)
         {
-            switch(levelNumber)
+            switch (levelNumber)
             {
                 case 1:
                     SceneManager.LoadScene("Map 1");
@@ -121,7 +121,9 @@ public class UI_Canvas_Controller : MonoBehaviour
                     SceneManager.LoadScene("Map 6");
                     GameManager.Instance.completedLevel = 6;
                     break;
-        }
+            }
+
+            audioManager.PlayInGameBackgroundMusic();
         }
 
         #endregion

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class Audio_Manager : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class Audio_Manager : MonoBehaviour
     public AudioClip backroundMusic3;
     public AudioClip backroundMusic4;
     public AudioClip backroundMusic5;
+    public AudioClip inGameBackroundMusic1;
+    public AudioClip inGameBackroundMusic2;
+    public AudioClip inGameBackroundMusic3;
+    public AudioClip inGameBackroundMusic4;
     public AudioClip plantInGound1;
     public AudioClip plantInGound2;
     public AudioClip plantInGound3;
@@ -79,6 +84,10 @@ public class Audio_Manager : MonoBehaviour
         backroundMusic3 = Resources.Load<AudioClip>("Sounds/BackgroundMusic3");
         backroundMusic4 = Resources.Load<AudioClip>("Sounds/BackgroundMusic4");
         backroundMusic5 = Resources.Load<AudioClip>("Sounds/BackgroundMusic5");
+        inGameBackroundMusic1 = Resources.Load<AudioClip>("Sounds/InGameBackgroundMusic1");
+        inGameBackroundMusic2 = Resources.Load<AudioClip>("Sounds/InGameBackgroundMusic2");
+        inGameBackroundMusic3 = Resources.Load<AudioClip>("Sounds/InGameBackgroundMusic3");
+        inGameBackroundMusic4 = Resources.Load<AudioClip>("Sounds/InGameBackgroundMusic4");
         plantInGound1 = Resources.Load<AudioClip>("Sounds/plantInGround1");
         plantInGound2 = Resources.Load<AudioClip>("Sounds/plantInGround2");
         plantInGound3 = Resources.Load<AudioClip>("Sounds/plantInGround3");
@@ -98,7 +107,14 @@ public class Audio_Manager : MonoBehaviour
     {
         if(!backgroundMusicSource.isPlaying)
         {
-            PlayBackgroundMusic();
+            if (SceneManager.GetActiveScene().name.Contains("Map"))
+            {
+                PlayInGameBackgroundMusic();
+            }
+            else
+            {
+                PlayBackgroundMusic();
+            }
         }
 
         backgroundMusicSource.volume = .3f * musicVolume;
@@ -183,6 +199,43 @@ public class Audio_Manager : MonoBehaviour
                 break;
             default:
                 backgroundMusicSource.PlayOneShot(backroundMusic1, .3f * musicVolume);
+                backgroundMusicSource.volume = .3f * musicVolume;
+                break;
+        }
+    }
+
+    public void PlayInGameBackgroundMusic()
+    {
+        backgroundMusicSource.Stop();
+        int rand = UnityEngine.Random.Range(0, 4);
+
+        while (rand == lastBackgroundTrack)
+        {
+            rand = UnityEngine.Random.Range(0, 4);
+        }
+
+        lastBackgroundTrack = rand;
+
+        switch (rand)
+        {
+            case 0:
+                backgroundMusicSource.PlayOneShot(inGameBackroundMusic1, .3f * musicVolume);
+                backgroundMusicSource.volume = .3f * musicVolume;
+                break;
+            case 1:
+                backgroundMusicSource.PlayOneShot(inGameBackroundMusic2, .3f * musicVolume);
+                backgroundMusicSource.volume = .3f * musicVolume;
+                break;
+            case 2:
+                backgroundMusicSource.PlayOneShot(inGameBackroundMusic3, .3f * musicVolume);
+                backgroundMusicSource.volume = .3f * musicVolume;
+                break;
+            case 3:
+                backgroundMusicSource.PlayOneShot(inGameBackroundMusic4, .3f * musicVolume);
+                backgroundMusicSource.volume = .3f * musicVolume;
+                break;
+            default:
+                backgroundMusicSource.PlayOneShot(inGameBackroundMusic1, .3f * musicVolume);
                 backgroundMusicSource.volume = .3f * musicVolume;
                 break;
         }
